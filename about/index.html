@@ -1,15 +1,520 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #333;
+            background-image: url(../css/images/banner.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        ul li,
+        li {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 1.35rem;
+        }
+        
+        a {
+            color: #000;
+        }
+        
+        a:hover {
+            color: #000;
+        }
+        
+        header {
+            margin: 0px;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 50px;
+            display: block;
+            background: transparent;
+            z-index: 100;
+        }
+        
+        nav ul {
+            float: right;
+            margin-top: 0px;
+        }
+        
+        nav li {
+            line-height: 50px;
+            font-size: 1rem;
+        }
+        
+        nav li a {
+            display: inline-block;
+            text-decoration: none;
+            padding-top: 0px;
+            color: #FFF;
+        }
+        
+        nav .logo {
+            float: left;
+            margin-top: 6px;
+            margin-left: 20px;
+        }
+        
+        nav .logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+        
+        nav .logo-txt a {
+            color: #FFF;
+        }
+        
+        #banner {
+            background: rgba(0, 0, 0, 0.25);
+            height: 680px;
+        }
+        
+        #banner .inner {
+            max-width: 300px;
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+            top: 200px;
+        }
+        
+        #banner .inner h1 {
+            margin: 5px 0px;
+        }
+        
+        #banner .inner .more {
+            margin-top: 160px;
+            text-align: center;
+        }
+        
+        .fa {
+            text-align: center;
+        }
+        
+        #banner .inner .subheading {
+            line-height: 30px;
+            margin: 30px;
+        }
+        /*第一部分*/
+        
+        #one {
+            text-align: center;
+            background: #93776f;
+            height: 680px;
+        }
+        
+        .section-info {
+            padding-top: 100px;
+            margin: 0px auto;
+        }
+        
+        .section-info p {
+            padding: 20px 0px;
+        }
+        
+        .section-title1 {}
+        
+        .section-title2 {
+            width: 300px;
+            padding: 10px 0px 30px 0px;
+            text-align: center;
+            border-bottom: #111 solid 2px;
+            margin: 5px auto;
+        }
+        
+        .section-icon-group {
+            margin-top: 6rem;
+        }
+        
+        .section-icon-group .icon {
+            display: inline-block;
+            height: 70px;
+            width: 70px;
+            margin-right: 34px;
+            background-color: #a89479;
+            /*transform: rotate(45deg);*/
+            transform: rotate(-45deg);
+            border-radius: 3px;
+            border: solid 2px #fff;
+            font-size: 1.5em;
+            line-height: 3em;
+            text-align: center;
+        }
+        
+        .section-icon-group .icon .fa {
+            transform: rotate(45deg);
+        }
+        /*第二部分*/
+        
+        #two {
+            background: #2f3876;
+            /*height: 1480px;*/
+            /*width: 100%;*/
+        }
+        
+        #two .article-preview {
+            font-size: 0px;
+            background: rgba(72, 117, 131, 1);
+            /*height: 33%;*/
+        }
+        /*#two .article-preview > div{
+			float: left;
+		}*/
+        
+        #two .article-preview:nth-child(odd) {
+            background: rgba(120, 202, 141, 0.83);
+        }
+        
+        #two .article-preview:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        #two .article-preview>*:nth-child(odd) {
+            float: left;
+        }
+        
+        #two .article-preview>*:nth-child(even) {
+            float: right;
+        }
+        
+        #two .article-preview .img-section {
+            width: 45%;
+        }
+        
+        #two .article-preview .img-section img {
+            /*margin: 50px 0px 0px 50px;*/
+            width: 100%;
+        }
+        
+        #two .article-preview .text-section {
+            width: 55%;
+            font-size: 0.83rem;
+            padding-left: 2rem;
+            padding-top: 3rem;
+            padding-right: 2rem;
+        }
+        /*#two .article-preview .text-section >*{
+			max-width: 90%;
+		}*/
+        
+        #two .article-preview .text-section {
+            width: 55%;
+        }
+        
+        #two .article-preview .text-section h2 {
+            margin-bottom: 10px;
+        }
+        
+        #two .article-preview .text-section p {
+            letter-spacing: 1px;
+        }
+        
+        footer {
+            height: 500px;
+        }
+        
+        .footer-callme {
+            padding-top: 10rem;
+            width: 100%;
+            height: 60%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-social {
+            width: 100%;
+            height: 40%;
+            background: #333;
+        }
+        
+        .footer-social ul {
+            margin: 0 auto;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-social p {
+            text-align: center;
+            font-size: 0.5rem;
+        }
+        
+        input {
+            border: 1px solid #bb1616;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        
+        button {
+            border: none;
+            background: #333;
+            color: #eee;
+            padding: 14px 60px;
+            border-radius: 5px;
+        }
+        
+        .footer-callme button {
+            background: #bb1616;
+            padding: 0.66rem 3rem;
+        }
+        
+        hr {
+            border-width: 2px;
+            border-style: solid;
+            border-color: #111;
+        }
+        
+        #icon-qq-li {
+            position: relative;
+        }
+        
+        #icon-weixin-li {
+            position: relative;
+        }
+        
+        .contact-qq {
+            width: 200px;
+            height: 250px;
+            position: absolute;
+            top: -260px;
+            left: -80px;
+        }
+        
+        .contact-weixin {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: -160px;
+            left: -60px;
+        }
+        
+        .contact-qq img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .contact-weixin img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homePageUrl="https://yangzebin001.github.io" homePageName="回到我的主页"></script>
+    <!-- 页头开始 -->
+    <nav id="nav">
+        <div class="logo">
+            <a href="#banner"><img src="../css/images/logo.png"></a>
+
+            <!-- <div class="logo-text"><li class="logo"><a href="#">杨泽斌</a></li></div> -->
+        </div>
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><a href="">归档</a></li>
+            <li><a href="">分类</a></li>
+            <li><a href="">关于</a></li>
+        </ul>
+    </nav>
+    <header>
+        <div id="banner">
+            <div class="inner">
+                <hr>
+                <h1>杨泽斌</h1>
+                <hr>
+                <p class="subheading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididm.
+                </p>
+
+                <a href="https://yangzebin001.github.io" target="_blank"><button>了解我</button></a>
+                <div class="more">
+                    更&nbsp;&nbsp;&nbsp;&nbsp;多
+                    <br> &nbsp;
+                    <span class="fa fa-angle-down" aria-hidden="true"></span> &nbsp;&nbsp;
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <!-- 页头结束 -->
+
+    <!-- 内容开始 -->
+    <div id="content">
+        <section id="one">
+            <div class="section-info">
+                <h2 class="section-title1">标题1</h2>
+                <h2 class="section-title2">爱吃的孩子都是好孩子</h2>
+
+                <p>
+                    爱吃的孩子都是好孩子爱吃的孩子都是好孩子爱吃的孩子都是好孩子爱吃的孩子都是好孩子爱吃的孩子都是好孩子
+                </p>
+            </div>
+            <div class="section-icon-group">
+                <div class="icon">
+                    <span class="fa fa-coffee" aria-hidden="true">&nbsp;</span>
+                </div>
+                <div class="icon">
+                    <span class="fa fa-bandcamp" aria-hidden="true">&nbsp;</span>
+                </div>
+                <div class="icon">
+                    <span class="fa fa-code" aria-hidden="true"> </span>
+                </div>
+            </div>
+        </section>
+
+        <section id="two">
+            <div class="article-preview">
+                <div class="img-section">
+                    <img src="../css/images/pic01.jpg">
+                </div>
+                <div class="text-section">
+                    <div>
+                        <h2>又一个标题</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercit est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="text-section">
+                    <h2>又一个标题</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatd est laborum.
+                    </p>
+                </div>
+                <div class="img-section">
+                    <img src="../css/images/pic02.jpg">
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="img-section">
+                    <img src="../css/images/pic03.jpg">
+                </div>
+                <div class="text-section">
+                    <h2>又一个标题</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut eniuptate velit esse cillum dolore eu fugcat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="three"></section>
+        <section id="four"></section>
+    </div>
+    <!-- 内容结束 -->
+
+    <!-- 页脚开始 -->
+    <footer>
+        <div class="footer-callme">
+            <!-- <input type="text" name=""> -->
+            <a href="https://yangzebin001.github.io" target="_blank"><button>联系我</button></a>
+        </div>
+        <div class="footer-social">
+            <ul class="footer-icongroup">
+                <li>
+                    <a href="https://yangzebin001.github.io/" target="_blank"><span class="fa fa-rss" aria-hidden="true"></span></a>
+                </li>
+                <li id="icon-weixin-li">
+                    <a id="icon-weixin" href=""><span  class="fa fa-weixin" aria-hidden="true"></span></a>
+                    <!-- 隐藏元素 -->
+                    <div id="weixin" class="contact-weixin hidden">
+                        <img src="../css/images/weixin.jpg">
+                    </div>
+                </li>
+                <li id="icon-qq-li">
+                    <a id="icon-qq" href=""><span class="fa fa-qq" aria-hidden="true"></span></a>
+                    <!-- 隐藏元素 -->
+                    <div id="qq" class="contact-qq hidden">
+                        <img src="../css/images/qq.jpg">
+                    </div>
+                </li>
+                <li>
+                    <a href="https://github.com/yangzebin001" target="_blank"><span class="fa fa-github" aria-hidden="true"></span></a>
+                </li>
+                <li>
+                    <a href=""><span class="fa fa-google" aria-hidden="true"></span></a>
+                </li>
+                <li>
+                    <a href=""><span class="fa fa-facebook-official" aria-hidden="true"></span></a>
+                </li>
+            </ul>
+            <p>
+                Copyright © 2013 - 2018 BeckoninGshy's Blog All Rights Reserved.
+            </p>
+
+
+
+        </div>
+    </footer>
+    <!-- 页脚结束 -->
+
+
+
+    <!-- js -->
+    <script type="text/javascript">
+        // 导航栏背景颜色变化
+        var nav = document.getElementById('nav');
+        window.onscroll = function() {
+            var scrollheight = document.documentElement.scrollTop;
+            console.log(scrollheight);
+            if (scrollheight > 680) {
+                nav.style.background = "#222";
+            } else {
+                nav.style.background = "transparent";
+            }
+        }
+
+        // 联系方式：qq、微信的图片显示与隐藏
+        var qq = document.getElementById("qq");
+        var weixin = document.getElementById("weixin");
+        var iconqq = document.getElementById("icon-qq");
+        var iconweixin = document.getElementById("icon-weixin");
+
+        iconqq.onmouseover = function() {
+            qq.className = qq.className.replace("hidden", "show");
+        }
+        iconqq.onmouseout = function() {
+            qq.className = qq.className.replace("show", "hidden");
+        }
+        iconweixin.onmouseover = function() {
+            weixin.className = weixin.className.replace("hidden", "show");
+        }
+        iconweixin.onmouseout = function() {
+            weixin.className = weixin.className.replace("show", "hidden");
+        }
+    </script>
 </body>
 
 </html>
