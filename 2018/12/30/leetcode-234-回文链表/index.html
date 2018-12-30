@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>leetcode 142. 环形链表 ii | BeckoninGshy&#39;s Blog</title>
+  <title>leetcode 234.回文链表 | BeckoninGshy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="leetcodealgorithm" />
@@ -11,20 +11,18 @@
   
   
   
-  <meta name="description" content="142. 环形链表 II 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。">
+  <meta name="description" content="234.回文链表 请判断一个链表是否为回文链表。Solution1：">
 <meta name="keywords" content="leetcode,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 142. 环形链表 II">
-<meta property="og:url" content="https://yangzebin001.github.io/2018/12/30/leetcode-142-环形链表-II/index.html">
+<meta property="og:title" content="leetcode 234.回文链表">
+<meta property="og:url" content="https://yangzebin001.github.io/2018/12/30/leetcode-234-回文链表/index.html">
 <meta property="og:site_name" content="BeckoninGshy&#39;s Blog">
-<meta property="og:description" content="142. 环形链表 II 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。">
+<meta property="og:description" content="234.回文链表 请判断一个链表是否为回文链表。Solution1：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pkjge38r4.bkt.clouddn.com/18-12-30/36603912.jpg">
-<meta property="og:updated_time" content="2018-12-30T07:44:41.534Z">
+<meta property="og:updated_time" content="2018-12-30T07:45:47.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 142. 环形链表 II">
-<meta name="twitter:description" content="142. 环形链表 II 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。">
-<meta name="twitter:image" content="http://pkjge38r4.bkt.clouddn.com/18-12-30/36603912.jpg">
+<meta name="twitter:title" content="leetcode 234.回文链表">
+<meta name="twitter:description" content="234.回文链表 请判断一个链表是否为回文链表。Solution1：">
   
     <link rel="alternate" href="/atom.xml" title="BeckoninGshy&#39;s Blog" type="application/atom+xml">
   
@@ -162,7 +160,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-leetcode-142-环形链表-II" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-leetcode-234-回文链表" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -170,7 +168,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      LeetCode 142. 环形链表 II
+      leetcode 234.回文链表
     </h1>
   
 
@@ -178,8 +176,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/12/30/leetcode-142-环形链表-II/" class="article-date">
-	  <time datetime="2018-12-30T07:27:57.000Z" itemprop="datePublished">2018-12-30</time>
+	<a href="/2018/12/30/leetcode-234-回文链表/" class="article-date">
+	  <time datetime="2018-12-30T07:44:12.000Z" itemprop="datePublished">2018-12-30</time>
 	</a>
 
       
@@ -193,16 +191,14 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">142. 环形链表 II</a></p>
-<h3 id="给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。"><a href="#给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。" class="headerlink" title="给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。"></a>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</h3><a id="more"></a>
-<h5 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1:"></a>Solution1:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        std::set&lt;ListNode*&gt; node_set;</span><br><span class="line">        while(head)&#123;</span><br><span class="line">            if(node_set.find(head) == node_set.end())&#123;</span><br><span class="line">                node_set.insert(head);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return head;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>与141号问题的Solutions1一个思路，直接使用set。只不过返回的是结点不是boolean值罢了。</p>
+        <p><a href="https://leetcode-cn.com/problems/palindrome-linked-list/submissions/" target="_blank" rel="noopener">234.回文链表</a></p>
+<h3 id="请判断一个链表是否为回文链表。"><a href="#请判断一个链表是否为回文链表。" class="headerlink" title="请判断一个链表是否为回文链表。"></a>请判断一个链表是否为回文链表。</h3><h5 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h5><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//获得链表长度</span><br><span class="line">int getListLength(ListNode* head)&#123;</span><br><span class="line">    int len = 0;</span><br><span class="line">    while(head)&#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        len++;</span><br><span class="line">    &#125;</span><br><span class="line">    return len;</span><br><span class="line">&#125;</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isPalindrome(ListNode* head) &#123;</span><br><span class="line">        ListNode* head1 = head;</span><br><span class="line">        int listlen = getListLength(head1);</span><br><span class="line">        if(listlen &lt;= 1) return true;</span><br><span class="line">        int mid = listlen/2;</span><br><span class="line">        std::stack&lt;int&gt; s;</span><br><span class="line">        while(mid &amp;&amp; head)&#123;</span><br><span class="line">            s.push(head-&gt;val);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">            mid--;</span><br><span class="line">        &#125;</span><br><span class="line">        if(listlen%2 != 0)&#123;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(head)&#123;</span><br><span class="line">            if(head-&gt;val != s.top())&#123;</span><br><span class="line">               return false; </span><br><span class="line">            &#125;</span><br><span class="line">            s.pop();</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h5><p>借助stack。</p>
+<p>将mid之前的元素值都push进stack中，然后到mid之后，将每个元素与栈顶值比较。不相等退出，相等继续下一轮。</p>
 <hr>
-<h5 id="Solutions2"><a href="#Solutions2" class="headerlink" title="Solutions2:"></a>Solutions2:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        ListNode * head1 = head;</span><br><span class="line">        ListNode * slow = head;</span><br><span class="line">        ListNode * fast = head;</span><br><span class="line">        //fast走一步，slow走两步</span><br><span class="line">        while(fast)&#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            if(fast)&#123;</span><br><span class="line">                fast = fast-&gt;next;</span><br><span class="line">            &#125;else&#123; //没有环退出</span><br><span class="line">                return NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            //有环退出循环</span><br><span class="line">            if(fast == slow)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //说明有环</span><br><span class="line">        while(head1 &amp;&amp; fast)&#123;</span><br><span class="line">            if(head1 == fast)&#123;</span><br><span class="line">                return fast;</span><br><span class="line">            &#125;</span><br><span class="line">            head1 = head1-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        //不会走到这步，只是为了保证函数正常运行</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>这种方法只会使用O(1)的空间。</p>
-<p>该方法的思路需要一点数学基础：</p>
-<p>在一个有环的链表中，slow指针与fast指针相遇，从该相遇的位置开始，与链表的头位置开始，两者走同样的步数，如果两者相交，就走到了环的开始位置。</p>
-<p><img src="http://pkjge38r4.bkt.clouddn.com/18-12-30/36603912.jpg" alt="image"></p>
+<h5 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//获得链表长度</span><br><span class="line">int getListLength(ListNode* head)&#123;</span><br><span class="line">    int len = 0;</span><br><span class="line">    while(head)&#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        len++;</span><br><span class="line">    &#125;</span><br><span class="line">    return len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//根据位置与所给链表，向后移动position步。</span><br><span class="line">ListNode* getNodeByPosition(ListNode* head,int position)&#123;</span><br><span class="line">    while(position&gt;0)&#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        position--;</span><br><span class="line">    &#125;</span><br><span class="line">    return head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isPalindrome(ListNode* head) &#123;</span><br><span class="line">        //存储头结点。</span><br><span class="line">        ListNode* first = head;</span><br><span class="line">        ListNode* head1 = head;</span><br><span class="line">        int listlen = getListLength(head);</span><br><span class="line">        int midposition = listlen/2;</span><br><span class="line">        //如果链表长度&lt;=1，直接返回true;</span><br><span class="line">        if(listlen &lt;= 1) return true;</span><br><span class="line">        //到达需要翻转的长度，对于偶数，为（listlen/2）+1，对于奇数，为listlen/2;</span><br><span class="line">        ListNode* mid = getNodeByPosition(head1,midposition);</span><br><span class="line">        //翻转mid之后的指针。</span><br><span class="line">        ListNode * newHead = NULL;</span><br><span class="line">        int position = listlen-midposition;</span><br><span class="line">        while(mid &amp;&amp; position)&#123;</span><br><span class="line">            ListNode* next = mid-&gt;next;</span><br><span class="line">            mid-&gt;next = newHead;</span><br><span class="line">            newHead = mid;</span><br><span class="line">            mid = next;</span><br><span class="line">            position--;</span><br><span class="line">        &#125;</span><br><span class="line">        //将翻转之后的链表与开头的链表的内容比较，向后比较listlen/2;</span><br><span class="line">        //如果是偶数，则元素都会比较到，如果是奇数，最后一个元素不会比较到。他在原来的链表中就处于中心位置，不必比较。</span><br><span class="line">        while(first &amp;&amp; newHead &amp;&amp; midposition)&#123;</span><br><span class="line">            //只要不相等，就为false;</span><br><span class="line">            if(first-&gt;val != newHead-&gt;val) return false;</span><br><span class="line">            first = first-&gt;next;</span><br><span class="line">            newHead = newHead-&gt;next;</span><br><span class="line">            midposition--;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>将链表的后半段翻转，从翻转位置开始与从头结点开始，依次比较（listlen/2次）。</p>
 
       
     </div>
@@ -243,19 +239,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/12/30/leetcode-234-回文链表/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          leetcode 234.回文链表
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/12/02/reading-note/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/12/30/leetcode-142-环形链表-II/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">读书简录</div>
+      <div class="article-nav-title">LeetCode 142. 环形链表 II</div>
     </a>
   
 </nav>
@@ -269,7 +256,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。"><span class="nav-number">1.</span> <span class="nav-text">给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution1"><span class="nav-number">1.0.1.</span> <span class="nav-text">Solution1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solutions2"><span class="nav-number">1.0.2.</span> <span class="nav-text">Solutions2:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#思路："><span class="nav-number">1.0.3.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#请判断一个链表是否为回文链表。"><span class="nav-number">1.</span> <span class="nav-text">请判断一个链表是否为回文链表。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution1："><span class="nav-number">1.0.1.</span> <span class="nav-text">Solution1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#思路"><span class="nav-number">1.0.2.</span> <span class="nav-text">思路:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution2："><span class="nav-number">1.0.3.</span> <span class="nav-text">Solution2：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#思路："><span class="nav-number">1.0.4.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol>
     
     </div>
   </aside>
