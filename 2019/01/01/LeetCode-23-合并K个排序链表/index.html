@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>读书简录 | BeckoninGshy&#39;s Blog</title>
+  <title>leetcode 23. 合并k个排序链表 | BeckoninGshy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="读书" />
+  <meta name="keywords" content="leetcodealgorithm" />
   
   
   
   
-  <meta name="description" content="2017/09/01 《挪威的森林》《如何高效学习》《极简主义》">
-<meta name="keywords" content="读书">
+  <meta name="description" content="23. 合并K个排序链表 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。Solution1：">
+<meta name="keywords" content="leetcode,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读书简录">
-<meta property="og:url" content="https://yangzebin001.github.io/2018/12/02/reading-note/index.html">
+<meta property="og:title" content="LeetCode 23. 合并K个排序链表">
+<meta property="og:url" content="https://yangzebin001.github.io/2019/01/01/LeetCode-23-合并K个排序链表/index.html">
 <meta property="og:site_name" content="BeckoninGshy&#39;s Blog">
-<meta property="og:description" content="2017/09/01 《挪威的森林》《如何高效学习》《极简主义》">
+<meta property="og:description" content="23. 合并K个排序链表 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。Solution1：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-02T01:27:53.823Z">
+<meta property="og:updated_time" content="2019-01-01T14:36:03.748Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读书简录">
-<meta name="twitter:description" content="2017/09/01 《挪威的森林》《如何高效学习》《极简主义》">
+<meta name="twitter:title" content="LeetCode 23. 合并K个排序链表">
+<meta name="twitter:description" content="23. 合并K个排序链表 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。Solution1：">
   
     <link rel="alternate" href="/atom.xml" title="BeckoninGshy&#39;s Blog" type="application/atom+xml">
   
@@ -154,7 +154,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-reading-note" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-LeetCode-23-合并K个排序链表" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -162,7 +162,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      读书简录
+      LeetCode 23. 合并K个排序链表
     </h1>
   
 
@@ -170,8 +170,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/12/02/reading-note/" class="article-date">
-	  <time datetime="2018-12-02T08:44:00.000Z" itemprop="datePublished">2018-12-02</time>
+	<a href="/2019/01/01/LeetCode-23-合并K个排序链表/" class="article-date">
+	  <time datetime="2019-01-01T14:35:08.000Z" itemprop="datePublished">2019-01-01</time>
 	</a>
 
       
@@ -185,25 +185,13 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>2017/09/01</p>
-<h3 id="《挪威的森林》"><a href="#《挪威的森林》" class="headerlink" title="《挪威的森林》"></a>《挪威的森林》</h3><h3 id="《如何高效学习》"><a href="#《如何高效学习》" class="headerlink" title="《如何高效学习》"></a>《如何高效学习》</h3><h3 id="《极简主义》"><a href="#《极简主义》" class="headerlink" title="《极简主义》"></a>《极简主义》</h3><a id="more"></a>
-<h3 id="《潜规则》-吴思"><a href="#《潜规则》-吴思" class="headerlink" title="《潜规则》 吴思"></a>《潜规则》 吴思</h3><h3 id="《旋元佑进阶文法》"><a href="#《旋元佑进阶文法》" class="headerlink" title="《旋元佑进阶文法》"></a>《旋元佑进阶文法》</h3><p>2017/10/20</p>
-<h3 id="《遇见未知的自己》"><a href="#《遇见未知的自己》" class="headerlink" title="《遇见未知的自己》"></a>《遇见未知的自己》</h3><p>2017/11/10</p>
-<h3 id="《响应式WEB设计》"><a href="#《响应式WEB设计》" class="headerlink" title="《响应式WEB设计》"></a>《响应式WEB设计》</h3><h3 id="《HTML5与CSS3基础教程》"><a href="#《HTML5与CSS3基础教程》" class="headerlink" title="《HTML5与CSS3基础教程》"></a>《HTML5与CSS3基础教程》</h3><p>2017/12/12</p>
-<h3 id="《JavasrciptDOM编程艺术》"><a href="#《JavasrciptDOM编程艺术》" class="headerlink" title="《JavasrciptDOM编程艺术》"></a>《JavasrciptDOM编程艺术》</h3><p>2017/12/25</p>
-<h3 id="《Javascript高级程序设计》（第三版）"><a href="#《Javascript高级程序设计》（第三版）" class="headerlink" title="《Javascript高级程序设计》（第三版）"></a>《Javascript高级程序设计》（第三版）</h3><p>2018/01/18</p>
-<h3 id="《明朝那些事》"><a href="#《明朝那些事》" class="headerlink" title="《明朝那些事》"></a>《明朝那些事》</h3><p>2018/01/21</p>
-<h3 id="《版式设计原理与应用》"><a href="#《版式设计原理与应用》" class="headerlink" title="《版式设计原理与应用》"></a>《版式设计原理与应用》</h3><p>2018/03/28</p>
-<h3 id="《给青年的十二封信》朱光潜"><a href="#《给青年的十二封信》朱光潜" class="headerlink" title="《给青年的十二封信》朱光潜"></a>《给青年的十二封信》朱光潜</h3><p>2018/04/28</p>
-<h3 id="《富爸爸穷爸爸》"><a href="#《富爸爸穷爸爸》" class="headerlink" title="《富爸爸穷爸爸》"></a>《富爸爸穷爸爸》</h3><p>2018/06/22</p>
-<h3 id="《计算机学科概论》"><a href="#《计算机学科概论》" class="headerlink" title="《计算机学科概论》"></a>《计算机学科概论》</h3><p>2018/07/09</p>
-<h3 id="《烟火人间》老舍"><a href="#《烟火人间》老舍" class="headerlink" title="《烟火人间》老舍"></a>《烟火人间》老舍</h3><p>2018/07/26</p>
-<h3 id="《C程序设计（第四版）》谭浩强"><a href="#《C程序设计（第四版）》谭浩强" class="headerlink" title="《C程序设计（第四版）》谭浩强"></a>《C程序设计（第四版）》谭浩强</h3><p>2018/09/13</p>
-<h3 id="《算法图解》"><a href="#《算法图解》" class="headerlink" title="《算法图解》"></a>《算法图解》</h3><h3 id="《浪潮之巅》"><a href="#《浪潮之巅》" class="headerlink" title="《浪潮之巅》"></a>《浪潮之巅》</h3><p>2018/10/13</p>
-<h3 id="《数学之美》"><a href="#《数学之美》" class="headerlink" title="《数学之美》"></a>《数学之美》</h3><p>2018/10/25</p>
-<h3 id="《黑客与画家》"><a href="#《黑客与画家》" class="headerlink" title="《黑客与画家》"></a>《黑客与画家》</h3><p>2018/11/15</p>
-<h3 id="《c指针》"><a href="#《c指针》" class="headerlink" title="《c指针》"></a>《c指针》</h3><p>2018/11/23</p>
-<h3 id="《沉默的大多数》王小波"><a href="#《沉默的大多数》王小波" class="headerlink" title="《沉默的大多数》王小波"></a>《沉默的大多数》王小波</h3><p>2018/11/25</p>
+        <p><a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener">23. 合并K个排序链表</a></p>
+<h3 id="合并-k-个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。"><a href="#合并-k-个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。" class="headerlink" title="合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。"></a>合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</h3><h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">bool cmp(const ListNode* a,const ListNode *b)&#123;</span><br><span class="line">    return a-&gt;val &lt; b-&gt;val;</span><br><span class="line">&#125;</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) &#123;</span><br><span class="line">        std::vector&lt;ListNode*&gt; node_vec;</span><br><span class="line">        //将每个结点push到vec中。</span><br><span class="line">        for(int i = 0; i &lt; lists.size(); i++)&#123;</span><br><span class="line">            ListNode* head = lists[i];</span><br><span class="line">            while(head)&#123;</span><br><span class="line">                node_vec.push_back(head);</span><br><span class="line">                head = head-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(node_vec.size() == 0)&#123;</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        //将vec中的元素按val域排序。</span><br><span class="line">        std::sort(node_vec.begin(),node_vec.end(),cmp);</span><br><span class="line">        //链接各个结点。</span><br><span class="line">        for(int i = 1;i &lt; node_vec.size();i++)&#123;</span><br><span class="line">            node_vec[i-1]-&gt;next = node_vec[i];</span><br><span class="line">        &#125;</span><br><span class="line">        //最后一个结点指向NULL</span><br><span class="line">        node_vec[node_vec.size()-1]-&gt;next = NULL;</span><br><span class="line">        return node_vec[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>该方法比较粗暴。将所有的结点存入一个vector中，按结点中的值排序，然后依次将每个结点链接，最后返回。</p>
+<h3 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line">        ListNode p0 = ListNode(0);</span><br><span class="line">        ListNode* p = &amp;p0;</span><br><span class="line">        ListNode* p1 = p;</span><br><span class="line">        while(l1 &amp;&amp; l2)&#123;</span><br><span class="line">            if(l1-&gt;val &lt; l2-&gt;val)&#123;</span><br><span class="line">                p-&gt;next = new ListNode(l1-&gt;val);</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                new ListNode(l2-&gt;val);</span><br><span class="line">                p-&gt;next = new ListNode(l2-&gt;val);</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        p-&gt;next = (l1!=NULL) ? l1 :(l2!=NULL) ? l2 : NULL;</span><br><span class="line">        return p1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) &#123;</span><br><span class="line">        //两个终止条件。</span><br><span class="line">        if(lists.size() == 0)&#123;</span><br><span class="line">            return NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        if(lists.size() == 1)&#123;</span><br><span class="line">            return lists[0];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        //将lists拆分成两个子lists;</span><br><span class="line">        int mid = lists.size()/2;</span><br><span class="line">        std::vector&lt;ListNode*&gt; sub1_lists;</span><br><span class="line">        std::vector&lt;ListNode*&gt; sub2_lists;</span><br><span class="line">        for(int i = 0; i &lt; mid; i++)&#123;</span><br><span class="line">            sub1_lists.push_back(lists[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = mid; i &lt; lists.size(); i++)&#123;</span><br><span class="line">            sub2_lists.push_back(lists[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        //递归调用</span><br><span class="line">        ListNode *l1 = mergeKLists(sub1_lists);</span><br><span class="line">        ListNode *l2 = mergeKLists(sub2_lists);</span><br><span class="line">        //返回两个链表合并的结果。</span><br><span class="line">        return mergeTwoLists(l1,l2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h5><p>（归并思想）递归算法。<br>将k个链表分割为独立的链表，再向上两两合并。</p>
+<p>合并两个有序链表的子问题参照：<br><a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/submissions/" target="_blank" rel="noopener">21. 合并两个排序链表</a></p>
 
       
     </div>
@@ -236,7 +224,7 @@
 
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书/">读书</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
 
     </footer>
   </div>
@@ -244,19 +232,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/12/30/leetcode-142-环形链表-II/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/01/LeetCode-138-复制带随机指针的链表/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          LeetCode 142. 环形链表 II
+          LeetCode 138. 复制带随机指针的链表
         
       </div>
     </a>
   
   
-    <a href="/2018/10/03/一文学会git/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/01/01/LeetCode-155-最小栈/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">一文学会Git</div>
+      <div class="article-nav-title">LeetCode 155. 最小栈</div>
     </a>
   
 </nav>
@@ -270,7 +258,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#《挪威的森林》"><span class="nav-number">1.</span> <span class="nav-text">《挪威的森林》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《如何高效学习》"><span class="nav-number">2.</span> <span class="nav-text">《如何高效学习》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《极简主义》"><span class="nav-number">3.</span> <span class="nav-text">《极简主义》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《潜规则》-吴思"><span class="nav-number">4.</span> <span class="nav-text">《潜规则》 吴思</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《旋元佑进阶文法》"><span class="nav-number">5.</span> <span class="nav-text">《旋元佑进阶文法》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《遇见未知的自己》"><span class="nav-number">6.</span> <span class="nav-text">《遇见未知的自己》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《响应式WEB设计》"><span class="nav-number">7.</span> <span class="nav-text">《响应式WEB设计》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《HTML5与CSS3基础教程》"><span class="nav-number">8.</span> <span class="nav-text">《HTML5与CSS3基础教程》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《JavasrciptDOM编程艺术》"><span class="nav-number">9.</span> <span class="nav-text">《JavasrciptDOM编程艺术》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《Javascript高级程序设计》（第三版）"><span class="nav-number">10.</span> <span class="nav-text">《Javascript高级程序设计》（第三版）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《明朝那些事》"><span class="nav-number">11.</span> <span class="nav-text">《明朝那些事》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《版式设计原理与应用》"><span class="nav-number">12.</span> <span class="nav-text">《版式设计原理与应用》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《给青年的十二封信》朱光潜"><span class="nav-number">13.</span> <span class="nav-text">《给青年的十二封信》朱光潜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《富爸爸穷爸爸》"><span class="nav-number">14.</span> <span class="nav-text">《富爸爸穷爸爸》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《计算机学科概论》"><span class="nav-number">15.</span> <span class="nav-text">《计算机学科概论》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《烟火人间》老舍"><span class="nav-number">16.</span> <span class="nav-text">《烟火人间》老舍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《C程序设计（第四版）》谭浩强"><span class="nav-number">17.</span> <span class="nav-text">《C程序设计（第四版）》谭浩强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《算法图解》"><span class="nav-number">18.</span> <span class="nav-text">《算法图解》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《浪潮之巅》"><span class="nav-number">19.</span> <span class="nav-text">《浪潮之巅》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《数学之美》"><span class="nav-number">20.</span> <span class="nav-text">《数学之美》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《黑客与画家》"><span class="nav-number">21.</span> <span class="nav-text">《黑客与画家》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《c指针》"><span class="nav-number">22.</span> <span class="nav-text">《c指针》</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《沉默的大多数》王小波"><span class="nav-number">23.</span> <span class="nav-text">《沉默的大多数》王小波</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#合并-k-个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。"><span class="nav-number">1.</span> <span class="nav-text">合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution1："><span class="nav-number">2.</span> <span class="nav-text">Solution1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution2："><span class="nav-number">3.</span> <span class="nav-text">Solution2：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思路"><span class="nav-number">3.0.1.</span> <span class="nav-text">思路:</span></a></li></ol></li></ol></li></ol>
     
     </div>
   </aside>

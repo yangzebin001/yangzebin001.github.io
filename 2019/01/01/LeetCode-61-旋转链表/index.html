@@ -3,22 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>tag: html | BeckoninGshy&#39;s Blog</title>
+  <title>leetcode 61. 旋转链表 | BeckoninGshy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="leetcodealgorithm" />
   
   
   
-  <meta name="description" content="Welcome to BeckoninGshy&apos;s Blog.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BeckoninGshy&#39;s Blog">
-<meta property="og:url" content="https://yangzebin001.github.io/tags/html/index.html">
+  
+  <meta name="description" content="61. 旋转链表 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。Example: 输入: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2 输出: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL">
+<meta name="keywords" content="leetcode,algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 61. 旋转链表">
+<meta property="og:url" content="https://yangzebin001.github.io/2019/01/01/LeetCode-61-旋转链表/index.html">
 <meta property="og:site_name" content="BeckoninGshy&#39;s Blog">
-<meta property="og:description" content="Welcome to BeckoninGshy&apos;s Blog.">
+<meta property="og:description" content="61. 旋转链表 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。Example: 输入: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2 输出: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-01T14:41:13.703Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BeckoninGshy&#39;s Blog">
-<meta name="twitter:description" content="Welcome to BeckoninGshy&apos;s Blog.">
+<meta name="twitter:title" content="LeetCode 61. 旋转链表">
+<meta name="twitter:description" content="61. 旋转链表 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。Example: 输入: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2 输出: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL">
   
     <link rel="alternate" href="/atom.xml" title="BeckoninGshy&#39;s Blog" type="application/atom+xml">
   
@@ -57,8 +61,6 @@
   
 
   
-    <link rel="stylesheet" href="/css/archive.css" >
-  
   
   
 
@@ -66,7 +68,7 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -89,7 +91,7 @@
             
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="88px" height="88px" alt="Hike News" src="/css/images/logo.png">
               </a>
             
@@ -152,44 +154,109 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">
-  
-  
-  
+          <section id="main" style="float:none;"><article id="post-LeetCode-61-旋转链表" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2018/01/26/2018-01-26-fjlskadjfgla/" class="archive-article-date">
-	  <time datetime="2018-01-26T09:56:16.000Z" itemprop="datePublished">2018-01-26</time>
-	</a>
-
-      
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/01/26/2018-01-26-fjlskadjfgla/">makedown</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      LeetCode 61. 旋转链表
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/01/01/LeetCode-61-旋转链表/" class="article-date">
+	  <time datetime="2019-01-01T14:40:48.000Z" itemprop="datePublished">2019-01-01</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://leetcode-cn.com/problems/rotate-list/" target="_blank" rel="noopener">61. 旋转链表</a></p>
+<h3 id="给定一个链表，旋转链表，将链表每个节点向右移动-k-个位置，其中-k-是非负数。"><a href="#给定一个链表，旋转链表，将链表每个节点向右移动-k-个位置，其中-k-是非负数。" class="headerlink" title="给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。"></a>给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。</h3><p>Example:</p>
+<p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2</p>
+<p>输出: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">int getListNodeLength(struct ListNode * head)&#123;</span><br><span class="line">    struct ListNode * head1 = head;</span><br><span class="line">    int len = 0;</span><br><span class="line">    while(head1)&#123;</span><br><span class="line">        len++;</span><br><span class="line">        head1 = head1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    return len;</span><br><span class="line">&#125;</span><br><span class="line">struct ListNode*  getPosition(struct ListNode* head, int index)&#123;</span><br><span class="line">    if(index &lt; 0) return NULL;</span><br><span class="line">    struct ListNode * head1 = head;</span><br><span class="line">    while(index)&#123;</span><br><span class="line">        head1 = head1-&gt;next;</span><br><span class="line">        index--;</span><br><span class="line">    &#125;</span><br><span class="line">    return head1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct ListNode* rotateRight(struct ListNode* head, int k) &#123;</span><br><span class="line">    int len = getListNodeLength(head);</span><br><span class="line">    if(len &lt;=1 || (k %= len) &lt; 1) return head;</span><br><span class="line">    int position = len-k-1;</span><br><span class="line">    struct ListNode* oldlast = getPosition(head,len-1);</span><br><span class="line">    struct ListNode* newhead = getPosition(head,position+1);</span><br><span class="line">    struct ListNode* newlast = getPosition(head,position);</span><br><span class="line">    oldlast-&gt;next = head;</span><br><span class="line">    newlast-&gt;next = NULL;</span><br><span class="line">    return newhead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h5><p>该题看似是循环n次，实则将后K个元素移至头结点的位置。</p>
+<p>直接找到最后一个元素，将它指向开始的位置。将倒数第k+1个元素指向NULL。</p>
+<blockquote>
+<p>k可以大于链表的长度，所以要对链表长度取模。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/01/LeetCode-24-两两交换链表中的节点/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">LeetCode 24. 两两交换链表中的节点</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
+<!-- Table of Contents -->
 
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给定一个链表，旋转链表，将链表每个节点向右移动-k-个位置，其中-k-是非负数。"><span class="nav-number">1.</span> <span class="nav-text">给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思路"><span class="nav-number">1.0.1.</span> <span class="nav-text">思路:</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
         
       </div>
@@ -283,6 +350,8 @@
 
 
 
+  <script src="/js/dialog.js"></script>
+
 
 
 
@@ -366,6 +435,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>

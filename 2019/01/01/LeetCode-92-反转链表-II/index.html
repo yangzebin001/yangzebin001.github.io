@@ -3,22 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>tag: html | BeckoninGshy&#39;s Blog</title>
+  <title>leetcode 92. 反转链表 ii | BeckoninGshy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="leetcodealgorithm" />
   
   
   
-  <meta name="description" content="Welcome to BeckoninGshy&apos;s Blog.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BeckoninGshy&#39;s Blog">
-<meta property="og:url" content="https://yangzebin001.github.io/tags/html/index.html">
+  
+  <meta name="description" content="92. 反转链表 II 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。 ###Solution：">
+<meta name="keywords" content="leetcode,algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 92. 反转链表 II">
+<meta property="og:url" content="https://yangzebin001.github.io/2019/01/01/LeetCode-92-反转链表-II/index.html">
 <meta property="og:site_name" content="BeckoninGshy&#39;s Blog">
-<meta property="og:description" content="Welcome to BeckoninGshy&apos;s Blog.">
+<meta property="og:description" content="92. 反转链表 II 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。 ###Solution：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-01T14:35:41.621Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BeckoninGshy&#39;s Blog">
-<meta name="twitter:description" content="Welcome to BeckoninGshy&apos;s Blog.">
+<meta name="twitter:title" content="LeetCode 92. 反转链表 II">
+<meta name="twitter:description" content="92. 反转链表 II 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。 ###Solution：">
   
     <link rel="alternate" href="/atom.xml" title="BeckoninGshy&#39;s Blog" type="application/atom+xml">
   
@@ -57,8 +61,6 @@
   
 
   
-    <link rel="stylesheet" href="/css/archive.css" >
-  
   
   
 
@@ -66,7 +68,7 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -89,7 +91,7 @@
             
               <a class="brand" style="
                  border-width: 0px;  margin-top: 0px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="88px" height="88px" alt="Hike News" src="/css/images/logo.png">
               </a>
             
@@ -152,44 +154,125 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">
-  
-  
-  
+          <section id="main" style="float:none;"><article id="post-LeetCode-92-反转链表-II" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2018/01/26/2018-01-26-fjlskadjfgla/" class="archive-article-date">
-	  <time datetime="2018-01-26T09:56:16.000Z" itemprop="datePublished">2018-01-26</time>
-	</a>
-
-      
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2018/01/26/2018-01-26-fjlskadjfgla/">makedown</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      LeetCode 92. 反转链表 II
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/01/01/LeetCode-92-反转链表-II/" class="article-date">
+	  <time datetime="2019-01-01T14:32:44.000Z" itemprop="datePublished">2019-01-01</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://leetcode-cn.com/problems/reverse-linked-list-ii/" target="_blank" rel="noopener">92. 反转链表 II</a></p>
+<p>反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。</p>
+<p>###Solution：<br><a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">struct ListNode* reverseBetween(struct ListNode* head, int m, int n) &#123;</span><br><span class="line">    int chang_len = n-m+1;//逆置的结点个数。</span><br><span class="line">    struct ListNode* prevHead = NULL;//记录开始逆置结点的前驱。</span><br><span class="line">    struct ListNode* result = head;//用于最后返回。</span><br><span class="line">    while(head &amp;&amp; --m)&#123; //到达开始逆置的位置。</span><br><span class="line">        prevHead = head;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    struct ListNode * modify_list_tail = head;//将该结点之前当前开始逆置的结点。</span><br><span class="line">    struct ListNode * newHead = NULL;//用于逆置结点。</span><br><span class="line">    while(head &amp;&amp; chang_len)&#123;</span><br><span class="line">        struct ListNode * next = head-&gt;next;</span><br><span class="line">        head-&gt;next = newHead;</span><br><span class="line">        newHead = head;</span><br><span class="line">        head = next;</span><br><span class="line">        chang_len--;</span><br><span class="line">    &#125;</span><br><span class="line">    //此时head就到了n处，modify_list_tail就到了逆置段的最后一个结点。</span><br><span class="line">    //将modify_list_tail 与 head连接。</span><br><span class="line">    modify_list_tail-&gt;next = head;</span><br><span class="line">    </span><br><span class="line">    if(prevHead)&#123; //如果prevHead不为空，说明不是从第一个几点开始逆置的。 m &gt; 1。</span><br><span class="line">        prevHead-&gt;next = newHead;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        result = newHead; //如果prevHead为空， 则说明是从第一个就开始逆置，直接将逆置后的头结点赋值给res，m=1。</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>解决这个问题主要是要找关键节点。</p>
+<p>这个题的关键节点为：</p>
+<ul>
+<li>要逆置的结点的前一个结点（prevHead）。</li>
+<li>要逆置的第一个结点。（直接用head来探测）。</li>
+<li>要逆置的最后一个结点。（此结点为逆置前的第一个结点，逆置后就变为了最后一个结点）</li>
+<li>要逆置的最后一个结点的后一个结点。（在用head逆置后，head就到了逆置后的这个结点。）</li>
+</ul>
+<ol>
+<li>找到前两个结点。</li>
+<li>从m开始，到n，一共需要n-m+1个结点需要逆置。所以要逆置n-m+1次。</li>
+<li>将逆置后的尾结点 与 逆置段后面一个结点相连。</li>
+<li>如果结点是从开始逆置，将逆置后的头结点返回。否则，将前面的结点与逆置后的头结点链接返回。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/01/LeetCode-155-最小栈/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          LeetCode 155. 最小栈
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/01/LeetCode-160-相交链表/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">LeetCode 160. 相交链表</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
+<!-- Table of Contents -->
 
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路："><span class="nav-number">1.</span> <span class="nav-text">思路：</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
         
       </div>
@@ -283,6 +366,8 @@
 
 
 
+  <script src="/js/dialog.js"></script>
+
 
 
 
@@ -366,6 +451,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
