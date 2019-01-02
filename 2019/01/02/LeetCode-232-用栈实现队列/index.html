@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>leetcode 61. 旋转链表 | BeckoninGshy&#39;s Blog</title>
+  <title>leetcode 232. 用栈实现队列 | BeckoninGshy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="leetcodealgorithm" />
@@ -11,18 +11,18 @@
   
   
   
-  <meta name="description" content="61. 旋转链表 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。Example: 输入: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2 输出: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL">
+  <meta name="description" content="232. 用栈实现队列 使用栈实现队列的下列操作： push(x) – 将一个元素放入队列的尾部。 pop() – 从队列首部移除元素。 peek() – 返回队列首部的元素。 empty() – 返回队列是否为空。">
 <meta name="keywords" content="leetcode,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 61. 旋转链表">
-<meta property="og:url" content="https://yangzebin001.github.io/2019/01/01/LeetCode-61-旋转链表/index.html">
+<meta property="og:title" content="LeetCode 232. 用栈实现队列">
+<meta property="og:url" content="https://yangzebin001.github.io/2019/01/02/LeetCode-232-用栈实现队列/index.html">
 <meta property="og:site_name" content="BeckoninGshy&#39;s Blog">
-<meta property="og:description" content="61. 旋转链表 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。Example: 输入: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2 输出: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL">
+<meta property="og:description" content="232. 用栈实现队列 使用栈实现队列的下列操作： push(x) – 将一个元素放入队列的尾部。 pop() – 从队列首部移除元素。 peek() – 返回队列首部的元素。 empty() – 返回队列是否为空。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-01T14:41:13.703Z">
+<meta property="og:updated_time" content="2019-01-02T12:30:22.079Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 61. 旋转链表">
-<meta name="twitter:description" content="61. 旋转链表 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。Example: 输入: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, k = 2 输出: 4-&amp;gt;5-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;NULL">
+<meta name="twitter:title" content="LeetCode 232. 用栈实现队列">
+<meta name="twitter:description" content="232. 用栈实现队列 使用栈实现队列的下列操作： push(x) – 将一个元素放入队列的尾部。 pop() – 从队列首部移除元素。 peek() – 返回队列首部的元素。 empty() – 返回队列是否为空。">
   
     <link rel="alternate" href="/atom.xml" title="BeckoninGshy&#39;s Blog" type="application/atom+xml">
   
@@ -154,7 +154,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-LeetCode-61-旋转链表" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-LeetCode-232-用栈实现队列" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -162,7 +162,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      LeetCode 61. 旋转链表
+      LeetCode 232. 用栈实现队列
     </h1>
   
 
@@ -170,8 +170,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/01/01/LeetCode-61-旋转链表/" class="article-date">
-	  <time datetime="2019-01-01T14:40:48.000Z" itemprop="datePublished">2019-01-01</time>
+	<a href="/2019/01/02/LeetCode-232-用栈实现队列/" class="article-date">
+	  <time datetime="2019-01-02T12:30:00.000Z" itemprop="datePublished">2019-01-02</time>
 	</a>
 
       
@@ -185,17 +185,25 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://leetcode-cn.com/problems/rotate-list/" target="_blank" rel="noopener">61. 旋转链表</a></p>
-<h3 id="给定一个链表，旋转链表，将链表每个节点向右移动-k-个位置，其中-k-是非负数。"><a href="#给定一个链表，旋转链表，将链表每个节点向右移动-k-个位置，其中-k-是非负数。" class="headerlink" title="给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。"></a>给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。</h3><p>Example:</p>
-<p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2</p>
-<p>输出: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL</p>
+        <p><a href="https://leetcode-cn.com/problems/implement-queue-using-stacks/submissions/" target="_blank" rel="noopener">232. 用栈实现队列</a></p>
+<h3 id="使用栈实现队列的下列操作："><a href="#使用栈实现队列的下列操作：" class="headerlink" title="使用栈实现队列的下列操作："></a>使用栈实现队列的下列操作：</h3><ul>
+<li>push(x) – 将一个元素放入队列的尾部。</li>
+<li>pop() – 从队列首部移除元素。</li>
+<li>peek() – 返回队列首部的元素。</li>
+<li>empty() – 返回队列是否为空。</li>
+</ul>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">int getListNodeLength(struct ListNode * head)&#123;</span><br><span class="line">    struct ListNode * head1 = head;</span><br><span class="line">    int len = 0;</span><br><span class="line">    while(head1)&#123;</span><br><span class="line">        len++;</span><br><span class="line">        head1 = head1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    return len;</span><br><span class="line">&#125;</span><br><span class="line">struct ListNode*  getPosition(struct ListNode* head, int index)&#123;</span><br><span class="line">    if(index &lt; 0) return NULL;</span><br><span class="line">    struct ListNode * head1 = head;</span><br><span class="line">    while(index)&#123;</span><br><span class="line">        head1 = head1-&gt;next;</span><br><span class="line">        index--;</span><br><span class="line">    &#125;</span><br><span class="line">    return head1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct ListNode* rotateRight(struct ListNode* head, int k) &#123;</span><br><span class="line">    int len = getListNodeLength(head);</span><br><span class="line">    if(len &lt;=1 || (k %= len) &lt; 1) return head;</span><br><span class="line">    int position = len-k-1;</span><br><span class="line">    struct ListNode* oldlast = getPosition(head,len-1);</span><br><span class="line">    struct ListNode* newhead = getPosition(head,position+1);</span><br><span class="line">    struct ListNode* newlast = getPosition(head,position);</span><br><span class="line">    oldlast-&gt;next = head;</span><br><span class="line">    newlast-&gt;next = NULL;</span><br><span class="line">    return newhead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h5><p>该题看似是循环n次，实则将后K个元素移至头结点的位置。</p>
-<p>直接找到最后一个元素，将它指向开始的位置。将倒数第k+1个元素指向NULL。</p>
-<blockquote>
-<p>k可以大于链表的长度，所以要对链表长度取模。</p>
-</blockquote>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class MyQueue &#123;</span><br><span class="line">public:</span><br><span class="line">    /** Initialize your data structure here. */</span><br><span class="line">    MyQueue() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    /** push all element of _s1 to _s2*/</span><br><span class="line">    void pushTos2()&#123;</span><br><span class="line">        if(_s1.empty()) return;</span><br><span class="line">        while(!_s1.empty())&#123;</span><br><span class="line">            _s2.push(_s1.top());</span><br><span class="line">            _s1.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    /** Push element x to the back of queue. */</span><br><span class="line">    void push(int x) &#123;</span><br><span class="line">        return _s1.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    /** Removes the element from in front of queue and returns that element. */</span><br><span class="line">    int pop() &#123;</span><br><span class="line">        if(_s2.empty()) pushTos2();</span><br><span class="line">        int a = _s2.top();</span><br><span class="line">        _s2.pop();</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">    /** Get the front element. */</span><br><span class="line">    int peek() &#123;</span><br><span class="line">        if(_s2.empty()) pushTos2();</span><br><span class="line">        return _s2.top();</span><br><span class="line">    &#125;</span><br><span class="line">    /** Returns whether the queue is empty. */</span><br><span class="line">    bool empty() &#123;</span><br><span class="line">        return _s1.empty() &amp;&amp; _s2.empty();</span><br><span class="line">    &#125;</span><br><span class="line">    private: </span><br><span class="line">        std::stack&lt;int&gt; _s1;</span><br><span class="line">        std::stack&lt;int&gt; _s2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>使用两个栈来实现堆。</p>
+<ul>
+<li>在做push操作的时候，直接push进第一个栈。</li>
+<li>当要pop时，先检查第二栈是否为空，如果为空，就把第一个栈的元素全push进第二个栈，这是原本在第一个栈栈底的元素，就到了第二个栈的栈顶（相当于翻了个个)。这时就可以pop出去了。</li>
+</ul>
+<p>下面的函数实现的就是专门将第一个栈的元素全部push进第二栈的功能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/** push all element of _s1 to _s2*/</span><br><span class="line">    void pushTos2()&#123;</span><br><span class="line">        if(_s1.empty()) return;</span><br><span class="line">        while(!_s1.empty())&#123;</span><br><span class="line">            _s2.push(_s1.top());</span><br><span class="line">            _s1.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>当peek时，如果第二个栈已经没有元素。 也需要把第一个栈的元素“倒”进来，再进行peek();</li>
+<li>empty：当两个栈都没有元素才算空。</li>
+</ul>
 
       
     </div>
@@ -236,19 +244,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/02/LeetCode-225-用队列实现栈/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          LeetCode 225. 用队列实现栈
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/01/01/LeetCode-24-两两交换链表中的节点/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/01/02/LeetCode-225-用队列实现栈/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">LeetCode 24. 两两交换链表中的节点</div>
+      <div class="article-nav-title">LeetCode 225. 用队列实现栈</div>
     </a>
   
 </nav>
@@ -262,7 +261,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给定一个链表，旋转链表，将链表每个节点向右移动-k-个位置，其中-k-是非负数。"><span class="nav-number">1.</span> <span class="nav-text">给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思路"><span class="nav-number">1.0.1.</span> <span class="nav-text">思路:</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用栈实现队列的下列操作："><span class="nav-number">1.</span> <span class="nav-text">使用栈实现队列的下列操作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution:</span></a></li></ol>
     
     </div>
   </aside>
