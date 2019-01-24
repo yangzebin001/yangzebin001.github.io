@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>leetcode-45- 跳跃游戏 ii | BeckoninGshy&#39;s Blog</title>
+  <title>78. 子集 | BeckoninGshy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="leetcodealgorithm" />
@@ -11,18 +11,18 @@
   
   
   
-  <meta name="description" content="45. 跳跃游戏 II 此题55. 跳跃游戏的进阶版 给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。">
+  <meta name="description" content="78. 子集 Solution1：对于每一项相对每个子集来说，都有放与不放两种选择。 创建一个放元素的递归函数，该函数的作用为将一项放和不放两种选择进行描述。">
 <meta name="keywords" content="leetcode,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-45- 跳跃游戏 II">
-<meta property="og:url" content="https://yangzebin001.github.io/2019/01/17/LeetCode-45-跳跃游戏-II/index.html">
+<meta property="og:title" content="78. 子集">
+<meta property="og:url" content="https://yangzebin001.github.io/2019/01/24/78-子集/index.html">
 <meta property="og:site_name" content="BeckoninGshy&#39;s Blog">
-<meta property="og:description" content="45. 跳跃游戏 II 此题55. 跳跃游戏的进阶版 给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。">
+<meta property="og:description" content="78. 子集 Solution1：对于每一项相对每个子集来说，都有放与不放两种选择。 创建一个放元素的递归函数，该函数的作用为将一项放和不放两种选择进行描述。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-24T08:38:53.524Z">
+<meta property="og:updated_time" content="2019-01-24T08:38:29.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode-45- 跳跃游戏 II">
-<meta name="twitter:description" content="45. 跳跃游戏 II 此题55. 跳跃游戏的进阶版 给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。">
+<meta name="twitter:title" content="78. 子集">
+<meta name="twitter:description" content="78. 子集 Solution1：对于每一项相对每个子集来说，都有放与不放两种选择。 创建一个放元素的递归函数，该函数的作用为将一项放和不放两种选择进行描述。">
   
     <link rel="alternate" href="/atom.xml" title="BeckoninGshy&#39;s Blog" type="application/atom+xml">
   
@@ -154,7 +154,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-LeetCode-45-跳跃游戏-II" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-78-子集" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -162,7 +162,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      LeetCode-45- 跳跃游戏 II
+      78. 子集
     </h1>
   
 
@@ -170,8 +170,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/01/17/LeetCode-45-跳跃游戏-II/" class="article-date">
-	  <time datetime="2019-01-17T09:45:06.000Z" itemprop="datePublished">2019-01-17</time>
+	<a href="/2019/01/24/78-子集/" class="article-date">
+	  <time datetime="2019-01-24T08:36:18.000Z" itemprop="datePublished">2019-01-24</time>
 	</a>
 
       
@@ -185,19 +185,13 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://leetcode-cn.com/problems/jump-game-ii/" target="_blank" rel="noopener">45. 跳跃游戏 II</a></p>
-<p>此题<a href="https://leetcode-cn.com/problems/jump-game/comments/" target="_blank" rel="noopener">55. 跳跃游戏</a>的进阶版</p>
-<p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
-<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。<br><a id="more"></a></p>
-<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
-<p>按照前面题的思路，依然是从后往前搜索。<strong>每次搜索能跳到当前位置的最远位置。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        // 选择当前能跳到当前点的最远的距离。</span><br><span class="line">        int max_index = nums.size()-1;</span><br><span class="line">        int current_max_index = max_index;</span><br><span class="line">        int step = 0;</span><br><span class="line">        //当没有到达开头位置，进行循环。</span><br><span class="line">        while(max_index &gt; 0)&#123;</span><br><span class="line">            //记录能跳到当前数组的最前面的点。</span><br><span class="line">            for(int i = max_index-1; i &gt;= 0; i--)&#123;</span><br><span class="line">                if(i + nums[i] &gt;= max_index)&#123;</span><br><span class="line">                    current_max_index = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             //更新能跳的最远的点。</span><br><span class="line">            max_index = current_max_index;</span><br><span class="line">            //步数更新</span><br><span class="line">            step++;</span><br><span class="line">        &#125;</span><br><span class="line">        return step;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>用了两层循环，发现能ac，但是又排在了末名。</p>
-<p>看了大神的代码，写出了下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size() &lt; 2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        //当前可到达的最远距离。</span><br><span class="line">        int current_max_index = nums[0];</span><br><span class="line">        //遍历各个位置中，可到达的最远距离。</span><br><span class="line">        int pre_max_max_index = nums[0];</span><br><span class="line">        int jump = 1;</span><br><span class="line">        </span><br><span class="line">        for(int i = 1; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            //更新当前可达到的最远距离。</span><br><span class="line">            if(i &gt; current_max_index)&#123;</span><br><span class="line">                jump++;</span><br><span class="line">                current_max_index = pre_max_max_index;</span><br><span class="line">            &#125;</span><br><span class="line">            if(pre_max_max_index &lt; nums[i] + i)&#123;</span><br><span class="line">                //更新</span><br><span class="line">                pre_max_max_index = nums[i] + i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return jump;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>跳到当前所能跳到的最远的位置所在的位置中</strong>。</p>
-<p>记录当前位置所能到达的最远的位置。</p>
-<p>如果做到了该最远位置，更新一下。继续走。</p>
+        <p><a href="https://leetcode-cn.com/problems/subsets/comments/" target="_blank" rel="noopener">78. 子集</a></p>
+<h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3><p>对于每一项相对每个子集来说，都有放与不放两种选择。</p>
+<p>创建一个放元素的递归函数，该函数的作用为将一项<strong>放</strong>和<strong>不放</strong>两种选择进行描述。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        vector&lt;int&gt; item;</span><br><span class="line">        result.push_back(item);</span><br><span class="line">        </span><br><span class="line">        putitem(0, nums, item, result);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    //把一项放进result中。</span><br><span class="line">    void putitem(int i, vector&lt;int&gt;&amp; nums,vector&lt;int&gt; item, vector&lt;vector&lt;int&gt; &gt; &amp;result)&#123;</span><br><span class="line">        if(i == nums.size())&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //每个元素都有放和不放两种选择。</span><br><span class="line">        //放</span><br><span class="line">        item.push_back(nums[i]);</span><br><span class="line">        result.push_back(item);</span><br><span class="line">        putitem(i+1, nums, item, result);</span><br><span class="line">        //不放</span><br><span class="line">        item.pop_back();</span><br><span class="line">        putitem(i+1, nums, item, result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h3><h5 id="遍历，遇到一个数就把所有子集加上该数组成新的子集，遍历完毕即是所有子集"><a href="#遍历，遇到一个数就把所有子集加上该数组成新的子集，遍历完毕即是所有子集" class="headerlink" title="遍历，遇到一个数就把所有子集加上该数组成新的子集，遍历完毕即是所有子集"></a>遍历，遇到一个数就把所有子集加上该数组成新的子集，遍历完毕即是所有子集</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt; &gt; subsets(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        vector&lt;int&gt; item;</span><br><span class="line">        result.push_back(item);</span><br><span class="line">        for(int i =0; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            int s = result.size();</span><br><span class="line">            for(int j = 0; j &lt; s;j++)&#123;</span><br><span class="line">                result.push_back(result[j]);</span><br><span class="line">                result[j].push_back(nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution3（位运算）："><a href="#Solution3（位运算）：" class="headerlink" title="Solution3（位运算）："></a>Solution3（位运算）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        //子集一共有2的n次方种，使用位运算来解。</span><br><span class="line">        //每一位代表一个元素。</span><br><span class="line">        //如，100 代表[3]、011代表[2,1]。</span><br><span class="line">        int all_set = 1 &lt;&lt; nums.size();//2的n次方种；</span><br><span class="line">        for(int i = 0; i &lt; all_set; i++)&#123;</span><br><span class="line">            vector&lt;int&gt; item;</span><br><span class="line">            for(int j = 0; j &lt; nums.size(); j++)&#123;</span><br><span class="line">                //如果i的第j位为1，说明，有这一位所代表的元素。</span><br><span class="line">                // （1 &lt;&lt; j）第j位为1，其他位为0。</span><br><span class="line">                // i &amp; (1 &lt;&lt; j)， i 这个数中，j这一位是不是为1。（i中是否包含这个元素）</span><br><span class="line">                if(i &amp; (1 &lt;&lt; j))&#123;</span><br><span class="line">                    item.push_back(nums[j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            //将该子集放入集合中。</span><br><span class="line">            result.push_back(item);</span><br><span class="line">            item.clear();</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -238,19 +232,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/17/LeetCode-452-用最少数量的箭引爆气球/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/24/90-子集-II/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          LeetCode 452. 用最少数量的箭引爆气球
+          90. 子集 II
         
       </div>
     </a>
   
   
-    <a href="/2019/01/17/LeetCode-402-移掉K位数字/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/01/17/LeetCode-452-用最少数量的箭引爆气球/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">LeetCode-402-移掉K位数字</div>
+      <div class="article-nav-title">LeetCode 452. 用最少数量的箭引爆气球</div>
     </a>
   
 </nav>
@@ -264,7 +258,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav">无</ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution1："><span class="nav-number">1.</span> <span class="nav-text">Solution1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution2："><span class="nav-number">2.</span> <span class="nav-text">Solution2：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#遍历，遇到一个数就把所有子集加上该数组成新的子集，遍历完毕即是所有子集"><span class="nav-number">2.0.1.</span> <span class="nav-text">遍历，遇到一个数就把所有子集加上该数组成新的子集，遍历完毕即是所有子集</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution3（位运算）："><span class="nav-number">3.</span> <span class="nav-text">Solution3（位运算）：</span></a></li></ol>
     
     </div>
   </aside>
