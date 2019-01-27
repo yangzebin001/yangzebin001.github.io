@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>190. 颠倒二进制位 | BeckoninGshy&#39;s Blog</title>
+  <title>113. 路径总和 ii | BeckoninGshy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="leetcodealgorithm" />
@@ -11,18 +11,18 @@
   
   
   
-  <meta name="description" content="190. 颠倒二进制位 颠倒给定的 32 位无符号整数的二进制位。">
+  <meta name="description" content="113. 路径总和 II 该题为112. 路径总和的升级版  给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。 说明: 叶子节点是指没有子节点的节点。">
 <meta name="keywords" content="leetcode,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="190. 颠倒二进制位">
-<meta property="og:url" content="https://yangzebin001.github.io/2019/01/24/190-颠倒二进制位/index.html">
+<meta property="og:title" content="113. 路径总和 II">
+<meta property="og:url" content="https://yangzebin001.github.io/2019/01/27/113-路径总和-II/index.html">
 <meta property="og:site_name" content="BeckoninGshy&#39;s Blog">
-<meta property="og:description" content="190. 颠倒二进制位 颠倒给定的 32 位无符号整数的二进制位。">
+<meta property="og:description" content="113. 路径总和 II 该题为112. 路径总和的升级版  给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。 说明: 叶子节点是指没有子节点的节点。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-24T14:02:56.408Z">
+<meta property="og:updated_time" content="2019-01-27T14:33:57.937Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="190. 颠倒二进制位">
-<meta name="twitter:description" content="190. 颠倒二进制位 颠倒给定的 32 位无符号整数的二进制位。">
+<meta name="twitter:title" content="113. 路径总和 II">
+<meta name="twitter:description" content="113. 路径总和 II 该题为112. 路径总和的升级版  给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。 说明: 叶子节点是指没有子节点的节点。">
   
     <link rel="alternate" href="/atom.xml" title="BeckoninGshy&#39;s Blog" type="application/atom+xml">
   
@@ -154,7 +154,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-190-颠倒二进制位" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-113-路径总和-II" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -162,7 +162,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      190. 颠倒二进制位
+      113. 路径总和 II
     </h1>
   
 
@@ -170,8 +170,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/01/24/190-颠倒二进制位/" class="article-date">
-	  <time datetime="2019-01-24T14:02:27.000Z" itemprop="datePublished">2019-01-24</time>
+	<a href="/2019/01/27/113-路径总和-II/" class="article-date">
+	  <time datetime="2019-01-27T14:29:33.000Z" itemprop="datePublished">2019-01-27</time>
 	</a>
 
       
@@ -185,18 +185,14 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://leetcode-cn.com/problems/reverse-bits/" target="_blank" rel="noopener">190. 颠倒二进制位</a></p>
-<p>颠倒给定的 32 位无符号整数的二进制位。</p>
-<a id="more"></a>
+        <p><a href="https://leetcode-cn.com/problems/path-sum-ii/submissions/" target="_blank" rel="noopener">113. 路径总和 II</a></p>
+<p>该题为<a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">112. 路径总和</a>的升级版</p>
 <blockquote>
-<p>示例 1：</p>
-<p>输入: 00000010100101000001111010011100</p>
-<p>输出: 00111001011110000010100101000000</p>
-<p>解释: 输入的二进制串 00000010100101000001111010011100 表示无符号整数 43261596，<br>      因此返回 964176192，其二进制表示形式为 00111001011110000010100101000000。</p>
-</blockquote>
-<p>Solution：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    uint32_t reverseBits(uint32_t n) &#123;</span><br><span class="line">        uint32_t t = 0;</span><br><span class="line">        int i = 32;</span><br><span class="line">        while(i--)&#123;</span><br><span class="line">            t &lt;&lt;= 1;</span><br><span class="line">            //获得原数第一位的状态。</span><br><span class="line">            int a = n&amp;1;</span><br><span class="line">            //将该状态赋给该数第一位。</span><br><span class="line">            t |= a;</span><br><span class="line">            //原数右移。</span><br><span class="line">            n &gt;&gt;= 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>思路：</p>
-<p>初始化一个全位置为0的数，将原数的最后一位赋给该数的最后一位，原数右移，该数左移，如此32次。</p>
+<p>给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。</p>
+<p>说明: 叶子节点是指没有子节点的节点。<br><a id="more"></a></p>
+<h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int sum) &#123;</span><br><span class="line">        vector&lt;int&gt; path;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        if(root)&#123;</span><br><span class="line">            dfs(root,0,sum,path,result);</span><br><span class="line">        &#125; </span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void dfs(TreeNode* node,int currentsum, int sum,vector&lt;int&gt; &amp;path,vector&lt;vector&lt;int&gt; &gt; &amp;result)&#123;</span><br><span class="line">        currentsum += node-&gt;val;</span><br><span class="line"></span><br><span class="line">        path.push_back(node-&gt;val);</span><br><span class="line">        //当到达叶子结点，并且路径之和与sum相同</span><br><span class="line">        if(node &amp;&amp; !node-&gt;left &amp;&amp; !node-&gt;right )&#123;</span><br><span class="line">            if(currentsum == sum)</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(node-&gt;left)&#123;</span><br><span class="line">            dfs(node-&gt;left,currentsum,sum,path,result);</span><br><span class="line">            //回溯，还原状态</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        if(node-&gt;right)&#123;</span><br><span class="line">            dfs(node-&gt;right,currentsum,sum,path,result);</span><br><span class="line">            //回溯，还原状态</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int sum) &#123;</span><br><span class="line">        vector&lt;int&gt; path;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        preorder(root,0,sum,path,result);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    void preorder(TreeNode* node, int currentsum, int sum, vector&lt;int&gt; &amp;path, vector&lt;vector&lt;int&gt; &gt; &amp;result)&#123;</span><br><span class="line">        if(!node) return;</span><br><span class="line">        currentsum += node-&gt;val;</span><br><span class="line">        path.push_back(node-&gt;val);</span><br><span class="line">        if(!node-&gt;left &amp;&amp; !node-&gt;right &amp;&amp; currentsum == sum)&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">        &#125;</span><br><span class="line">        preorder(node-&gt;left,currentsum,sum,path,result);</span><br><span class="line">        preorder(node-&gt;right,currentsum,sum,path,result);</span><br><span class="line">        //该步可有可无，因为只会递归到叶子节点才返回，又每次递归都在栈中保留了原来该值的副本。</span><br><span class="line">        // currentsum -= node-&gt;val;</span><br><span class="line">        path.pop_back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -237,19 +233,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/27/113-路径总和-II/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/27/112-路径总和/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          113. 路径总和 II
+          112. 路径总和
         
       </div>
     </a>
   
   
-    <a href="/2019/01/24/389-找不同/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/01/24/190-颠倒二进制位/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">389. 找不同</div>
+      <div class="article-nav-title">190. 颠倒二进制位</div>
     </a>
   
 </nav>
@@ -263,7 +259,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav">无</ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution1："><span class="nav-number">1.</span> <span class="nav-text">Solution1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution2："><span class="nav-number">2.</span> <span class="nav-text">Solution2：</span></a></li></ol>
     
     </div>
   </aside>
