@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   
   
-  <title>  LeetCode-112. 路径总和 |   BeckoninGshy </title>
+  <title>  LeetCode-226. 翻转二叉树 |   BeckoninGshy </title>
 
  
   
@@ -79,18 +79,18 @@
 	
 <div class="post-header">
 	<p class="post-title">	
-		LeetCode-112. 路径总和
+		LeetCode-226. 翻转二叉树
 	</p>
 
 	<div class="post-info">	
 		<span class="post-info-entry">
-			1月 27, 2019
+			2月 02, 2019
 		</span>
 
 		
 		
 			<i class="iconfont icon-words"></i>
-			<span class="post-info-entry">779
+			<span class="post-info-entry">977
 			</span>
 		
 	</div>
@@ -103,13 +103,13 @@
 		
 
 			
-					<p><a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">112. 路径总和</a></p>
-<blockquote>
-<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
-<p>说明: 叶子节点是指没有子节点的节点。<br><a id="more"></a></p>
-<h3 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1:"></a>Solution1:</h3></blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasPathSum</span><span class="params">(TreeNode* root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> dfs(root,<span class="number">0</span>,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* node,<span class="keyword">int</span> currentsum, <span class="keyword">int</span> sum)</span></span>&#123;</span><br><span class="line">        currentsum += node-&gt;val;</span><br><span class="line">        <span class="keyword">if</span>(node &amp;&amp; !node-&gt;left &amp;&amp; !node-&gt;right &amp;&amp; currentsum == sum)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">bool</span> a = <span class="literal">false</span>,b = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(node-&gt;left)&#123;</span><br><span class="line">            a = dfs(node-&gt;left,currentsum,sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(node-&gt;right)&#123;</span><br><span class="line">            b = dfs(node-&gt;right,currentsum,sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a || b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>递归终止条件为叶子节点。</p>
+					<p><a href="https://leetcode-cn.com/problems/invert-binary-tree/" target="_blank" rel="noopener">226. 翻转二叉树</a></p>
+<p>翻转一棵二叉树。</p>
+<a id="more"></a>
+<h3 id="Solution1（递归版）："><a href="#Solution1（递归版）：" class="headerlink" title="Solution1（递归版）："></a>Solution1（递归版）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* invertTree(TreeNode* root) &#123;</span><br><span class="line">        if(!root) return NULL;</span><br><span class="line">        </span><br><span class="line">        if(root-&gt;left) invertTree(root-&gt;left);</span><br><span class="line">        if(root-&gt;right) invertTree(root-&gt;right);</span><br><span class="line">        TreeNode* temp = root-&gt;left;</span><br><span class="line">        root-&gt;left = root-&gt;right;</span><br><span class="line">        root-&gt;right = temp;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>依次从叶子结点向上翻转。</p>
+<h3 id="Solution2（层次遍历版）："><a href="#Solution2（层次遍历版）：" class="headerlink" title="Solution2（层次遍历版）："></a>Solution2（层次遍历版）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* invertTree(TreeNode* root) &#123;</span><br><span class="line">        if(!root) return NULL;</span><br><span class="line">        queue&lt;TreeNode*&gt; que;</span><br><span class="line">        que.push(root);</span><br><span class="line">        while(!que.empty())&#123;</span><br><span class="line">            TreeNode* node = que.front();</span><br><span class="line">            que.pop();</span><br><span class="line">            TreeNode* nodeleft = node-&gt;left;</span><br><span class="line">            node-&gt;left = node-&gt;right;</span><br><span class="line">            node-&gt;right = nodeleft;</span><br><span class="line">            if(node-&gt;left) que.push(node-&gt;left);</span><br><span class="line">            if(node-&gt;right) que.push(node-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>层次遍历，每到一个结点，就讲该结点下的子结点交换。</p>
   	
 					
 	  </div>     
@@ -189,21 +189,21 @@
 <nav class="post-footer-nav">
   <div class="post-footer-link">
   
-      <a href="/2019/01/27/113-路径总和-II/" id="post-nav-older" class="post-nav-link-wrap">
+      <a href="/2019/01/27/98-验证二叉搜索树/" id="post-nav-older" class="post-nav-link-wrap">
         <strong class="post-nav-caption">older</strong>
         
-          <a class="post-nav-title" href="/2019/01/27/113-路径总和-II/">
-          LeetCode-113. 路径总和 II</a>
+          <a class="post-nav-title" href="/2019/01/27/98-验证二叉搜索树/">
+          LeetCode-98. 验证二叉搜索树</a>
       </a>
   
   </div>
   <div class="post-footer-link">
     
-        <a href="/2019/01/27/88-合并两个有序数组/" id="post-nav-newer" class="post-nav-link-wrap">
+        <a href="/2019/02/02/LeetCode-236-二叉树的最近公共祖先/" id="post-nav-newer" class="post-nav-link-wrap">
           <strong class="post-nav-caption">newer</strong>
              
-            <a class="post-nav-title" href="/2019/01/27/88-合并两个有序数组/">
-            LeetCode-88. 合并两个有序数组</a>
+            <a class="post-nav-title" href="/2019/02/02/LeetCode-236-二叉树的最近公共祖先/">
+            LeetCode-236. 二叉树的最近公共祖先</a>
         </a>
     
   </div>
