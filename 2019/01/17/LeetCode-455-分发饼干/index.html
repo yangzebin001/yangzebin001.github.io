@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   
   
-  <title>  LeetCode-402-移掉K位数字 |   BeckoninGshy </title>
+  <title>  LeeCode-455-分发饼干 |   BeckoninGshy </title>
 
  
   
@@ -79,7 +79,7 @@
 	
 <div class="post-header">
 	<p class="post-title">	
-		LeetCode-402-移掉K位数字
+		LeeCode-455-分发饼干
 	</p>
 
 	<div class="post-info">	
@@ -90,7 +90,7 @@
 		
 		
 			<i class="iconfont icon-words"></i>
-			<span class="post-info-entry">780
+			<span class="post-info-entry">571
 			</span>
 		
 	</div>
@@ -103,11 +103,16 @@
 		
 
 			
-					<p><a href="https://leetcode-cn.com/problems/remove-k-digits/" target="_blank" rel="noopener">402. 移掉K位数字</a></p>
-<h3 id="给定一个以字符串表示的非负整数-num，移除这个数中的-k-位数字，使得剩下的数字最小。"><a href="#给定一个以字符串表示的非负整数-num，移除这个数中的-k-位数字，使得剩下的数字最小。" class="headerlink" title="给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。"></a>给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。</h3><p>在保持顺序的情况下，尽可能让较小的数充当较高位。</p>
-<p>用一个栈来计较。<br>如果要进的数字比栈顶要大，并且可以删。直接将该数字丢弃。</p>
+					<p><a href="https://leetcode-cn.com/problems/assign-cookies/" target="_blank" rel="noopener">455. 分发饼干</a></p>
 <a id="more"></a>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">removeKdigits</span><span class="params">(<span class="built_in">string</span> num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//在保持顺序的情况下，尽可能让较小的数充当较高位。</span></span><br><span class="line">        </span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> number = num[i]-<span class="string">'0'</span>;</span><br><span class="line">            <span class="comment">//比当前栈顶元素大，并且能删除（k&gt;0）,直接丢弃。</span></span><br><span class="line">            <span class="keyword">while</span>(S.size() != <span class="number">0</span> &amp;&amp; S[S.size()<span class="number">-1</span>] &gt; number &amp;&amp; k &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                S.pop_back();</span><br><span class="line">                k--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//0 不能在第一个位置。即不允许“0132”</span></span><br><span class="line">            <span class="keyword">if</span>(number != <span class="number">0</span> || S.size()!= <span class="number">0</span>)&#123;</span><br><span class="line">                S.push_back(number);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 处理“123456789”的情况。</span></span><br><span class="line">        <span class="keyword">while</span>(S.size() != <span class="number">0</span> &amp;&amp; k &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            S.pop_back();</span><br><span class="line">            k--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.size(); i++)&#123;</span><br><span class="line">            result.append(<span class="number">1</span>,<span class="string">'0'</span>+S[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(result == <span class="string">""</span>) <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输入: [1,2,3], [1,1]</p>
+<p>输出: 1</p>
+<p>解释:<br>你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。<br>虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。<br>所以你应该输出1。</p>
+</blockquote>
+<p><strong>尽量让胃口小的孩子分到尽量少的饼干。</strong></p>
+<p>先排序。在饼干的循环中，如果孩子的胃口大于等于饼干，孩子加一。</p>
+<p>###Solution:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findContentChildren</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; g, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//先将两组数据排序。</span></span><br><span class="line">        <span class="built_in">std</span>::sort(g.begin(),g.end());</span><br><span class="line">        <span class="built_in">std</span>::sort(s.begin(),s.end());</span><br><span class="line">        <span class="comment">//记录被满足的孩子和饼干</span></span><br><span class="line">        <span class="keyword">int</span> child = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> cookie = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(cookie &lt; s.size() &amp;&amp; child &lt; g.size())&#123;</span><br><span class="line">            <span class="comment">//饼干可以满足该孩子。</span></span><br><span class="line">            <span class="keyword">if</span>(g[child] &lt;= s[cookie])&#123;</span><br><span class="line">                child++;</span><br><span class="line">            &#125;</span><br><span class="line">            cookie++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> child;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
   	
 					
 	  </div>     
@@ -187,21 +192,21 @@
 <nav class="post-footer-nav">
   <div class="post-footer-link">
   
-      <a href="/2019/01/17/LeetCode-455-分发饼干/" id="post-nav-older" class="post-nav-link-wrap">
+      <a href="/2019/01/17/LeetCode-295-数据流的中位数/" id="post-nav-older" class="post-nav-link-wrap">
         <strong class="post-nav-caption">older</strong>
         
-          <a class="post-nav-title" href="/2019/01/17/LeetCode-455-分发饼干/">
-          LeeCode-455-分发饼干</a>
+          <a class="post-nav-title" href="/2019/01/17/LeetCode-295-数据流的中位数/">
+          LeetCode-295-数据流的中位数</a>
       </a>
   
   </div>
   <div class="post-footer-link">
     
-        <a href="/2019/01/17/LeetCode-45-跳跃游戏-II/" id="post-nav-newer" class="post-nav-link-wrap">
+        <a href="/2019/01/17/LeetCode-402-移掉K位数字/" id="post-nav-newer" class="post-nav-link-wrap">
           <strong class="post-nav-caption">newer</strong>
              
-            <a class="post-nav-title" href="/2019/01/17/LeetCode-45-跳跃游戏-II/">
-            LeetCode-45- 跳跃游戏 II</a>
+            <a class="post-nav-title" href="/2019/01/17/LeetCode-402-移掉K位数字/">
+            LeetCode-402-移掉K位数字</a>
         </a>
     
   </div>
