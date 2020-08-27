@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  POJ-Telephon-Lines(二分+最短路) |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		POJ-Telephon-Lines(二分+最短路)
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			10月 09, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">5116
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="http://poj.org/problem?id=3662/" target="_blank" rel="noopener">POJ-Telephone Lines</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Farmer John wants to set up a telephone line at his farm. Unfortunately, the phone company is uncooperative, so he needs to pay for some of the cables required to connect his farm to the phone system.</p>
+<p>There are N (1 ≤ N ≤ 1,000) forlorn telephone poles conveniently numbered 1..N that are scattered around Farmer John’s property; no cables connect any them. A total of P (1 ≤ P ≤ 10,000) pairs of poles can be connected by a cable; the rest are too far apart.</p>
+<p>The i-th cable can connect the two distinct poles Ai and Bi, with length Li (1 ≤ Li ≤ 1,000,000) units if used. The input data set never names any {Ai, Bi} pair more than once. Pole 1 is already connected to the phone system, and pole N is at the farm. Poles 1 and N need to be connected by a path of cables; the rest of the poles might be used or might not be used.</p>
+<p>As it turns out, the phone company is willing to provide Farmer John with K (0 ≤ K &lt; N) lengths of cable for free. Beyond that he will have to pay a price equal to the length of the longest remaining cable he requires (each pair of poles is connected with a separate cable), or 0 if he does not need any additional cables.</p>
+<p>Determine the minimum amount that Farmer John must pay.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><ul>
+<li>Line 1: Three space-separated integers: N, P, and K</li>
+<li>Lines 2..P+1: Line i+1 contains the three space-separated integers: Ai, Bi, and Li</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><ul>
+<li>Line 1: A single integer, the minimum amount Farmer John can pay. If it is impossible to connect the farm to the phone company, print -1.</li>
+</ul>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5 7 1</span><br><span class="line">1 2 5</span><br><span class="line">3 1 4</span><br><span class="line">2 4 8</span><br><span class="line">3 2 3</span><br><span class="line">5 2 9</span><br><span class="line">3 4 7</span><br><span class="line">4 5 6</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>一电话公司要链接编号1和N的电话，中间可能需要架设多条电话线，线缆厂商可以免费给电话公司铺设k条电缆，超过k条之后，要按其余的线缆中最长的进行相应收费费用与长度相同，求电话公司需要付的最小费用。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>其实就是求无向图中，从1到N中，使最多可以“宽恕”k条最长边之后最长的边的长度尽可能小的路径。</p>
+<p>单独求这样一个问题好像很复杂，我们稍加分析发现，答案一定在给定的边长、零或者不存在这样的路径这三种情况中，我们先假定一个答案，用这个答案去试探从1-N的路径有没有符合条件的。</p>
+<p>具体的判断就是求一条大于答案的边长数最小的一条路径。可以使用最短路来求，松弛条件根据到当前边的超过答案的数量中选择更小的一条边。我们最后判断到达N后其数量是否超过k，就能判断这是否是一条符合条件的边。</p>
+<p>然后将存放所有可能是答案的数组排序后进行二分。</p>
+<p>这里求“最短路”用了两个最短路模板：</p>
+<h3 id="Solution1（Dijkstra）："><a href="#Solution1（Dijkstra）：" class="headerlink" title="Solution1（Dijkstra）："></a>Solution1（Dijkstra）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-07 18:55:30</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-08 22:59:49</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 10000+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">int n,p,k;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int b,ca;</span><br><span class="line">    node(int _b,int _ca):b(_b),ca(_ca)&#123;&#125;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    bool operator&lt;(const node &amp;q)const&#123;</span><br><span class="line">        return ca &gt; q.ca;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;node&gt; V[MAXN];</span><br><span class="line">int dis[MAXN]; //dis存超过目标值x的电话线条数。</span><br><span class="line">int vis[MAXN];</span><br><span class="line">int cost[MAXN];</span><br><span class="line">int Dijkstra(int x)&#123;</span><br><span class="line">    memset(dis,INF,sizeof(dis));</span><br><span class="line">    memset(vis,0,sizeof(vis));</span><br><span class="line">    dis[1] = 0;</span><br><span class="line">    priority_queue&lt;node&gt; q;</span><br><span class="line">    q.push(node(1,dis[1]));</span><br><span class="line">    node temp;</span><br><span class="line">    while(!q.empty())&#123;</span><br><span class="line">        temp = q.top(); q.pop();</span><br><span class="line">        int u = temp.b;</span><br><span class="line">        if(vis[u])continue;</span><br><span class="line">        vis[u] = 1;</span><br><span class="line">        for(int i = 0; i &lt; V[u].size(); i++)&#123;</span><br><span class="line">            int v = V[u][i].b;</span><br><span class="line">            int c = V[u][i].ca;</span><br><span class="line">            c = c &gt; x ? 1 : 0;</span><br><span class="line">            //更新到当前结点的超过x的条数</span><br><span class="line">            if(!vis[v] &amp;&amp; dis[v] &gt; dis[u] + c)&#123;</span><br><span class="line">                </span><br><span class="line">                dis[v] = dis[u] + c;</span><br><span class="line">                q.push(node(v,dis[v]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //是</span><br><span class="line">    return dis[n]&lt;= k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;p,&amp;k);</span><br><span class="line">    for(int i = 0; i &lt; p; i++)&#123;</span><br><span class="line">        int a,b,c;</span><br><span class="line">        scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">        V[a].push_back(node(b,c));</span><br><span class="line">        V[b].push_back(node(a,c));</span><br><span class="line">        cost[i+1] = c; </span><br><span class="line">    &#125;</span><br><span class="line">    //按长度进行二分，根据超过该长度的个数是否超过k来确定边界。</span><br><span class="line">    sort(cost+1,cost+1+p);</span><br><span class="line">    if(!Dijkstra(cost[p]))&#123;</span><br><span class="line">        printf(&quot;-1\\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    //答案有可能是0，所以从0开始。</span><br><span class="line">    int l = 0, r = p-1;</span><br><span class="line">    while(l &lt; r)&#123;</span><br><span class="line">        int mid = l+r&gt;&gt;1;</span><br><span class="line">        if(Dijkstra(cost[mid])) r = mid;</span><br><span class="line">        else l = mid+1;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d&quot;,cost[l]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2（SPFA）："><a href="#Solution2（SPFA）：" class="headerlink" title="Solution2（SPFA）："></a>Solution2（SPFA）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-07 18:55:30</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-09 19:32:17</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 10000+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">int n,p,k;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int b,ca;</span><br><span class="line">    node(int _b,int _ca):b(_b),ca(_ca)&#123;&#125;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    bool operator&lt;(const node &amp;q)const&#123;</span><br><span class="line">        return ca &gt; q.ca;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;node&gt; V[MAXN];</span><br><span class="line">int dis[MAXN]; //dis存超过目标值x的电话线条数。</span><br><span class="line">int vis[MAXN];</span><br><span class="line">int inq[MAXN];</span><br><span class="line">int cost[MAXN];</span><br><span class="line">int SPFA(int x)&#123;</span><br><span class="line">    memset(dis,INF,sizeof(dis));</span><br><span class="line">    memset(vis,0,sizeof(vis));</span><br><span class="line">    memset(inq,0,sizeof(inq));</span><br><span class="line">    </span><br><span class="line">    dis[1] = 0;</span><br><span class="line">    queue&lt;int&gt; q;</span><br><span class="line">    q.push(1);</span><br><span class="line">    node temp;</span><br><span class="line">    inq[1] = 1;</span><br><span class="line">    while(!q.empty())&#123;</span><br><span class="line">        int u = q.front(); q.pop();</span><br><span class="line">        inq[u] = false;</span><br><span class="line">        for(int i = 0; i &lt; V[u].size(); i++)&#123;</span><br><span class="line">            int v = V[u][i].b;</span><br><span class="line">            int c = V[u][i].ca;</span><br><span class="line">            c = c &gt; x ? 1 : 0;</span><br><span class="line">            //更新到当前结点的超过x的条数</span><br><span class="line">            if(dis[v] &gt; dis[u] + c)&#123;</span><br><span class="line">                </span><br><span class="line">                dis[v] = dis[u] + c;</span><br><span class="line">                if(!inq[v])&#123;</span><br><span class="line">                    q.push(v);</span><br><span class="line">                    inq[v] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //是</span><br><span class="line">    return dis[n]&lt;= k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;p,&amp;k);</span><br><span class="line">    for(int i = 0; i &lt; p; i++)&#123;</span><br><span class="line">        int a,b,c;</span><br><span class="line">        scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">        V[a].push_back(node(b,c));</span><br><span class="line">        V[b].push_back(node(a,c));</span><br><span class="line">        cost[i+1] = c; </span><br><span class="line">    &#125;</span><br><span class="line">    //按长度进行二分，根据超过该长度的个数是否超过k来确定边界。</span><br><span class="line">    sort(cost+1,cost+1+p);</span><br><span class="line">    if(!SPFA(cost[p]))&#123;</span><br><span class="line">        printf(&quot;-1\\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    //答案有可能是0，所以从0开始。</span><br><span class="line">    int l = 0, r = p-1;</span><br><span class="line">    while(l &lt; r)&#123;</span><br><span class="line">        int mid = l+r&gt;&gt;1;</span><br><span class="line">        if(SPFA(cost[mid])) r = mid;</span><br><span class="line">        else l = mid+1;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d&quot;,cost[l]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/10/07/POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分）/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/10/07/POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分）/">
+          POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分）</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/10/26/AcWin-135-最大子序和/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/10/26/AcWin-135-最大子序和/">
+            AcWin-135-最大子序和</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

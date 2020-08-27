@@ -115,12 +115,286 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/01/01/LeetCode-92-反转链表-II/">LeetCode 92. 反转链表 II</a>  
+		<a class="article-title" href="/2019/05/30/LeetCode-112-路径总和/">LeetCode-112-路径总和</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>1月 01, 2019</time>
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">112. 路径总和</a></p>
+<blockquote>
+<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+</blockquote>
+<h3 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1:"></a>Solution1:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool hasPathSum(TreeNode* root, int sum) &#123;</span><br><span class="line">        if(!root) return false;</span><br><span class="line">        return dfs(root,0,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool dfs(TreeNode* node,int currentsum, int sum)&#123;</span><br><span class="line">        currentsum += node-&gt;val;</span><br><span class="line">        if(node &amp;&amp; !node-&gt;left &amp;&amp; !node-&gt;right &amp;&amp; currentsum == sum)</span><br><span class="line">            return true;</span><br><span class="line">        bool a = false,b = false;</span><br><span class="line">        if(node-&gt;left)&#123;</span><br><span class="line">            a = dfs(node-&gt;left,currentsum,sum);</span><br><span class="line">        &#125;</span><br><span class="line">        if(node-&gt;right)&#123;</span><br><span class="line">            b = dfs(node-&gt;right,currentsum,sum);</span><br><span class="line">        &#125;</span><br><span class="line">        return a || b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>递归终止条件为叶子节点。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-112-路径总和/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/05/30/LeetCode-113-路径总-II/">LeetCode-113-路径总-II</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/path-sum-ii/submissions/" target="_blank" rel="noopener">113. 路径总和 II</a></p>
+<p>该题为<a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">112. 路径总和</a>的升级版</p>
+<blockquote>
+<p>给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+</blockquote>
+<h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int sum) &#123;</span><br><span class="line">        vector&lt;int&gt; path;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        if(root)&#123;</span><br><span class="line">            dfs(root,0,sum,path,result);</span><br><span class="line">        &#125; </span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void dfs(TreeNode* node,int currentsum, int sum,vector&lt;int&gt; &amp;path,vector&lt;vector&lt;int&gt; &gt; &amp;result)&#123;</span><br><span class="line">        currentsum += node-&gt;val;</span><br><span class="line"></span><br><span class="line">        path.push_back(node-&gt;val);</span><br><span class="line">        //当到达叶子结点，并且路径之和与sum相同</span><br><span class="line">        if(node &amp;&amp; !node-&gt;left &amp;&amp; !node-&gt;right )&#123;</span><br><span class="line">            if(currentsum == sum)</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(node-&gt;left)&#123;</span><br><span class="line">            dfs(node-&gt;left,currentsum,sum,path,result);</span><br><span class="line">            //回溯，还原状态</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        if(node-&gt;right)&#123;</span><br><span class="line">            dfs(node-&gt;right,currentsum,sum,path,result);</span><br><span class="line">            //回溯，还原状态</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int sum) &#123;</span><br><span class="line">        vector&lt;int&gt; path;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        preorder(root,0,sum,path,result);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    void preorder(TreeNode* node, int currentsum, int sum, vector&lt;int&gt; &amp;path, vector&lt;vector&lt;int&gt; &gt; &amp;result)&#123;</span><br><span class="line">        if(!node) return;</span><br><span class="line">        currentsum += node-&gt;val;</span><br><span class="line">        path.push_back(node-&gt;val);</span><br><span class="line">        if(!node-&gt;left &amp;&amp; !node-&gt;right &amp;&amp; currentsum == sum)&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">        &#125;</span><br><span class="line">        preorder(node-&gt;left,currentsum,sum,path,result);</span><br><span class="line">        preorder(node-&gt;right,currentsum,sum,path,result);</span><br><span class="line">        //该步可有可无，因为只会递归到叶子节点才返回，又每次递归都在栈中保留了原来该值的副本。</span><br><span class="line">        // currentsum -= node-&gt;val;</span><br><span class="line">        path.pop_back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-113-路径总-II/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/05/30/LeetCode-107-二叉树的层次遍-II/">LeetCode-107-二叉树的层次遍-II</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/" target="_blank" rel="noopener">107. 二叉树的层次遍历 II</a></p>
+<h5 id="给定一个二叉树，返回其节点值自底向上的层次遍历。-（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）"><a href="#给定一个二叉树，返回其节点值自底向上的层次遍历。-（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）" class="headerlink" title="给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）"></a>给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</h5><p>该题为 <a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal" target="_blank" rel="noopener">102. 二叉树的层次遍历</a>的进阶版。</p>
+<p>有关<a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal" target="_blank" rel="noopener">102. 二叉树的层次遍历</a>的题解，请参考<a href="https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/submissions/" target="_blank" rel="noopener">429. N叉树的层序遍历</a>，具体思路是一样的，不再赘述。</p>
+<h3 id="Solution1（迭代版）："><a href="#Solution1（迭代版）：" class="headerlink" title="Solution1（迭代版）："></a>Solution1（迭代版）：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrderBottom(TreeNode* root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; res;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> len = q.size();</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curLayerNodes;</span><br><span class="line">            TreeNode* t;</span><br><span class="line">            <span class="keyword">while</span>(len--)&#123;</span><br><span class="line">                t = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                curLayerNodes.push_back(t-&gt;val);</span><br><span class="line">                <span class="keyword">if</span>(t-&gt;left) q.push(t-&gt;left);</span><br><span class="line">                <span class="keyword">if</span>(t-&gt;right) q.push(t-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            res.emplace(res.begin(),curLayerNodes);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2（递归版）："><a href="#Solution2（递归版）：" class="headerlink" title="Solution2（递归版）："></a>Solution2（递归版）：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrderBottom(TreeNode* root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        preorder(root,<span class="number">1</span>,res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">preorder</span><span class="params">(TreeNode* node, <span class="keyword">int</span> depth, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;res)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!node) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(res.size() &lt; depth)&#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t;</span><br><span class="line">            t.push_back(node-&gt;val);</span><br><span class="line">            res.emplace(res.begin(), t);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res[res.size()-depth].push_back(node-&gt;val);</span><br><span class="line">        &#125;</span><br><span class="line">        preorder(node-&gt;left, depth+<span class="number">1</span>, res);</span><br><span class="line">        preorder(node-&gt;right, depth+<span class="number">1</span>, res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>具体思路就是增加一层，就将该层放到头位置。</p>
+<blockquote>
+<p>vector.emplace()配合vector.begin()实现插到头位置。</p>
+</blockquote>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-107-二叉树的层次遍-II/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/05/30/LeetCode-101. 对称二叉树/">LeetCode-101. 对称二叉树</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/symmetric-tree/" target="_blank" rel="noopener">101. 对称二叉树</a></p>
+<p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<h3 id="Solution1（递归版）："><a href="#Solution1（递归版）：" class="headerlink" title="Solution1（递归版）："></a>Solution1（递归版）：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isMirror(root, root);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMirror</span><span class="params">(TreeNode* t1, TreeNode* t2)</span></span>&#123;</span><br><span class="line">        <span class="comment">//都为NULL</span></span><br><span class="line">        <span class="keyword">if</span>(!t1 &amp;&amp; !t2) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//有一个结点为NULL，另一个不为NULL</span></span><br><span class="line">        <span class="keyword">if</span>(!t1 || !t2) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> (t1-&gt;val == t2-&gt;val) &amp;&amp; isMirror(t1-&gt;left, t2-&gt;right)</span><br><span class="line">            &amp;&amp; isMirror(t1-&gt;right, t2-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>看的官方题解。</p>
+<p>把一棵对称树分成左子树和右子树。</p>
+<p>如果左子树和右子树对称，则该数相同。</p>
+<p>扩展到一般概念就是：</p>
+<ul>
+<li>有两棵树。</li>
+<li>两棵树的根节点相同。</li>
+<li>每个树的右子树都与另一个树的左子树镜像对称。</li>
+</ul>
+<p>翻译为递推公式就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* t1,t2;</span><br><span class="line">t1-&gt;val == t2-&gt;val;</span><br><span class="line">t1-&gt;left == t2-&gt;right;</span><br><span class="line">t1-&gt;right = t2-&gt;left;</span><br></pre></td></tr></table></figure>
+<p>结束条件为两棵树为空。</p>
+<p>整理可得上述代码。</p>
+<h3 id="Solution2（迭代版）："><a href="#Solution2（迭代版）：" class="headerlink" title="Solution2（迭代版）："></a>Solution2（迭代版）：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            TreeNode* t1 = q.front(); q.pop();</span><br><span class="line">            TreeNode* t2 = q.front(); q.pop();</span><br><span class="line">            <span class="keyword">if</span>(!t1 &amp;&amp; !t2) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(!t1 || !t2) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(t1-&gt;val != t2-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            q.push(t1-&gt;left);</span><br><span class="line">            q.push(t2-&gt;right);</span><br><span class="line">            q.push(t2-&gt;left);</span><br><span class="line">            q.push(t1-&gt;right);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>翻译为了迭代版，只不过根本的思想是一样的。都是将一棵树化为两棵树来进行判断的。</p>
+<h3 id="Solution3（中序迭代版）："><a href="#Solution3（中序迭代版）：" class="headerlink" title="Solution3（中序迭代版）："></a>Solution3（中序迭代版）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isSymmetric(TreeNode* root) &#123;</span><br><span class="line">        if(!root) return true;</span><br><span class="line">        stack&lt;TreeNode*&gt; lefts,rights;</span><br><span class="line">        TreeNode* l = root-&gt;left;</span><br><span class="line">        TreeNode* r = root-&gt;right;</span><br><span class="line">        while(l || r || lefts.size())&#123;</span><br><span class="line">            while(l &amp;&amp; r)&#123;</span><br><span class="line">                lefts.push(l),l = l-&gt;left;</span><br><span class="line">                rights.push(r), r = r-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">            if(l || r) return false;</span><br><span class="line">            l = lefts.top();lefts.pop();</span><br><span class="line">            r = rights.top(); rights.pop();</span><br><span class="line">            if(l-&gt;val != r-&gt;val) return false;</span><br><span class="line">            l = l-&gt;right,r = r-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-101. 对称二叉树/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/05/30/PAT《团体程序设计天梯赛-练习集》-L3-01-二叉搜索树的结-（3-分）/">PAT《团体程序设计天梯赛-练习集》-L3-01-二叉搜索树的结-（3-分）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://pintia.cn/problem-sets/994805046380707840/problems/994805047903240192" target="_blank" rel="noopener">L3-016 二叉搜索树的结构 （30 分）</a></p>
+<h4 id="二叉搜索树或者是一棵空树，或者是具有下列性质的二叉树：-若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；它的左、右子树也分别为二叉搜索树。（摘自百度百科）"><a href="#二叉搜索树或者是一棵空树，或者是具有下列性质的二叉树：-若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；它的左、右子树也分别为二叉搜索树。（摘自百度百科）" class="headerlink" title="二叉搜索树或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；它的左、右子树也分别为二叉搜索树。（摘自百度百科）"></a>二叉搜索树或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；它的左、右子树也分别为二叉搜索树。（摘自百度百科）</h4><p>给定一系列互不相等的整数，将它们顺次插入一棵初始为空的二叉搜索树，然后对结果树的结构进行描述。你需要能判断给定的描述是否正确。例如将{ 2 4 1 3 0 }插入后，得到一棵二叉搜索树，则陈述句如“2是树的根”、“1和4是兄弟结点”、“3和0在同一层上”（指自顶向下的深度相同）、“2是4的双亲结点”、“3是4的左孩子”都是正确的；而“4是2的左孩子”、“1和3是兄弟结点”都是不正确的。</p>
+<h4 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h4><p>输入在第一行给出一个正整数N（≤100），随后一行给出N个互不相同的整数，数字间以空格分隔，要求将之顺次插入一棵初始为空的二叉搜索树。之后给出一个正整数M（≤100），随后M行，每行给出一句待判断的陈述句。陈述句有以下6种：</p>
+<ul>
+<li>A is the root，即”A是树的根”；</li>
+<li>A and B are siblings，即”A和B是兄弟结点”；</li>
+<li>A is the parent of B，即”A是B的双亲结点”；</li>
+<li>A is the left child of B，即”A是B的左孩子”；</li>
+<li>A is the right child of B，即”A是B的右孩子”；</li>
+<li>A and B are on the same level，即”A和B在同一层上”。<br>题目保证所有给定的整数都在整型范围内。</li>
+</ul>
+<h4 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h4><p>对每句陈述，如果正确则输出Yes，否则输出No，每句占一行。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	TreeNode* left;</span><br><span class="line">	TreeNode* right;</span><br><span class="line">	TreeNode(<span class="keyword">int</span> x): val(x), left(<span class="literal">NULL</span>), right(<span class="literal">NULL</span>)&#123;&#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> rootval;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertNode</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span>(root-&gt;val &gt; val)&#123;</span><br><span class="line">		<span class="keyword">if</span>(root-&gt;left)&#123;</span><br><span class="line">			insertNode(root-&gt;left,val);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			TreeNode* t = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">			root-&gt;left = t; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;val &lt; val)&#123;</span><br><span class="line">		<span class="keyword">if</span>(root-&gt;right)&#123;</span><br><span class="line">			insertNode(root-&gt;right,val);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			TreeNode* t = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">			root-&gt;right = t; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isContainNode</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span>(root-&gt;val == val) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">if</span>(root-&gt;val &gt; val) <span class="keyword">return</span> isContainNode(root-&gt;left,val);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> isContainNode(root-&gt;right,val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printTree</span><span class="params">(TreeNode* root)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; root-&gt;val &lt;&lt;<span class="string">""</span>;</span><br><span class="line">	printTree(root-&gt;left);</span><br><span class="line">	printTree(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isRoot</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> val == rootval;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">TreeNode* <span class="title">parent</span><span class="params">(TreeNode *root, <span class="keyword">int</span> child)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!isContainNode(root,child) || root-&gt;val == child) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	TreeNode* res = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">if</span>((root-&gt;left &amp;&amp; root-&gt;left-&gt;val == child) || (root-&gt;right &amp;&amp; root-&gt;right-&gt;val == child))&#123;</span><br><span class="line">			res = root;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;val &gt; child)&#123;</span><br><span class="line">			root = root-&gt;left;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;val &lt; child)&#123;</span><br><span class="line">			root = root-&gt;right;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isSibling</span><span class="params">(TreeNode* root, <span class="keyword">int</span> valA, <span class="keyword">int</span> valB)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span>(valA == root-&gt;val || valB == root-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="comment">//找到A的父亲</span></span><br><span class="line">	TreeNode* t = parent(root, valA); </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(t)&#123;</span><br><span class="line">		<span class="keyword">if</span>(t-&gt;left &amp;&amp; t-&gt;left-&gt;val == valA )&#123;</span><br><span class="line">			<span class="keyword">return</span> t-&gt;right &amp;&amp; t-&gt;right-&gt;val == valB;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(t-&gt;right &amp;&amp; t-&gt;right-&gt;val == valA )&#123;</span><br><span class="line">			<span class="keyword">return</span> t-&gt;left &amp;&amp; t-&gt;left-&gt;val == valB;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getDepth</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(root-&gt;val == val) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(root-&gt;val &gt; val) <span class="keyword">return</span> <span class="number">1</span> + getDepth(root-&gt;left,val);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span> + getDepth(root-&gt;right,val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isSameLevel</span><span class="params">(TreeNode* root, <span class="keyword">int</span> A, <span class="keyword">int</span> B)</span></span>&#123;</span><br><span class="line"><span class="comment">//	A != B &amp;&amp; </span></span><br><span class="line">	<span class="keyword">return</span> isContainNode(root,A) &amp;&amp; isContainNode(root,B) &amp;&amp; getDepth(root, A) == getDepth(root, B);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pirntMassage</span><span class="params">(<span class="keyword">bool</span> info)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(info)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isParent</span><span class="params">(TreeNode* root, <span class="keyword">int</span> parentVal, <span class="keyword">int</span> childVal)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(parent(root, childVal) == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> parentVal == parent(root, childVal)-&gt;val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isLeftChild</span><span class="params">(TreeNode* root, <span class="keyword">int</span> parentVal, <span class="keyword">int</span> leftChildVal)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(parent(root, leftChildVal) == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	TreeNode* p = parent(root, leftChildVal);</span><br><span class="line">	<span class="keyword">return</span> parentVal == p-&gt;val &amp;&amp; p-&gt;left-&gt;val == leftChildVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isRightChild</span><span class="params">(TreeNode* root, <span class="keyword">int</span> parentVal, <span class="keyword">int</span> rightChildVal)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(parent(root, rightChildVal) == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	TreeNode* p = parent(root, rightChildVal);</span><br><span class="line">	<span class="keyword">return</span> parentVal == p-&gt;val &amp;&amp; p-&gt;right-&gt;val == rightChildVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; c;</span><br><span class="line">	<span class="keyword">if</span>(c &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; rootval;</span><br><span class="line">	TreeNode* root = <span class="keyword">new</span> TreeNode(rootval);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; c; i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; a;</span><br><span class="line">		insertNode(root, a);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; c;</span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">int</span> rootV,siblingA,siblingB, parentv, childv,leftchildv,rightchildv,samelevelA,samelevelB;</span><br><span class="line"> 	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; c; i++)&#123;</span><br><span class="line"> 		</span><br><span class="line">		<span class="keyword">char</span> state[<span class="number">100</span>];</span><br><span class="line">		<span class="keyword">int</span> q = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">char</span> ch;</span><br><span class="line">		<span class="keyword">while</span>((ch = getchar()) != <span class="string">'\n'</span>) state[q++] = ch;</span><br><span class="line">		state[q] = <span class="string">'\0'</span>;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">strstr</span>(state,<span class="string">"root"</span>))&#123;</span><br><span class="line">			<span class="built_in">sscanf</span>(state,<span class="string">"%d is the root"</span>,&amp;rootV);</span><br><span class="line">			pirntMassage(isRoot(rootV));</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strstr</span>(state,<span class="string">"siblings"</span>))&#123;</span><br><span class="line">			<span class="built_in">sscanf</span>(state,<span class="string">"%d and %d are siblings"</span>,&amp;siblingA,&amp;siblingB);</span><br><span class="line">			pirntMassage(isSibling(root,siblingA,siblingB));</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strstr</span>(state,<span class="string">"same"</span>))&#123;</span><br><span class="line">			<span class="built_in">sscanf</span>(state,<span class="string">"%d and %d are on the same level"</span>,&amp;samelevelA,&amp;samelevelB);</span><br><span class="line">			pirntMassage(isSameLevel(root,samelevelA,samelevelB));</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strstr</span>(state,<span class="string">"parent"</span>))&#123;</span><br><span class="line">			<span class="built_in">sscanf</span>(state,<span class="string">"%d is the parent of %d"</span>,&amp;parentv,&amp;childv);</span><br><span class="line">			pirntMassage(isParent(root,parentv,childv));</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strstr</span>(state,<span class="string">"left"</span>))&#123;</span><br><span class="line">			<span class="built_in">sscanf</span>(state,<span class="string">"%d is the left child of %d"</span>,&amp;leftchildv,&amp;parentv);</span><br><span class="line">			pirntMassage(isLeftChild(root,parentv,leftchildv));</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">strstr</span>(state,<span class="string">"right"</span>))&#123;</span><br><span class="line">			<span class="built_in">sscanf</span>(state,<span class="string">"%d is the right child of %d"</span>,&amp;rightchildv,&amp;parentv);</span><br><span class="line">			pirntMassage(isRightChild(root,parentv,rightchildv));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//	pirntMassage(isRoot(2));</span></span><br><span class="line"><span class="comment">//	pirntMassage(isSibling(root,1,1));</span></span><br><span class="line"><span class="comment">//	pirntMassage(isSameLevel(root, 0,3));</span></span><br><span class="line"><span class="comment">//	pirntMassage(isParent(root, 3,0));</span></span><br><span class="line"><span class="comment">//	pirntMassage(isLeftChild(root, 2,1));</span></span><br><span class="line"><span class="comment">//	pirntMassage(isRightChild(root, 2,4));</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一次写这么多功能的代码，很考验耐力。<br>没什么大的难点，注意考虑代码的重用性。</p>
+<p>第一次用sscanf，还不太熟。</p>
+<blockquote>
+<p>有一坑：它认为 3 and 3 are on the same level。我开始写的时候，直接把这种情况否定掉了。看来盲目做条件判断也不是好事。</p>
+</blockquote>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/PAT《团体程序设计天梯赛-练习集》-L3-01-二叉搜索树的结-（3-分）/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/05/30/PAT《团体程序设计天梯赛-练习集》-L3-01-是否完全二叉搜索-（3-分）/">PAT《团体程序设计天梯赛-练习集》-L3-01-是否完全二叉搜索-（3-分）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://pintia.cn/problem-sets/994805046380707840/problems/994805049870368768" target="_blank" rel="noopener">L3-010 是否完全二叉搜索树 </a>（30 分）</p>
+<p>将一系列给定数字顺序插入一个初始为空的二叉搜索树（定义为左子树键值大，右子树键值小），你需要判断最后的树是否一棵完全二叉树，并且给出其层序遍历的结果。</p>
+<h5 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h5><p>输入第一行给出一个不超过20的正整数N；第二行给出N个互不相同的正整数，其间以空格分隔。</p>
+<h5 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h5><p>将输入的N个正整数顺序插入一个初始为空的二叉搜索树。在第一行中输出结果树的层序遍历结果，数字间以1个空格分隔，行的首尾不得有多余空格。第二行输出YES，如果该树是完全二叉树；否则输出NO。</p>
+<h5 id="输入样例1："><a href="#输入样例1：" class="headerlink" title="输入样例1："></a>输入样例1：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">38 45 42 24 58 30 67 12 51</span><br></pre></td></tr></table></figure>
+<h5 id="输出样例1："><a href="#输出样例1：" class="headerlink" title="输出样例1："></a>输出样例1：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">38 45 24 58 42 30 12 67 51</span><br><span class="line">YES</span><br></pre></td></tr></table></figure>
+<h5 id="输入样例2："><a href="#输入样例2：" class="headerlink" title="输入样例2："></a>输入样例2：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">38 24 12 45 58 67 42 51</span><br></pre></td></tr></table></figure>
+<h5 id="输出样例2："><a href="#输出样例2：" class="headerlink" title="输出样例2："></a>输出样例2：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">38 45 24 58 42 12 67 51</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
+<p>一道考察二叉树插入方法例程，层序遍历，判断是否为一棵完全二叉树的综合题。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct TreeNode&#123;</span><br><span class="line">	int val;</span><br><span class="line">	TreeNode *left;</span><br><span class="line">	TreeNode *right;</span><br><span class="line">	TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">void insertNode(TreeNode* root, int val)&#123;</span><br><span class="line">	if(root == NULL)&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(root-&gt;val &lt; val)&#123;</span><br><span class="line">		if(root-&gt;left == NULL)&#123;</span><br><span class="line">			TreeNode* now = new TreeNode(val);</span><br><span class="line">			root-&gt;left = now;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			insertNode(root-&gt;left, val);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;else if(root-&gt;val &gt; val)&#123;</span><br><span class="line">		if(root-&gt;right == NULL)&#123;</span><br><span class="line">			TreeNode* now = new TreeNode(val);</span><br><span class="line">			root-&gt;right = now;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			insertNode(root-&gt;right, val);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void levelOrder(TreeNode* root)&#123;</span><br><span class="line">	queue&lt;TreeNode*&gt; q;</span><br><span class="line">	q.push(root);</span><br><span class="line">	bool isfirst = true;</span><br><span class="line">	while(!q.empty())&#123;</span><br><span class="line">		TreeNode* node = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		if(isfirst)&#123;</span><br><span class="line">			cout &lt;&lt; node-&gt;val;</span><br><span class="line">			isfirst = false;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			cout &lt;&lt;  &quot; &quot; &lt;&lt; node-&gt;val;</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;left) &#123;</span><br><span class="line">			q.push(node-&gt;left);</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;right) &#123;</span><br><span class="line">			q.push(node-&gt;right);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool isCST(TreeNode* root)&#123;</span><br><span class="line">	bool leaf = false;</span><br><span class="line">	queue&lt;TreeNode*&gt; q;</span><br><span class="line">	q.push(root);</span><br><span class="line">	while(!q.empty())&#123;</span><br><span class="line">		TreeNode* node = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		if(node-&gt;right &amp;&amp; !node-&gt;left) return false;</span><br><span class="line">		if(leaf &amp;&amp; (node-&gt;left || node-&gt;right)) return false;</span><br><span class="line">		if(!node-&gt;right &amp;&amp; !leaf)&#123;</span><br><span class="line">			leaf = true;</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;left) &#123;</span><br><span class="line">			q.push(node-&gt;left);</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;right) &#123;</span><br><span class="line">			q.push(node-&gt;right);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void printTree(TreeNode* root)&#123;</span><br><span class="line">	if(!root) return;</span><br><span class="line">	printTree(root-&gt;left);</span><br><span class="line">	cout &lt;&lt; &quot; &quot; &lt;&lt; root-&gt;val;</span><br><span class="line">	printTree(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int c;</span><br><span class="line">	cin &gt;&gt; c;</span><br><span class="line">	int rootval;</span><br><span class="line">	cin &gt;&gt; rootval;</span><br><span class="line">	TreeNode* root = new TreeNode(rootval);</span><br><span class="line">	for(int i = 1; i &lt; c; i++)&#123;</span><br><span class="line">		int nodeval;</span><br><span class="line">		cin &gt;&gt; nodeval;</span><br><span class="line">		insertNode(root, nodeval);</span><br><span class="line">	&#125;</span><br><span class="line">	levelOrder(root);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	if(isCST(root))&#123;</span><br><span class="line">		cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/PAT《团体程序设计天梯赛-练习集》-L3-01-是否完全二叉搜索-（3-分）/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/03/16/LeetCode-5-最长回文子串（待补充）/">LeetCode-5. 最长回文子串（待补充）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>3月 16, 2019</time>
 			
 				<span class="iconfont icon-star"></span>
 				            
@@ -128,7 +402,7 @@
 				            
 						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
 				            
-						<a class="article-tag" href="/tags/链表/">链表</a>           
+						<a class="article-tag" href="/tags/字符串/">字符串</a>           
 				
 			
 		</div>
@@ -140,14 +414,59 @@
     
 	<div class="typo article-excerpt">	
 		
-			<p><a href="https://leetcode-cn.com/problems/reverse-linked-list-ii/" target="_blank" rel="noopener">92. 反转链表 II</a></p>
-<p>反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。</p>
-<p>###Solution：<br>
+			<p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">5. 最长回文子串</a></p>
+<h5 id="给定一个字符串-s，找到-s-中最长的回文子串。你可以假设-s-的最大长度为-1000。"><a href="#给定一个字符串-s，找到-s-中最长的回文子串。你可以假设-s-的最大长度为-1000。" class="headerlink" title="给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。"></a>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</h5><p>示例 1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;babad&quot;</span><br><span class="line">输出: &quot;bab&quot;</span><br><span class="line">注意: &quot;aba&quot; 也是一个有效答案。</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/03/16/LeetCode-5-最长回文子串（待补充）/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/03/16/LeetCode-105-从前序与中序遍历序列构造二叉树（待补充）/">LeetCode-105. 从前序与中序遍历序列构造二叉树（待补充）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>3月 16, 2019</time>
+			
+				<span class="iconfont icon-star"></span>
+				            
+						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
+				            
+						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
+				            
+						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
+				
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		
+			<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">105. 从前序与中序遍历序列构造二叉树</a></p>
+<h4 id="根据一棵树的前序遍历与中序遍历构造二叉树。"><a href="#根据一棵树的前序遍历与中序遍历构造二叉树。" class="headerlink" title="根据一棵树的前序遍历与中序遍历构造二叉树。"></a>根据一棵树的前序遍历与中序遍历构造二叉树。</h4><p>注意:<br>你可以假设树中没有重复的元素。</p>
+<p>例如，给出<br>
 		  	  
 	</p></div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/01/LeetCode-92-反转链表-II/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/03/16/LeetCode-105-从前序与中序遍历序列构造二叉树（待补充）/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -160,12 +479,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/01/01/LeetCode-160-相交链表/">LeetCode 160. 相交链表</a>  
+		<a class="article-title" href="/2019/03/16/LeetCode-958-二叉树的完全性检验（待补充）/">LeetCode-958. 二叉树的完全性检验（待补充）</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>1月 01, 2019</time>
+			<time>3月 16, 2019</time>
 			
 				<span class="iconfont icon-star"></span>
 				            
@@ -173,7 +492,7 @@
 				            
 						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
 				            
-						<a class="article-tag" href="/tags/双指针/">双指针</a>           
+						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
 				
 			
 		</div>
@@ -185,13 +504,13 @@
     
 	<div class="typo article-excerpt">	
 		
-			<p><a href="http://https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">160. 相交链表</a></p>
-<h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3>
+			<p><a href="https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/" target="_blank" rel="noopener">958. 二叉树的完全性检验</a></p>
+<h4 id="给定一个二叉树，确定它是否是一个完全二叉树。"><a href="#给定一个二叉树，确定它是否是一个完全二叉树。" class="headerlink" title="给定一个二叉树，确定它是否是一个完全二叉树。"></a>给定一个二叉树，确定它是否是一个完全二叉树。</h4><p>若设二叉树的深度为 h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第 h 层所有的结点都连续集中在最左边，这就是完全二叉树。（注：第 h 层可能包含 1~ 2h 个节点。）<br>
 		  	  
-	</div>
+	</p></div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/01/LeetCode-160-相交链表/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/03/16/LeetCode-958-二叉树的完全性检验（待补充）/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -204,12 +523,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2018/12/30/LeetCode-141-环形链表/">LeetCode 141. 环形链表</a>  
+		<a class="article-title" href="/2019/03/02/LeetCode-34-在排序数组中查找元素的第一个和最后一个位置/">LeetCode-34. 在排序数组中查找元素的第一个和最后一个位置</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>12月 30, 2018</time>
+			<time>3月 02, 2019</time>
 			
 				<span class="iconfont icon-star"></span>
 				            
@@ -217,7 +536,7 @@
 				            
 						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
 				            
-						<a class="article-tag" href="/tags/双指针/">双指针</a>           
+						<a class="article-tag" href="/tags/二分查找/">二分查找</a>           
 				
 			
 		</div>
@@ -229,258 +548,14 @@
     
 	<div class="typo article-excerpt">	
 		
-			<p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">141. 环形链表</a></p>
-<h3 id="题目描述：给定一个链表，判断链表中是否有环。"><a href="#题目描述：给定一个链表，判断链表中是否有环。" class="headerlink" title="题目描述：给定一个链表，判断链表中是否有环。"></a>题目描述：给定一个链表，判断链表中是否有环。</h3><h5 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1:"></a>Solution1:</h5>
+			<p><a href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener">34. 在排序数组中查找元素的第一个和最后一个位置</a></p>
+<h4 id="给定一个按照升序排列的整数数组-nums，和一个目标值-target。找出给定目标值在数组中的开始位置和结束位置。"><a href="#给定一个按照升序排列的整数数组-nums，和一个目标值-target。找出给定目标值在数组中的开始位置和结束位置。" class="headerlink" title="给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。"></a>给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。</h4><p>你的算法时间复杂度必须是 O(log n) 级别。</p>
+<p>如果数组中不存在目标值，返回 <strong>[-1, -1]</strong>。<br>
 		  	  
-	</div>
+	</p></div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2018/12/30/LeetCode-141-环形链表/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2018/12/30/leetcode-234-回文链表/">LeetCode 234.回文链表</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>12月 30, 2018</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/双指针/">双指针</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/palindrome-linked-list/submissions/" target="_blank" rel="noopener">234.回文链表</a></p>
-<h3 id="请判断一个链表是否为回文链表。"><a href="#请判断一个链表是否为回文链表。" class="headerlink" title="请判断一个链表是否为回文链表。"></a>请判断一个链表是否为回文链表。</h3><h5 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h5>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2018/12/30/leetcode-234-回文链表/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2018/12/30/leetcode-142-环形链表-II/">LeetCode 142. 环形链表 II</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>12月 30, 2018</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/双指针/">双指针</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">142. 环形链表 II</a></p>
-<h3 id="给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。"><a href="#给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。" class="headerlink" title="给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。"></a>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2018/12/30/leetcode-142-环形链表-II/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2018/12/02/reading-note/">读书简录</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>12月 02, 2018</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/读书/">读书</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p>2017/09/01</p>
-<h3 id="《挪威的森林》"><a href="#《挪威的森林》" class="headerlink" title="《挪威的森林》"></a>《挪威的森林》</h3><h3 id="《如何高效学习》"><a href="#《如何高效学习》" class="headerlink" title="《如何高效学习》"></a>《如何高效学习》</h3><h3 id="《极简主义》"><a href="#《极简主义》" class="headerlink" title="《极简主义》"></a>《极简主义》</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2018/12/02/reading-note/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2018/10/03/一文学会git/">一文学会Git</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>10月 03, 2018</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/Git/">Git</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<h3 id="一、GIT下载、安装与配置"><a href="#一、GIT下载、安装与配置" class="headerlink" title="一、GIT下载、安装与配置"></a>一、GIT下载、安装与配置</h3><h4 id="1-下载与安装"><a href="#1-下载与安装" class="headerlink" title="1.下载与安装"></a>1.下载与安装</h4><p>下载git只需要直接在官网下载就可以了，它会自动下载适合你电脑配置的版本。<br>    <a href="https://git-scm.com//" target="_blank" rel="noopener">官网</a></p>
-<p>安装就一直下一步就可以了。</p>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2018/10/03/一文学会git/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2018/01/26/2018-01-26-fjlskadjfgla/">makedown</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 26, 2018</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/html/">html</a>           
-				            
-						<a class="article-tag" href="/tags/JS/">JS</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<h1 id="欢迎使用-Cmd-Markdown-编辑阅读器"><a href="#欢迎使用-Cmd-Markdown-编辑阅读器" class="headerlink" title="欢迎使用 Cmd Markdown 编辑阅读器"></a>欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
-<p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2018/01/26/2018-01-26-fjlskadjfgla/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2018/01/25/hello-world/">Hello World</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 25, 2018</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2018/01/25/hello-world/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/03/02/LeetCode-34-在排序数组中查找元素的第一个和最后一个位置/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -498,8 +573,13 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>7</strong>, Total <strong>69</strong> . </span>
+   <span class="page-number"> Page <strong>7</strong>, Total <strong>118</strong> . </span>
 
+    
+        <a class="next" href="/page/8/"> 
+            下一页
+            <i class="iconfont icon-right"></i>
+        </a>
     
   </nav> 
 

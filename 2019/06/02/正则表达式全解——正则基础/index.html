@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  正则表达式全解——正则基础 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		正则表达式全解——正则基础
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			6月 02, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">744
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h3 id="正则基础"><a href="#正则基础" class="headerlink" title="正则基础"></a>正则基础</h3><h5 id=""><a href="#" class="headerlink" title="^"></a>^</h5><p>表示一行的开始</p>
+<h5 id="-1"><a href="#-1" class="headerlink" title="$"></a>$</h5><p>表示一行的结束</p>
+<h5 id="…"><a href="#…" class="headerlink" title="[…]"></a>[…]</h5><p>表示其中的字符是选择性（逻辑或）的，要么是a,要么是b,要么是…。</p>
+<blockquote>
+<p>c[a|b]t 可以匹配到cat、cbt<br>[a-z]、[0-9]、[0-9A-Za-z]是支持的。<br>[^$] 匹配空行<br>像 . * + ?  这些词在[]中仅表示字面的意思，利用这一特性，如果想表示原本含义，例如要匹配 . ，可以写为[.]</p>
+</blockquote>
+<h5 id="…-1"><a href="#…-1" class="headerlink" title="[^…]"></a>[^…]</h5><p>表示匹配不是其中的字符。为上一条的取反</p>
+<h5 id="-2"><a href="#-2" class="headerlink" title="-"></a>-</h5><p>连字符，表示一个范围，见上一条。</p>
+<blockquote>
+<p>如果要匹配  - ，请将 - 写在开始位置，如果[-a-z]，匹配-或者是小写字母。</p>
+</blockquote>
+<h5 id="-3"><a href="#-3" class="headerlink" title="."></a>.</h5><p>   表示任意字符（除了换行符），</p>
+<h5 id="-4"><a href="#-4" class="headerlink" title="|"></a>|</h5><p>表示或者</p>
+<blockquote>
+<p>(cat|dog) 表示要么cat,要么dog,<br>注意：这和[…]不同的是，[…]匹配其中的单个字符，(..|…)可以匹配不同的字符组。</p>
+</blockquote>
+<h5 id="-5"><a href="#-5" class="headerlink" title="?"></a>?</h5><p>表示可选项，类似于单选框，匹配零个或一个。</p>
+<h5 id="-6"><a href="#-6" class="headerlink" title="+"></a>+</h5><p>表示出现一次或多次。</p>
+<h5 id="-7"><a href="#-7" class="headerlink" title="*"></a>*</h5><p>表示匹配零次或多次。</p>
+<h5 id="min-max"><a href="#min-max" class="headerlink" title="{min,max}"></a>{min,max}</h5><p>表示匹配之前的子表达式重复min到max次。（闭区间）</p>
+<blockquote>
+<p>{count} 表示匹配count次。</p>
+</blockquote>
+<h5 id="括号与反向引用"><a href="#括号与反向引用" class="headerlink" title="括号与反向引用"></a>括号与反向引用</h5><p>([0-9]){2,3}add\1    \1表示第一个括号中的内容再次使用。</p>
+<h5 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h5><p>像 . * + ?  这些词在正则中有特殊的含义，要想使用它原本的含义，使用\来进行转义。</p>
+<h5 id="…-2"><a href="#…-2" class="headerlink" title="(…)"></a>(…)</h5><p>括号的作用：1.限制多选结构，2.分组，3.捕获文本。</p>
+<h5 id="一些特殊的字符"><a href="#一些特殊的字符" class="headerlink" title="一些特殊的字符"></a>一些特殊的字符</h5><ul>
+<li>\t 制表符</li>
+<li>\n换行符</li>
+<li>\r 回车符</li>
+<li>\s 任何空白字符(例如空格符、制表符、换行符等)</li>
+<li>\S 除\s之外的任何字符(所以用(\s|\S) * )来表示任意字符。</li>
+<li>\w 相当于[a-zA-Z0-9] 所以经常用\w+来表示一个单词 </li>
+<li>\W \w取反，也就是[^a-zA-Z0-9] </li>
+<li>\d  相当于[0-9] 也就是数字</li>
+<li>\D \d取反，也就是[^0-9]</li>
+</ul>
+  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/06/01/写在大一期末考试之际/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/06/01/写在大一期末考试之际/">
+          写在大一期末考试之际</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/">
+            106-从中序与后序遍历序列构造二叉树</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

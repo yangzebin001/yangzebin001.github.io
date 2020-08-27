@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  01背包问题详解 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		01背包问题详解
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			11月 25, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">2113
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>有 N 件物品和一个容量是 V的背包。每件物品只能使用一次。</p>
+<p>第 i件物品的体积是 vi，价值是 wi。</p>
+<p>求解将哪些物品装入背包，可使这些物品的总体积<strong>不超过</strong>背包容量，且<strong>总价值最大</strong>。<br>输出最大价值。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>拿到这道题目，我们在不用动态规划的情况下，可以枚举这N件物品，每件物品都有选和不选两种情况，所以总的复杂度为O（2^n）。并且在计算过程中，我们发现有很多的重复计算。最直接优化的方法当然是记忆化，将搜到的状态保存下来，以便之后重复调用时直接取值，避免重复计算。</p>
+<p>第二种优化方法就是动态规划了。我们对每一次的决策都保留最优解。最终得到问题的最优解。</p>
+<p>构建动态规划的关键在于定义状态转移方程。<br>定义状态转移方程要符合两个条件：</p>
+<ul>
+<li>最优子结构</li>
+<li>无后效性</li>
+</ul>
+<p>我们回到01背包问题具体来看：</p>
+<p>由于只有当所有的背包全部考察完，我们才能得到最终的方案，并且对于每一层的背包我都可以选择拿或不拿，这一层的决策不会影响到之前已经得到的结论，所以很自然的要定义一个维度，用来指名当前要考察的背包。</p>
+<p>又由于要限制条件为背包的容量，大于背包容量的我们自然永远都不会考虑，但是背包的容量会随着每个背包的选或不选能有变化，所以我们还需要一维信息，由来记录背包的容量变化。<br>所以我们得出来一个二维数组用来记录状态:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] //i是前i个背包，j是容量，dp[i][j]是当前前i个背包，容量是j时，可获得的最大价值。</span><br></pre></td></tr></table></figure>
+<p>我们思考下转移方程：<br>在每个背包被考察时，我们先考虑不选当前背包，则方程为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i-1][j]</span><br></pre></td></tr></table></figure>
+<p>然后考虑选择当前背包：</p>
+<p>在选择了背包后容量肯定会变大，对照我们定义的状态，所以会有:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i+1][j+w] = dp[i][j]+v; //这时w,v分别代表第i+1个背包的质量和价值。</span><br></pre></td></tr></table></figure>
+<p>转换一下就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i-1][j-wi]+vi;//这时w,v分别代表第i个背包的质量和价值。</span><br></pre></td></tr></table></figure>
+<p>我们要保持当前状态为最大的价值。<br>所以综合起来，方程就变为了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j],dp[i-1][j-wi]+vi);</span><br></pre></td></tr></table></figure>
+<p>整理成代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1010;</span><br><span class="line">int n,m;</span><br><span class="line">//前i个物体，总体积是j 的最大总价值</span><br><span class="line">int f[MAXN][MAXN];</span><br><span class="line">int V[MAXN],W[MAXN];</span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);</span><br><span class="line">    for(int i = 1; i &lt;= n; i++) cin &gt;&gt; V[i] &gt;&gt; W[i];</span><br><span class="line">    for(int i = 1; i &lt;= n; i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt;= m; j++)&#123;</span><br><span class="line">            //要么不选</span><br><span class="line">            f[i][j] = f[i-1][j];</span><br><span class="line">            if(j &gt;= V[i])&#123;</span><br><span class="line">                //要么选择该背包，从f[i-1][j-v[i]]过来。</span><br><span class="line">                f[i][j] = max(f[i][j],f[i-1][j-V[i]]+W[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    //在前n个物体中，选价值最大的一个</span><br><span class="line">    for(int i = 0; i &lt;= m; i++)&#123;</span><br><span class="line">        ans = max(ans,f[n][i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h4><p>我们再看一下转移方程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j],dp[i-1][j-wi]+vi);</span><br></pre></td></tr></table></figure>
+<p>当前考察背包只会利用到上一个背包计算后的结果。所以我们考虑优化到一维，但是循环的顺序需要变一下，从后往前计算，只有这样我们不会改变了之前的值，而导致计算出错。</p>
+<h4 id="一维数组优化"><a href="#一维数组优化" class="headerlink" title="一维数组优化"></a>一维数组优化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1010;</span><br><span class="line">int f[MAXN];</span><br><span class="line">int N,M;</span><br><span class="line">int V[MAXN],W[MAXN];</span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;N,&amp;M);</span><br><span class="line">    for(int i = 1; i &lt;= N; i++) scanf(&quot;%d%d&quot;,&amp;V[i],&amp;W[i]);</span><br><span class="line">    for(int i = 1; i &lt;= N; i++)</span><br><span class="line">        //从后往前推，保留i-1的状态</span><br><span class="line">        for(int j = M; j &gt;= V[i]; j--)&#123;</span><br><span class="line">            f[j] = max(f[j],f[j-V[i]]+W[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    printf(&quot;%d&quot;,f[M]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，01背包问题就完美的解决了。</p>
+  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/10/26/POJ-3614-Sunscreen/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/10/26/POJ-3614-Sunscreen/">
+          POJ-3614-Sunscreen</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/11/25/LeetCode-116-填充每个节点的下一个右侧节点指针/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/11/25/LeetCode-116-填充每个节点的下一个右侧节点指针/">
+            LeetCode-116-填充每个节点的下一个右侧节点指针</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

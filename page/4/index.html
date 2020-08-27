@@ -115,21 +115,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/01/27/98-验证二叉搜索树/">LeetCode-98. 验证二叉搜索树</a>  
+		<a class="article-title" href="/2019/08/09/POJ-2965-Th-Pilot-Brothers-refrigerator/">POJ-2965-Th-Pilot-Brothers-refrigerator</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>1月 27, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
+			<time>8月 09, 2019</time>
 			
 		</div>
 	</div>
@@ -139,7 +130,464 @@
 
     
 	<div class="typo article-excerpt">	
-		
+		 
+			<p><a href="http://poj.org/problem?id=2965" target="_blank" rel="noopener">POJ-2965</a></p>
+<h4 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h4><p>有一个4X4的冰箱阵列，当你改变一个冰箱门的状态（开或关），同行同列的冰箱门也会发生改变，给定一个序列，问从全部的冰箱门打开（“-”为开、“+”为关）到给定序列需要几步，以及具体的打开方式。</p>
+<h5 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-+--</span><br><span class="line">----</span><br><span class="line">----</span><br><span class="line">-+--</span><br></pre></td></tr></table></figure>
+<h5 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">1 1</span><br><span class="line">1 3</span><br><span class="line">1 4</span><br><span class="line">4 1</span><br><span class="line">4 3</span><br><span class="line">4 4</span><br></pre></td></tr></table></figure>
+<h3 id="Solution1（枚举）"><a href="#Solution1（枚举）" class="headerlink" title="Solution1（枚举）:"></a>Solution1（枚举）:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int m[4][4];</span><br><span class="line">int dx[16],dy[16],ans[16][2];</span><br><span class="line">int ansn = 40;</span><br><span class="line">bool isComplete()&#123;</span><br><span class="line">    for(int i = 0; i &lt; 4; i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; 4; j++)&#123;</span><br><span class="line">            if(m[i][j] == 1) return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void flip(int i, int j)&#123;</span><br><span class="line">    for(int k = 0; k &lt; 4; k++)&#123;</span><br><span class="line">        m[k][j] = !m[k][j];</span><br><span class="line">        m[i][k] = !m[i][k];</span><br><span class="line">    &#125;</span><br><span class="line">    //m[i][j]被翻转了两次，再翻转抵消一次。</span><br><span class="line">    m[i][j] = !m[i][j];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//d:翻转的次数，s:要翻转的序号</span><br><span class="line">void dfs(int d, int s)&#123;</span><br><span class="line">    if(isComplete())&#123;</span><br><span class="line">        ansn = min(ansn,d);</span><br><span class="line">        for(int i = 0; i &lt; ansn; i++)&#123;</span><br><span class="line">            ans[i][0] = dx[i];</span><br><span class="line">            ans[i][1] = dy[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(s &gt;= 16) return;</span><br><span class="line">    dfs(d,s+1);</span><br><span class="line">    flip(s/4,s%4);</span><br><span class="line">    dx[d] = s/4;</span><br><span class="line">    dy[d] = s%4;</span><br><span class="line">    dfs(d+1,s+1);</span><br><span class="line">    flip(s/4,s%4);</span><br><span class="line">    dx[d] = 0;</span><br><span class="line">    dy[d] = 0;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    for(int i = 0; i &lt; 4; i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; 4; j++)&#123;</span><br><span class="line">            char c;</span><br><span class="line">            scanf(&quot;%c&quot;,&amp;c);</span><br><span class="line">            m[i][j] = c == &apos;+&apos; ? 1 : 0;</span><br><span class="line">        &#125;</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(0,0);</span><br><span class="line">    printf(&quot;%d\\n&quot;,ansn);</span><br><span class="line">    for(int i = 0; i &lt; ansn; i++)&#123;</span><br><span class="line">        printf(&quot;%d %d\\n&quot;,ans[i][0]+1,ans[i][1]+1);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>直接枚举所有的状态，每个冰箱门都有转换和不转换两种状态，一共有16个冰箱门，所以有2的16次方种状态。<br>在所有的序列中取一个步数最小的即可。</p>
+<h3 id="Solution2（位运算压缩）："><a href="#Solution2（位运算压缩）：" class="headerlink" title="Solution2（位运算压缩）："></a>Solution2（位运算压缩）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int dx[16],ans[16];</span><br><span class="line">int ansn = 40;</span><br><span class="line">int state;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void flip(int i, int j)&#123;</span><br><span class="line">    for(int k = 0; k &lt; 4; k++)&#123;</span><br><span class="line">        state = state ^ (1&lt;&lt; (i*4+k));</span><br><span class="line">        state = state ^ (1 &lt;&lt; (k*4+j));</span><br><span class="line">    &#125;</span><br><span class="line">    state = state ^ (1 &lt;&lt; (i*4+j));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//d:翻转的次数，s:要翻转的序号</span><br><span class="line">void dfs(int d, int s)&#123;</span><br><span class="line">    if(!state)&#123;</span><br><span class="line">        //更新结果</span><br><span class="line">        ansn = min(ansn,d);</span><br><span class="line">        for(int i = 0; i &lt; ansn; i++)&#123;</span><br><span class="line">            ans[i] = dx[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if(s &gt;= 16) return;</span><br><span class="line">    dfs(d,s+1);</span><br><span class="line">    //翻转</span><br><span class="line">    flip(s/4,s%4);</span><br><span class="line">    //保留翻转的位置</span><br><span class="line">    dx[d] = 1 &lt;&lt; s;</span><br><span class="line">    dfs(d+1,s+1);</span><br><span class="line">    //回溯</span><br><span class="line">    flip(s/4,s%4);</span><br><span class="line">    dx[d] = 0;</span><br><span class="line">&#125;</span><br><span class="line">int Pos(int a)&#123;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    while(a)&#123;</span><br><span class="line">        ans++;</span><br><span class="line">        a &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    for(int i = 0; i &lt; 4; i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; 4; j++)&#123;</span><br><span class="line">            char c;</span><br><span class="line">            scanf(&quot;%c&quot;,&amp;c);</span><br><span class="line">            // m[i][j] = c == &apos;+&apos; ? 1 : 0;</span><br><span class="line">            if(c == &apos;+&apos;)</span><br><span class="line">                state = state | (1 &lt;&lt; (i*4+j));</span><br><span class="line">        &#125;</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(0,0);</span><br><span class="line">    printf(&quot;%d\\n&quot;,ansn);</span><br><span class="line">    for(int i = 0; i &lt; ansn; i++)&#123;</span><br><span class="line">        int a  = Pos(ans[i])-1;</span><br><span class="line">        printf(&quot;%d %d\\n&quot;,a/4+1,a%4+1);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h4><p>在上一题解的基础上，我们发现没有必要用二维数组来存储状态，可以使用一个16位的整数来存储，第几位二进制位表示第几个冰箱的状态。</p>
+<p>记录改变冰箱的位置也同样可以使用一个16位的整数来存储。1表示该冰箱门改变了状态，所有的改变不会超过16个，使用16个整数就可以表示全部的移动的过程。</p>
+<p>然后更新结果，并提取出来每一位即可。</p>
+<h3 id="Solution3（找规律）："><a href="#Solution3（找规律）：" class="headerlink" title="Solution3（找规律）："></a>Solution3（找规律）：</h3><p>通过找规律我们发现：</p>
+<ul>
+<li><p>一个冰箱门状态改变两次等于不变。</p>
+</li>
+<li><p>在上一条的基础上，如果以某一冰箱门为基准，将该冰箱门所在的行列上所有的冰箱门都翻转一次，该冰箱门改变，其他冰箱门都不变。</p>
+</li>
+</ul>
+<p>所以我们只要从结果反向推，将每个关闭的冰箱门所在的行列的冰箱门都翻转，更新每个冰箱门的改变的次数，结果状态就为当所有的关闭的冰箱门都被打开后的状态。当次数为奇数说明我们需要改变，偶数则忽略。最后遍历一遍结果数组，取出次数为奇数的冰箱门的坐标即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int record[16][16];</span><br><span class="line"></span><br><span class="line">void flip(int i, int j)&#123;</span><br><span class="line">    for(int k = 0; k &lt; 4; k++)&#123;</span><br><span class="line">        record[i][k]++;</span><br><span class="line">        record[k][j]++;</span><br><span class="line">    &#125;</span><br><span class="line">    record[i][j]--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    for(int i = 0; i &lt; 4; i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; 4; j++)&#123;</span><br><span class="line">            char c;</span><br><span class="line">            scanf(&quot;%c&quot;,&amp;c);</span><br><span class="line">            if(c == &apos;+&apos;) flip(i,j);</span><br><span class="line">        &#125;</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int cnt = 0;</span><br><span class="line">    for(int i = 0; i &lt;4; i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; 4; j++)&#123;</span><br><span class="line">            if(record[i][j]&amp;1) cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\\n&quot;,cnt);</span><br><span class="line">    for(int i = 0; i &lt; 4; i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; 4; j++)&#123;</span><br><span class="line">            if(record[i][j]&amp;1)&#123;</span><br><span class="line">                printf(&quot;%d %d\\n&quot;,i+1,j+1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/08/09/POJ-2965-Th-Pilot-Brothers-refrigerator/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/08/06/LeetCode-785-判断二分图/">LeetCode-785-判断二分图</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>8月 06, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/is-graph-bipartite/" target="_blank" rel="noopener">785. 判断二分图</a></p>
+<p>给定一个无向图graph，当这个图为二分图时返回true。</p>
+<p>如果我们能将一个图的节点集合分割成两个独立的子集A和B，并使图中的每一条边的两个节点一个来自A集合，一个来自B集合，我们就将这个图称为二分图。</p>
+<p>graph将会以邻接表方式给出，graph[i]表示图中与节点i相连的所有节点。每个节点都是一个在0到graph.length-1之间的整数。这图中没有自环和平行边： graph[i] 中不存在i，并且graph[i]中没有重复的值。</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入: [[1,3], [0,2], [1,3], [0,2]]</span><br><span class="line">输出: true</span><br><span class="line">解释: </span><br><span class="line">无向图如下:</span><br><span class="line">0----1</span><br><span class="line">|    |</span><br><span class="line">|    |</span><br><span class="line">3----2</span><br><span class="line">我们可以将节点分成两组: &#123;0, 2&#125; 和 &#123;1, 3&#125;。</span><br></pre></td></tr></table></figure>
+<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: [[1,2,3], [0,2], [0,1,3], [0,2]]</span><br><span class="line">输出: false</span><br><span class="line">解释: </span><br><span class="line">无向图如下:</span><br><span class="line">0----1</span><br><span class="line">| \  |</span><br><span class="line">|  \ |</span><br><span class="line">3----2</span><br></pre></td></tr></table></figure>
+<p>我们不能将节点分割成两个独立的子集。</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h4><ul>
+<li><p>graph 的长度范围为 [1, 100]。</p>
+</li>
+<li><p>graph[i] 中的元素的范围为 [0, graph.length - 1]。</p>
+</li>
+<li><p>graph[i] 不会包含 i 或者有重复的值。</p>
+</li>
+<li><p>图是无向的: 如果j 在 graph[i]里边, 那么 i 也会在 graph[j]里边。</p>
+</li>
+</ul>
+<h5 id="一个裸二分图染色题。"><a href="#一个裸二分图染色题。" class="headerlink" title="一个裸二分图染色题。"></a>一个裸二分图染色题。</h5><h3 id="Solution1（DFS）："><a href="#Solution1（DFS）：" class="headerlink" title="Solution1（DFS）："></a>Solution1（DFS）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isBipartite(vector&lt;vector&lt;int&gt;&gt;&amp; graph) &#123;</span><br><span class="line">        int vis[graph.size()] = &#123;false&#125;;</span><br><span class="line">        for(int i = 0; i &lt; graph.size(); i++)&#123;</span><br><span class="line">            for(int j = 0; j &lt; graph[i].size(); j++)&#123;</span><br><span class="line">                if(vis[graph[i][j]] == 0 &amp;&amp; !dfs(graph,vis,graph[i][j],1)) return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    bool dfs(vector&lt;vector&lt;int&gt;&gt;&amp; G,int vis[],int j, int c)&#123;</span><br><span class="line">        vis[j] = c;</span><br><span class="line">        for(int i = 0; i &lt; G[j].size(); i++)&#123;</span><br><span class="line">            if(vis[G[j][i]] == c) return false;</span><br><span class="line">            if(vis[G[j][i]] == 0 &amp;&amp; !dfs(G,vis,G[j][i],-c)) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>二分染色题。<br>重点在dfs函数的编写，到达当前结点，先染色，再判断与之相连的结点的颜色是否被染过，如果没有染过，则染与当前结点不同的颜色，如果染过色且与当前结点颜色相同则表示不符合要求，颜色不同则可以直接忽略。</p>
+<h3 id="Solution2（BFS）"><a href="#Solution2（BFS）" class="headerlink" title="Solution2（BFS）:"></a>Solution2（BFS）:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isBipartite(vector&lt;vector&lt;int&gt;&gt;&amp; graph) &#123;</span><br><span class="line">        int vis[graph.size()] = &#123;0&#125;;</span><br><span class="line">        queue&lt;int&gt; q;</span><br><span class="line">        int curr = -1;</span><br><span class="line">        while(1)&#123;</span><br><span class="line">            if(q.size() == 0)&#123;</span><br><span class="line">                int k;</span><br><span class="line">                for(k = 0; k &lt; graph.size(); k++)&#123;</span><br><span class="line">                    if(vis[k] == 0)&#123;</span><br><span class="line">                        q.push(k);</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if(k == graph.size()) break;</span><br><span class="line">            &#125;</span><br><span class="line">            curr *= -1;</span><br><span class="line">            int len = q.size();</span><br><span class="line">            for(int j = 0; j &lt; len; j++)&#123;</span><br><span class="line">                int f = q.front(); q.pop();</span><br><span class="line">                vis[f] = curr;</span><br><span class="line">                for(int i = 0; i &lt; graph[f].size(); i++)&#123;</span><br><span class="line">                    if(vis[graph[f][i]] == curr) return false;</span><br><span class="line">                    if(vis[graph[f][i]] == 0)&#123;</span><br><span class="line">                        q.push(graph[f][i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h4><p>与DFS思路相同，只不过改写为BFS版。</p>
+<blockquote>
+<p>注意：给定的图有可能为多棵树组成的森林。所以每个树都要考虑到。</p>
+</blockquote>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/08/06/LeetCode-785-判断二分图/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/08/06/LeetCode-207-课程表/">LeetCode-207-课程表</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>8月 06, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/course-schedule/" target="_blank" rel="noopener">207. 课程表</a></p>
+<p>现在你总共有 n 门课需要选，记为 0 到 n-1。</p>
+<p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]</p>
+<p>给定课程总量以及它们的先决条件，判断是否可能完成所有课程的学习？</p>
+<h5 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h5><blockquote>
+<p>输入: 2, [[1,0]] </p>
+<p>输出: true</p>
+<p>解释: 总共有 2 门课程。学习课程 1 之前，你需要完成课程 0。所以这是可能的。</p>
+</blockquote>
+<h5 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h5><blockquote>
+<p>输入: 2, [[1,0],[0,1]]</p>
+<p>输出: false</p>
+<p>解释: 总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0；并且学习课程 0 之前，你还应先完成课程 1。这是不可能的。</p>
+</blockquote>
+<h3 id="Solution1（DFS）"><a href="#Solution1（DFS）" class="headerlink" title="Solution1（DFS）:"></a>Solution1（DFS）:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) &#123;</span><br><span class="line">        if(numCourses &lt;= 0) return true;</span><br><span class="line">        vector&lt;int&gt; G[numCourses];</span><br><span class="line">        int vis[numCourses] = &#123;0&#125;;</span><br><span class="line">        for(int i = 0; i &lt; numCourses; i++) G[i].clear();</span><br><span class="line">        for(int i = 0; i &lt; prerequisites.size(); i++)&#123;</span><br><span class="line">            G[prerequisites[i][1]].push_back(prerequisites[i][0]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; numCourses; i++)&#123;</span><br><span class="line">            if(!vis[i])&#123;</span><br><span class="line">                if(!dfs(G,vis,i)) return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    bool dfs(vector&lt;int&gt; G[], int vis[],int j)&#123;</span><br><span class="line">        vis[j] = 2;</span><br><span class="line">        for(int i = 0; i &lt; G[j].size(); i++)&#123;</span><br><span class="line">            if(vis[G[j][i]] == 2) return false;</span><br><span class="line">            if(!vis[G[j][i]])&#123;</span><br><span class="line">                if(!dfs(G,vis,G[j][i])) return false;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        vis[j] = 1;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h5><p>把该题看做判断一个有向图是否有环的问题。<br>进而可以看做一个染色问题：</p>
+<ul>
+<li><p>如果该节点没有被访问过，则是白色（用0表示）。</p>
+</li>
+<li><p>如果该节点正在访问，但是没有访问结束，则是灰色（用2表示）。</p>
+</li>
+<li><p>如果该节点已经访问，则是黑色（用1表示）。</p>
+</li>
+</ul>
+<p>只有在DFS中维护颜色数组（我这里为vis数组）即可。</p>
+<h3 id="Solution2（拓扑排序）："><a href="#Solution2（拓扑排序）：" class="headerlink" title="Solution2（拓扑排序）："></a>Solution2（拓扑排序）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) &#123;</span><br><span class="line">        int inDegree[numCourses] = &#123;0&#125;;</span><br><span class="line">        vector&lt;int&gt; G[numCourses];</span><br><span class="line">        for(int i = 0; i &lt; prerequisites.size(); i++)&#123;</span><br><span class="line">            G[prerequisites[i][1]].push_back(prerequisites[i][0]);</span><br><span class="line">            inDegree[prerequisites[i][0]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        queue&lt;int&gt; q;</span><br><span class="line">        int inqnum = 0;</span><br><span class="line">        for(int i = 0; i &lt; numCourses; i++)&#123;</span><br><span class="line">            if(inDegree[i] == 0)&#123;</span><br><span class="line">                q.push(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(q.size())&#123;</span><br><span class="line">            inqnum++;</span><br><span class="line">            int f = q.front();q.pop();</span><br><span class="line">            for(int i = 0; i &lt; G[f].size(); i++)&#123;</span><br><span class="line">                inDegree[G[f][i]]--;</span><br><span class="line">                if(inDegree[G[f][i]] == 0)&#123;</span><br><span class="line">                    q.push(G[f][i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return inqnum == numCourses;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>利用拓扑排序，每次将节点入度为零所在的边删去并更新边的另一端节点的入度信息，如果在多轮“删边”之后还有结点，说明有环。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/08/06/LeetCode-207-课程表/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/07/31/Dijkstra算法学习总结/">Dijkstra算法学习总结</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>7月 31, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p>单源最短路径算法</p>
+<h2 id="算法流程："><a href="#算法流程：" class="headerlink" title="算法流程："></a>算法流程：</h2><p>对于图G（V，E）维护一个集合S,存放已经被访问过的顶点（准备期间只有源点s），每次从集合V-S中选择与起点s的距离最小的一个顶点（记为u），访问u并加入集合S，并令u为中介点，更新起点s与所有从u能达到的顶点v之间的最短距离。这样执行n次（n为顶点个数），直到集合S包含所有顶点。</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="算法书上的图"></p>
+<h4 id="适用范围：有向无负权图"><a href="#适用范围：有向无负权图" class="headerlink" title="适用范围：有向无负权图"></a>适用范围：有向无负权图</h4><h3 id="1-优先队列版-复杂度O-ElogE"><a href="#1-优先队列版-复杂度O-ElogE" class="headerlink" title="1.优先队列版 复杂度O(ElogE)"></a>1.优先队列版 复杂度O(ElogE)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#define INF 0x3f3f3f3f</span><br><span class="line"></span><br><span class="line">struct qnode&#123;</span><br><span class="line">    int v,d;</span><br><span class="line">    qnode(int _v=0,int _d=0):v(_v),d(_d)&#123;&#125;</span><br><span class="line">    friend bool operator &lt;(const qnode &amp;r)const&#123;</span><br><span class="line">        return d&gt;r.d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Edge&#123;</span><br><span class="line">    int v,cost;</span><br><span class="line">    Edge(int _v=0,int _cost=0):v(_v),cost(_cost)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">const int MAXN = 100010;</span><br><span class="line">vector&lt;Edge&gt; E[MAXN];</span><br><span class="line">//是否访问标志</span><br><span class="line">int vis[MAXN];</span><br><span class="line">//到源点的最短距离，准备期间设置为无穷大，表示不可及。</span><br><span class="line">int dis[MAXN]; </span><br><span class="line">//加边</span><br><span class="line">void add_edge(int u,int v,int w)&#123;</span><br><span class="line">    E[u].push_back(Edge(v,w));</span><br><span class="line">&#125;</span><br><span class="line">//初始化(从0开始编号)</span><br><span class="line">void init(int n)&#123;</span><br><span class="line">    for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">        E[i].clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Dijkstra(int s,int n)&#123;</span><br><span class="line">    for(int i=0;i&lt;n;i++)vis[i] = 0;</span><br><span class="line">    for(int i=0;i&lt;n;i++)dis[i] = (i == s ? 0 : INF);</span><br><span class="line">    priority_queue&lt;qnode&gt; q;//声明优先队列：每次从队列中取出的是具有最高优先权的元素。</span><br><span class="line">    //优先队列第一个参数为比较类型，第二个为容器类型，第三个为比较函数。</span><br><span class="line">	//greater实现小顶堆//less 实现大顶堆（默认为大顶堆）</span><br><span class="line">	q.push(qnode(s,dis[s]));//先将源点推进优先队列</span><br><span class="line">	qnode temp;</span><br><span class="line">    while(!q.empty())&#123;//当队列空时所有边已被访问</span><br><span class="line">        temp = q.top();q.pop();</span><br><span class="line">        //当前顶点</span><br><span class="line">        int u = temp.v;</span><br><span class="line">        if(vis[u])continue;</span><br><span class="line">        vis[u] = true;</span><br><span class="line">        //每一条与u相邻的边都要更新</span><br><span class="line">        for(int i=0;i&lt;E[u].size();i++)&#123;</span><br><span class="line">            //邻点</span><br><span class="line">            int v = E[u][i].v;</span><br><span class="line">            //权重</span><br><span class="line">            int cost = E[u][i].cost;</span><br><span class="line">            //松弛操作，更新权重时机</span><br><span class="line">            if(!vis[v] &amp;&amp; dis[u] + cost &lt; dis[v])&#123;</span><br><span class="line">                dis[v] = dis[u] + cost;</span><br><span class="line">                //把每一个更新的长度加进队列</span><br><span class="line">                q.push(qnode(v,dis[v]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-邻接矩阵版-复杂度O-N-2-记录路径版"><a href="#2-邻接矩阵版-复杂度O-N-2-记录路径版" class="headerlink" title="2.邻接矩阵版 复杂度O(N^2) 记录路径版"></a>2.邻接矩阵版 复杂度O(N^2) 记录路径版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">const int MAXN = 10000;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">bool vis[MAXN];//访问记录</span><br><span class="line">int pre[MAXN];//父节点</span><br><span class="line">int cost[MAXN][MAXN];//权重矩阵</span><br><span class="line">int lowcost[MAXN];//记录最短路径</span><br><span class="line"></span><br><span class="line">//初始化矩阵为无穷。</span><br><span class="line">void Init(int N)&#123;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">		for(int j = 0; j &lt; N; j++)&#123;</span><br><span class="line">			cost[i][j] = INF;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//如果INF是满十六进制表示。如：const int INF = 0x3f3f3f3f;</span><br><span class="line">	//则可以使用memset(cost,INF,sizeof(cost));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//cost:权重矩阵,lowcost:最短路径，n:数据范围,beg:源点</span><br><span class="line">void Dijkstra(int cost[][MAXN],int lowcost[],int n,int beg)&#123;</span><br><span class="line">	//初始化各值</span><br><span class="line">	for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">		lowcost[i] = INF;</span><br><span class="line">		vis[i] = false;</span><br><span class="line">		pre[i] = -1;</span><br><span class="line">	&#125;</span><br><span class="line">	//设置源点</span><br><span class="line">	lowcost[beg] = 0;</span><br><span class="line">	for(int j = 0; j &lt; n; j++)&#123;</span><br><span class="line">		int k = -1;</span><br><span class="line">		int Min = INF;</span><br><span class="line">		//找到目前最短路径数组中到源点最短的节点。</span><br><span class="line">		for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">			if(!vis[i] &amp;&amp; lowcost[i] &lt; Min)&#123;</span><br><span class="line">				Min = lowcost[i];</span><br><span class="line">				k = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		//找不到，说明节点都已经全部访问。</span><br><span class="line">		if(k == -1)break;</span><br><span class="line">		//记录该节点。</span><br><span class="line">		vis[k] = true;</span><br><span class="line">		//松弛操作。更新每条与该节点相连并且还未访问到的节点的路径。</span><br><span class="line">		for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">			if(!vis[i] &amp;&amp; lowcost[k] + cost[k][i] &lt; lowcost[i])&#123;</span><br><span class="line">			    //发现一条更短的路径，更新。</span><br><span class="line">				lowcost[i] = lowcost[k] + cost[k][i];</span><br><span class="line">				//更新父节点。</span><br><span class="line">				pre[i] = k;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解题通用思路"><a href="#解题通用思路" class="headerlink" title="解题通用思路"></a>解题通用思路</h3><p>做关于Dijkstra算法的题，通常不会只出一个裸的寻找最短路径，而是会给出一个或多个次级标尺。通常不会超出三个维度：</p>
+<ul>
+<li>边权</li>
+<li>点权</li>
+<li>多少条最短路径，或该路径的长度。</li>
+</ul>
+<p>通常是多个维度组合起来寻找最优解。</p>
+<p>遇到这类问题，可通过将每条最短路径都保存下来，依次进行处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; paths[MAXN];</span><br><span class="line">//在其松弛操作中，将路径保存</span><br><span class="line">for(int j = 0; j &lt; N; j++)&#123;</span><br><span class="line">	if(!vis[j] &amp;&amp; G[k][j] != INF)&#123;</span><br><span class="line">		if(dis[j] &gt; dis[k] + G[k][j])&#123;</span><br><span class="line">			dis[j] = dis[k] + G[k][j];</span><br><span class="line">			paths[j].clear();</span><br><span class="line">			paths[j].push_back(k);</span><br><span class="line">		&#125;else if(dis[j] == dis[k] + G[k][j])&#123;</span><br><span class="line">			paths[j].push_back(k);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">vector&lt;vector&lt;int&gt; &gt; ans;//用于存放每一个最短路径</span><br><span class="line">vector&lt;int&gt; p;</span><br><span class="line">//计算每条路径，注意，这样的路径是反序并且不包含源点的，如需要，则单独计算。</span><br><span class="line">void makeMinPath(vector&lt;vector&lt;int&gt; &gt; &amp;ans,vector&lt;int&gt; p,int j)&#123;</span><br><span class="line">	if(j == 0)&#123;</span><br><span class="line">		ans.push_back(p);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i = 0; i &lt; paths[j].size(); i++)&#123;</span><br><span class="line">		p.push_back(paths[j][i]);</span><br><span class="line">		makeMinPath(ans,p,paths[j][i]);</span><br><span class="line">		p.pop_back();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后就可以根据要求计算每一条路径，并挑出符合问题的解了。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/07/31/Dijkstra算法学习总结/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/07/19/AVL树详解/">AVL树详解</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>7月 19, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>我们在学习二叉搜索树的时候，发现无论是查找还是插入元素在理想情况下都可以达到O(logN)级别，但是由于插入的顺序，数的结构也会不同，这种理想情况很难保持甚至最坏的情况会退化成链表。导致性能下降。这时就需要一个能实现高度自动平衡的树结构。就出现了平衡树，<br>今天讲的是平衡树的一种：AVL树。</p>
+<h3 id="初识AVL树"><a href="#初识AVL树" class="headerlink" title="初识AVL树"></a>初识AVL树</h3><p>AVL树得名与 Adelson-Velsky和 Landis两位发明者的首字母，它是自平衡的二叉搜索树，具有二叉树搜索树的性质（左子树的结点都比当前结点小，右子树都比当前结点大），同时它又是平衡二叉树，能够自适应高度。在AVL树中，<strong>任意节点的两个子树的高度差不超过1</strong>，这也是将不平衡的子树调整为平衡子树的重要指标。</p>
+<h3 id="AVL树的调整策略"><a href="#AVL树的调整策略" class="headerlink" title="AVL树的调整策略"></a>AVL树的调整策略</h3><p>AVL是在进行插入节点时，通过检测是否破坏了平衡条件，进而通过进行一定程度的节点旋转来达到整棵树的平衡。</p>
+<h3 id="简单情形"><a href="#简单情形" class="headerlink" title="简单情形"></a>简单情形</h3><p>我们知道一个树如果只有一个或两个时，树是平衡的。所以问题会出现在第三个节点插入的位置，如果是下图：</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="单左旋后"></p>
+<p>则是平衡的。</p>
+<p>先来看最简单的不平衡情况：</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="单左旋前"></p>
+<p>当把根节点的右节点“提”到根节点的位置，将旧根节点当新的根节点的左子节点。就可达到平衡状态。</p>
+<p><img src="/images/placeholder.png" alt="单左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>具体到树中，可以归结为以下四种情况：</p>
+<h4 id="1-左旋"><a href="#1-左旋" class="headerlink" title="1.左旋"></a>1.左旋</h4><p>上述是最特殊的只有三个节点的情况，下面我们将它代入一般的二叉树来研究：</p>
+<p>对于一个节点，当右子树的高度比左子树高一个高度的时候，此时新进来的节点也需要插入右子树。当然，如果新插入节点以后，右子树还维持原来的高度，那么这颗树就还是平衡的。问题出在当新插入节点后，右子树的高度增加了，这时破坏了平衡树两个子树的高度差不超过一的性质，就需要调整使其达到平衡状态。这时，我们首先考虑比较好处理的情况，也就是插在右子树的右边的情况。</p>
+<p><img src="/images/placeholder.png" alt="左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>调整的策略：</p>
+<p>此时我们需要将当前节点的右子树“提”到当前节点的位置，当前节点“下降”为其右子树的左子树，具体操作过程如图：</p>
+<p><img src="/images/placeholder.png" alt="左旋中1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="左旋中2" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>调整之后变为：</p>
+<p><img src="/images/placeholder.png" alt="左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>到此，树变成了平衡的，由于整棵树要往左边旋转，所以左旋的操作就右子树的地位上移，根节点的地位下降。</p>
+<h3 id="2-右旋"><a href="#2-右旋" class="headerlink" title="2.右旋"></a>2.右旋</h3><p>现在我们有了左旋的经验，很容易推出需要进行右旋操作的时机：</p>
+<p>对于一个节点，当左子树的高度原先就比右子树的高度多一时，插入节点又使左子树的高度增加，并且插在了左子树的左边的时候，就需要调整了：</p>
+<p><img src="/images/placeholder.png" alt="右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋中1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋中2" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>树变为平衡的。</p>
+<p>至此，单旋转就学习完毕，下面学习双旋转。</p>
+<h3 id="3-右左旋"><a href="#3-右左旋" class="headerlink" title="3.右左旋"></a>3.右左旋</h3><p>前面我们学习单旋转时，插入节点都是与其子树同向的位置，这种情况由于倾斜的状况比较明显，所以只要找到中间的位置，将其“提”到“根节点”的位置，就可以达到平衡。而当其中子树失去平衡是由于所处子树往相反的方向插入，导致倾斜的状况不容易看出，所以需要经过两次旋转来达到平衡状态。<br>如下图：</p>
+<p><img src="/images/placeholder.png" alt="右左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>我们可以观察到，在当前的结点的右子树的倾斜情况与我们刚才介绍到的右旋的情况很相似：</p>
+<p><img src="/images/placeholder.png" alt="右左旋前1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>所以将右子树按右旋处理，处理之后变为：</p>
+<p><img src="/images/placeholder.png" alt="左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>这时我们惊奇的发现它变成了我们前面介绍的左旋前时的情形。这种情况我们已经会处理了：将右子节点“提”上来，把当前“根”节点变为右子节点的左子树，最后就调整到平衡状态了。</p>
+<p><img src="/images/placeholder.png" alt="左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<h3 id="4-左右旋"><a href="#4-左右旋" class="headerlink" title="4.左右旋"></a>4.左右旋</h3><p>同样地，左右旋也可通过先将左子树左旋，再将当前根节点右旋的调整来达到平衡状态。</p>
+<p><img src="/images/placeholder.png" alt="左右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>先将左子树左旋：</p>
+<p><img src="/images/placeholder.png" alt="左右旋前1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>再进行右旋：</p>
+<p><img src="/images/placeholder.png" alt="右旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>达到平衡状态。</p>
+<hr>
+<p>到此，二叉树的调整策略就介绍完了，下面上代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">typedef struct AVLNode* AVLTree;</span><br><span class="line">struct AVLNode&#123;</span><br><span class="line">	int data;</span><br><span class="line">	AVLTree left;</span><br><span class="line">	AVLTree right;</span><br><span class="line">	int height;</span><br><span class="line">	AVLNode(int data):data(data)&#123;</span><br><span class="line">		left = NULL;</span><br><span class="line">		right = NULL;</span><br><span class="line">		height = 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int Max(int a, int b)&#123;</span><br><span class="line">	return a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int GetHeight(AVLTree t)&#123;</span><br><span class="line">	if(!t) return 0;</span><br><span class="line">	return t-&gt;height;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//右旋 </span><br><span class="line">AVLTree SingleRightRotation(AVLTree A)&#123;</span><br><span class="line">	//先记录左子树,将左节点的右子树变为根节点的左子树，再将根节点作为左节点的右子树。 </span><br><span class="line">	AVLTree l = A-&gt;left;</span><br><span class="line">	A-&gt;left = l-&gt;right;</span><br><span class="line">	l-&gt;right = A;</span><br><span class="line">	//更新两节点的高度。 </span><br><span class="line">	A-&gt;height = Max(GetHeight(A-&gt;left),GetHeight(A-&gt;right))+1;</span><br><span class="line">	l-&gt;height = Max(GetHeight(l-&gt;left),A-&gt;height) + 1;</span><br><span class="line">	return l; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//左旋 </span><br><span class="line">AVLTree SingleLeftRotation(AVLTree A)&#123;</span><br><span class="line">	//先记录右子树,将右节点的左子树变为根节点的右子树，再将根节点作为右节点的左子树。 </span><br><span class="line">	AVLTree r = A-&gt;right;</span><br><span class="line">	A-&gt;right = r-&gt;left;</span><br><span class="line">	r-&gt;left = A;</span><br><span class="line">	//更新两节点的高度。 </span><br><span class="line">	A-&gt;height = Max(GetHeight(A-&gt;left),GetHeight(A-&gt;right)) + 1;</span><br><span class="line">	r-&gt;height = Max(GetHeight(r-&gt;right),A-&gt;height) + 1;</span><br><span class="line">	return r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//右左旋 </span><br><span class="line">AVLTree DoubleRightLeftRotation(AVLTree A)&#123;</span><br><span class="line">	//将左子树右旋 </span><br><span class="line">	A-&gt;right = SingleRightRotation(A-&gt;right);</span><br><span class="line">	//再将当前节点左旋 </span><br><span class="line">	return SingleLeftRotation(A);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//左右旋 </span><br><span class="line">AVLTree DoubleLeftRightRotation(AVLTree A)&#123;</span><br><span class="line">	//将右子树左旋 </span><br><span class="line">	A-&gt;left = SingleLeftRotation(A-&gt;left);</span><br><span class="line">	//再将当前节点右旋 </span><br><span class="line">	return SingleRightRotation(A);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">AVLTree Insert(AVLTree T, int X)&#123;</span><br><span class="line">	if(!T)&#123;</span><br><span class="line">		T = new AVLNode(X);</span><br><span class="line">	&#125;else if(X &lt; T-&gt;data)&#123;</span><br><span class="line">		T-&gt;left = Insert(T-&gt;left,X);</span><br><span class="line">		if(GetHeight(T-&gt;left)- GetHeight(T-&gt;right) == 2)&#123;</span><br><span class="line">			if(X &lt; T-&gt;left-&gt;data)&#123; //右旋 </span><br><span class="line">				T = SingleRightRotation(T);</span><br><span class="line">			&#125;else&#123; //左右旋 </span><br><span class="line">				T = DoubleLeftRightRotation(T);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;else if(X &gt; T-&gt;data)&#123;</span><br><span class="line">		T-&gt;right = Insert(T-&gt;right,X);</span><br><span class="line">		if(GetHeight(T-&gt;right)- GetHeight(T-&gt;left) == 2)&#123;</span><br><span class="line">			if(X &gt; T-&gt;right-&gt;data)&#123; //左旋 </span><br><span class="line">				T = SingleLeftRotation(T);</span><br><span class="line">			&#125;else&#123; //右左旋 </span><br><span class="line">				T = DoubleRightLeftRotation(T);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//更新高度 </span><br><span class="line">	T-&gt;height = Max(GetHeight(T-&gt;left),GetHeight(T-&gt;right))+1;</span><br><span class="line">	return T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/07/19/AVL树详解/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/">106-从中序与后序遍历序列构造二叉树</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>7月 13, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank" rel="noopener">106. 从中序与后序遍历序列构造二叉树</a></p>
+<h3 id="根据一棵树的中序遍历与后序遍历构造二叉树。"><a href="#根据一棵树的中序遍历与后序遍历构造二叉树。" class="headerlink" title="根据一棵树的中序遍历与后序遍历构造二叉树。"></a>根据一棵树的中序遍历与后序遍历构造二叉树。</h3><blockquote>
+<p>注意:<br>你可以假设树中没有重复的元素。</p>
+</blockquote>
+<p>例如，给出</p>
+<p>中序遍历 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inorder = [9,3,15,20,7]</span><br></pre></td></tr></table></figure>
+<p>后序遍历 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postorder = [9,15,7,20,3]</span><br></pre></td></tr></table></figure>
+<p>返回如下的二叉树：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* makeTree(vector&lt;int&gt;&amp; postorder, int&amp; postindex, vector&lt;int&gt;&amp; inorder,int left, int right)&#123;</span><br><span class="line">        if(left &lt;= right)&#123;</span><br><span class="line">            for(int i = 0; i &lt; inorder.size(); i++)&#123;</span><br><span class="line">                if(postorder[postindex] == inorder[i])&#123;</span><br><span class="line"></span><br><span class="line">                    TreeNode* root = new TreeNode(postorder[postindex--]);</span><br><span class="line">                    root-&gt;right = makeTree(postorder,postindex,inorder,i+1,right);</span><br><span class="line">                    root-&gt;left = makeTree(postorder,postindex,inorder,left,i-1);  </span><br><span class="line">                    return root;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;</span><br><span class="line">        int postindex = postorder.size()-1;</span><br><span class="line">        return makeTree(postorder,postindex,inorder,0,inorder.size()-1);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>根据后序遍历的特点，每棵子树的根节点总是最后遍历到。</p>
+<p>所以用一个按引用传递的指针指向后序数组的末尾，用该值在中序数组中查找，并将该值当做当前树的根节点。</p>
+<p>该值位置的左边为以该节点为根节点的左子树的范围，位置右边为右子树的范围，然后不断更新这个范围，递归下去即可，注意边界值。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/06/02/正则表达式全解——正则基础/">正则表达式全解——正则基础</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>6月 02, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h3 id="正则基础"><a href="#正则基础" class="headerlink" title="正则基础"></a>正则基础</h3><h5 id=""><a href="#" class="headerlink" title="^"></a>^</h5><p>表示一行的开始</p>
+<h5 id="-1"><a href="#-1" class="headerlink" title="$"></a>$</h5><p>表示一行的结束</p>
+<h5 id="…"><a href="#…" class="headerlink" title="[…]"></a>[…]</h5><p>表示其中的字符是选择性（逻辑或）的，要么是a,要么是b,要么是…。</p>
+<blockquote>
+<p>c[a|b]t 可以匹配到cat、cbt<br>[a-z]、[0-9]、[0-9A-Za-z]是支持的。<br>[^$] 匹配空行<br>像 . * + ?  这些词在[]中仅表示字面的意思，利用这一特性，如果想表示原本含义，例如要匹配 . ，可以写为[.]</p>
+</blockquote>
+<h5 id="…-1"><a href="#…-1" class="headerlink" title="[^…]"></a>[^…]</h5><p>表示匹配不是其中的字符。为上一条的取反</p>
+<h5 id="-2"><a href="#-2" class="headerlink" title="-"></a>-</h5><p>连字符，表示一个范围，见上一条。</p>
+<blockquote>
+<p>如果要匹配  - ，请将 - 写在开始位置，如果[-a-z]，匹配-或者是小写字母。</p>
+</blockquote>
+<h5 id="-3"><a href="#-3" class="headerlink" title="."></a>.</h5><p>   表示任意字符（除了换行符），</p>
+<h5 id="-4"><a href="#-4" class="headerlink" title="|"></a>|</h5><p>表示或者</p>
+<blockquote>
+<p>(cat|dog) 表示要么cat,要么dog,<br>注意：这和[…]不同的是，[…]匹配其中的单个字符，(..|…)可以匹配不同的字符组。</p>
+</blockquote>
+<h5 id="-5"><a href="#-5" class="headerlink" title="?"></a>?</h5><p>表示可选项，类似于单选框，匹配零个或一个。</p>
+<h5 id="-6"><a href="#-6" class="headerlink" title="+"></a>+</h5><p>表示出现一次或多次。</p>
+<h5 id="-7"><a href="#-7" class="headerlink" title="*"></a>*</h5><p>表示匹配零次或多次。</p>
+<h5 id="min-max"><a href="#min-max" class="headerlink" title="{min,max}"></a>{min,max}</h5><p>表示匹配之前的子表达式重复min到max次。（闭区间）</p>
+<blockquote>
+<p>{count} 表示匹配count次。</p>
+</blockquote>
+<h5 id="括号与反向引用"><a href="#括号与反向引用" class="headerlink" title="括号与反向引用"></a>括号与反向引用</h5><p>([0-9]){2,3}add\1    \1表示第一个括号中的内容再次使用。</p>
+<h5 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h5><p>像 . * + ?  这些词在正则中有特殊的含义，要想使用它原本的含义，使用\来进行转义。</p>
+<h5 id="…-2"><a href="#…-2" class="headerlink" title="(…)"></a>(…)</h5><p>括号的作用：1.限制多选结构，2.分组，3.捕获文本。</p>
+<h5 id="一些特殊的字符"><a href="#一些特殊的字符" class="headerlink" title="一些特殊的字符"></a>一些特殊的字符</h5><ul>
+<li>\t 制表符</li>
+<li>\n换行符</li>
+<li>\r 回车符</li>
+<li>\s 任何空白字符(例如空格符、制表符、换行符等)</li>
+<li>\S 除\s之外的任何字符(所以用(\s|\S) * )来表示任意字符。</li>
+<li>\w 相当于[a-zA-Z0-9] 所以经常用\w+来表示一个单词 </li>
+<li>\W \w取反，也就是[^a-zA-Z0-9] </li>
+<li>\d  相当于[0-9] 也就是数字</li>
+<li>\D \d取反，也就是[^0-9]</li>
+</ul>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/06/02/正则表达式全解——正则基础/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/06/01/写在大一期末考试之际/">写在大一期末考试之际</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>6月 01, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<h3 id="写在大一期末考试之际"><a href="#写在大一期末考试之际" class="headerlink" title="写在大一期末考试之际"></a>写在大一期末考试之际</h3><p>最近发生了很多各种各样的事，面对即将到来的期末考试，自己真的很没有底气，因为只有自己知道，对于大部分的课程，学的是如何糟糕。我不看重的课程不说，但数学学科的课程自己也没学到什么，一方面是老师的原因，但最多的是自己的问题，学习的重心绝对的向专业偏移，即使是专业，每天学的都是些业务类的技术，如果是这样，我觉得我可以立即辍学，这也不是我上大学的初衷，一定要向研究的方向转变，把数学基础提上来才是我大学应该做的事，大学时光1/4已经过去了，自己却没有调整到合适的状态，实属不应该。不过，也有些收获，算法竞赛这块是我没有预料到的，同时回想自己大一上学期学算法的时候是我最想要的状态，我不知道自己是不是喜欢，但无暇他顾地专心只搞一件事是我想要的，而通过学习它我可以进入这种状态，后来学长又找我说想打acm，我知道这个的难度，也知道意味着什么，但是我觉得人应该有些梦想，先让我做一年试试。</p>
+<p>同时，我的学习方法也有很多的不足，很低效，我觉得得花些时间来调整下，通常都是学的快，忘的更快，再要用的时候，又要重新学（虽然会快很多），这也是我写博客项目的原因，一个是记录，一个是整理。记录是记录时光的流逝，整理是整理学习成果。要好好把博客写好了。慢就是快，就像姜文说的：步子迈大了，容易扯着蛋。我时刻提醒自己，一定不能浮起来，要沉下去。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/06/01/写在大一期末考试之际/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/05/30/LeetCode-98-验证二叉搜索树/">LeetCode-98-验证二叉搜索树</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
 			<p><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/comments/" target="_blank" rel="noopener">98. 验证二叉搜索树</a></p>
 <p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
 <p>假设一个二叉搜索树具有如下特征：</p>
@@ -148,11 +596,19 @@
 <li>节点的右子树只包含大于当前节点的数。</li>
 <li>所有左子树和右子树自身必须也是二叉搜索树。</li>
 </ul>
+<h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isValidBST(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;TreeNode*&gt; v;</span><br><span class="line">        inorder(root,v);</span><br><span class="line">        for(int i = 1; i &lt; v.size(); i++)&#123;</span><br><span class="line">            if(v[i-1]-&gt;val &gt;= v[i]-&gt;val)&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void inorder(TreeNode* node, vector&lt;TreeNode*&gt; &amp;v)&#123;</span><br><span class="line">        if(!node) return;</span><br><span class="line">        inorder(node-&gt;left,v);</span><br><span class="line">        v.push_back(node);</span><br><span class="line">        inorder(node-&gt;right,v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>利用二叉搜索树的中序遍历是升序的特性。</p>
+<p>将每个元素push进一个vector中，如果vector中元素不是按升序排列，这该树不是二叉搜索树。</p>
+<h3 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isValidBST(TreeNode* root) &#123;</span><br><span class="line">        return helper(root,NULL,NULL);</span><br><span class="line">    &#125;</span><br><span class="line">    //返回该结点是否在指定区间内。</span><br><span class="line">    bool helper(TreeNode *node, TreeNode *min, TreeNode *max)&#123;</span><br><span class="line">        if(!node) return true;</span><br><span class="line">        if((min &amp;&amp; node-&gt;val &lt;= min-&gt;val) || (max &amp;&amp; node-&gt;val &gt;= max-&gt;val)) return false;</span><br><span class="line">        //左子节点的值不能比当前结点的值大，右节点的值不能不当前结点小。</span><br><span class="line">        return helper(node-&gt;left, min, node) &amp;&amp; helper(node-&gt;right, node, max);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>根据题目给的三条性质，所有结点及其下面的所有结点均可以构成二叉搜索树，</p>
+<p>所以对于非叶子结点，可以以当前结点为根据，划分区间，区间内的点必须比左端点大，比右端点小。</p>
+<p>用一个递归函数来不断更新该区间，判断该结点是否在区间内即可。</p>
+
 		  	  
 	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/27/98-验证二叉搜索树/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/05/30/LeetCode-98-验证二叉搜索树/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -165,23 +621,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/01/27/51-N皇后/">LeetCode-51. N皇后</a>  
+		<a class="article-title" href="/2019/05/30/LeetCode-922-按奇偶排序数-II/">LeetCode-922-按奇偶排序数-II</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>1月 27, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/回溯/">回溯</a>           
-				            
-						<a class="article-tag" href="/tags/递归/">递归</a>           
-				
+			<time>5月 30, 2019</time>
 			
 		</div>
 	</div>
@@ -191,386 +636,21 @@
 
     
 	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/n-queens/" target="_blank" rel="noopener">51. N皇后</a></p>
-<p>该题为著名的n皇后问题。<br><img src="http://ww1.sinaimg.cn/large/007CmUScly1fzpypn3msqj3072077mx7.jpg" alt="8皇后"></p>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/27/51-N皇后/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/27/88-合并两个有序数组/">LeetCode-88. 合并两个有序数组</a>  
-	       
 		 
-
-		<div class="article-meta">
-			<time>1月 27, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/归并/">归并</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/merge-sorted-array/submissions/" target="_blank" rel="noopener">88. 合并两个有序数组</a></p>
-<p>给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。<br>
-		  	  
-	</p></div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/27/88-合并两个有序数组/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/27/112-路径总和/">LeetCode-112. 路径总和</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 27, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				            
-						<a class="article-tag" href="/tags/递归/">递归</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">112. 路径总和</a></p>
+			<p><a href="https://leetcode-cn.com/problems/sort-array-by-parity-ii/submissions/" target="_blank" rel="noopener">922. 按奇偶排序数组 II</a></p>
+<p>给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。</p>
+<p>对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; sortArrayByParityII(vector&lt;int&gt;&amp; A) &#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int len = A.size();</span><br><span class="line">        int j = 1;</span><br><span class="line">        while(1)&#123;</span><br><span class="line">            while(i &lt; len &amp;&amp; (A[i] &amp; 1) == 0) i+=2;</span><br><span class="line">            while(j &lt; len &amp;&amp; (A[j] &amp; 1) != 0) j+=2;</span><br><span class="line">            if(i &gt;= len || j &gt;= len) break;</span><br><span class="line">            std::swap(A[i],A[j]);</span><br><span class="line">            i+=2;</span><br><span class="line">            j+=2;</span><br><span class="line">        &#125;</span><br><span class="line">        return A;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>设置两个指针。<br>一个指针只走奇数下标，一个指针只走偶数下标。<br>当碰到不符合条件（奇数下标的值不是奇数，偶数下标的值不是偶数）就停下并交换两个值，之后接着走，直到指针越界为止。</p>
 <blockquote>
-<p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p>
-<p>说明: 叶子节点是指没有子节点的节点。<br>
-		  	  
-	</p></blockquote></div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/27/112-路径总和/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/27/113-路径总和-II/">LeetCode-113. 路径总和 II</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 27, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				            
-						<a class="article-tag" href="/tags/回溯/">回溯</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/path-sum-ii/submissions/" target="_blank" rel="noopener">113. 路径总和 II</a></p>
-<p>该题为<a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">112. 路径总和</a>的升级版</p>
-<blockquote>
-<p>给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。</p>
-<p>说明: 叶子节点是指没有子节点的节点。<br>
-		  	  
-	</p></blockquote></div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/27/113-路径总和-II/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/24/190-颠倒二进制位/">LeetCode-190. 颠倒二进制位</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 24, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/位运算/">位运算</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/reverse-bits/" target="_blank" rel="noopener">190. 颠倒二进制位</a></p>
-<p>颠倒给定的 32 位无符号整数的二进制位。</p>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/24/190-颠倒二进制位/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/24/389-找不同/">LeetCode-389. 找不同</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 24, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/位运算/">位运算</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/find-the-difference/submissions/" target="_blank" rel="noopener">389. 找不同</a></p>
-<p>给定两个字符串 s 和 t，它们只包含小写字母。</p>
-<p>字符串 t 由字符串 s 随机重排，然后在随机位置添加一个字母。</p>
-<p>请找出在 t 中被添加的字母。</p>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/24/389-找不同/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/24/136-只出现一次的数字/">LeetCode-136. 只出现一次的数字</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 24, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/位运算/">位运算</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/single-number/" target="_blank" rel="noopener">136. 只出现一次的数字</a></p>
-<p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
-<p>说明：</p>
-<p>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/24/136-只出现一次的数字/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/24/693-交替位二进制数/">LeetCode-693. 交替位二进制数</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 24, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/位运算/">位运算</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/binary-number-with-alternating-bits/" target="_blank" rel="noopener">693. 交替位二进制数</a></p>
-<p>给定一个正整数，检查他是否为交替位二进制数：换句话说，就是他的二进制数相邻的两个位数永不相等。</p>
-<blockquote>
-<p>示例 1:</p>
-<p>输入: 5</p>
-<p>输出: True</p>
-<p>解释: 5的二进制数是: 101</p>
+<p>看评论有人用栈或者另外准备两个数组的，速度比原地交换还快，不知道为什么。实现也比较简单，就不赘述了。</p>
 </blockquote>
+
 		  	  
 	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/24/693-交替位二进制数/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/01/24/476-数字的补数/">LeetCode-476. 数字的补数</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>1月 24, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/位运算/">位运算</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/number-complement/" target="_blank" rel="noopener">476. 数字的补数</a></p>
-<p>给定一个正整数，输出它的补数。补数是对该数的二进制表示取反。<br>
-		  	  
-	</p></div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/01/24/476-数字的补数/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/05/30/LeetCode-922-按奇偶排序数-II/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -588,7 +668,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>4</strong>, Total <strong>69</strong> . </span>
+   <span class="page-number"> Page <strong>4</strong>, Total <strong>118</strong> . </span>
 
     
         <a class="next" href="/page/5/"> 
@@ -622,7 +702,7 @@
      <div class="mobile-menu">      
 
       
-      <img class="mobile-menu-icon" src="/images/logo.png">   
+      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/logo.png">   
       
 
          

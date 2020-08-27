@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  Dijkstra算法学习总结 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		Dijkstra算法学习总结
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			7月 31, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">3504
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p>单源最短路径算法</p>
+<h2 id="算法流程："><a href="#算法流程：" class="headerlink" title="算法流程："></a>算法流程：</h2><p>对于图G（V，E）维护一个集合S,存放已经被访问过的顶点（准备期间只有源点s），每次从集合V-S中选择与起点s的距离最小的一个顶点（记为u），访问u并加入集合S，并令u为中介点，更新起点s与所有从u能达到的顶点v之间的最短距离。这样执行n次（n为顶点个数），直到集合S包含所有顶点。</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="算法书上的图"></p>
+<h4 id="适用范围：有向无负权图"><a href="#适用范围：有向无负权图" class="headerlink" title="适用范围：有向无负权图"></a>适用范围：有向无负权图</h4><h3 id="1-优先队列版-复杂度O-ElogE"><a href="#1-优先队列版-复杂度O-ElogE" class="headerlink" title="1.优先队列版 复杂度O(ElogE)"></a>1.优先队列版 复杂度O(ElogE)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#define INF 0x3f3f3f3f</span><br><span class="line"></span><br><span class="line">struct qnode&#123;</span><br><span class="line">    int v,d;</span><br><span class="line">    qnode(int _v=0,int _d=0):v(_v),d(_d)&#123;&#125;</span><br><span class="line">    friend bool operator &lt;(const qnode &amp;r)const&#123;</span><br><span class="line">        return d&gt;r.d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct Edge&#123;</span><br><span class="line">    int v,cost;</span><br><span class="line">    Edge(int _v=0,int _cost=0):v(_v),cost(_cost)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">const int MAXN = 100010;</span><br><span class="line">vector&lt;Edge&gt; E[MAXN];</span><br><span class="line">//是否访问标志</span><br><span class="line">int vis[MAXN];</span><br><span class="line">//到源点的最短距离，准备期间设置为无穷大，表示不可及。</span><br><span class="line">int dis[MAXN]; </span><br><span class="line">//加边</span><br><span class="line">void add_edge(int u,int v,int w)&#123;</span><br><span class="line">    E[u].push_back(Edge(v,w));</span><br><span class="line">&#125;</span><br><span class="line">//初始化(从0开始编号)</span><br><span class="line">void init(int n)&#123;</span><br><span class="line">    for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">        E[i].clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Dijkstra(int s,int n)&#123;</span><br><span class="line">    for(int i=0;i&lt;n;i++)vis[i] = 0;</span><br><span class="line">    for(int i=0;i&lt;n;i++)dis[i] = (i == s ? 0 : INF);</span><br><span class="line">    priority_queue&lt;qnode&gt; q;//声明优先队列：每次从队列中取出的是具有最高优先权的元素。</span><br><span class="line">    //优先队列第一个参数为比较类型，第二个为容器类型，第三个为比较函数。</span><br><span class="line">	//greater实现小顶堆//less 实现大顶堆（默认为大顶堆）</span><br><span class="line">	q.push(qnode(s,dis[s]));//先将源点推进优先队列</span><br><span class="line">	qnode temp;</span><br><span class="line">    while(!q.empty())&#123;//当队列空时所有边已被访问</span><br><span class="line">        temp = q.top();q.pop();</span><br><span class="line">        //当前顶点</span><br><span class="line">        int u = temp.v;</span><br><span class="line">        if(vis[u])continue;</span><br><span class="line">        vis[u] = true;</span><br><span class="line">        //每一条与u相邻的边都要更新</span><br><span class="line">        for(int i=0;i&lt;E[u].size();i++)&#123;</span><br><span class="line">            //邻点</span><br><span class="line">            int v = E[u][i].v;</span><br><span class="line">            //权重</span><br><span class="line">            int cost = E[u][i].cost;</span><br><span class="line">            //松弛操作，更新权重时机</span><br><span class="line">            if(!vis[v] &amp;&amp; dis[u] + cost &lt; dis[v])&#123;</span><br><span class="line">                dis[v] = dis[u] + cost;</span><br><span class="line">                //把每一个更新的长度加进队列</span><br><span class="line">                q.push(qnode(v,dis[v]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-邻接矩阵版-复杂度O-N-2-记录路径版"><a href="#2-邻接矩阵版-复杂度O-N-2-记录路径版" class="headerlink" title="2.邻接矩阵版 复杂度O(N^2) 记录路径版"></a>2.邻接矩阵版 复杂度O(N^2) 记录路径版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">const int MAXN = 10000;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">bool vis[MAXN];//访问记录</span><br><span class="line">int pre[MAXN];//父节点</span><br><span class="line">int cost[MAXN][MAXN];//权重矩阵</span><br><span class="line">int lowcost[MAXN];//记录最短路径</span><br><span class="line"></span><br><span class="line">//初始化矩阵为无穷。</span><br><span class="line">void Init(int N)&#123;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">		for(int j = 0; j &lt; N; j++)&#123;</span><br><span class="line">			cost[i][j] = INF;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//如果INF是满十六进制表示。如：const int INF = 0x3f3f3f3f;</span><br><span class="line">	//则可以使用memset(cost,INF,sizeof(cost));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//cost:权重矩阵,lowcost:最短路径，n:数据范围,beg:源点</span><br><span class="line">void Dijkstra(int cost[][MAXN],int lowcost[],int n,int beg)&#123;</span><br><span class="line">	//初始化各值</span><br><span class="line">	for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">		lowcost[i] = INF;</span><br><span class="line">		vis[i] = false;</span><br><span class="line">		pre[i] = -1;</span><br><span class="line">	&#125;</span><br><span class="line">	//设置源点</span><br><span class="line">	lowcost[beg] = 0;</span><br><span class="line">	for(int j = 0; j &lt; n; j++)&#123;</span><br><span class="line">		int k = -1;</span><br><span class="line">		int Min = INF;</span><br><span class="line">		//找到目前最短路径数组中到源点最短的节点。</span><br><span class="line">		for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">			if(!vis[i] &amp;&amp; lowcost[i] &lt; Min)&#123;</span><br><span class="line">				Min = lowcost[i];</span><br><span class="line">				k = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		//找不到，说明节点都已经全部访问。</span><br><span class="line">		if(k == -1)break;</span><br><span class="line">		//记录该节点。</span><br><span class="line">		vis[k] = true;</span><br><span class="line">		//松弛操作。更新每条与该节点相连并且还未访问到的节点的路径。</span><br><span class="line">		for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">			if(!vis[i] &amp;&amp; lowcost[k] + cost[k][i] &lt; lowcost[i])&#123;</span><br><span class="line">			    //发现一条更短的路径，更新。</span><br><span class="line">				lowcost[i] = lowcost[k] + cost[k][i];</span><br><span class="line">				//更新父节点。</span><br><span class="line">				pre[i] = k;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解题通用思路"><a href="#解题通用思路" class="headerlink" title="解题通用思路"></a>解题通用思路</h3><p>做关于Dijkstra算法的题，通常不会只出一个裸的寻找最短路径，而是会给出一个或多个次级标尺。通常不会超出三个维度：</p>
+<ul>
+<li>边权</li>
+<li>点权</li>
+<li>多少条最短路径，或该路径的长度。</li>
+</ul>
+<p>通常是多个维度组合起来寻找最优解。</p>
+<p>遇到这类问题，可通过将每条最短路径都保存下来，依次进行处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; paths[MAXN];</span><br><span class="line">//在其松弛操作中，将路径保存</span><br><span class="line">for(int j = 0; j &lt; N; j++)&#123;</span><br><span class="line">	if(!vis[j] &amp;&amp; G[k][j] != INF)&#123;</span><br><span class="line">		if(dis[j] &gt; dis[k] + G[k][j])&#123;</span><br><span class="line">			dis[j] = dis[k] + G[k][j];</span><br><span class="line">			paths[j].clear();</span><br><span class="line">			paths[j].push_back(k);</span><br><span class="line">		&#125;else if(dis[j] == dis[k] + G[k][j])&#123;</span><br><span class="line">			paths[j].push_back(k);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">vector&lt;vector&lt;int&gt; &gt; ans;//用于存放每一个最短路径</span><br><span class="line">vector&lt;int&gt; p;</span><br><span class="line">//计算每条路径，注意，这样的路径是反序并且不包含源点的，如需要，则单独计算。</span><br><span class="line">void makeMinPath(vector&lt;vector&lt;int&gt; &gt; &amp;ans,vector&lt;int&gt; p,int j)&#123;</span><br><span class="line">	if(j == 0)&#123;</span><br><span class="line">		ans.push_back(p);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i = 0; i &lt; paths[j].size(); i++)&#123;</span><br><span class="line">		p.push_back(paths[j][i]);</span><br><span class="line">		makeMinPath(ans,p,paths[j][i]);</span><br><span class="line">		p.pop_back();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后就可以根据要求计算每一条路径，并挑出符合问题的解了。</p>
+  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/07/19/AVL树详解/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/07/19/AVL树详解/">
+          AVL树详解</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/08/06/LeetCode-207-课程表/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/08/06/LeetCode-207-课程表/">
+            LeetCode-207-课程表</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  POJ-3083-Childre-O-Th-Cand-Corn |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		POJ-3083-Childre-o-th-Cand-Corn
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			8月 23, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">4632
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="http://poj.org/problem?id=3083" target="_blank" rel="noopener">POJ-3083</a></p>
+<h4 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h4><p>The cornfield maze is a popular Halloween treat. Visitors are shown the entrance and must wander through the maze facing zombies, chainsaw-wielding psychopaths, hippies, and other terrors on their quest to find the exit.</p>
+<p>One popular maze-walking strategy guarantees that the visitor will eventually find the exit. Simply choose either the right or left wall, and follow it. Of course, there’s no guarantee which strategy (left or right) will be better, and the path taken is seldom the most efficient. (It also doesn’t work on mazes with exits that are not on the edge; those types of mazes are not represented in this problem.)</p>
+<p>As the proprieter of a cornfield that is about to be converted into a maze, you’d like to have a computer program that can determine the left and right-hand paths along with the shortest path so that you can figure out which layout has the best chance of confounding visitors.</p>
+<h4 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h4><p>Input to this problem will begin with a line containing a single integer n indicating the number of mazes. Each maze will consist of one line with a width, w, and height, h (3 &lt;= w, h &lt;= 40), followed by h lines of w characters each that represent the maze layout. Walls are represented by hash marks (‘#’), empty space by periods (‘.’), the start by an ‘S’ and the exit by an ‘E’.</p>
+<p>Exactly one ‘S’ and one ‘E’ will be present in the maze, and they will always be located along one of the maze edges and never in a corner. The maze will be fully enclosed by walls (‘#’), with the only openings being the ‘S’ and ‘E’. The ‘S’ and ‘E’ will also be separated by at least one wall (‘#’).</p>
+<p>You may assume that the maze exit is always reachable from the start point.</p>
+<h4 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h4><p>For each maze in the input, output on a single line the number of (not necessarily unique) squares that a person would visit (including the ‘S’ and ‘E’) for (in order) the left, right, and shortest paths, separated by a single space each. Movement from one square to another is only allowed in the horizontal or vertical direction; movement along the diagonals is not allowed.</p>
+<h4 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">8 8</span><br><span class="line">########</span><br><span class="line">#......#</span><br><span class="line">#.####.#</span><br><span class="line">#.####.#</span><br><span class="line">#.####.#</span><br><span class="line">#.####.#</span><br><span class="line">#...#..#</span><br><span class="line">#S#E####</span><br><span class="line">9 5</span><br><span class="line">#########</span><br><span class="line">#.#.#.#.#</span><br><span class="line">S.......E</span><br><span class="line">#.#.#.#.#</span><br><span class="line">#########</span><br></pre></td></tr></table></figure>
+<h4 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">37 5 5</span><br><span class="line">17 17 9</span><br></pre></td></tr></table></figure>
+<h4 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h4><p>有一张地图，# 是墙壁，. 是路，S是点，E是终点。（S和E在地图边缘且不在四个对角）</p>
+<p>问：优先选择左边到达终点的路径长度（目前朝向的左边为优先选边，顺时针），优先选择右边到达终点的路径长度（目前朝向的右边为优先选边，逆时针），和最短的路径长度。</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>该题使用dfs（前两问）加bfs（后一问）来解答，由于有一个优先选择当前方向的左边或者右边位置，所以需要处理一个当前的朝向问题。比普通的dfs要复杂一点。但是根据定义的方向数组，只要知道了向左转就是当前的朝向减一个单位，右转为当前的朝向加一个单位，以此为起始探测方向，并且处理好顺逆时针关系就可以化解该题。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int MAXN = 50;</span><br><span class="line">char m[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line">int N,M;</span><br><span class="line">int sx,sy,ex,ey;</span><br><span class="line">int ans;</span><br><span class="line">int flag;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int x,y,d;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    node(int _x,int _y, int _d):x(_x),y(_y),d(_d)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//从左顺时针</span><br><span class="line">int dx[] = &#123;0,-1,0,1&#125;;</span><br><span class="line">int dy[] = &#123;-1,0,1,0&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int x, int y, int pos,int t,int s)&#123;</span><br><span class="line">    // printf(&quot;%d %d %d\\n&quot;,x,y,d);</span><br><span class="line">    if(flag) return;</span><br><span class="line">    if(x == ex &amp;&amp; y == ey)&#123;</span><br><span class="line">        flag = 1;</span><br><span class="line">        ans = max(ans,s);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    //t = -1 表示顺时针，t = 1 表示逆时针</span><br><span class="line">    //pp : 当前的方向</span><br><span class="line">    //如果是左优先，就将当前方向-1开始顺时针，</span><br><span class="line">    //如果是右优先，就将当前方向+1开始逆时针。</span><br><span class="line">    for(int i = 1,pp = (pos+t+4)%4; i &lt;= 4; i++,pp = (pp-t+4)%4)&#123;</span><br><span class="line">        int nx = dx[pp] + x;</span><br><span class="line">        int ny = dy[pp] + y;</span><br><span class="line">        if(nx &gt;= 0 &amp;&amp; nx &lt; N &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; M &amp;&amp; m[nx][ny] == &apos;.&apos;)&#123;</span><br><span class="line">            dfs(nx,ny,pp,t,s+1);</span><br><span class="line">            if(flag) return;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void bfs(int x,int y)&#123;</span><br><span class="line">    queue&lt;node&gt; q;</span><br><span class="line">    q.push(node(x,y,1));</span><br><span class="line">    m[x][y] = &apos;#&apos;;</span><br><span class="line">    node temp;</span><br><span class="line">    while(q.size())&#123;</span><br><span class="line">        temp = q.front();q.pop();</span><br><span class="line">        if(temp.x == ex &amp;&amp; temp.y == ey)&#123;</span><br><span class="line">            ans = temp.d;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; 4; i++)&#123;</span><br><span class="line">            int nx = dx[i] + temp.x;</span><br><span class="line">            int ny = dy[i] + temp.y;</span><br><span class="line">            if(nx &gt;= 0 &amp;&amp; nx &lt; N &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; M &amp;&amp; m[nx][ny] == &apos;.&apos;)&#123;</span><br><span class="line">                m[nx][ny] = &apos;#&apos;;</span><br><span class="line">                q.push(node(nx,ny,temp.d+1));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int T;</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    //freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout);</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;T);</span><br><span class="line">    while(T--)&#123;</span><br><span class="line">        int pos = 0;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;M,&amp;N);</span><br><span class="line">        // memset(m,0,sizeof(m));</span><br><span class="line">        for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">            scanf(&quot;%s&quot;,m[i]);</span><br><span class="line">            for(int j = 0; j &lt; M; j++)&#123;</span><br><span class="line">                if(m[i][j] == &apos;S&apos;)&#123;</span><br><span class="line">                    sx = i,sy = j; m[i][j] = &apos;.&apos;;</span><br><span class="line">                &#125;else if(m[i][j] == &apos;E&apos;)&#123;</span><br><span class="line">                    ex = i,ey = j; m[i][j] = &apos;.&apos;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        //     for(int j = 0; j &lt; M; j++)&#123;</span><br><span class="line">        //         printf(&quot;%c&quot;,m[i][j]);</span><br><span class="line">        //     &#125;</span><br><span class="line">        //     printf(&quot;\\n&quot;);</span><br><span class="line">        // &#125;</span><br><span class="line">        /*</span><br><span class="line">        pos = 0 表示向上为初始方向</span><br><span class="line">        pos = 1 表示向右为初始方向</span><br><span class="line">        pos = 2 表示向下为初始方向</span><br><span class="line">        pos = 3 表示向左为初始方向</span><br><span class="line">        */</span><br><span class="line">        if(sx == 0) pos = 2;</span><br><span class="line">        if(sx == N-1) pos = 0;</span><br><span class="line">        if(sy == 0) pos = 1;</span><br><span class="line">        if(sy == M-1) pos = 3;</span><br><span class="line">        ans = 0;</span><br><span class="line">        flag = 0;</span><br><span class="line">        dfs(sx,sy,pos,-1,1);</span><br><span class="line">        printf(&quot;%d&quot;,ans);</span><br><span class="line">        ans = 0;</span><br><span class="line">        flag = 0;</span><br><span class="line">        dfs(sx,sy,pos,1,1);</span><br><span class="line">        printf(&quot; %d&quot;,ans);</span><br><span class="line">        ans = 0;</span><br><span class="line">        bfs(sx,sy);</span><br><span class="line">        printf(&quot; %d\\n&quot;,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/08/16/LeetCode-473-火柴拼正方形/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/08/16/LeetCode-473-火柴拼正方形/">
+          LeetCode-473-火柴拼正方形</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/08/25/POJ-1416-Shreddin-Company/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/08/25/POJ-1416-Shreddin-Company/">
+            POJ-1416-Shreddin-Company</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

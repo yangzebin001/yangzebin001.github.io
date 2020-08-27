@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  LeetCode-10-正则表达式匹配 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		LeetCode-10-正则表达式匹配
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			1月 30, 2020
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">2620
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="https://leetcode-cn.com/problems/regular-expression-matching/" target="_blank" rel="noopener">10. 正则表达式匹配</a></p>
+<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘*’ 的正则表达式匹配。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;.&apos; 匹配任意单个字符</span><br><span class="line">&apos;*&apos; 匹配零个或多个前面的那一个元素</span><br></pre></td></tr></table></figure>
+<p>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。</p>
+<p>说明:</p>
+<ul>
+<li>s 可能为空，且只包含从 a-z 的小写字母。</li>
+<li>p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h3></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a&quot;</span><br><span class="line">输出: false</span><br><span class="line">解释: &quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。</span><br></pre></td></tr></table></figure>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aa&quot;</span><br><span class="line">p = &quot;a*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &apos;a&apos;。因此，字符串 &quot;aa&quot; 可被视为 &apos;a&apos; 重复了一次。</span><br></pre></td></tr></table></figure>
+<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3:"></a>示例 3:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;ab&quot;</span><br><span class="line">p = &quot;.*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: &quot;.*&quot; 表示可匹配零个或多个（&apos;*&apos;）任意字符（&apos;.&apos;）。</span><br></pre></td></tr></table></figure>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例 4:"></a>示例 4:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;aab&quot;</span><br><span class="line">p = &quot;c*a*b&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &apos;*&apos; 表示零个或多个，这里 &apos;c&apos; 为 0 个, &apos;a&apos; 被重复一次。因此可以匹配字符串 &quot;aab&quot;。</span><br></pre></td></tr></table></figure>
+<h3 id="示例-5"><a href="#示例-5" class="headerlink" title="示例 5:"></a>示例 5:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s = &quot;mississippi&quot;</span><br><span class="line">p = &quot;mis*is*p*.&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>可以使用动态规划来解此题。</p>
+<p>首先定义状态，有过求LCS和LIC的经验，我们很轻易类似的写出该题的状态定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] 串S以i结尾，串P以j结尾是否能够匹配。</span><br></pre></td></tr></table></figure>
+<p>我们考虑状态转移方程：<br>先分类考虑：</p>
+<ul>
+<li><p>s[i] != p[j] &amp;&amp; p[j] != ‘.’ &amp;&amp; p[j] != ‘*’</p>
+</li>
+<li><p>s[i] == p[j]</p>
+</li>
+</ul>
+<ul>
+<li>p[j] == ‘.’</li>
+</ul>
+<ul>
+<li>p[j] == ‘*’</li>
+</ul>
+<p>第一种情况显然是false。</p>
+<p>第二种情况是说明可以匹配，所以由S前i-1，P前j-1匹配的情况决定。</p>
+<p>第三种情况把’.’看做s[i]可以和第二种情况合并</p>
+<p>重点是第四种情况，p[j]为’*’ 的情况：</p>
+<p>单独一个‘ <em> ’是不构成语义的，所以出现‘ </em> ’就要看前一个字符，而前面有可能出现的又有‘.’和字母两种情况。<br>前面说过了，我们遇见‘.’直接把他当作与s[i]相等的字符即可。不需要做特殊处理。</p>
+<p>所以就只剩下了‘*’ 前面是字母的<br>而分成的两种情况：</p>
+<ul>
+<li>‘*’前面的字母和s[i-1]不匹配。</li>
+</ul>
+<ul>
+<li>‘*’前面的字母和s[i-1]匹配。</li>
+</ul>
+<p>第一种情况由于’*’可以代表零个之前的字符。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aabc</span><br><span class="line">ad*abc</span><br></pre></td></tr></table></figure>
+<p>是可以匹配的。<br>所以我们遇到’*’前面的字母和s[i-1]不匹配就可以跳过这两个字符。即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i][j-2]</span><br></pre></td></tr></table></figure>
+<p>最后’*’前面的字母和s[i-1]匹配：</p>
+<p>那么就有按照‘*’的语义，又需要划分三种情况：</p>
+<ul>
+<li>*加上前面的字符不与s[i-1]匹配。</li>
+<li><em>加上前面的字符只与s[i-1]匹配 即 </em> 作废。</li>
+<li>*加上前面的字符可以与多个s[i-1]匹配。</li>
+</ul>
+<p>前两种情况其实与我们之前分析的不加‘*’的情况基本一致。<br>那么与多个字符匹配怎么转移呢？</p>
+<p>我们确定匹配多个字符可以一个一个来，只要dp[i-1][j]可以匹配。那么只要[j]是<em>，则dp[i][j]一定可以匹配上。（别忘了，我们的前提条件是 </em> 和之前的字母匹配）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###b</span><br><span class="line">###b* </span><br><span class="line">匹配。</span><br><span class="line"></span><br><span class="line">###bb</span><br><span class="line">###b*</span><br><span class="line">一定能匹配。</span><br></pre></td></tr></table></figure>
+<p>至此我们就将所有情况分析完毕。</p>
+<p>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isMatch(string s, string p) &#123;</span><br><span class="line">        int n = s.size(), m = p.size();</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; dp(n+1,vector&lt;int&gt;(m+1));</span><br><span class="line">        dp[0][0] = 1;</span><br><span class="line">        //处理 aa 和c*c*c*aa 匹配的情况。前缀可以忽略。</span><br><span class="line">        for(int i = 1; i &lt;= m; i++)&#123;</span><br><span class="line">            if(i-2 &gt;= 0 &amp;&amp; dp[0][i-2] &amp;&amp; p[i-1] == &apos;*&apos;) dp[0][i] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 1; i &lt;= n; i++)&#123;</span><br><span class="line">            for(int j = 1; j &lt;= m; j++)&#123;</span><br><span class="line">                //单个字符匹配。</span><br><span class="line">                if(s[i-1] == p[j-1] || (p[j-1] == &apos;.&apos;))&#123;</span><br><span class="line">                    dp[i][j] = dp[i-1][j-1];</span><br><span class="line">                //单个字符不匹配</span><br><span class="line">                &#125;else if(p[j-1] == &apos;*&apos;)&#123;</span><br><span class="line">                    // baa bc*aa 形式</span><br><span class="line">                    if(p[j-2] != s[i-1] &amp;&amp; p[j-2] != &apos;.&apos;)&#123;</span><br><span class="line">                        dp[i][j] = dp[i][j-2];</span><br><span class="line">                    &#125;else&#123;</span><br><span class="line">                    // 否则是前一个字符可以匹配</span><br><span class="line">                    // 三种情况，</span><br><span class="line">                    // 忽略这个匹配的字符，dp[i][j] = dp[i][j-2];</span><br><span class="line">                    // 只匹配这个字符 dp[i][j] = dp[i][j-1];</span><br><span class="line">                    // 匹配多个字符，即看i之前的字符和当前能不能匹配上，dp[i][j] = dp[i-1][j];</span><br><span class="line">                    // ###b 和 ###b* 如果能匹配上， ###bb 和 ###b* 也能匹配上。</span><br><span class="line">                        dp[i][j] = (dp[i][j-2] || dp[i][j-1] || dp[i-1][j]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n][m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里有一个点必须初始化，因为下标是从1开始的，无法访问到0，当遇到处理 aa 和c <em> c </em> c* aa 匹配的情况时，是需要访问到0的位置的，所以需要预处理。前缀可以为空的情况。</p>
+</blockquote>
+  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2020/01/25/HDOJ102-Ma-Su-Plu-Plus/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2020/01/25/HDOJ102-Ma-Su-Plu-Plus/">
+          HDOJ102-Ma-Su-Plu-Plus</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

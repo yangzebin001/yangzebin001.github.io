@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  POJ-2976-Droppin-Tests |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		POJ-2976-Droppin-tests
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			9月 29, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">2527
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="http://poj.org/problem?id=2976" target="_blank" rel="noopener">POJ-2976-Dropping tests</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>In a certain course, you take n tests. If you get ai out of bi questions correct on test i, your cumulative average is defined to be</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<p>Given your test scores and a positive integer k, determine how high you can make your cumulative average if you are allowed to drop any k of your test scores.</p>
+<p>Suppose you take 3 tests with scores of 5/5, 0/1, and 2/6. Without dropping any tests, your cumulative average is</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<p>However, if you drop the third test, your cumulative average becomes</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>The input test file will contain multiple test cases, each containing exactly three lines. The first line contains two integers, 1 ≤ n ≤ 1000 and 0 ≤ k &lt; n. The second line contains n integers indicating ai for all i. The third line contains n positive integers indicating bi for all i. It is guaranteed that 0 ≤ ai ≤ bi ≤ 1, 000, 000, 000. The end-of-file is marked by a test case with n = k = 0 and should not be processed.</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>For each test case, write a single line with the highest cumulative average possible after dropping k of the given test scores. The average should be rounded to the nearest integer.</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3 1</span><br><span class="line">5 0 2</span><br><span class="line">5 1 6</span><br><span class="line">4 2</span><br><span class="line">1 2 7 9</span><br><span class="line">5 6 7 9</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">83</span><br><span class="line">100</span><br></pre></td></tr></table></figure>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><p>To avoid ambiguities due to rounding errors, the judge tests have been constructed so that all answers are at least 0.001 away from a decision boundary (i.e., you can assume that the average is never 83.4997).</p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有N个考试，每个考试有ai和bi两个值，最后成绩由上面的公式求得。幸运的是，可以放弃K个科目，求最大化最后的成绩。(输出乘100后四舍五入的结果)</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>由题意可知当，当n-k个科目组成最优解时，再增加别的科目，解一定不如原来的解，放弃掉k个科目是最好的方案。</p>
+<p>于是，题目就变成了最小化平均值的问题，另外在注意下取整时的四舍五入就好了。</p>
+<h5 id="最小化平均值"><a href="#最小化平均值" class="headerlink" title="最小化平均值:"></a>最小化平均值:</h5><p>有n个物品的重量和价值分别为wi和vi，从中选择k个物品使得单位重量的价值最大。</p>
+<p>对于这个问题，我们可以用二分搜索解决，先来看看判断条件：<br>设最大值为x，则需要满足 ∑vi / ∑wi &gt;=x，把不等式进行变形，就得到了 ∑ ( vi - x <em> wi )&gt;=0，于是判断就成了，对 vi-x</em>wi 的值进行排序之后贪心进行选择，判断前n-k个的和是否不小于0。判断的复杂度是O（nlogn）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-28 16:40:15</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-29 18:14:27</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1000+10;</span><br><span class="line">int n,k;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int a,b;</span><br><span class="line">&#125;num[MAXN];</span><br><span class="line"></span><br><span class="line">double f[MAXN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bool check(double x)&#123;</span><br><span class="line">    for(int i = 0; i &lt; n; i++) f[i] = num[i].a - x*num[i].b;</span><br><span class="line">    sort(f,f+n);</span><br><span class="line">    double sum = 0;</span><br><span class="line">    for(int i = 0; i &lt;n-k; i++) sum += f[n-1-i];</span><br><span class="line">    return sum &gt;= 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;n,&amp;k)!= EOF &amp;&amp; n+k)&#123;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;num[i].a);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;num[i].b);</span><br><span class="line">        &#125;</span><br><span class="line">        double l = 0, r = 1e9;</span><br><span class="line">        for(int i = 0; i &lt; 100; i++)&#123;</span><br><span class="line">            double mid = (l+r)/2;</span><br><span class="line">            if(check(mid)) l = mid;</span><br><span class="line">            else r = mid;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">		printf(&quot;%d\\n&quot;, int(l*100+0.5));</span><br><span class="line"></span><br><span class="line">        // int ans = 100 * (l+0.005);</span><br><span class="line">		// printf(&quot;%d\\n&quot;, ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/09/28/POJ-3045-Co-Acrobats/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/09/28/POJ-3045-Co-Acrobats/">
+          POJ-3045-Co-Acrobats</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/10/05/POJ-3579-Median(二分套二分)/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/10/05/POJ-3579-Median(二分套二分)/">
+            POJ-3579-Median(二分套二分)</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

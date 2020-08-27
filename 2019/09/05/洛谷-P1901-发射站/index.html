@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  洛谷-P1901-发射站 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		洛谷-P1901-发射站
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			9月 05, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">1860
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="https://www.luogu.org/problem/P1901" target="_blank" rel="noopener">P1901 发射站</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>某地有 N 个能量发射站排成一行，每个发射站 i 都有不相同的高度 Hi，并能向两边（当 然两端的只能向一边）同时发射能量值为 Vi 的能量，并且发出的能量只被两边最近的且比 它高的发射站接收。</p>
+<p>显然，每个发射站发来的能量有可能被 0 或 1 或 2 个其他发射站所接受，特别是为了安 全，每个发射站接收到的能量总和是我们很关心的问题。由于数据很多，现只需要你帮忙计 算出接收最多能量的发射站接收的能量是多少。</p>
+<h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>第 1 行：一个整数 N;</p>
+<p>第 2 到 N+1 行：第 i+1 行有两个整数 Hi 和 Vi，表示第 i 个人发射站的高度和发射的能量值。</p>
+<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>输出仅一行，表示接收最多能量的发射站接收到的能量值，答案不超过 longint。</p>
+<h3 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">4 2 </span><br><span class="line">3 5 </span><br><span class="line">6 10</span><br></pre></td></tr></table></figure>
+<h3 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
+<h3 id="说明-提示："><a href="#说明-提示：" class="headerlink" title="说明/提示："></a>说明/提示：</h3><p>对于 40%的数据，1&lt;=N&lt;=5000；1&lt;=Hi&lt;=100000；1&lt;=Vi&lt;=10000;</p>
+<p>对于 70%的数据，1&lt;=N&lt;=100000；1&lt;=Hi&lt;=2,000,000,000；1&lt;=Vi&lt;=10000;</p>
+<p>对于 100%的数据，1&lt;=N&lt;=1000000;1&lt;=Hi&lt;=2,000,000,000；1&lt;=Vi&lt;=10000。</p>
+<h3 id="题目解析："><a href="#题目解析：" class="headerlink" title="题目解析："></a>题目解析：</h3><p>题目中有一句至关重要的话：发出的能量只被两边最近的且比 它高的发射站接收。</p>
+<p>这句话揭露了解法：使用单调栈。</p>
+<p>将题目精简下，留其核心就是要分别求每个数左边和右边碰到的第一个比它大的数的位置。</p>
+<p>这是经典的单调栈可以解决的问题，所以直接写两个单调栈：一个求左边的位置，一个求右边的位置，找到位置后将其能量值存起来，在其中找一个最大值即可。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-05 21:32:02</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-05 23:10:34</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long LL;</span><br><span class="line"></span><br><span class="line">const int MAXN = 1000010;</span><br><span class="line"></span><br><span class="line">LL arr[MAXN],s[MAXN],sum[MAXN],N,ans = -1;</span><br><span class="line">stack&lt;LL&gt; stk;</span><br><span class="line">int main()&#123;</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%lld&quot;,&amp;N);</span><br><span class="line">    arr[0] = 2000000100;</span><br><span class="line">    arr[N+1] = 2000000100;</span><br><span class="line">    for(int i = 1; i &lt;= N; i++)&#123;</span><br><span class="line">        scanf(&quot;%lld%lld&quot;,&amp;arr[i],&amp;s[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    //找一个数左右两边离该数最近的并且比该数大的数的位置</span><br><span class="line">    </span><br><span class="line">    //单调递减栈。 找当前数的右边目标数</span><br><span class="line">    for(int i = 1; i &lt;= N+1; i++)&#123;</span><br><span class="line">        //找到了比当前栈顶大的数，更新值</span><br><span class="line">        while(stk.size() &amp;&amp; arr[i] &gt; arr[stk.top()])&#123;</span><br><span class="line">            sum[i] += s[stk.top()];</span><br><span class="line">            stk.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        stk.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    stk.pop();</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    //单调递减栈。 找当前数的左边目标数</span><br><span class="line">    for(int i = N; i &gt;= 0; i--)&#123;</span><br><span class="line">        //找到了比当前栈顶大的数，更新值</span><br><span class="line">        while(stk.size() &amp;&amp; arr[i] &gt; arr[stk.top()])&#123;</span><br><span class="line">            sum[i] += s[stk.top()];</span><br><span class="line">            stk.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        stk.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    stk.pop();</span><br><span class="line">    for(int i = 1; i &lt;= N; i++) ans = max(ans,sum[i]);</span><br><span class="line">    printf(&quot;%lld&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/08/30/最小生成树相关算法学习总结/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/08/30/最小生成树相关算法学习总结/">
+          最小生成树相关算法学习总结</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/09/06/POJ-3250-Ba-Hai-Day（单调栈入门）/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/09/06/POJ-3250-Ba-Hai-Day（单调栈入门）/">
+            POJ-3250-Ba-Hai-Day（单调栈入门）</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

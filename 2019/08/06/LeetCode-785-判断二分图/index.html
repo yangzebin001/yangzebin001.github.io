@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  LeetCode-785-判断二分图 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		LeetCode-785-判断二分图
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			8月 06, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">1997
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="https://leetcode-cn.com/problems/is-graph-bipartite/" target="_blank" rel="noopener">785. 判断二分图</a></p>
+<p>给定一个无向图graph，当这个图为二分图时返回true。</p>
+<p>如果我们能将一个图的节点集合分割成两个独立的子集A和B，并使图中的每一条边的两个节点一个来自A集合，一个来自B集合，我们就将这个图称为二分图。</p>
+<p>graph将会以邻接表方式给出，graph[i]表示图中与节点i相连的所有节点。每个节点都是一个在0到graph.length-1之间的整数。这图中没有自环和平行边： graph[i] 中不存在i，并且graph[i]中没有重复的值。</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入: [[1,3], [0,2], [1,3], [0,2]]</span><br><span class="line">输出: true</span><br><span class="line">解释: </span><br><span class="line">无向图如下:</span><br><span class="line">0----1</span><br><span class="line">|    |</span><br><span class="line">|    |</span><br><span class="line">3----2</span><br><span class="line">我们可以将节点分成两组: &#123;0, 2&#125; 和 &#123;1, 3&#125;。</span><br></pre></td></tr></table></figure>
+<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入: [[1,2,3], [0,2], [0,1,3], [0,2]]</span><br><span class="line">输出: false</span><br><span class="line">解释: </span><br><span class="line">无向图如下:</span><br><span class="line">0----1</span><br><span class="line">| \  |</span><br><span class="line">|  \ |</span><br><span class="line">3----2</span><br></pre></td></tr></table></figure>
+<p>我们不能将节点分割成两个独立的子集。</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h4><ul>
+<li><p>graph 的长度范围为 [1, 100]。</p>
+</li>
+<li><p>graph[i] 中的元素的范围为 [0, graph.length - 1]。</p>
+</li>
+<li><p>graph[i] 不会包含 i 或者有重复的值。</p>
+</li>
+<li><p>图是无向的: 如果j 在 graph[i]里边, 那么 i 也会在 graph[j]里边。</p>
+</li>
+</ul>
+<h5 id="一个裸二分图染色题。"><a href="#一个裸二分图染色题。" class="headerlink" title="一个裸二分图染色题。"></a>一个裸二分图染色题。</h5><h3 id="Solution1（DFS）："><a href="#Solution1（DFS）：" class="headerlink" title="Solution1（DFS）："></a>Solution1（DFS）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isBipartite(vector&lt;vector&lt;int&gt;&gt;&amp; graph) &#123;</span><br><span class="line">        int vis[graph.size()] = &#123;false&#125;;</span><br><span class="line">        for(int i = 0; i &lt; graph.size(); i++)&#123;</span><br><span class="line">            for(int j = 0; j &lt; graph[i].size(); j++)&#123;</span><br><span class="line">                if(vis[graph[i][j]] == 0 &amp;&amp; !dfs(graph,vis,graph[i][j],1)) return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    bool dfs(vector&lt;vector&lt;int&gt;&gt;&amp; G,int vis[],int j, int c)&#123;</span><br><span class="line">        vis[j] = c;</span><br><span class="line">        for(int i = 0; i &lt; G[j].size(); i++)&#123;</span><br><span class="line">            if(vis[G[j][i]] == c) return false;</span><br><span class="line">            if(vis[G[j][i]] == 0 &amp;&amp; !dfs(G,vis,G[j][i],-c)) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>二分染色题。<br>重点在dfs函数的编写，到达当前结点，先染色，再判断与之相连的结点的颜色是否被染过，如果没有染过，则染与当前结点不同的颜色，如果染过色且与当前结点颜色相同则表示不符合要求，颜色不同则可以直接忽略。</p>
+<h3 id="Solution2（BFS）"><a href="#Solution2（BFS）" class="headerlink" title="Solution2（BFS）:"></a>Solution2（BFS）:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isBipartite(vector&lt;vector&lt;int&gt;&gt;&amp; graph) &#123;</span><br><span class="line">        int vis[graph.size()] = &#123;0&#125;;</span><br><span class="line">        queue&lt;int&gt; q;</span><br><span class="line">        int curr = -1;</span><br><span class="line">        while(1)&#123;</span><br><span class="line">            if(q.size() == 0)&#123;</span><br><span class="line">                int k;</span><br><span class="line">                for(k = 0; k &lt; graph.size(); k++)&#123;</span><br><span class="line">                    if(vis[k] == 0)&#123;</span><br><span class="line">                        q.push(k);</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if(k == graph.size()) break;</span><br><span class="line">            &#125;</span><br><span class="line">            curr *= -1;</span><br><span class="line">            int len = q.size();</span><br><span class="line">            for(int j = 0; j &lt; len; j++)&#123;</span><br><span class="line">                int f = q.front(); q.pop();</span><br><span class="line">                vis[f] = curr;</span><br><span class="line">                for(int i = 0; i &lt; graph[f].size(); i++)&#123;</span><br><span class="line">                    if(vis[graph[f][i]] == curr) return false;</span><br><span class="line">                    if(vis[graph[f][i]] == 0)&#123;</span><br><span class="line">                        q.push(graph[f][i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h4><p>与DFS思路相同，只不过改写为BFS版。</p>
+<blockquote>
+<p>注意：给定的图有可能为多棵树组成的森林。所以每个树都要考虑到。</p>
+</blockquote>
+  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/08/06/LeetCode-207-课程表/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/08/06/LeetCode-207-课程表/">
+          LeetCode-207-课程表</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/08/09/POJ-2965-Th-Pilot-Brothers-refrigerator/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/08/09/POJ-2965-Th-Pilot-Brothers-refrigerator/">
+            POJ-2965-Th-Pilot-Brothers-refrigerator</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

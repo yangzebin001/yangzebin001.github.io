@@ -115,21 +115,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/02/23/LeetCode-107-二叉树的层次遍历-II/">LeetCode-107. 二叉树的层次遍历 II</a>  
+		<a class="article-title" href="/2019/10/09/POJ-Telephon-Lines(二分+最短路)/">POJ-Telephon-Lines(二分+最短路)</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>2月 23, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
+			<time>10月 09, 2019</time>
 			
 		</div>
 	</div>
@@ -139,16 +130,35 @@
 
     
 	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/" target="_blank" rel="noopener">107. 二叉树的层次遍历 II</a></p>
-<h5 id="给定一个二叉树，返回其节点值自底向上的层次遍历。-（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）"><a href="#给定一个二叉树，返回其节点值自底向上的层次遍历。-（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）" class="headerlink" title="给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）"></a>给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</h5><p>该题为 <a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal" target="_blank" rel="noopener">102. 二叉树的层次遍历</a>的进阶版。</p>
-<p>有关<a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal" target="_blank" rel="noopener">102. 二叉树的层次遍历</a>的题解，请参考<a href="https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/submissions/" target="_blank" rel="noopener">429. N叉树的层序遍历</a>，具体思路是一样的，不再赘述。</p>
-<h3 id="Solution1（迭代版）："><a href="#Solution1（迭代版）：" class="headerlink" title="Solution1（迭代版）："></a>Solution1（迭代版）：</h3>
+		 
+			<p><a href="http://poj.org/problem?id=3662/" target="_blank" rel="noopener">POJ-Telephone Lines</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Farmer John wants to set up a telephone line at his farm. Unfortunately, the phone company is uncooperative, so he needs to pay for some of the cables required to connect his farm to the phone system.</p>
+<p>There are N (1 ≤ N ≤ 1,000) forlorn telephone poles conveniently numbered 1..N that are scattered around Farmer John’s property; no cables connect any them. A total of P (1 ≤ P ≤ 10,000) pairs of poles can be connected by a cable; the rest are too far apart.</p>
+<p>The i-th cable can connect the two distinct poles Ai and Bi, with length Li (1 ≤ Li ≤ 1,000,000) units if used. The input data set never names any {Ai, Bi} pair more than once. Pole 1 is already connected to the phone system, and pole N is at the farm. Poles 1 and N need to be connected by a path of cables; the rest of the poles might be used or might not be used.</p>
+<p>As it turns out, the phone company is willing to provide Farmer John with K (0 ≤ K &lt; N) lengths of cable for free. Beyond that he will have to pay a price equal to the length of the longest remaining cable he requires (each pair of poles is connected with a separate cable), or 0 if he does not need any additional cables.</p>
+<p>Determine the minimum amount that Farmer John must pay.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><ul>
+<li>Line 1: Three space-separated integers: N, P, and K</li>
+<li>Lines 2..P+1: Line i+1 contains the three space-separated integers: Ai, Bi, and Li</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><ul>
+<li>Line 1: A single integer, the minimum amount Farmer John can pay. If it is impossible to connect the farm to the phone company, print -1.</li>
+</ul>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5 7 1</span><br><span class="line">1 2 5</span><br><span class="line">3 1 4</span><br><span class="line">2 4 8</span><br><span class="line">3 2 3</span><br><span class="line">5 2 9</span><br><span class="line">3 4 7</span><br><span class="line">4 5 6</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>一电话公司要链接编号1和N的电话，中间可能需要架设多条电话线，线缆厂商可以免费给电话公司铺设k条电缆，超过k条之后，要按其余的线缆中最长的进行相应收费费用与长度相同，求电话公司需要付的最小费用。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>其实就是求无向图中，从1到N中，使最多可以“宽恕”k条最长边之后最长的边的长度尽可能小的路径。</p>
+<p>单独求这样一个问题好像很复杂，我们稍加分析发现，答案一定在给定的边长、零或者不存在这样的路径这三种情况中，我们先假定一个答案，用这个答案去试探从1-N的路径有没有符合条件的。</p>
+<p>具体的判断就是求一条大于答案的边长数最小的一条路径。可以使用最短路来求，松弛条件根据到当前边的超过答案的数量中选择更小的一条边。我们最后判断到达N后其数量是否超过k，就能判断这是否是一条符合条件的边。</p>
+<p>然后将存放所有可能是答案的数组排序后进行二分。</p>
+<p>这里求“最短路”用了两个最短路模板：</p>
+<h3 id="Solution1（Dijkstra）："><a href="#Solution1（Dijkstra）：" class="headerlink" title="Solution1（Dijkstra）："></a>Solution1（Dijkstra）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-07 18:55:30</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-08 22:59:49</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 10000+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">int n,p,k;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int b,ca;</span><br><span class="line">    node(int _b,int _ca):b(_b),ca(_ca)&#123;&#125;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    bool operator&lt;(const node &amp;q)const&#123;</span><br><span class="line">        return ca &gt; q.ca;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;node&gt; V[MAXN];</span><br><span class="line">int dis[MAXN]; //dis存超过目标值x的电话线条数。</span><br><span class="line">int vis[MAXN];</span><br><span class="line">int cost[MAXN];</span><br><span class="line">int Dijkstra(int x)&#123;</span><br><span class="line">    memset(dis,INF,sizeof(dis));</span><br><span class="line">    memset(vis,0,sizeof(vis));</span><br><span class="line">    dis[1] = 0;</span><br><span class="line">    priority_queue&lt;node&gt; q;</span><br><span class="line">    q.push(node(1,dis[1]));</span><br><span class="line">    node temp;</span><br><span class="line">    while(!q.empty())&#123;</span><br><span class="line">        temp = q.top(); q.pop();</span><br><span class="line">        int u = temp.b;</span><br><span class="line">        if(vis[u])continue;</span><br><span class="line">        vis[u] = 1;</span><br><span class="line">        for(int i = 0; i &lt; V[u].size(); i++)&#123;</span><br><span class="line">            int v = V[u][i].b;</span><br><span class="line">            int c = V[u][i].ca;</span><br><span class="line">            c = c &gt; x ? 1 : 0;</span><br><span class="line">            //更新到当前结点的超过x的条数</span><br><span class="line">            if(!vis[v] &amp;&amp; dis[v] &gt; dis[u] + c)&#123;</span><br><span class="line">                </span><br><span class="line">                dis[v] = dis[u] + c;</span><br><span class="line">                q.push(node(v,dis[v]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //是</span><br><span class="line">    return dis[n]&lt;= k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;p,&amp;k);</span><br><span class="line">    for(int i = 0; i &lt; p; i++)&#123;</span><br><span class="line">        int a,b,c;</span><br><span class="line">        scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">        V[a].push_back(node(b,c));</span><br><span class="line">        V[b].push_back(node(a,c));</span><br><span class="line">        cost[i+1] = c; </span><br><span class="line">    &#125;</span><br><span class="line">    //按长度进行二分，根据超过该长度的个数是否超过k来确定边界。</span><br><span class="line">    sort(cost+1,cost+1+p);</span><br><span class="line">    if(!Dijkstra(cost[p]))&#123;</span><br><span class="line">        printf(&quot;-1\\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    //答案有可能是0，所以从0开始。</span><br><span class="line">    int l = 0, r = p-1;</span><br><span class="line">    while(l &lt; r)&#123;</span><br><span class="line">        int mid = l+r&gt;&gt;1;</span><br><span class="line">        if(Dijkstra(cost[mid])) r = mid;</span><br><span class="line">        else l = mid+1;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d&quot;,cost[l]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2（SPFA）："><a href="#Solution2（SPFA）：" class="headerlink" title="Solution2（SPFA）："></a>Solution2（SPFA）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-07 18:55:30</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-09 19:32:17</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 10000+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">int n,p,k;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int b,ca;</span><br><span class="line">    node(int _b,int _ca):b(_b),ca(_ca)&#123;&#125;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    bool operator&lt;(const node &amp;q)const&#123;</span><br><span class="line">        return ca &gt; q.ca;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;node&gt; V[MAXN];</span><br><span class="line">int dis[MAXN]; //dis存超过目标值x的电话线条数。</span><br><span class="line">int vis[MAXN];</span><br><span class="line">int inq[MAXN];</span><br><span class="line">int cost[MAXN];</span><br><span class="line">int SPFA(int x)&#123;</span><br><span class="line">    memset(dis,INF,sizeof(dis));</span><br><span class="line">    memset(vis,0,sizeof(vis));</span><br><span class="line">    memset(inq,0,sizeof(inq));</span><br><span class="line">    </span><br><span class="line">    dis[1] = 0;</span><br><span class="line">    queue&lt;int&gt; q;</span><br><span class="line">    q.push(1);</span><br><span class="line">    node temp;</span><br><span class="line">    inq[1] = 1;</span><br><span class="line">    while(!q.empty())&#123;</span><br><span class="line">        int u = q.front(); q.pop();</span><br><span class="line">        inq[u] = false;</span><br><span class="line">        for(int i = 0; i &lt; V[u].size(); i++)&#123;</span><br><span class="line">            int v = V[u][i].b;</span><br><span class="line">            int c = V[u][i].ca;</span><br><span class="line">            c = c &gt; x ? 1 : 0;</span><br><span class="line">            //更新到当前结点的超过x的条数</span><br><span class="line">            if(dis[v] &gt; dis[u] + c)&#123;</span><br><span class="line">                </span><br><span class="line">                dis[v] = dis[u] + c;</span><br><span class="line">                if(!inq[v])&#123;</span><br><span class="line">                    q.push(v);</span><br><span class="line">                    inq[v] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //是</span><br><span class="line">    return dis[n]&lt;= k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;p,&amp;k);</span><br><span class="line">    for(int i = 0; i &lt; p; i++)&#123;</span><br><span class="line">        int a,b,c;</span><br><span class="line">        scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);</span><br><span class="line">        V[a].push_back(node(b,c));</span><br><span class="line">        V[b].push_back(node(a,c));</span><br><span class="line">        cost[i+1] = c; </span><br><span class="line">    &#125;</span><br><span class="line">    //按长度进行二分，根据超过该长度的个数是否超过k来确定边界。</span><br><span class="line">    sort(cost+1,cost+1+p);</span><br><span class="line">    if(!SPFA(cost[p]))&#123;</span><br><span class="line">        printf(&quot;-1\\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    //答案有可能是0，所以从0开始。</span><br><span class="line">    int l = 0, r = p-1;</span><br><span class="line">    while(l &lt; r)&#123;</span><br><span class="line">        int mid = l+r&gt;&gt;1;</span><br><span class="line">        if(SPFA(cost[mid])) r = mid;</span><br><span class="line">        else l = mid+1;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d&quot;,cost[l]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 		  	  
 	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/23/LeetCode-107-二叉树的层次遍历-II/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/10/09/POJ-Telephon-Lines(二分+最短路)/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -161,21 +171,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/02/23/LeetCode-199-二叉树的右视图/">LeetCode-199. 二叉树的右视图</a>  
+		<a class="article-title" href="/2019/10/07/POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分）/">POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分）</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>2月 23, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
+			<time>10月 07, 2019</time>
 			
 		</div>
 	</div>
@@ -185,15 +186,40 @@
 
     
 	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener">199. 二叉树的右视图</a></p>
-<p>给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
-<h3 id="Solution1（迭代版）："><a href="#Solution1（迭代版）：" class="headerlink" title="Solution1（迭代版）："></a>Solution1（迭代版）：</h3>
+		 
+			<p><a href="http://poj.org/problem?id=2010" target="_blank" rel="noopener">POJ-2010-Moo University - Financial Aid</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Bessie noted that although humans have many universities they can attend, cows have none. To remedy this problem, she and her fellow cows formed a new university called The University of Wisconsin-Farmside,”Moo U” for short.</p>
+<p>Not wishing to admit dumber-than-average cows, the founders created an incredibly precise admission exam called the Cow Scholastic Aptitude Test (CSAT) that yields scores in the range 1..2,000,000,000.</p>
+<p>Moo U is very expensive to attend; not all calves can afford it.In fact, most calves need some sort of financial aid (0 &lt;= aid &lt;=100,000). The government does not provide scholarships to calves,so all the money must come from the university’s limited fund (whose total money is F, 0 &lt;= F &lt;= 2,000,000,000).</p>
+<p>Worse still, Moo U only has classrooms for an odd number N (1 &lt;= N &lt;= 19,999) of the C (N &lt;= C &lt;= 100,000) calves who have applied.Bessie wants to admit exactly N calves in order to maximize educational opportunity. She still wants the median CSAT score of the admitted calves to be as high as possible.</p>
+<p>Recall that the median of a set of integers whose size is odd is the middle value when they are sorted. For example, the median of the set {3, 8, 9, 7, 5} is 7, as there are exactly two values above 7 and exactly two values below it.</p>
+<p>Given the score and required financial aid for each calf that applies, the total number of calves to accept, and the total amount of money Bessie has for financial aid, determine the maximum median score Bessie can obtain by carefully admitting an optimal set of calves.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><ul>
+<li><p>Line 1: Three space-separated integers N, C, and F</p>
+</li>
+<li><p>Lines 2..C+1: Two space-separated integers per line. The first is the calf’s CSAT score; the second integer is the required amount of financial aid the calf needs</p>
+</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><ul>
+<li>Line 1: A single integer, the maximum median score that Bessie can achieve. If there is insufficient money to admit N calves,output -1.</li>
+</ul>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 5 70</span><br><span class="line">30 25</span><br><span class="line">50 21</span><br><span class="line">20 20</span><br><span class="line">5 18</span><br><span class="line">35 30</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">35</span><br></pre></td></tr></table></figure>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><p>Sample output:If Bessie accepts the calves with CSAT scores of 5, 35, and 50, the median is 35. The total financial aid required is 18 + 30 + 21 = 69 &lt;= 70. </p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>奶牛大学招收N名学生（奇数），有C名候选学生，该大学可以承受最多F的贷款，求能招收的学生中，中位数尽可能的大，如果没有满足条件的学生，输出-1。</p>
+<h3 id="思路1（优先队列）："><a href="#思路1（优先队列）：" class="headerlink" title="思路1（优先队列）："></a>思路1（优先队列）：</h3><p>以学生成绩排序，然后以每个学生为中位数，寻找比他成绩低的学生中尽可能贷款少的N/2个学生，和比他成绩高的学生中尽可能贷款少的N/2个学生。结果就是满足:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aid：cur_i+lower_i+upper_i &lt;= F</span><br></pre></td></tr></table></figure>
+<p>中最大的那个。</p>
+<p>难度就是如何保持尽可能少的贷款。</p>
+<p>这里选择维持一个长度始终为N/2长度的优先队列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-06 17:36:17</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-07 16:04:57</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;utility&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1e5+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">typedef pair&lt;int,int&gt; PII;</span><br><span class="line"></span><br><span class="line">PII arr[MAXN];</span><br><span class="line">int M,N,S;</span><br><span class="line">int lowa[MAXN],upa[MAXN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;M,&amp;N,&amp;S);</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;arr[i].first,&amp;arr[i].second);</span><br><span class="line">    &#125;</span><br><span class="line">    int half = M/2;</span><br><span class="line">    sort(arr,arr+N);</span><br><span class="line">    memset(lowa,INF,sizeof(lowa));</span><br><span class="line">    memset(upa,INF,sizeof(upa));</span><br><span class="line">    priority_queue&lt;int&gt; q;</span><br><span class="line">    //确定以每个人为中位数， 比自己分数低的人的最小aid总和</span><br><span class="line">    int total = 0;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        if(q.size() == half) lowa[i] = total;</span><br><span class="line">        total += arr[i].second;</span><br><span class="line">        q.push(arr[i].second);</span><br><span class="line">        if(q.size() &gt; half)&#123;</span><br><span class="line">            total -= q.top();</span><br><span class="line">            q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    while(q.size()) q.pop();</span><br><span class="line">    total = 0;</span><br><span class="line">    //确定以每个人为中位数， 比自己分数高的人的最小aid总和</span><br><span class="line">    for(int i = N-1; i &gt;= 0; i--)&#123;</span><br><span class="line">        if(q.size() == half) upa[i] = total;</span><br><span class="line">        q.push(arr[i].second);</span><br><span class="line">        total += arr[i].second;</span><br><span class="line">        if(q.size() &gt; half)&#123;</span><br><span class="line">            total -= q.top();</span><br><span class="line">            q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = -1;</span><br><span class="line">    //从后往前寻找第一个满足条件的</span><br><span class="line">    for(int i = N-1; i &gt;= 0; i--)&#123;</span><br><span class="line">        if(arr[i].second + lowa[i] + upa[i] &lt;= S) &#123;ans = arr[i].first;break;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路2（二分）："><a href="#思路2（二分）：" class="headerlink" title="思路2（二分）："></a>思路2（二分）：</h3><p>先对成绩排序，按成绩进行二分，对是否满足是中位数和sum &lt;= F两个性质进行判断。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-06 17:36:17</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-07 17:18:16</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;utility&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1e5+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">typedef pair&lt;int,int&gt; PII;</span><br><span class="line"></span><br><span class="line">struct cow&#123;</span><br><span class="line">    int csat,aid;</span><br><span class="line">    bool operator &lt;(const cow &amp;q)const&#123;</span><br><span class="line">        if(csat == q.csat) return aid &lt; q.aid;</span><br><span class="line">        return csat &lt; q.csat;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;cows[MAXN];</span><br><span class="line">struct n&#123;</span><br><span class="line">    int index,aid;</span><br><span class="line">    bool operator &lt;(const n &amp;q)const&#123;</span><br><span class="line">        return aid &lt; q.aid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;node[MAXN];</span><br><span class="line">int M,N,S,half,ans = -1;</span><br><span class="line">int aid[MAXN];</span><br><span class="line"></span><br><span class="line">int check(int x)&#123;</span><br><span class="line">    int l = 0, r = 0, sum = cows[x].aid;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        //在原位置的左边，且符合规定</span><br><span class="line">        if(l &lt; half &amp;&amp; node[i].index &lt; x &amp;&amp; sum + node[i].aid &lt;= S)&#123;</span><br><span class="line">            l++;</span><br><span class="line">            sum += node[i].aid;</span><br><span class="line">        //在原位置的右边，且符合规定</span><br><span class="line">        &#125;else if(r &lt; half &amp;&amp; node[i].index &gt; x &amp;&amp; sum + node[i].aid &lt;= S)&#123;</span><br><span class="line">            r++;</span><br><span class="line">            sum += node[i].aid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //都到不了half，说明无法满足小于等于S。</span><br><span class="line">    if(l &lt; half &amp;&amp; r &lt; half) return -1;</span><br><span class="line">    if(l &lt; half) return 1;</span><br><span class="line">    else if(r &lt; half) return 0;</span><br><span class="line">    //l = r = half 找到了一个符合条件的，更新答案，继续寻找后面。</span><br><span class="line">    ans = cows[x].csat;</span><br><span class="line">    return 1;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;M,&amp;N,&amp;S);</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;cows[i].csat,&amp;cows[i].aid);</span><br><span class="line">    &#125;</span><br><span class="line">    half = M/2;</span><br><span class="line">    sort(cows,cows+N);//先按分数排序</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        node[i].index = i; //记录位置关系</span><br><span class="line">        node[i].aid = cows[i].aid;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(node,node+N); //排序是为了寻找尽可能小的aid</span><br><span class="line">    int l = 0, r = N-1;</span><br><span class="line">    while(l &lt; r)&#123;</span><br><span class="line">        int mid = l+r+1&gt;&gt;1;</span><br><span class="line">        //试探中位数。</span><br><span class="line">        int f = check(mid);</span><br><span class="line">        if(f == 1) l = mid;</span><br><span class="line">        else if(f == 0) r = mid-1;</span><br><span class="line">        else break;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 		  	  
 	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/23/LeetCode-199-二叉树的右视图/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/10/07/POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分）/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -206,21 +232,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/02/21/LeetCode-191-位1的个数-231-2的幂/">LeetCode-191. 位1的个数 &amp;&amp;  231. 2的幂</a>  
+		<a class="article-title" href="/2019/10/05/POJ-3579-Median(二分套二分)/">POJ-3579-Median(二分套二分)</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>2月 21, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/位运算/">位运算</a>           
-				
+			<time>10月 05, 2019</time>
 			
 		</div>
 	</div>
@@ -230,14 +247,27 @@
 
     
 	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/number-of-1-bits/" target="_blank" rel="noopener">191. 位1的个数</a></p>
-<h3 id="编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为-‘1’-的个数（也被称为汉明重量）。"><a href="#编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为-‘1’-的个数（也被称为汉明重量）。" class="headerlink" title="编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。"></a>编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。</h3><h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3>
+		 
+			<p><a href="http://poj.org/problem?id=3579" target="_blank" rel="noopener">POJ-3579-Median</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Given N numbers, X1, X2, … , XN, let us calculate the difference of every pair of numbers: ∣Xi - Xj∣ (1 ≤ i ＜ j ≤ N). We can get C(N,2) differences through this work, and now your task is to find the median of the differences as quickly as you can!</p>
+<p>Note in this problem, the median is defined as the (m/2)-th  smallest number if m,the amount of the differences, is even. For example, you have to find the third smallest one in the case of m = 6.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>The input consists of several test cases.<br>In each test case, N will be given in the first line. Then N numbers are given, representing X1, X2, … , XN, ( Xi ≤ 1,000,000,000  3 ≤ N ≤ 1,00,000 )</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>For each test case, output the median in a separate line.</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">1 3 2 4</span><br><span class="line">3</span><br><span class="line">1 10 2</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给定N个数，求每两个数的差的绝对值一共C(N,2)个，排序后的中位数。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>首先对于差的绝对值，我们只需要预先对数组进行排序，作后面对前面的差就不会出现负数。</p>
+<p>我们考虑二分来解决该问题。答案是排序后的中位数，具有单调性，所以可以使用二分。我们先找到一个目标值，用这个目标值去判断是否为要求的中位数。</p>
+<p>如何判断该数是否满足条件呢？<br>如果枚举全部这C(N,2)个数需要O(N2)的复杂度，超出了题目的要求，所以要寻找新的方案。我们已经将原数组排好序了，以每一项开始到数组最后，我们二分的寻找这里的所有的关系（i与i+1,i+2,…,N-1）中，满足：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr[j] - arr[i] &lt;= x</span><br></pre></td></tr></table></figure>
+<p>的一共有几项。</p>
+<p>统计出项数与中位数作比较，就可以判断目标值是否满足条件。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-05 13:59:05</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-05 14:48:00</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int MAXN = 1e5+10;</span><br><span class="line"></span><br><span class="line">int N;</span><br><span class="line">int arr[MAXN];</span><br><span class="line"></span><br><span class="line">bool check(int x)&#123;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    int M = N*(N-1)/2;</span><br><span class="line">    M = (M+1)/2;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        int l = i, r = N-1;</span><br><span class="line">        while(l &lt; r)&#123;</span><br><span class="line">            int mid = l + r + 1 &gt;&gt; 1;</span><br><span class="line">            if(arr[mid] - arr[i] &lt;= x) l = mid;</span><br><span class="line">            else r = mid-1;</span><br><span class="line">        &#125;</span><br><span class="line">        cnt += l-i;</span><br><span class="line">        // arr[mid] - arr[i] &lt;= x -----&gt; arr[mid] &lt;= arr[i]+x</span><br><span class="line">        // 所以找arr[i]+x 的 upper_bound。</span><br><span class="line">        // (upper_bound(arr,arr+N,arr[i]+x)-arr)-1 长度</span><br><span class="line">        // (upper_bound(arr,arr+N,arr[i]+x)-arr)-i-1 //减去偏移量</span><br><span class="line">        // cnt += (upper_bound(arr,arr+N,arr[i]+x)-arr)-i-1;</span><br><span class="line">    &#125;</span><br><span class="line">    return cnt &gt;= M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); </span><br><span class="line">    while(scanf(&quot;%d&quot;,&amp;N)!=EOF &amp;&amp; N)&#123;</span><br><span class="line">        for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        sort(arr,arr+N);</span><br><span class="line">        int l = 0, r = arr[N-1];</span><br><span class="line">        //对结果进行二分</span><br><span class="line">        while(l &lt; r)&#123;</span><br><span class="line">            int mid = l+r&gt;&gt;1;</span><br><span class="line">            // 检查该结果是否大于等于总数的一半，</span><br><span class="line">            if(check(mid)) r = mid;</span><br><span class="line">            else l = mid+1;</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;%d\\n&quot;,l);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 		  	  
 	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/21/LeetCode-191-位1的个数-231-2的幂/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/10/05/POJ-3579-Median(二分套二分)/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -250,19 +280,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/02/21/LeetCode-129-求根到叶子节点数字之和/">LeetCode-129. 求根到叶子节点数字之和</a>  
+		<a class="article-title" href="/2019/09/29/POJ-2976-Droppin-tests/">POJ-2976-Droppin-tests</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>2月 21, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				
+			<time>9月 29, 2019</time>
 			
 		</div>
 	</div>
@@ -272,18 +295,31 @@
 
     
 	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/sum-root-to-leaf-numbers" target="_blank" rel="noopener">129. 求根到叶子节点数字之和</a></p>
-<p>给定一个二叉树，它的每个结点都存放一个 0-9 的数字，每条从根到叶子节点的路径都代表一个数字。</p>
-<p>例如，从根到叶子节点路径 1-&gt;2-&gt;3 代表数字 123。</p>
-<p>计算从根到叶子节点生成的所有数字之和。</p>
-<blockquote>
-<p>说明: 叶子节点是指没有子节点的节点。<br>
+		 
+			<p><a href="http://poj.org/problem?id=2976" target="_blank" rel="noopener">POJ-2976-Dropping tests</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>In a certain course, you take n tests. If you get ai out of bi questions correct on test i, your cumulative average is defined to be</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<p>Given your test scores and a positive integer k, determine how high you can make your cumulative average if you are allowed to drop any k of your test scores.</p>
+<p>Suppose you take 3 tests with scores of 5/5, 0/1, and 2/6. Without dropping any tests, your cumulative average is</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<p>However, if you drop the third test, your cumulative average becomes</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>The input test file will contain multiple test cases, each containing exactly three lines. The first line contains two integers, 1 ≤ n ≤ 1000 and 0 ≤ k &lt; n. The second line contains n integers indicating ai for all i. The third line contains n positive integers indicating bi for all i. It is guaranteed that 0 ≤ ai ≤ bi ≤ 1, 000, 000, 000. The end-of-file is marked by a test case with n = k = 0 and should not be processed.</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>For each test case, write a single line with the highest cumulative average possible after dropping k of the given test scores. The average should be rounded to the nearest integer.</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3 1</span><br><span class="line">5 0 2</span><br><span class="line">5 1 6</span><br><span class="line">4 2</span><br><span class="line">1 2 7 9</span><br><span class="line">5 6 7 9</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">83</span><br><span class="line">100</span><br></pre></td></tr></table></figure>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><p>To avoid ambiguities due to rounding errors, the judge tests have been constructed so that all answers are at least 0.001 away from a decision boundary (i.e., you can assume that the average is never 83.4997).</p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有N个考试，每个考试有ai和bi两个值，最后成绩由上面的公式求得。幸运的是，可以放弃K个科目，求最大化最后的成绩。(输出乘100后四舍五入的结果)</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>由题意可知当，当n-k个科目组成最优解时，再增加别的科目，解一定不如原来的解，放弃掉k个科目是最好的方案。</p>
+<p>于是，题目就变成了最小化平均值的问题，另外在注意下取整时的四舍五入就好了。</p>
+<h5 id="最小化平均值"><a href="#最小化平均值" class="headerlink" title="最小化平均值:"></a>最小化平均值:</h5><p>有n个物品的重量和价值分别为wi和vi，从中选择k个物品使得单位重量的价值最大。</p>
+<p>对于这个问题，我们可以用二分搜索解决，先来看看判断条件：<br>设最大值为x，则需要满足 ∑vi / ∑wi &gt;=x，把不等式进行变形，就得到了 ∑ ( vi - x <em> wi )&gt;=0，于是判断就成了，对 vi-x</em>wi 的值进行排序之后贪心进行选择，判断前n-k个的和是否不小于0。判断的复杂度是O（nlogn）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-28 16:40:15</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-29 18:14:27</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1000+10;</span><br><span class="line">int n,k;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int a,b;</span><br><span class="line">&#125;num[MAXN];</span><br><span class="line"></span><br><span class="line">double f[MAXN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bool check(double x)&#123;</span><br><span class="line">    for(int i = 0; i &lt; n; i++) f[i] = num[i].a - x*num[i].b;</span><br><span class="line">    sort(f,f+n);</span><br><span class="line">    double sum = 0;</span><br><span class="line">    for(int i = 0; i &lt;n-k; i++) sum += f[n-1-i];</span><br><span class="line">    return sum &gt;= 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;n,&amp;k)!= EOF &amp;&amp; n+k)&#123;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;num[i].a);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;num[i].b);</span><br><span class="line">        &#125;</span><br><span class="line">        double l = 0, r = 1e9;</span><br><span class="line">        for(int i = 0; i &lt; 100; i++)&#123;</span><br><span class="line">            double mid = (l+r)/2;</span><br><span class="line">            if(check(mid)) l = mid;</span><br><span class="line">            else r = mid;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">		printf(&quot;%d\\n&quot;, int(l*100+0.5));</span><br><span class="line"></span><br><span class="line">        // int ans = 100 * (l+0.005);</span><br><span class="line">		// printf(&quot;%d\\n&quot;, ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 		  	  
-	</p></blockquote></div>
+	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/21/LeetCode-129-求根到叶子节点数字之和/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/09/29/POJ-2976-Droppin-tests/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -296,21 +332,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/02/19/LeetCode-114-二叉树展开为链表/">LeetCode-114. 二叉树展开为链表</a>  
+		<a class="article-title" href="/2019/09/28/POJ-3045-Co-Acrobats/">POJ-3045-Co-Acrobats</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>2月 19, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/递归/">递归</a>           
-				
+			<time>9月 28, 2019</time>
 			
 		</div>
 	</div>
@@ -320,15 +347,40 @@
 
     
 	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/" target="_blank" rel="noopener">114. 二叉树展开为链表</a></p>
-<p>给定一个二叉树，<strong>原地</strong>将它展开为链表。</p>
-<h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3>
+		 
+			<p><a href="http://poj.org/problem?id=3045" target="_blank" rel="noopener">Cow Acrobats</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Farmer John’s N (1 &lt;= N &lt;= 50,000) cows (numbered 1..N) are planning to run away and join the circus. Their hoofed feet prevent them from tightrope walking and swinging from the trapeze (and their last attempt at firing a cow out of a cannon met with a dismal failure). Thus, they have decided to practice performing acrobatic stunts.</p>
+<p>The cows aren’t terribly creative and have only come up with one acrobatic stunt: standing on top of each other to form a vertical stack of some height. The cows are trying to figure out the order in which they should arrange themselves ithin this stack.</p>
+<p>Each of the N cows has an associated weight (1 &lt;= W_i &lt;= 10,000) and strength (1 &lt;= S_i &lt;= 1,000,000,000). The risk of a cow collapsing is equal to the combined weight of all cows on top of her (not including her own weight, of course) minus her strength (so that a stronger cow has a lower risk). Your task is to determine an ordering of the cows that minimizes the greatest risk of collapse for any of the cows.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><ul>
+<li><p>Line 1: A single line with the integer N.</p>
+</li>
+<li><p>Lines 2..N+1: Line i+1 describes cow i with two space-separated integers, W_i and S_i.</p>
+</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><ul>
+<li>Line 1: A single integer, giving the largest risk of all the cows in any optimal ordering that minimizes the risk.</li>
+</ul>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">10 3</span><br><span class="line">2 5</span><br><span class="line">3 3</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><p>OUTPUT DETAILS:</p>
+<p>Put the cow with weight 10 on the bottom. She will carry the other two cows, so the risk of her collapsing is 2+3-3=2. The other cows have lower risk of collapsing.</p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有N头牛，每个牛有一定的重量w和力量s，将这N头牛叠罗汉，每头牛有一个风险值，为它背上所有牛的重量减去他的力量。求最大风险值，并要求最大风险值尽可能小。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>该题就是要找到一个最优排列，让最大风险值尽可能小，显然的，重的牛应该尽可能的安排在下方，同样，力气大的牛也应该尽可能安排在下方。</p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论:"></a>结论:</h4><h5 id="将力量与重量之和从小到大排列。"><a href="#将力量与重量之和从小到大排列。" class="headerlink" title="将力量与重量之和从小到大排列。"></a>将力量与重量之和从小到大排列。</h5><h4 id="证明一："><a href="#证明一：" class="headerlink" title="证明一："></a>证明一：</h4><p>对于每头牛而言，将它与它上面的牛作为一个整体，总的重量为sum_w，则该牛的风险值为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(sum_w-w-s)=(sum_w-(w+s))</span><br></pre></td></tr></table></figure>
+<p>我们要想取到最优解，就要sum_w-(w+s)的值最小，w+s就应该最大，所以w+s越大越应该在下面。</p>
+<h4 id="证明二："><a href="#证明二：" class="headerlink" title="证明二："></a>证明二：</h4><p>假设当前的排列是最优的。任意位置上有第一头牛和第二头牛，第一头牛在第二头牛的上面，第一头牛上面的重量总和为sum，第一头牛和第二头牛的重量和力量分别为w1、s1、w2、s2，可以知道两头牛的危险值分别为 a = sum-s1, b = sum+w1-s2。<br>现在调换两头牛的位置，则a1 = sum+w1-s1, b1 = sum-s2。<br>因为之前是最优解，可得：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum+w2-s1 &gt;= sum+w1-s2</span><br><span class="line">w2-s1 &gt;= w1-s2</span><br></pre></td></tr></table></figure>
+<p>移项可得：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w2+s2 &gt;= w1+s1</span><br></pre></td></tr></table></figure>
+<p>所以重量与力量和越大越在下方。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-27 23:11:05</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-28 11:43:09</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int MAXN = 5e4+10;</span><br><span class="line">int N;</span><br><span class="line"></span><br><span class="line">struct node&#123;</span><br><span class="line">    int w,s;</span><br><span class="line">&#125;a[MAXN];</span><br><span class="line"></span><br><span class="line">bool cmp(node a, node b)&#123;</span><br><span class="line">    return a.s+a.w &gt; b.s+b.w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;N);</span><br><span class="line">    long long sum = 0;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;a[i].w,&amp;a[i].s);</span><br><span class="line">        sum += a[i].w;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(a,a+N,cmp);</span><br><span class="line">    long long ans = -0x3f3f3f;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        sum -= a[i].w;</span><br><span class="line">        ans = max(ans,sum-a[i].s);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    printf(&quot;%lld\\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 		  	  
 	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/19/LeetCode-114-二叉树展开为链表/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/09/28/POJ-3045-Co-Acrobats/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -341,19 +393,12 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/02/19/LeetCode-110-平衡二叉树/">LeetCode-110. 平衡二叉树</a>  
+		<a class="article-title" href="/2019/09/17/POJ-3276-Fac-Th-Righ-Way/">POJ-3276-Fac-Th-Righ-Way</a>  
 	       
 		 
 
 		<div class="article-meta">
-			<time>2月 19, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				
+			<time>9月 17, 2019</time>
 			
 		</div>
 	</div>
@@ -363,205 +408,253 @@
 
     
 	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/balanced-binary-tree" target="_blank" rel="noopener">110. 平衡二叉树</a></p>
-<p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
-<p>本题中，一棵高度平衡二叉树定义为：</p>
-<blockquote>
-<p>一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。</p>
-</blockquote>
-<h3 id="Solution（递归版）："><a href="#Solution（递归版）：" class="headerlink" title="Solution（递归版）："></a>Solution（递归版）：</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/19/LeetCode-110-平衡二叉树/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/02/18/LeetCode-144-二叉树的前序遍历/">LeetCode-144. 二叉树的前序遍历</a>  
-	       
 		 
-
-		<div class="article-meta">
-			<time>2月 18, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/submissions/" target="_blank" rel="noopener">144. 二叉树的前序遍历</a></p>
-<p>给定一个二叉树，返回它的<strong>前序</strong>遍历。</p>
-<h3 id="Solution1（递归版）："><a href="#Solution1（递归版）：" class="headerlink" title="Solution1（递归版）："></a>Solution1（递归版）：</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/18/LeetCode-144-二叉树的前序遍历/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/02/18/LeetCode-94-二叉树的中序遍历/">LeetCode-94. 二叉树的中序遍历</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>2月 18, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">94. 二叉树的中序遍历</a></p>
-<p>给定一个二叉树，返回它的<strong>中序</strong>遍历。</p>
-<h3 id="Solution1（递归版）："><a href="#Solution1（递归版）：" class="headerlink" title="Solution1（递归版）："></a>Solution1（递归版）：</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/18/LeetCode-94-二叉树的中序遍历/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/02/14/LeetCode-111-二叉树的最小深度/">LeetCode-111. 二叉树的最小深度</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>2月 14, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/" target="_blank" rel="noopener">111. 二叉树的最小深度</a></p>
-<p>给定一个二叉树，找出其最小深度。</p>
-<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
-<blockquote>
-<p>说明: 叶子节点是指没有子节点的节点。</p>
-</blockquote>
-<h3 id="Solution1（递归版）："><a href="#Solution1（递归版）：" class="headerlink" title="Solution1（递归版）："></a>Solution1（递归版）：</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/14/LeetCode-111-二叉树的最小深度/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/02/14/LeetCode-74-搜索二维矩阵/">LeetCode-74. 搜索二维矩阵</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>2月 14, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二维矩阵/">二维矩阵</a>           
-				            
-						<a class="article-tag" href="/tags/数组/">数组</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/search-a-2d-matrix/" target="_blank" rel="noopener">74. 搜索二维矩阵</a></p>
-<p>编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性：</p>
+			<p><a href="http://poj.org/problem?id=3276" target="_blank" rel="noopener">POJ-3276-Face The Right Way</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Farmer John has arranged his N (1 ≤ N ≤ 5,000) cows in a row and many of them are facing forward, like good cows. Some of them are facing backward, though, and he needs them all to face forward to make his life perfect.</p>
+<p>Fortunately, FJ recently bought an automatic cow turning machine. Since he purchased the discount model, it must be irrevocably preset to turn K (1 ≤ K ≤ N) cows at once, and it can only turn cows that are all standing next to each other in line. Each time the machine is used, it reverses the facing direction of a contiguous group of K cows in the line (one cannot use it on fewer than K cows, e.g., at the either end of the line of cows). Each cow remains in the same <em>location</em> as before, but ends up facing the <em>opposite direction</em>. A cow that starts out facing forward will be turned backward by the machine and vice-versa.</p>
+<p>Because FJ must pick a single, never-changing value of K, please help him determine the minimum value of K that minimizes the number of operations required by the machine to make all the cows face forward. Also determine M, the minimum number of machine operations required to get all the cows facing forward using that value of K.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>Line 1: A single integer: N<br>Lines 2..N+1: Line i+1 contains a single character, F or B, indicating whether cow i is facing forward or backward.</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>Line 1: Two space-separated integers: K and M</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">B</span><br><span class="line">B</span><br><span class="line">F</span><br><span class="line">B</span><br><span class="line">F</span><br><span class="line">B</span><br><span class="line">B</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 3</span><br></pre></td></tr></table></figure>
+<h3 id="暗示："><a href="#暗示：" class="headerlink" title="暗示："></a>暗示：</h3><p>For K = 3, the machine must be operated three times: turn cows (1,2,3), (3,4,5), and finally (5,6,7)</p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有N头牛，牛要么朝前要么朝后，一次操作只可以翻转区间内的所有牛，问最小的翻转次数和相应最小的翻转区间。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>首先，这是一个开关问题，一般性的开关问题具有两个性质：</p>
 <ul>
-<li>每行中的整数从左到右按升序排列。</li>
-<li>每行的第一个整数大于前一行的最后一个整数。
+<li><p>切换状态的顺序对结果不影响。</p>
+</li>
+<li><p>一个开关按偶数次等于不按。</p>
+</li>
+</ul>
+<p>解决这个问题光有这两性质还不够，我们先求如果知道了区间长度K，如何求最小翻转次数M。</p>
+<p>我们先选择考虑最左端的牛，如果该牛朝向前，则不需要翻转，所以范围可以缩减1，如果该牛朝向后，则必须翻转该区间了。我们贪心的翻转遇到的第一个朝向后的牛，就可以求出来最少的翻转次数了。</p>
+<p>这样我们枚举K,并且每个K都需要检查N-K+1个区间，每个区间的检查又需要O(N)的时间，所以总的时间为O(N^3)。达不到题目要求的时限。</p>
+<h3 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h3><p>我们的目标是将所有的朝向后面的牛翻转，所以牛朝向决定了该区间是否发生翻转。我们将关注点移动到每个具体的牛与之前已经翻转的次数的关系上。</p>
+<p>对于每个牛，与所在区间的已翻转次数有下列四种情况：</p>
+<ul>
+<li><p>当前牛朝向前，已经翻转了偶数次。</p>
+</li>
+<li><p>当前牛朝向后，已经翻转了奇数次。</p>
+</li>
+<li><p>当前牛朝向前，已经翻转了奇数次。</p>
+</li>
+<li><p>房钱牛朝向后，已经翻转了偶数次。</p>
+</li>
+</ul>
+<p>我们结合前面开关问题的第二条性质发现：前两种情况不需要进行任何操作。后两种情况则需要进行一次翻转。所以结论就是：</p>
+<p>如果朝向前为0，朝向后为1，则</p>
+<h5 id="当前牛的朝向-之前已经翻转的次数-奇数"><a href="#当前牛的朝向-之前已经翻转的次数-奇数" class="headerlink" title="当前牛的朝向 + 之前已经翻转的次数 = 奇数"></a>当前牛的朝向 + 之前已经翻转的次数 = 奇数</h5><p>的时候则说明该翻转了。</p>
+<p>这样，可以在常数时间内知道每个区间的翻转次数。优化到了O(N^2)，能在时限内解决了。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @Date: 2019-09-17 17:05:23</span></span><br><span class="line"><span class="comment"> * @LastEditors: BeckoninGshy</span></span><br><span class="line"><span class="comment"> * @LastEditTime: 2019-09-17 18:13:33</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> N,K,M;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> dir[MAXN];</span><br><span class="line"><span class="keyword">int</span> f[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 表示区间[i, i+k-1] 是否翻转</span></span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;<span class="comment">//区间内翻转的次数</span></span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i + k<span class="number">-1</span> &lt; N; i++)&#123;</span><br><span class="line">        <span class="comment">//当牛的朝向与之前已翻转的次数。</span></span><br><span class="line">        <span class="keyword">if</span>((dir[i] + sum) % <span class="number">2</span> != <span class="number">0</span>)&#123;</span><br><span class="line">            res++;</span><br><span class="line">            f[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//更新翻转次数</span></span><br><span class="line">        sum += f[i];</span><br><span class="line">        <span class="comment">//固定区间</span></span><br><span class="line">        <span class="keyword">if</span>(i - k + <span class="number">1</span> &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            sum -= f[i-k+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//由于前n-k+1个 已经翻转到正面了，只有当后面的牛都不用翻转才合法。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = N-k+<span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((dir[i] + sum) % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">//固定区间</span></span><br><span class="line">        <span class="keyword">if</span>(i - k + <span class="number">1</span> &gt;= <span class="number">0</span>) sum -= f[i-k+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    freopen(<span class="string">"in.txt"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;N);</span><br><span class="line">    K = <span class="number">1</span>, M = N;</span><br><span class="line">    <span class="keyword">char</span> c[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,c);</span><br><span class="line">        <span class="keyword">if</span>(c[<span class="number">0</span>] == <span class="string">'B'</span>) dir[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="comment">//枚举K</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= N; k++)&#123;</span><br><span class="line">        <span class="keyword">int</span> m = cal(k);</span><br><span class="line">        <span class="keyword">if</span>(m &gt;= <span class="number">0</span> &amp;&amp; m &lt; M)&#123;</span><br><span class="line">            M = m;</span><br><span class="line">            K = k;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d"</span>,K,M);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 		  	  
-	</li></ul></div>
+	</div>
 
 	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/14/LeetCode-74-搜索二维矩阵/">阅读更多</a> 	
+		<a class="article-readmore" href="/2019/09/17/POJ-3276-Fac-Th-Righ-Way/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/09/07/LeetCode-42-接雨水/">LeetCode-42-接雨水</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>9月 07, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">42. 接雨水</a></p>
+<p>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<p><img src="/images/placeholder.png" alt="接雨水" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line"></span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure>
+<h3 id="Solution1（直观解法）"><a href="#Solution1（直观解法）" class="headerlink" title="Solution1（直观解法）:"></a>Solution1（直观解法）:</h3><p>我们可以稍稍使用减法，接水的区域正好是最好的柱子乘以整个宽度，再减去从左到制高点和从右到制高点每个单调上升的柱子到两边的距离乘以前柱子的高度差。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        //小于等于两个是蓄不住水的。</span><br><span class="line">        if(n &lt;= 2) return 0;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int Max = -1;</span><br><span class="line">        int k = -1;</span><br><span class="line">        //找到至高点。</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            //先减去柱子本身高度</span><br><span class="line">            ans -= height[i];</span><br><span class="line">            if(Max &lt; height[i]) Max = height[i], k = i;</span><br><span class="line">        &#125;</span><br><span class="line">        //加上整个图的面积</span><br><span class="line">        ans += n*Max;</span><br><span class="line">        </span><br><span class="line">        //从前到最高点，每次减去从开始到每个更高柱子高度的面积。</span><br><span class="line">        int cur = height[0];</span><br><span class="line">        int i = 1;</span><br><span class="line">        while(i &lt;= k)&#123;</span><br><span class="line">            //i为从开始到当前柱子距离。height[i]-cur为高度差。</span><br><span class="line">            if(height[i] &gt; cur) ans -= i * (height[i]-cur),cur = height[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = height[n-1];</span><br><span class="line">        i = height.size()-2;</span><br><span class="line">        while(i&gt;=k)&#123;</span><br><span class="line">            //i最后到当前柱子的距离。height[i]-cur为高度差。</span><br><span class="line">            if(height[i] &gt; cur) ans -= (n-i-1) * (height[i]-cur),cur = height[i];</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2（单调栈）："><a href="#Solution2（单调栈）：" class="headerlink" title="Solution2（单调栈）："></a>Solution2（单调栈）：</h3><p>使用单调栈的原因是我们发现如果把每个柱子当作最低点，则接雨水的区域是左右第一个比当前柱子高的柱子所形成的区域乘以两者之间较小的柱子与当前柱子的高度差。所以我们进行单调栈寻找左右最近的比当前元素高的位置，来计算结果。</p>
+<p>从直观来看，这样很像一层层的往里接水。（当然计算的时候不一定只是一层）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        stack&lt;int&gt; s;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            //找每个元素右边最近的大于他的值。//单调递减栈</span><br><span class="line">            while(s.size() &amp;&amp; height[i] &gt; height[s.top()])&#123;</span><br><span class="line">                int top = s.top();</span><br><span class="line">                s.pop();</span><br><span class="line">                if(s.empty())break;</span><br><span class="line">                //由于维持的是单调递减栈，所以当前栈顶是目前已知的最小一个元素，将栈顶取出，而新的栈顶元素与新发现的比它大的元素，一定能就组成边界，使得以目前最小元素为底，至左右边界中小的那一个，可以接到雨水。形象点就是一层一层的接。</span><br><span class="line">                int dis = i-s.top()-1;</span><br><span class="line">                ans += dis * (min(height[i],height[s.top()])-height[top]);</span><br><span class="line">            &#125;</span><br><span class="line">            s.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution3（双指针）："><a href="#Solution3（双指针）：" class="headerlink" title="Solution3（双指针）："></a>Solution3（双指针）：</h3><p>我们写第一种解法时发现，并没有必要去进行那么多减法，每次直接观察当前柱子高度与之前记录的最高柱子的高度关系，如果没有之前最高柱子高就说明可以接住雨水（因为我们每次寻找的是更高的柱子，直到全图最高柱子出现为止），这样可以直接计算该柱子之上可以接住的雨水。由于左右都是到了最高柱子就会停止，所以使用双指针来优化，每次选较小的柱子来计算，直到制高点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        int l = 0, r = n-1;</span><br><span class="line">        int lm = -1,rm = -1;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        while(l &lt; r)&#123;</span><br><span class="line">            //从小的一方开始</span><br><span class="line">            if(height[l] &lt; height[r])&#123;</span><br><span class="line">                if(height[l] &gt; lm)&#123;</span><br><span class="line">                    lm = height[l];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    ans += lm-height[l];</span><br><span class="line">                &#125;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                if(height[r] &gt; rm)&#123;</span><br><span class="line">                    rm = height[r];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    ans += rm-height[r];</span><br><span class="line">                &#125;</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/09/07/LeetCode-42-接雨水/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/09/06/单调栈详解/">单调栈详解</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>9月 06, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><h3 id="一、概述："><a href="#一、概述：" class="headerlink" title="一、概述："></a>一、概述：</h3><p>单调栈是一种特殊的栈结构，他要维持栈内元素保持一种单调性，从而能很快速的在线判断当前元素与后进来的元素大小关系。</p>
+<h3 id="二、单调性质"><a href="#二、单调性质" class="headerlink" title="二、单调性质"></a>二、单调性质</h3><p>为了维持单调性，在进栈时需要做元素的检查工作。以单调递增栈来说，如果发现要进栈的元素比目前栈顶元素小，如果此时将该元素进栈，必然会破坏单调性，所以需要对栈内元素进行调整工作：即如果该元素比栈顶元素小，则一定要将栈顶元素弹出，直到该元素不再比栈顶元素大或者栈为空时，可将该元素进栈。</p>
+<h3 id="三、功能用途"><a href="#三、功能用途" class="headerlink" title="三、功能用途"></a>三、功能用途</h3><p>在进行调整工作时，由于栈内元素时刻保持单调性，所以在遇见要进栈的元素比栈顶元素小时，对于当前栈顶元素，这个要进栈的元素是它第一次见到的比它小的元素。利用这一性质，我们就发现了单调栈的一个主要用途：求一个元素左/右边第一个比它大/小的元素。</p>
+<h4 id="四、具体做法"><a href="#四、具体做法" class="headerlink" title="四、具体做法"></a>四、具体做法</h4><p>对于具体怎么求比它大的元素还是比它小的元素，可以通过分析发现，求值的时机是在要进栈的元素破坏了当前栈所保持的单调性，即与当前栈保持的单调性相反。所以我们可以说：</p>
+<ul>
+<li><p>如果求比当前元素大的元素的位置，可以建立单调递减栈。</p>
+</li>
+<li><p>如果求比当前元素小的元素的位置，可以建立单调递增栈。</p>
+</li>
+</ul>
+<h5 id="那如何求左边的或者右边的目标元素位置呢？"><a href="#那如何求左边的或者右边的目标元素位置呢？" class="headerlink" title="那如何求左边的或者右边的目标元素位置呢？"></a>那如何求左边的或者右边的目标元素位置呢？</h5><p>我们稍加分析就会知道：无论求哪个方向的元素，目标元素都一定要在当前元素之后进栈。所以可以得到：</p>
+<ul>
+<li><p>求当前元素左边的比该元素大/小的元素，要从右向左依次添加。</p>
+</li>
+<li><p>求当前元素右边的比该元素大/小的元素，要从左向右依次添加。</p>
+</li>
+</ul>
+<p>由于我们需要求得每个元素的目标元素位置，但在一轮循环完毕后，栈中还存在符合单调性但没出栈的元素。也就是说当前栈内的每个元素都是没有与之相匹配的目标元素位置的。这时就要根据情况单独进行处理。</p>
+<p>通常的处理方式是在循环操作结束时，再往栈内添加一个违反单调性的并且比所有的元素都要大的最值，迫使栈中的所有元素弹出。</p>
+<h3 id="核心代码："><a href="#核心代码：" class="headerlink" title="核心代码："></a>核心代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//例：单调递减栈。 找当前数的左边的第一个比当前数大的值的位置。</span><br><span class="line">arr[0] = 2000000100;//最后位置添加一个最值。</span><br><span class="line">for(int i = N; i &gt;= 0; i--)&#123;</span><br><span class="line">    //找到了比当前栈顶大的数，更新值</span><br><span class="line">    while(stk.size() &amp;&amp; arr[i] &gt; arr[stk.top()])&#123;</span><br><span class="line">        对该stk.top()进行需求操作。</span><br><span class="line">        stk.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    stk.push(i);</span><br><span class="line">&#125;</span><br><span class="line">//将最后一个元素弹出。</span><br><span class="line">stk.pop();</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/09/06/单调栈详解/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/09/06/POJ-2796-FeelGood/">POJ-2796-FeelGood</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>9月 06, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="http://poj.org/problem?id=2796" target="_blank" rel="noopener">POJ-2796-FeelGood</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Bill is developing a new mathematical theory for human emotions. His recent investigations are dedicated to studying how good or bad days influent people’s memories about some period of life.</p>
+<p>A new idea Bill has recently developed assigns a non-negative integer value to each day of human life.</p>
+<p>Bill calls this value the emotional value of the day. The greater the emotional value is, the better the daywas. Bill suggests that the value of some period of human life is proportional to the sum of the emotional values of the days in the given period, multiplied by the smallest emotional value of the day in it. This schema reflects that good on average period can be greatly spoiled by one very bad day.</p>
+<p>Now Bill is planning to investigate his own life and find the period of his life that had the greatest value. Help him to do so.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>The first line of the input contains n - the number of days of Bill’s life he is planning to investigate(1 &lt;= n &lt;= 100 000). The rest of the file contains n integer numbers a1, a2, … an ranging from 0 to 106 - the emotional values of the days. Numbers are separated by spaces and/or line breaks.</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>Print the greatest value of some period of Bill’s life in the first line. And on the second line print two numbers l and r such that the period from l-th to r-th day of Bill’s life(inclusive) has the greatest possible value. If there are multiple periods with the greatest possible value,then print any one of them.</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">3 1 6 4 5 2</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">60</span><br><span class="line">3 5</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给定一串数字，求一区间，使得区间内的每个数之和乘以区间内最小值最大，并求出区间范围。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>初次看，只能暴力枚举每一个区间，复杂度为O(n2)。</p>
+<p>然后我们思考对于每个数，如果把它当做最小数，我们看他能向左右延伸到的最长区间范围，然后在这些区间内选一个符合条件最大的即可。</p>
+<p>这就将问题转化为求每一个数左/右边尽可能远的大于等于该数的数的位置，进一步转化为求每个数的左右边遇到的第一个小于该数的位置，再往延伸的反方向退一格。这明显是单调栈问题。所以可以将复杂度降到O(n)。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-04 17:29:23</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-06 22:01:01</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 100010;</span><br><span class="line">int a[MAXN],R[MAXN],L[MAXN],ll,rr;</span><br><span class="line">long long sum[MAXN],ans = -1;</span><br><span class="line">int N;</span><br><span class="line">stack&lt;int&gt; s;</span><br><span class="line">int main()&#123;</span><br><span class="line"></span><br><span class="line">    //思路：将枚举区间转化为以每个点为最低点，求向左和向右最多可以延长的长度。再转化一下就是求每个数左边或者右边第一个比它小的元素后 再往回退一格（L+1,R-1)。然后求区间内的最大值。</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;N);</span><br><span class="line">    a[0] = -1;</span><br><span class="line">    a[N+1] = -1;</span><br><span class="line">    for(int i = 1; i &lt;= N; i++) scanf(&quot;%d&quot;,&amp;a[i]),sum[i] = sum[i-1] + a[i];</span><br><span class="line">    //求每个元素的左边第一个比它小的元素，加一 ----&gt; 找大于等于该数的最前一个数的位置。</span><br><span class="line"></span><br><span class="line">    //从右到左  单调递增栈</span><br><span class="line">    for(int i = N; i &gt;= 0; i--)&#123;</span><br><span class="line">        while(s.size() &amp;&amp; a[i] &lt; a[s.top()]) &#123;</span><br><span class="line">            L[s.top()] = i+1;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    s.pop();</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    //求每个元素的右边第一个比它小的元素 减一 ----&gt; 大于等于该数的最后一个数的位置</span><br><span class="line">    //从左到右，单调递增栈</span><br><span class="line">    for(int i = 1; i &lt;= N+1; i++)&#123;</span><br><span class="line">        while(s.size() &amp;&amp; a[i] &lt; a[s.top()])&#123;</span><br><span class="line">            R[s.top()] = i-1;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    for(int i = 1; i &lt;= N; i++)&#123;</span><br><span class="line">        if((sum[R[i]] - sum[L[i]-1])*a[i] &gt; ans)&#123;</span><br><span class="line">            ans = (sum[R[i]] - sum[L[i]-1])*a[i];</span><br><span class="line">            ll = L[i];</span><br><span class="line">            rr = R[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%lld\\n%d %d\\n&quot;,ans,ll,rr);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里由于是单调递增栈，所以在循环最后给他压进一个最小值，让栈内元素都弹出，做到代码简化。</p>
+</blockquote>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/09/06/POJ-2796-FeelGood/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/09/06/POJ-3250-Ba-Hai-Day（单调栈入门）/">POJ-3250-Ba-Hai-Day（单调栈入门）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>9月 06, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="http://poj.org/problem?id=3250" target="_blank" rel="noopener">POJ-3250-Bad Hair Day</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Some of Farmer John’s N cows (1 ≤ N ≤ 80,000) are having a bad hair day! Since each cow is self-conscious about her messy hairstyle, FJ wants to count the number of other cows that can see the top of other cows’ heads.</p>
+<p>Each cow i has a specified height hi (1 ≤ hi ≤ 1,000,000,000) and is standing in a line of cows all facing east (to the right in our diagrams). Therefore, cow i can see the tops of the heads of cows in front of her (namely cows i+1, i+2, and so on), for as long as these cows are strictly shorter than cow i.</p>
+<p>Consider this example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">=</span><br><span class="line">=       =</span><br><span class="line">=   -   =         Cows facing right --&gt;</span><br><span class="line">=   =   =</span><br><span class="line">= - = = =</span><br><span class="line">= = = = = =</span><br><span class="line">1 2 3 4 5 6</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Cow#1 can see the hairstyle of cows #2, 3, 4</li>
+<li>Cow#2 can see no cow’s hairstyle</li>
+<li>Cow#3 can see the hairstyle of cow #4</li>
+<li>Cow#4 can see no cow’s hairstyle</li>
+<li>Cow#5 can see the hairstyle of cow 6</li>
+<li>Cow#6 can see no cows at all!</li>
+</ul>
+<p>Let ci denote the number of cows whose hairstyle is visible from cow i; please compute the sum of c1 through cN.For this example, the desired is answer 3 + 0 + 1 + 0 + 1 + 0 = 5.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>Line 1: The number of cows, N.<br>Lines 2..N+1: Line i+1 contains a single integer that is the height of cow i.</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>Line 1: A single integer that is the sum of c1 through cN.</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">10</span><br><span class="line">3</span><br><span class="line">7</span><br><span class="line">4</span><br><span class="line">12</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有一排奶牛，每个奶牛可以看到它右边身高严格比它小的奶牛发型，问这一排奶牛可以看到的奶牛发型总数。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这道题是单调栈模板题。</p>
+<p>具体做法就是在当前奶牛的右边找一个大于等于（原题说要严格小于，所以等于也算边界）它身高的奶牛的位置（由于求大于等于，所以维持一个单调递减栈），然后两者位置之差再减一就是中间的奶牛数量，每一个奶牛都做此操作即可求得结果。当然有一种情况是它找不到右边身高大于等于它的奶牛。这时可以把最后一个奶牛有一个无限高的奶牛，然后用该位置去减栈中每个奶牛的位置（n+1-x-1 = n-x）。</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-04 16:39:06</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-06 21:41:17</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int a,x;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    node(int _a, int _x):x(_x),a(_a)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">stack&lt;node&gt; s;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    int n;</span><br><span class="line">    long long ans = 0;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    node temp;</span><br><span class="line">    for(int i = 1; i &lt;= n; i++)&#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;temp.a);</span><br><span class="line">        temp.x = i;</span><br><span class="line">        //单调递减栈</span><br><span class="line">        //找到了第一个比当前栈顶大的值（刚读入的值）。</span><br><span class="line">        while(s.size() &amp;&amp; s.top().a &lt;= temp.a)&#123;</span><br><span class="line">            //计算坐标差</span><br><span class="line">            ans += i-s.top().x-1;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    //当前栈顶元素的右边没有比他更高的元素了，用最右边的无限高减去该元素位置。</span><br><span class="line">    while(s.size())&#123;</span><br><span class="line">        ans += n-s.top().x;</span><br><span class="line">        s.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%lld\\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/09/06/POJ-3250-Ba-Hai-Day（单调栈入门）/">阅读更多</a> 	
 	</div>	
     
 </article>     
@@ -579,7 +672,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>2</strong>, Total <strong>69</strong> . </span>
+   <span class="page-number"> Page <strong>2</strong>, Total <strong>118</strong> . </span>
 
     
         <a class="next" href="/page/3/"> 
@@ -613,7 +706,7 @@
      <div class="mobile-menu">      
 
       
-      <img class="mobile-menu-icon" src="/images/logo.png">   
+      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/logo.png">   
       
 
          

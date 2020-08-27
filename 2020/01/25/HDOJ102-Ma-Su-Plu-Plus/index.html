@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  HDOJ102-Ma-Su-Plu-Plus |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		HDOJ102-Ma-Su-Plu-Plus
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			1月 25, 2020
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">2504
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1024" target="_blank" rel="noopener">Max Sum Plus Plus</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Now I think you have got an AC in Ignatius.L’s “Max Sum” problem. To be a brave ACMer, we always challenge ourselves to more difficult problems. Now you are faced with a more difficult problem.</p>
+<p>Given a consecutive number sequence S1, S2, S3, S4 … Sx, … Sn (1 ≤ x ≤ n ≤ 1,000,000, -32768 ≤ Sx ≤ 32767). We define a function sum(i, j) = Si + … + Sj (1 ≤ i ≤ j ≤ n).</p>
+<p>Now given an integer m (m &gt; 0), your task is to find m pairs of i and j which make sum(i1, j1) + sum(i2, j2) + sum(i3, j3) + … + sum(im, jm) maximal (ix ≤ iy ≤ jx or ix ≤ jy ≤ jx is not allowed).</p>
+<p>But I`m lazy, I don’t want to write a special-judge module, so you don’t have to output m pairs of i and j, just output the maximal summation of sum(ix, jx)(1 ≤ x ≤ m) instead. ^_^</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>Each test case will begin with two integers m and n, followed by n integers S1, S2, S3 … Sn.<br>Process to the end of file.</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>Output the maximal summation described above in one line.</p>
+<h3 id="输入示例"><a href="#输入示例" class="headerlink" title="输入示例"></a>输入示例</h3><p>1 3 1 2 3<br>2 6 -1 4 -2 3 -2 3</p>
+<h3 id="输出示例"><a href="#输出示例" class="headerlink" title="输出示例"></a>输出示例</h3><p>6<br>8</p>
+<p>Hint</p>
+<p>Huge input, scanf and dynamic programming is recommended.</p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给定n个数，让其划分为k个不重叠的区间（不要求连续），求其中的最大值。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>因为给定一个区间，它的最大值是确定的，所以具有无后效性，所以我们考虑使用dp来解此题。</p>
+<p>我们首先定义状态表示，很自然的想到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i][j] 表示将前i个数字分成j段的最大子段和。</span><br></pre></td></tr></table></figure>
+<p>接下来考虑状态转移方程：</p>
+<p>我们将状态转移分为：</p>
+<ul>
+<li>与前面划分的区间不合并，即自成一组。</li>
+<li>与前面划分的区间合并为一组。</li>
+</ul>
+<p>第二种转移方程比较好考虑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i-1][j] + v[i];</span><br></pre></td></tr></table></figure>
+<p>自成一组需要找上一组从哪里转移。由于不需要保证连续性，所以就需要从第一段一直到j-1段都要考虑到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max&#123;dp[k][j-1](1 &lt;= k &lt; i)&#125;</span><br></pre></td></tr></table></figure>
+<p>由于只有k个长度的字符才能分成k段。所以这里取值范围应该改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max&#123;dp[k][j-1](j-1 &lt;= k &lt; i)&#125; + v[i]</span><br></pre></td></tr></table></figure>
+<p>综合一下就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] =max( dp[i-1][j], max&#123;dp[k][j-1](j-1 &lt;= k &lt; i)&#125; ) + v[i]</span><br></pre></td></tr></table></figure>
+<p>分析工作准备完毕，我们准备写代码时发现，这个数组范围比较大，会O（n2）的算法会超时，所以要优化。</p>
+<p>第二种转移方程没什么好优化的，我们转移到第一种上，它在转移上依赖了他之上的好多行的数组，列却只依赖一列。这里想象为二维数组，我们把行，列的含义互换，想象这个二维数组逆时针旋转了90度。<br>就得到了如下的转移方程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i][j] 表示将前j个数字分成i段的最大子段和。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] =max( dp[i][j-1], max&#123;dp[i-1][k](i-1 &lt;= k &lt; j)&#125; ) + v[j]</span><br></pre></td></tr></table></figure>
+<p>我们可以将 max{dp[i-1]<a href="i-1 &lt;= k &lt; j">k</a>} 这个O(n)的时间，在上一层的d[i-1][j]计算结果时用一个变量来记录，使其优化为O(1)。</p>
+<p>具体编程还是有些难度，需要好好思考。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2020-01-24 10:42:12</span><br><span class="line"> * @LastEditors  : BeckoninGshy</span><br><span class="line"> * @LastEditTime : 2020-01-25 11:37:00</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN =1e6+10;</span><br><span class="line">int dp[MAXN],v[MAXN],numax[MAXN]; //保存上一层dp的最大值。</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int k,n;</span><br><span class="line">    while(cin &gt;&gt; k &gt;&gt; n)&#123;</span><br><span class="line">        for(int i = 1; i &lt;= n; i++)&#123;</span><br><span class="line">            cin &gt;&gt; v[i];</span><br><span class="line">            dp[i] = numax[i] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[0] = numax[0] = 0;</span><br><span class="line">        int lastmax = INT_MIN;</span><br><span class="line">        for(int i = 1; i &lt;= k; i++)&#123;</span><br><span class="line">            lastmax = INT_MIN; //保存上一层dp的最大值</span><br><span class="line">            for(int j = i; j &lt;= n; j++)&#123;</span><br><span class="line">            	//先利用之前的上一层最大值更新当前状态， </span><br><span class="line">                dp[j] = max(dp[j-1],numax[j-1]) + v[j];</span><br><span class="line">                //再将j-1的最大值更新到上一层的最大值数组中， 将在i+1层循环中使用，当前循环不使用</span><br><span class="line">                numax[j-1] = lastmax;</span><br><span class="line">                //存储当前层的最大值 </span><br><span class="line">                lastmax = max(lastmax,dp[j]); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; lastmax &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2020/01/20/LeetCode-1320-二指输入的的最小距离/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2020/01/20/LeetCode-1320-二指输入的的最小距离/">
+          LeetCode-1320-二指输入的的最小距离</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2020/01/30/LeetCode-10-正则表达式匹配/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2020/01/30/LeetCode-10-正则表达式匹配/">
+            LeetCode-10-正则表达式匹配</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

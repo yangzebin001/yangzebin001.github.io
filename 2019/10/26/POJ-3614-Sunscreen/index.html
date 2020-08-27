@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  POJ-3614-Sunscreen |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		POJ-3614-Sunscreen
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			10月 26, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">2727
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="http://poj.org/problem?id=3614" target="_blank" rel="noopener">POJ-3614-Sunscreen</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>To avoid unsightly burns while tanning, each of the C (1 ≤ C ≤ 2500) cows must cover her hide with sunscreen when they’re at the beach. Cow i has a minimum and maximum SPF rating (1 ≤ minSPFi ≤ 1,000; minSPFi ≤ maxSPFi ≤ 1,000) that will work. If the SPF rating is too low, the cow suffers sunburn; if the SPF rating is too high, the cow doesn’t tan at all……..</p>
+<p>The cows have a picnic basket with L (1 ≤ L ≤ 2500) bottles of sunscreen lotion, each bottle i with an SPF rating SPFi (1 ≤ SPFi ≤ 1,000). Lotion bottle i can cover coveri cows with lotion. A cow may lotion from only one bottle.</p>
+<p>What is the maximum number of cows that can protect themselves while tanning given the available lotions?</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><ul>
+<li><p>Line 1: Two space-separated integers: C and L</p>
+</li>
+<li><p>Lines 2..C+1: Line i describes cow i’s lotion requires with two integers: minSPFi and maxSPFi</p>
+</li>
+<li><p>Lines C+2..C+L+1: Line i+C+1 describes a sunscreen lotion bottle i with space-separated integers: SPFi and coveri</p>
+</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>A single line with an integer that is the maximum number of cows that can be protected while tanning</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 2</span><br><span class="line">3 10</span><br><span class="line">2 5</span><br><span class="line">1 5</span><br><span class="line">6 2</span><br><span class="line">4 1</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有C头牛，每个牛Ci在一个给定的区间上需要涂防晒霜，有L种防晒霜，给出每个防晒霜适合的数值SPF[i]和个数cover[i]，求能最多满足牛的个数。</p>
+<h3 id="贪心策略："><a href="#贪心策略：" class="headerlink" title="贪心策略："></a>贪心策略：</h3><p>按区间的开始位置递减排序，依次考虑每头牛。<br>对于每头牛，选取满足在此区间内最大的防晒霜。</p>
+<h3 id="Solution1（暴力版）："><a href="#Solution1（暴力版）：" class="headerlink" title="Solution1（暴力版）："></a>Solution1（暴力版）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;utility&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef pair&lt;int,int&gt; PII;</span><br><span class="line">const int MAXN = 5000+10;</span><br><span class="line">int C,L;</span><br><span class="line">PII p[MAXN];</span><br><span class="line">PII q[MAXN];</span><br><span class="line">int main()&#123;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;C,&amp;L);</span><br><span class="line">    for(int i = 0; i &lt; C; i++)&#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;p[i].first,&amp;p[i].second);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(p,p+C);</span><br><span class="line">    for(int i = 0; i &lt; L; i++)&#123;</span><br><span class="line">        int a,b;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;a,&amp;b);</span><br><span class="line">        q[i].first = a;</span><br><span class="line">        q[i].second = b;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(q,q+L);</span><br><span class="line">	//从开始位置大到小考察每头牛。</span><br><span class="line">    for(int i = C-1; i &gt;= 0; i--)&#123;</span><br><span class="line">		//同样，对于每头牛，考察在该牛区间内最右的防晒霜。</span><br><span class="line">        for(int j = L-1; j &gt;= 0; j--)&#123;</span><br><span class="line">            if(q[j].second &gt; 0 &amp;&amp; q[j].first &gt;= p[i].first &amp;&amp; q[j].first &lt;= p[i].second)&#123;</span><br><span class="line">                ans++;</span><br><span class="line">                q[j].second--;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2（平衡树版）："><a href="#Solution2（平衡树版）：" class="headerlink" title="Solution2（平衡树版）："></a>Solution2（平衡树版）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 2510;</span><br><span class="line">typedef pair&lt;int,int&gt; PII;</span><br><span class="line">int N,M;</span><br><span class="line">PII cows[MAXN];</span><br><span class="line">int main()&#123;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt;M;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        cin &gt;&gt; cows[i].first &gt;&gt; cows[i].second;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(cows,cows+N);</span><br><span class="line">    map&lt;int,int&gt; spfa;</span><br><span class="line">    for(int i = 0; i &lt; M; i++)&#123;</span><br><span class="line">        int spa,cover;</span><br><span class="line">        cin &gt;&gt; spa &gt;&gt; cover;</span><br><span class="line">        spfa[spa] += cover;</span><br><span class="line">    &#125;</span><br><span class="line">    spfa[0] = spfa[1001] = N;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    for(int i = N-1; i &gt;= 0; i--)&#123;</span><br><span class="line">        map&lt;int,int&gt;::iterator it = spfa.upper_bound(cows[i].second);</span><br><span class="line">        --it;</span><br><span class="line">        if(cows[i].first &lt;= it-&gt;first &amp;&amp; cows[i].second &gt;= it-&gt;first)&#123;</span><br><span class="line">            ans++;</span><br><span class="line">            if(-- it-&gt;second == 0) spfa.erase(it);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/10/26/AcWin-135-最大子序和/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/10/26/AcWin-135-最大子序和/">
+          AcWin-135-最大子序和</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/11/25/01背包问题详解/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/11/25/01背包问题详解/">
+            01背包问题详解</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

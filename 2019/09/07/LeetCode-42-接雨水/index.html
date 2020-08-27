@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  LeetCode-42-接雨水 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		LeetCode-42-接雨水
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			9月 07, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">2269
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">42. 接雨水</a></p>
+<p>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="接雨水"></p>
+<p>上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line"></span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure>
+<h3 id="Solution1（直观解法）"><a href="#Solution1（直观解法）" class="headerlink" title="Solution1（直观解法）:"></a>Solution1（直观解法）:</h3><p>我们可以稍稍使用减法，接水的区域正好是最好的柱子乘以整个宽度，再减去从左到制高点和从右到制高点每个单调上升的柱子到两边的距离乘以前柱子的高度差。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        //小于等于两个是蓄不住水的。</span><br><span class="line">        if(n &lt;= 2) return 0;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int Max = -1;</span><br><span class="line">        int k = -1;</span><br><span class="line">        //找到至高点。</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            //先减去柱子本身高度</span><br><span class="line">            ans -= height[i];</span><br><span class="line">            if(Max &lt; height[i]) Max = height[i], k = i;</span><br><span class="line">        &#125;</span><br><span class="line">        //加上整个图的面积</span><br><span class="line">        ans += n*Max;</span><br><span class="line">        </span><br><span class="line">        //从前到最高点，每次减去从开始到每个更高柱子高度的面积。</span><br><span class="line">        int cur = height[0];</span><br><span class="line">        int i = 1;</span><br><span class="line">        while(i &lt;= k)&#123;</span><br><span class="line">            //i为从开始到当前柱子距离。height[i]-cur为高度差。</span><br><span class="line">            if(height[i] &gt; cur) ans -= i * (height[i]-cur),cur = height[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = height[n-1];</span><br><span class="line">        i = height.size()-2;</span><br><span class="line">        while(i&gt;=k)&#123;</span><br><span class="line">            //i最后到当前柱子的距离。height[i]-cur为高度差。</span><br><span class="line">            if(height[i] &gt; cur) ans -= (n-i-1) * (height[i]-cur),cur = height[i];</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2（单调栈）："><a href="#Solution2（单调栈）：" class="headerlink" title="Solution2（单调栈）："></a>Solution2（单调栈）：</h3><p>使用单调栈的原因是我们发现如果把每个柱子当作最低点，则接雨水的区域是左右第一个比当前柱子高的柱子所形成的区域乘以两者之间较小的柱子与当前柱子的高度差。所以我们进行单调栈寻找左右最近的比当前元素高的位置，来计算结果。</p>
+<p>从直观来看，这样很像一层层的往里接水。（当然计算的时候不一定只是一层）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        stack&lt;int&gt; s;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            //找每个元素右边最近的大于他的值。//单调递减栈</span><br><span class="line">            while(s.size() &amp;&amp; height[i] &gt; height[s.top()])&#123;</span><br><span class="line">                int top = s.top();</span><br><span class="line">                s.pop();</span><br><span class="line">                if(s.empty())break;</span><br><span class="line">                //由于维持的是单调递减栈，所以当前栈顶是目前已知的最小一个元素，将栈顶取出，而新的栈顶元素与新发现的比它大的元素，一定能就组成边界，使得以目前最小元素为底，至左右边界中小的那一个，可以接到雨水。形象点就是一层一层的接。</span><br><span class="line">                int dis = i-s.top()-1;</span><br><span class="line">                ans += dis * (min(height[i],height[s.top()])-height[top]);</span><br><span class="line">            &#125;</span><br><span class="line">            s.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution3（双指针）："><a href="#Solution3（双指针）：" class="headerlink" title="Solution3（双指针）："></a>Solution3（双指针）：</h3><p>我们写第一种解法时发现，并没有必要去进行那么多减法，每次直接观察当前柱子高度与之前记录的最高柱子的高度关系，如果没有之前最高柱子高就说明可以接住雨水（因为我们每次寻找的是更高的柱子，直到全图最高柱子出现为止），这样可以直接计算该柱子之上可以接住的雨水。由于左右都是到了最高柱子就会停止，所以使用双指针来优化，每次选较小的柱子来计算，直到制高点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        int l = 0, r = n-1;</span><br><span class="line">        int lm = -1,rm = -1;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        while(l &lt; r)&#123;</span><br><span class="line">            //从小的一方开始</span><br><span class="line">            if(height[l] &lt; height[r])&#123;</span><br><span class="line">                if(height[l] &gt; lm)&#123;</span><br><span class="line">                    lm = height[l];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    ans += lm-height[l];</span><br><span class="line">                &#125;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                if(height[r] &gt; rm)&#123;</span><br><span class="line">                    rm = height[r];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    ans += rm-height[r];</span><br><span class="line">                &#125;</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/09/06/单调栈详解/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/09/06/单调栈详解/">
+          单调栈详解</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/09/17/POJ-3276-Fac-Th-Righ-Way/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/09/17/POJ-3276-Fac-Th-Righ-Way/">
+            POJ-3276-Fac-Th-Righ-Way</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

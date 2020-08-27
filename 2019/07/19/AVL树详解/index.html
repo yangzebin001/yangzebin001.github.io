@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  AVL树详解 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		AVL树详解
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			7月 19, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">3448
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>我们在学习二叉搜索树的时候，发现无论是查找还是插入元素在理想情况下都可以达到O(logN)级别，但是由于插入的顺序，数的结构也会不同，这种理想情况很难保持甚至最坏的情况会退化成链表。导致性能下降。这时就需要一个能实现高度自动平衡的树结构。就出现了平衡树，<br>今天讲的是平衡树的一种：AVL树。</p>
+<h3 id="初识AVL树"><a href="#初识AVL树" class="headerlink" title="初识AVL树"></a>初识AVL树</h3><p>AVL树得名与 Adelson-Velsky和 Landis两位发明者的首字母，它是自平衡的二叉搜索树，具有二叉树搜索树的性质（左子树的结点都比当前结点小，右子树都比当前结点大），同时它又是平衡二叉树，能够自适应高度。在AVL树中，<strong>任意节点的两个子树的高度差不超过1</strong>，这也是将不平衡的子树调整为平衡子树的重要指标。</p>
+<h3 id="AVL树的调整策略"><a href="#AVL树的调整策略" class="headerlink" title="AVL树的调整策略"></a>AVL树的调整策略</h3><p>AVL是在进行插入节点时，通过检测是否破坏了平衡条件，进而通过进行一定程度的节点旋转来达到整棵树的平衡。</p>
+<h3 id="简单情形"><a href="#简单情形" class="headerlink" title="简单情形"></a>简单情形</h3><p>我们知道一个树如果只有一个或两个时，树是平衡的。所以问题会出现在第三个节点插入的位置，如果是下图：</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="单左旋后"></p>
+<p>则是平衡的。</p>
+<p>先来看最简单的不平衡情况：</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="单左旋前"></p>
+<p>当把根节点的右节点“提”到根节点的位置，将旧根节点当新的根节点的左子节点。就可达到平衡状态。</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="单左旋后"></p>
+<p>具体到树中，可以归结为以下四种情况：</p>
+<h4 id="1-左旋"><a href="#1-左旋" class="headerlink" title="1.左旋"></a>1.左旋</h4><p>上述是最特殊的只有三个节点的情况，下面我们将它代入一般的二叉树来研究：</p>
+<p>对于一个节点，当右子树的高度比左子树高一个高度的时候，此时新进来的节点也需要插入右子树。当然，如果新插入节点以后，右子树还维持原来的高度，那么这颗树就还是平衡的。问题出在当新插入节点后，右子树的高度增加了，这时破坏了平衡树两个子树的高度差不超过一的性质，就需要调整使其达到平衡状态。这时，我们首先考虑比较好处理的情况，也就是插在右子树的右边的情况。</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="左旋前"></p>
+<p>调整的策略：</p>
+<p>此时我们需要将当前节点的右子树“提”到当前节点的位置，当前节点“下降”为其右子树的左子树，具体操作过程如图：</p>
+<p><img src="/images/placeholder.png" alt="左旋中1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="左旋中2" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>调整之后变为：</p>
+<p><img src="/images/placeholder.png" alt="左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>到此，树变成了平衡的，由于整棵树要往左边旋转，所以左旋的操作就右子树的地位上移，根节点的地位下降。</p>
+<h3 id="2-右旋"><a href="#2-右旋" class="headerlink" title="2.右旋"></a>2.右旋</h3><p>现在我们有了左旋的经验，很容易推出需要进行右旋操作的时机：</p>
+<p>对于一个节点，当左子树的高度原先就比右子树的高度多一时，插入节点又使左子树的高度增加，并且插在了左子树的左边的时候，就需要调整了：</p>
+<p><img src="/images/placeholder.png" alt="右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋中1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋中2" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>树变为平衡的。</p>
+<p>至此，单旋转就学习完毕，下面学习双旋转。</p>
+<h3 id="3-右左旋"><a href="#3-右左旋" class="headerlink" title="3.右左旋"></a>3.右左旋</h3><p>前面我们学习单旋转时，插入节点都是与其子树同向的位置，这种情况由于倾斜的状况比较明显，所以只要找到中间的位置，将其“提”到“根节点”的位置，就可以达到平衡。而当其中子树失去平衡是由于所处子树往相反的方向插入，导致倾斜的状况不容易看出，所以需要经过两次旋转来达到平衡状态。<br>如下图：</p>
+<p><img src="/images/placeholder.png" alt="右左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>我们可以观察到，在当前的结点的右子树的倾斜情况与我们刚才介绍到的右旋的情况很相似：</p>
+<p><img src="/images/placeholder.png" alt="右左旋前1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>所以将右子树按右旋处理，处理之后变为：</p>
+<p><img src="/images/placeholder.png" alt="左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>这时我们惊奇的发现它变成了我们前面介绍的左旋前时的情形。这种情况我们已经会处理了：将右子节点“提”上来，把当前“根”节点变为右子节点的左子树，最后就调整到平衡状态了。</p>
+<p><img src="/images/placeholder.png" alt="左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<h3 id="4-左右旋"><a href="#4-左右旋" class="headerlink" title="4.左右旋"></a>4.左右旋</h3><p>同样地，左右旋也可通过先将左子树左旋，再将当前根节点右旋的调整来达到平衡状态。</p>
+<p><img src="/images/placeholder.png" alt="左右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>先将左子树左旋：</p>
+<p><img src="/images/placeholder.png" alt="左右旋前1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p><img src="/images/placeholder.png" alt="右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>再进行右旋：</p>
+<p><img src="/images/placeholder.png" alt="右旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
+<p>达到平衡状态。</p>
+<hr>
+<p>到此，二叉树的调整策略就介绍完了，下面上代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">typedef struct AVLNode* AVLTree;</span><br><span class="line">struct AVLNode&#123;</span><br><span class="line">	int data;</span><br><span class="line">	AVLTree left;</span><br><span class="line">	AVLTree right;</span><br><span class="line">	int height;</span><br><span class="line">	AVLNode(int data):data(data)&#123;</span><br><span class="line">		left = NULL;</span><br><span class="line">		right = NULL;</span><br><span class="line">		height = 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int Max(int a, int b)&#123;</span><br><span class="line">	return a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int GetHeight(AVLTree t)&#123;</span><br><span class="line">	if(!t) return 0;</span><br><span class="line">	return t-&gt;height;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//右旋 </span><br><span class="line">AVLTree SingleRightRotation(AVLTree A)&#123;</span><br><span class="line">	//先记录左子树,将左节点的右子树变为根节点的左子树，再将根节点作为左节点的右子树。 </span><br><span class="line">	AVLTree l = A-&gt;left;</span><br><span class="line">	A-&gt;left = l-&gt;right;</span><br><span class="line">	l-&gt;right = A;</span><br><span class="line">	//更新两节点的高度。 </span><br><span class="line">	A-&gt;height = Max(GetHeight(A-&gt;left),GetHeight(A-&gt;right))+1;</span><br><span class="line">	l-&gt;height = Max(GetHeight(l-&gt;left),A-&gt;height) + 1;</span><br><span class="line">	return l; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//左旋 </span><br><span class="line">AVLTree SingleLeftRotation(AVLTree A)&#123;</span><br><span class="line">	//先记录右子树,将右节点的左子树变为根节点的右子树，再将根节点作为右节点的左子树。 </span><br><span class="line">	AVLTree r = A-&gt;right;</span><br><span class="line">	A-&gt;right = r-&gt;left;</span><br><span class="line">	r-&gt;left = A;</span><br><span class="line">	//更新两节点的高度。 </span><br><span class="line">	A-&gt;height = Max(GetHeight(A-&gt;left),GetHeight(A-&gt;right)) + 1;</span><br><span class="line">	r-&gt;height = Max(GetHeight(r-&gt;right),A-&gt;height) + 1;</span><br><span class="line">	return r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//右左旋 </span><br><span class="line">AVLTree DoubleRightLeftRotation(AVLTree A)&#123;</span><br><span class="line">	//将左子树右旋 </span><br><span class="line">	A-&gt;right = SingleRightRotation(A-&gt;right);</span><br><span class="line">	//再将当前节点左旋 </span><br><span class="line">	return SingleLeftRotation(A);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//左右旋 </span><br><span class="line">AVLTree DoubleLeftRightRotation(AVLTree A)&#123;</span><br><span class="line">	//将右子树左旋 </span><br><span class="line">	A-&gt;left = SingleLeftRotation(A-&gt;left);</span><br><span class="line">	//再将当前节点右旋 </span><br><span class="line">	return SingleRightRotation(A);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">AVLTree Insert(AVLTree T, int X)&#123;</span><br><span class="line">	if(!T)&#123;</span><br><span class="line">		T = new AVLNode(X);</span><br><span class="line">	&#125;else if(X &lt; T-&gt;data)&#123;</span><br><span class="line">		T-&gt;left = Insert(T-&gt;left,X);</span><br><span class="line">		if(GetHeight(T-&gt;left)- GetHeight(T-&gt;right) == 2)&#123;</span><br><span class="line">			if(X &lt; T-&gt;left-&gt;data)&#123; //右旋 </span><br><span class="line">				T = SingleRightRotation(T);</span><br><span class="line">			&#125;else&#123; //左右旋 </span><br><span class="line">				T = DoubleLeftRightRotation(T);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;else if(X &gt; T-&gt;data)&#123;</span><br><span class="line">		T-&gt;right = Insert(T-&gt;right,X);</span><br><span class="line">		if(GetHeight(T-&gt;right)- GetHeight(T-&gt;left) == 2)&#123;</span><br><span class="line">			if(X &gt; T-&gt;right-&gt;data)&#123; //左旋 </span><br><span class="line">				T = SingleLeftRotation(T);</span><br><span class="line">			&#125;else&#123; //右左旋 </span><br><span class="line">				T = DoubleRightLeftRotation(T);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//更新高度 </span><br><span class="line">	T-&gt;height = Max(GetHeight(T-&gt;left),GetHeight(T-&gt;right))+1;</span><br><span class="line">	return T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/">
+          106-从中序与后序遍历序列构造二叉树</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/07/31/Dijkstra算法学习总结/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/07/31/Dijkstra算法学习总结/">
+            Dijkstra算法学习总结</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

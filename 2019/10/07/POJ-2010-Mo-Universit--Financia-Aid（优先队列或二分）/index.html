@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分） |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		POJ-2010-Mo-Universit--Financia-Aid（优先队列或二分）
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			10月 07, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">5322
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p><a href="http://poj.org/problem?id=2010" target="_blank" rel="noopener">POJ-2010-Moo University - Financial Aid</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Bessie noted that although humans have many universities they can attend, cows have none. To remedy this problem, she and her fellow cows formed a new university called The University of Wisconsin-Farmside,”Moo U” for short.</p>
+<p>Not wishing to admit dumber-than-average cows, the founders created an incredibly precise admission exam called the Cow Scholastic Aptitude Test (CSAT) that yields scores in the range 1..2,000,000,000.</p>
+<p>Moo U is very expensive to attend; not all calves can afford it.In fact, most calves need some sort of financial aid (0 &lt;= aid &lt;=100,000). The government does not provide scholarships to calves,so all the money must come from the university’s limited fund (whose total money is F, 0 &lt;= F &lt;= 2,000,000,000).</p>
+<p>Worse still, Moo U only has classrooms for an odd number N (1 &lt;= N &lt;= 19,999) of the C (N &lt;= C &lt;= 100,000) calves who have applied.Bessie wants to admit exactly N calves in order to maximize educational opportunity. She still wants the median CSAT score of the admitted calves to be as high as possible.</p>
+<p>Recall that the median of a set of integers whose size is odd is the middle value when they are sorted. For example, the median of the set {3, 8, 9, 7, 5} is 7, as there are exactly two values above 7 and exactly two values below it.</p>
+<p>Given the score and required financial aid for each calf that applies, the total number of calves to accept, and the total amount of money Bessie has for financial aid, determine the maximum median score Bessie can obtain by carefully admitting an optimal set of calves.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><ul>
+<li><p>Line 1: Three space-separated integers N, C, and F</p>
+</li>
+<li><p>Lines 2..C+1: Two space-separated integers per line. The first is the calf’s CSAT score; the second integer is the required amount of financial aid the calf needs</p>
+</li>
+</ul>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><ul>
+<li>Line 1: A single integer, the maximum median score that Bessie can achieve. If there is insufficient money to admit N calves,output -1.</li>
+</ul>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 5 70</span><br><span class="line">30 25</span><br><span class="line">50 21</span><br><span class="line">20 20</span><br><span class="line">5 18</span><br><span class="line">35 30</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">35</span><br></pre></td></tr></table></figure>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><p>Sample output:If Bessie accepts the calves with CSAT scores of 5, 35, and 50, the median is 35. The total financial aid required is 18 + 30 + 21 = 69 &lt;= 70. </p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>奶牛大学招收N名学生（奇数），有C名候选学生，该大学可以承受最多F的贷款，求能招收的学生中，中位数尽可能的大，如果没有满足条件的学生，输出-1。</p>
+<h3 id="思路1（优先队列）："><a href="#思路1（优先队列）：" class="headerlink" title="思路1（优先队列）："></a>思路1（优先队列）：</h3><p>以学生成绩排序，然后以每个学生为中位数，寻找比他成绩低的学生中尽可能贷款少的N/2个学生，和比他成绩高的学生中尽可能贷款少的N/2个学生。结果就是满足:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aid：cur_i+lower_i+upper_i &lt;= F</span><br></pre></td></tr></table></figure>
+<p>中最大的那个。</p>
+<p>难度就是如何保持尽可能少的贷款。</p>
+<p>这里选择维持一个长度始终为N/2长度的优先队列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-06 17:36:17</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-07 16:04:57</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;utility&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1e5+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">typedef pair&lt;int,int&gt; PII;</span><br><span class="line"></span><br><span class="line">PII arr[MAXN];</span><br><span class="line">int M,N,S;</span><br><span class="line">int lowa[MAXN],upa[MAXN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;M,&amp;N,&amp;S);</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;arr[i].first,&amp;arr[i].second);</span><br><span class="line">    &#125;</span><br><span class="line">    int half = M/2;</span><br><span class="line">    sort(arr,arr+N);</span><br><span class="line">    memset(lowa,INF,sizeof(lowa));</span><br><span class="line">    memset(upa,INF,sizeof(upa));</span><br><span class="line">    priority_queue&lt;int&gt; q;</span><br><span class="line">    //确定以每个人为中位数， 比自己分数低的人的最小aid总和</span><br><span class="line">    int total = 0;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        if(q.size() == half) lowa[i] = total;</span><br><span class="line">        total += arr[i].second;</span><br><span class="line">        q.push(arr[i].second);</span><br><span class="line">        if(q.size() &gt; half)&#123;</span><br><span class="line">            total -= q.top();</span><br><span class="line">            q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    while(q.size()) q.pop();</span><br><span class="line">    total = 0;</span><br><span class="line">    //确定以每个人为中位数， 比自己分数高的人的最小aid总和</span><br><span class="line">    for(int i = N-1; i &gt;= 0; i--)&#123;</span><br><span class="line">        if(q.size() == half) upa[i] = total;</span><br><span class="line">        q.push(arr[i].second);</span><br><span class="line">        total += arr[i].second;</span><br><span class="line">        if(q.size() &gt; half)&#123;</span><br><span class="line">            total -= q.top();</span><br><span class="line">            q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = -1;</span><br><span class="line">    //从后往前寻找第一个满足条件的</span><br><span class="line">    for(int i = N-1; i &gt;= 0; i--)&#123;</span><br><span class="line">        if(arr[i].second + lowa[i] + upa[i] &lt;= S) &#123;ans = arr[i].first;break;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路2（二分）："><a href="#思路2（二分）：" class="headerlink" title="思路2（二分）："></a>思路2（二分）：</h3><p>先对成绩排序，按成绩进行二分，对是否满足是中位数和sum &lt;= F两个性质进行判断。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-10-06 17:36:17</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-10-07 17:18:16</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;utility&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1e5+10;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">typedef pair&lt;int,int&gt; PII;</span><br><span class="line"></span><br><span class="line">struct cow&#123;</span><br><span class="line">    int csat,aid;</span><br><span class="line">    bool operator &lt;(const cow &amp;q)const&#123;</span><br><span class="line">        if(csat == q.csat) return aid &lt; q.aid;</span><br><span class="line">        return csat &lt; q.csat;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;cows[MAXN];</span><br><span class="line">struct n&#123;</span><br><span class="line">    int index,aid;</span><br><span class="line">    bool operator &lt;(const n &amp;q)const&#123;</span><br><span class="line">        return aid &lt; q.aid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;node[MAXN];</span><br><span class="line">int M,N,S,half,ans = -1;</span><br><span class="line">int aid[MAXN];</span><br><span class="line"></span><br><span class="line">int check(int x)&#123;</span><br><span class="line">    int l = 0, r = 0, sum = cows[x].aid;</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        //在原位置的左边，且符合规定</span><br><span class="line">        if(l &lt; half &amp;&amp; node[i].index &lt; x &amp;&amp; sum + node[i].aid &lt;= S)&#123;</span><br><span class="line">            l++;</span><br><span class="line">            sum += node[i].aid;</span><br><span class="line">        //在原位置的右边，且符合规定</span><br><span class="line">        &#125;else if(r &lt; half &amp;&amp; node[i].index &gt; x &amp;&amp; sum + node[i].aid &lt;= S)&#123;</span><br><span class="line">            r++;</span><br><span class="line">            sum += node[i].aid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //都到不了half，说明无法满足小于等于S。</span><br><span class="line">    if(l &lt; half &amp;&amp; r &lt; half) return -1;</span><br><span class="line">    if(l &lt; half) return 1;</span><br><span class="line">    else if(r &lt; half) return 0;</span><br><span class="line">    //l = r = half 找到了一个符合条件的，更新答案，继续寻找后面。</span><br><span class="line">    ans = cows[x].csat;</span><br><span class="line">    return 1;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;M,&amp;N,&amp;S);</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;cows[i].csat,&amp;cows[i].aid);</span><br><span class="line">    &#125;</span><br><span class="line">    half = M/2;</span><br><span class="line">    sort(cows,cows+N);//先按分数排序</span><br><span class="line">    for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        node[i].index = i; //记录位置关系</span><br><span class="line">        node[i].aid = cows[i].aid;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(node,node+N); //排序是为了寻找尽可能小的aid</span><br><span class="line">    int l = 0, r = N-1;</span><br><span class="line">    while(l &lt; r)&#123;</span><br><span class="line">        int mid = l+r+1&gt;&gt;1;</span><br><span class="line">        //试探中位数。</span><br><span class="line">        int f = check(mid);</span><br><span class="line">        if(f == 1) l = mid;</span><br><span class="line">        else if(f == 0) r = mid-1;</span><br><span class="line">        else break;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/10/05/POJ-3579-Median(二分套二分)/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/10/05/POJ-3579-Median(二分套二分)/">
+          POJ-3579-Median(二分套二分)</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/10/09/POJ-Telephon-Lines(二分+最短路)/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/10/09/POJ-Telephon-Lines(二分+最短路)/">
+            POJ-Telephon-Lines(二分+最短路)</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>
