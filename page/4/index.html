@@ -115,6 +115,59 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/08/13/费解的开关/">费解的开关</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>8月 13, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://www.acwing.com/problem/content/97/" target="_blank" rel="noopener">费解的开关</a></p>
+<p>你玩过“拉灯”游戏吗？25盏灯排成一个5x5的方形。每一个灯都有一个开关，游戏者可以改变它的状态。每一步，游戏者可以改变某一个灯的状态。游戏者改变一个灯的状态会产生连锁反应：和这个灯上下左右相邻的灯也要相应地改变其状态。</p>
+<p>我们用数字“1”表示一盏开着的灯，用数字“0”表示关着的灯。下面这种状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">10111</span><br><span class="line">01101</span><br><span class="line">10111</span><br><span class="line">10000</span><br><span class="line">11011</span><br></pre></td></tr></table></figure>
+<p>在改变了最左上角的灯的状态后将变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">01111</span><br><span class="line">11101</span><br><span class="line">10111</span><br><span class="line">10000</span><br><span class="line">11011</span><br></pre></td></tr></table></figure>
+<p>再改变它正中间的灯后状态将变成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">01111</span><br><span class="line">11001</span><br><span class="line">11001</span><br><span class="line">10100</span><br><span class="line">11011</span><br></pre></td></tr></table></figure>
+<p>给定一些游戏的初始状态，编写程序判断游戏者是否可能在6步以内使所有的灯都变亮。<br>输入格式</p>
+<p>第一行输入正整数n，代表数据中共有n个待解决的游戏初始状态。</p>
+<p>以下若干行数据分为n组，每组数据有5行，每行5个字符。每组数据描述了一个游戏的初始状态。各组数据间用一个空行分隔。<br>输出格式</p>
+<p>一共输出n行数据，每行有一个小于等于6的整数，它表示对于输入数据中对应的游戏状态最少需要几步才能使所有灯变亮。</p>
+<p>对于某一个游戏初始状态，若6步以内无法使所有灯变亮，则输出“-1”。</p>
+<h4 id="数据范围：0-lt-n≤500"><a href="#数据范围：0-lt-n≤500" class="headerlink" title="数据范围：0&lt;n≤500"></a>数据范围：0&lt;n≤500</h4><h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">00111</span><br><span class="line">01011</span><br><span class="line">10001</span><br><span class="line">11010</span><br><span class="line">11100</span><br><span class="line"></span><br><span class="line">11101</span><br><span class="line">11101</span><br><span class="line">11110</span><br><span class="line">11111</span><br><span class="line">11111</span><br><span class="line"></span><br><span class="line">01111</span><br><span class="line">11111</span><br><span class="line">11111</span><br><span class="line">11111</span><br><span class="line">11111</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">2</span><br><span class="line">-1</span><br></pre></td></tr></table></figure>
+<h3 id="Solution1（TLE）："><a href="#Solution1（TLE）：" class="headerlink" title="Solution1（TLE）："></a>Solution1（TLE）：</h3><p>我们可以枚举每个开关的状态，然后查看是否全亮，每个开关两个状态（开和关），一共有25个开关，所以复杂度为O(2^25) = 33554432次。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int m;</span><br><span class="line">int ans = 26;</span><br><span class="line">void flip(int k)&#123;</span><br><span class="line">    int i = k / 5,j = k % 5;</span><br><span class="line">    m ^= 1 &lt;&lt; k;</span><br><span class="line">    if(j-1 &gt;= 0) m ^= (1 &lt;&lt; (i * 5 + (j-1)));</span><br><span class="line">    if(j+1 &lt; 5) m ^= (1 &lt;&lt; (i *5 + (j+1)));</span><br><span class="line">    if(i-1 &gt;= 0) m ^= (1 &lt;&lt; ((i-1) *5 + j));</span><br><span class="line">    if(i+1 &lt; 5) m ^= (1 &lt;&lt; ((i+1) *5 + j));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void dfs(int k,int d)&#123;</span><br><span class="line">    if(m == (1&lt;&lt;25)-1)&#123;</span><br><span class="line">        ans = min(ans,d);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if(k &gt;= 26) return;</span><br><span class="line">    dfs(k+1,d);</span><br><span class="line">    flip(k);</span><br><span class="line">    dfs(k+1,d+1);</span><br><span class="line">    flip(k);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    int T;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;T);</span><br><span class="line">    getchar();</span><br><span class="line">    while(T--)&#123;</span><br><span class="line">        char c[10];</span><br><span class="line">        m = 0;</span><br><span class="line">        ans = 26;</span><br><span class="line">        for(int i = 0; i &lt; 5; i++)&#123;</span><br><span class="line">            scanf(&quot;%s&quot;,c);</span><br><span class="line">            for(int j = 0; j &lt; 5; j++)&#123;</span><br><span class="line">                if(c[j] == &apos;1&apos;) m |= (1 &lt;&lt; (i*5+j));</span><br><span class="line">            &#125;</span><br><span class="line">            printf(&quot;%s\\n&quot;,c);</span><br><span class="line">            getchar();</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;%#x\\n&quot;,m);</span><br><span class="line">        dfs(0,0);</span><br><span class="line">        if(ans &gt; 6) ans = -1;</span><br><span class="line">        printf(&quot;%d\\n&quot;,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h3><p>我们可以从行的角度来看：<br>如果当前行确定了，我们要让所有的开关打开，就要选把当前行中关闭的灯的下面位置的切换状态。<br>归纳到一般情况，当第一行的状态确定了，我们为了使所有的开关打开，去下一行改变状态，使得当前行的所有灯打开。如此4次后，由于到达了最后一行，这时，我们检查最后一行的灯是否全部亮，（前面4行已经全部亮了）。如果全亮，则当前的选择为一个可选方案，这时更新翻转的次数。</p>
+<p>复杂度为O(n * 2^5)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line"></span><br><span class="line">char m[10][10];</span><br><span class="line">int ans = INF;</span><br><span class="line">int dx[5] = &#123;0,-1,0,1,0&#125;;</span><br><span class="line">int dy[5] = &#123;0,0,1,0,-1&#125;;</span><br><span class="line">void flip(int x,int y)&#123;</span><br><span class="line">    for(int i = 0; i &lt;5; i++)&#123;</span><br><span class="line">        int xi = x + dx[i];</span><br><span class="line">        int yi = y + dy[i];</span><br><span class="line">        if(xi &gt;= 0 &amp;&amp; xi &lt; 5 &amp;&amp; yi &gt;= 0 &amp;&amp; yi &lt; 5)&#123;</span><br><span class="line">            m[xi][yi] ^= 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void solve()&#123;</span><br><span class="line">    char backup[10][10];</span><br><span class="line">    int res = 0;</span><br><span class="line">    memcpy(backup,m,sizeof(m));</span><br><span class="line">    for(int i = 0; i &lt; 1 &lt;&lt; 5; i++)&#123;</span><br><span class="line">        res = 0;</span><br><span class="line">        for(int j = 0; j &lt; 5; j++)&#123;</span><br><span class="line">            if(i &gt;&gt; j &amp; 1)&#123;</span><br><span class="line">                res++;</span><br><span class="line">                flip(0,j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int j = 0; j &lt; 4; j++)&#123;</span><br><span class="line">            for(int k = 0; k &lt; 5; k++)&#123;</span><br><span class="line">                if(m[j][k] == &apos;0&apos;)&#123;</span><br><span class="line">                    flip(j+1,k);</span><br><span class="line">                    res++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        bool flag = true;</span><br><span class="line">        for(int j = 0; j &lt; 5; j++)&#123;</span><br><span class="line">            if(m[4][j] == &apos;0&apos;)&#123;</span><br><span class="line">                flag = false;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(flag) ans = min(ans,res);</span><br><span class="line">        memcpy(m,backup,sizeof(backup));    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    // freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    int T;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;T);</span><br><span class="line">    getchar();</span><br><span class="line">    while(T--)&#123;</span><br><span class="line">        ans = INF;</span><br><span class="line">        for(int i = 0; i &lt; 5; i++)&#123;</span><br><span class="line">            scanf(&quot;%s&quot;,m[i]);</span><br><span class="line">            // printf(&quot;%s\\n&quot;,m[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        solve();</span><br><span class="line">        if(ans &gt; 6) ans = -1;</span><br><span class="line">        printf(&quot;%d\\n&quot;,ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/08/13/费解的开关/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/08/13/POJ-1062-昂贵的聘礼/">POJ-1062-昂贵的聘礼</a>  
 	       
 		 
@@ -612,55 +665,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-98-验证二叉搜索树/">LeetCode-98-验证二叉搜索树</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/comments/" target="_blank" rel="noopener">98. 验证二叉搜索树</a></p>
-<p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
-<p>假设一个二叉搜索树具有如下特征：</p>
-<ul>
-<li>节点的左子树只包含小于当前节点的数。</li>
-<li>节点的右子树只包含大于当前节点的数。</li>
-<li>所有左子树和右子树自身必须也是二叉搜索树。</li>
-</ul>
-<h3 id="Solution1："><a href="#Solution1：" class="headerlink" title="Solution1："></a>Solution1：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isValidBST(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;TreeNode*&gt; v;</span><br><span class="line">        inorder(root,v);</span><br><span class="line">        for(int i = 1; i &lt; v.size(); i++)&#123;</span><br><span class="line">            if(v[i-1]-&gt;val &gt;= v[i]-&gt;val)&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void inorder(TreeNode* node, vector&lt;TreeNode*&gt; &amp;v)&#123;</span><br><span class="line">        if(!node) return;</span><br><span class="line">        inorder(node-&gt;left,v);</span><br><span class="line">        v.push_back(node);</span><br><span class="line">        inorder(node-&gt;right,v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>利用二叉搜索树的中序遍历是升序的特性。</p>
-<p>将每个元素push进一个vector中，如果vector中元素不是按升序排列，这该树不是二叉搜索树。</p>
-<h3 id="Solution2："><a href="#Solution2：" class="headerlink" title="Solution2："></a>Solution2：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isValidBST(TreeNode* root) &#123;</span><br><span class="line">        return helper(root,NULL,NULL);</span><br><span class="line">    &#125;</span><br><span class="line">    //返回该结点是否在指定区间内。</span><br><span class="line">    bool helper(TreeNode *node, TreeNode *min, TreeNode *max)&#123;</span><br><span class="line">        if(!node) return true;</span><br><span class="line">        if((min &amp;&amp; node-&gt;val &lt;= min-&gt;val) || (max &amp;&amp; node-&gt;val &gt;= max-&gt;val)) return false;</span><br><span class="line">        //左子节点的值不能比当前结点的值大，右节点的值不能不当前结点小。</span><br><span class="line">        return helper(node-&gt;left, min, node) &amp;&amp; helper(node-&gt;right, node, max);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>根据题目给的三条性质，所有结点及其下面的所有结点均可以构成二叉搜索树，</p>
-<p>所以对于非叶子结点，可以以当前结点为根据，划分区间，区间内的点必须比左端点大，比右端点小。</p>
-<p>用一个递归函数来不断更新该区间，判断该结点是否在区间内即可。</p>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-98-验证二叉搜索树/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -674,7 +678,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>4</strong>, Total <strong>119</strong> . </span>
+   <span class="page-number"> Page <strong>4</strong>, Total <strong>120</strong> . </span>
 
     
         <a class="next" href="/page/5/"> 

@@ -115,6 +115,52 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/LeetCode-389-找不同/">LeetCode-389-找不同</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/find-the-difference/submissions/" target="_blank" rel="noopener">389. 找不同</a></p>
+<p>给定两个字符串 s 和 t，它们只包含小写字母。</p>
+<p>字符串 t 由字符串 s 随机重排，然后在随机位置添加一个字母。</p>
+<p>请找出在 t 中被添加的字母。</p>
+<blockquote>
+<p>示例:</p>
+<p>输入：<br>s = “abcd”<br>t = “abcde”</p>
+<p>输出：<br>e</p>
+<p>解释：<br>‘e’ 是那个被添加的字母。</p>
+</blockquote>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    char findTheDifference(string s, string t) &#123;</span><br><span class="line">        char e = 0;</span><br><span class="line">        for(int i = 0; i &lt; s.size(); i++) e ^= s[i];</span><br><span class="line">        for(int i = 0; i &lt; t.size(); i++) e ^= t[i];</span><br><span class="line">        return e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>与<a href="https://leetcode-cn.com/problems/single-number/" target="_blank" rel="noopener">136. 只出现一次的数字</a>一样的思路，考察异或的使用。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-389-找不同/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-40-组合总-II/">LeetCode-40-组合总-II</a>  
 	       
 		 
@@ -511,51 +557,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-153-寻找旋转排序数组中的最小值/">LeetCode-153-寻找旋转排序数组中的最小值</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener">153. 寻找旋转排序数组中的最小值</a></p>
-<h5 id="假设按照升序排序的数组在预先未知的某个点上进行了旋转。"><a href="#假设按照升序排序的数组在预先未知的某个点上进行了旋转。" class="headerlink" title="假设按照升序排序的数组在预先未知的某个点上进行了旋转。"></a>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</h5><p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
-<h5 id="请找出其中最小的元素。"><a href="#请找出其中最小的元素。" class="headerlink" title="请找出其中最小的元素。"></a>请找出其中最小的元素。</h5><p>你可以假设数组中不存在重复元素。</p>
-<p>示例 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,4,5,1,2]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure>
-<p>示例 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [4,5,6,7,0,1,2]</span><br><span class="line">输出: 0</span><br></pre></td></tr></table></figure>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findMin(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int lo = 0;</span><br><span class="line">        int hi = nums.size()-1;</span><br><span class="line">        while(lo &lt; hi)&#123;</span><br><span class="line">            int mid = (lo+hi)/2;</span><br><span class="line">            //如果比右边大，说明在逆序数组中。</span><br><span class="line">            //从mid位置的下一个元素继续查找。</span><br><span class="line">            if(nums[mid] &gt; nums[hi])&#123;</span><br><span class="line">                lo = mid+1;</span><br><span class="line">            &#125;</span><br><span class="line">            //如果不比右边的大，说明已在正序数组中。</span><br><span class="line">            // 缩小右边的范围。</span><br><span class="line">            else&#123;</span><br><span class="line">                hi = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //hi == lo</span><br><span class="line">        return nums[lo];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>使用<strong>二分法</strong>。</p>
-<p>当中间元素比右边界要大时，说明在逆序数组中，这时，令lo = mid + 1。</p>
-<p>否则说明在顺序数组中，不断缩小范围直到 lo = hi 时，返回。</p>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-153-寻找旋转排序数组中的最小值/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -569,7 +570,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>6</strong>, Total <strong>119</strong> . </span>
+   <span class="page-number"> Page <strong>6</strong>, Total <strong>120</strong> . </span>
 
     
         <a class="next" href="/page/7/"> 

@@ -90,7 +90,7 @@
 		
 		
 			<i class="iconfont icon-words"></i>
-			<span class="post-info-entry">2113
+			<span class="post-info-entry">2114
 			</span>
 		
 	</div>
@@ -106,6 +106,7 @@
 					<h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>有 N 件物品和一个容量是 V的背包。每件物品只能使用一次。</p>
 <p>第 i件物品的体积是 vi，价值是 wi。</p>
 <p>求解将哪些物品装入背包，可使这些物品的总体积<strong>不超过</strong>背包容量，且<strong>总价值最大</strong>。<br>输出最大价值。</p>
+<a id="more"></a>
 <h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>拿到这道题目，我们在不用动态规划的情况下，可以枚举这N件物品，每件物品都有选和不选两种情况，所以总的复杂度为O（2^n）。并且在计算过程中，我们发现有很多的重复计算。最直接优化的方法当然是记忆化，将搜到的状态保存下来，以便之后重复调用时直接取值，避免重复计算。</p>
 <p>第二种优化方法就是动态规划了。我们对每一次的决策都保留最优解。最终得到问题的最优解。</p>
 <p>构建动态规划的关键在于定义状态转移方程。<br>定义状态转移方程要符合两个条件：</p>
@@ -200,6 +201,9 @@
   <div class="post-footer-meta">
         	
 
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/DP/">DP</a> <a class="tag-link" href="/tags/背包问题/">背包问题</a>    
         	
   </div>
 
@@ -209,11 +213,11 @@
 <nav class="post-footer-nav">
   <div class="post-footer-link">
   
-      <a href="/2019/10/26/POJ-3614-Sunscreen/" id="post-nav-older" class="post-nav-link-wrap">
+      <a href="/2019/11/25/背包九讲/" id="post-nav-older" class="post-nav-link-wrap">
         <strong class="post-nav-caption">older</strong>
         
-          <a class="post-nav-title" href="/2019/10/26/POJ-3614-Sunscreen/">
-          POJ-3614-Sunscreen</a>
+          <a class="post-nav-title" href="/2019/11/25/背包九讲/">
+          01背包问题详解</a>
       </a>
   
   </div>
