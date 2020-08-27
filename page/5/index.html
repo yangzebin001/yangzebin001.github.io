@@ -115,6 +115,48 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/LeetCode-922-按奇偶排序数-II/">LeetCode-922-按奇偶排序数-II</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/sort-array-by-parity-ii/submissions/" target="_blank" rel="noopener">922. 按奇偶排序数组 II</a></p>
+<p>给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。</p>
+<p>对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; sortArrayByParityII(vector&lt;int&gt;&amp; A) &#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int len = A.size();</span><br><span class="line">        int j = 1;</span><br><span class="line">        while(1)&#123;</span><br><span class="line">            while(i &lt; len &amp;&amp; (A[i] &amp; 1) == 0) i+=2;</span><br><span class="line">            while(j &lt; len &amp;&amp; (A[j] &amp; 1) != 0) j+=2;</span><br><span class="line">            if(i &gt;= len || j &gt;= len) break;</span><br><span class="line">            std::swap(A[i],A[j]);</span><br><span class="line">            i+=2;</span><br><span class="line">            j+=2;</span><br><span class="line">        &#125;</span><br><span class="line">        return A;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>设置两个指针。<br>一个指针只走奇数下标，一个指针只走偶数下标。<br>当碰到不符合条件（奇数下标的值不是奇数，偶数下标的值不是偶数）就停下并交换两个值，之后接着走，直到指针越界为止。</p>
+<blockquote>
+<p>看评论有人用栈或者另外准备两个数组的，速度比原地交换还快，不知道为什么。实现也比较简单，就不赘述了。</p>
+</blockquote>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-922-按奇偶排序数-II/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-78-子集/">LeetCode-78-子集</a>  
 	       
 		 
@@ -507,54 +549,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-40-组合总-II/">LeetCode-40-组合总-II</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/combination-sum-ii/" target="_blank" rel="noopener">40. 组合总和 II</a></p>
-<p>给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
-<p>candidates 中的每个数字在每个组合中只能使用一次。</p>
-<blockquote>
-<p>示例 1: </p>
-<p>输入: candidates = [10,1,2,7,6,1,5], target = 8,<br>所求解集为:<br>[<br>  [1, 7],<br>  [1, 2, 5],<br>  [2, 6],<br>  [1, 1, 6]<br>]</p>
-<p>示例 2:</p>
-<p>输入: candidates = [2,5,2,1,2], target = 5,<br>所求解集为:<br>[<br>  [1,2,2],<br>  [5]<br>]</p>
-</blockquote>
-<p>该题为<a href="https://leetcode-cn.com/problems/subsets-ii/submissions/" target="_blank" rel="noopener">90. 子集 II</a>的升级版</p>
-<p>与上题相同的是，都要保证元素的非重复性，所以与上题使用set部分的代码是一致的。</p>
-<p>区别在于在进行递归的过程中，需要随时对条件进行判断，只有满足等于target，才往result中添加。</p>
-<p>并且在剪枝的时候，如果元素之和已经比target大，就没有必要进行下去了，直接退出即可。</p>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        vector&lt;int&gt; item;</span><br><span class="line">        //去重所使用的集合</span><br><span class="line">        set&lt;vector&lt;int&gt;&gt; item_set;</span><br><span class="line">        //对nums进行排序。</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        putitem(0, candidates, result, item, item_set,target, 0);</span><br><span class="line">        return result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    void putitem(int i, vector&lt;int&gt;&amp; nums,vector&lt;vector&lt;int&gt; &gt; &amp;result, vector&lt;int&gt; &amp;item, set&lt;vector&lt;int&gt;&gt; &amp;item_set,int target, int sum)&#123;</span><br><span class="line">        if(i &gt;= nums.size() || sum &gt; target) return;</span><br><span class="line">        </span><br><span class="line">        sum += nums[i];</span><br><span class="line">        item.push_back(nums[i]);</span><br><span class="line">        //如果没有重复，就加入到最终的集合里。</span><br><span class="line">        if(sum == target &amp;&amp; item_set.find(item) == item_set.end())&#123;</span><br><span class="line">            result.push_back(item);</span><br><span class="line">            //加入去重集合中。</span><br><span class="line">            item_set.insert(item);</span><br><span class="line">        &#125;</span><br><span class="line">        putitem(i+1, nums, result, item, item_set, target, sum);</span><br><span class="line">        sum -= nums[i];</span><br><span class="line">        item.pop_back();</span><br><span class="line">        putitem(i+1, nums, result, item, item_set, target, sum);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-40-组合总-II/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -568,7 +562,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>5</strong>, Total <strong>118</strong> . </span>
+   <span class="page-number"> Page <strong>5</strong>, Total <strong>119</strong> . </span>
 
     
         <a class="next" href="/page/6/"> 

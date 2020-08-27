@@ -115,6 +115,54 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/LeetCode-40-组合总-II/">LeetCode-40-组合总-II</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/combination-sum-ii/" target="_blank" rel="noopener">40. 组合总和 II</a></p>
+<p>给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
+<p>candidates 中的每个数字在每个组合中只能使用一次。</p>
+<blockquote>
+<p>示例 1: </p>
+<p>输入: candidates = [10,1,2,7,6,1,5], target = 8,<br>所求解集为:<br>[<br>  [1, 7],<br>  [1, 2, 5],<br>  [2, 6],<br>  [1, 1, 6]<br>]</p>
+<p>示例 2:</p>
+<p>输入: candidates = [2,5,2,1,2], target = 5,<br>所求解集为:<br>[<br>  [1,2,2],<br>  [5]<br>]</p>
+</blockquote>
+<p>该题为<a href="https://leetcode-cn.com/problems/subsets-ii/submissions/" target="_blank" rel="noopener">90. 子集 II</a>的升级版</p>
+<p>与上题相同的是，都要保证元素的非重复性，所以与上题使用set部分的代码是一致的。</p>
+<p>区别在于在进行递归的过程中，需要随时对条件进行判断，只有满足等于target，才往result中添加。</p>
+<p>并且在剪枝的时候，如果元素之和已经比target大，就没有必要进行下去了，直接退出即可。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; result;</span><br><span class="line">        vector&lt;int&gt; item;</span><br><span class="line">        //去重所使用的集合</span><br><span class="line">        set&lt;vector&lt;int&gt;&gt; item_set;</span><br><span class="line">        //对nums进行排序。</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        putitem(0, candidates, result, item, item_set,target, 0);</span><br><span class="line">        return result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    void putitem(int i, vector&lt;int&gt;&amp; nums,vector&lt;vector&lt;int&gt; &gt; &amp;result, vector&lt;int&gt; &amp;item, set&lt;vector&lt;int&gt;&gt; &amp;item_set,int target, int sum)&#123;</span><br><span class="line">        if(i &gt;= nums.size() || sum &gt; target) return;</span><br><span class="line">        </span><br><span class="line">        sum += nums[i];</span><br><span class="line">        item.push_back(nums[i]);</span><br><span class="line">        //如果没有重复，就加入到最终的集合里。</span><br><span class="line">        if(sum == target &amp;&amp; item_set.find(item) == item_set.end())&#123;</span><br><span class="line">            result.push_back(item);</span><br><span class="line">            //加入去重集合中。</span><br><span class="line">            item_set.insert(item);</span><br><span class="line">        &#125;</span><br><span class="line">        putitem(i+1, nums, result, item, item_set, target, sum);</span><br><span class="line">        sum -= nums[i];</span><br><span class="line">        item.pop_back();</span><br><span class="line">        putitem(i+1, nums, result, item, item_set, target, sum);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-40-组合总-II/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-240-搜索二维矩-II/">LeetCode-240-搜索二维矩-II</a>  
 	       
 		 
@@ -508,54 +556,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-136-只出现一次的数字/">LeetCode-136-只出现一次的数字</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/single-number/" target="_blank" rel="noopener">136. 只出现一次的数字</a></p>
-<p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
-<p>说明：</p>
-<p>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
-<blockquote>
-<p>示例 1:</p>
-<p>输入: [2,2,1]<br>输出: 1</p>
-</blockquote>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int singleNumber(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int a = 0;</span><br><span class="line">        for(int i = 0; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            a = a ^ nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>使用异或来消除相同的元素。<br>异或：<br>两数相同，异或为0；<br>两数不同，异或为1；</p>
-<ul>
-<li>a ^ a = 0;</li>
-<li>a ^ 0 = a;</li>
-</ul>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-136-只出现一次的数字/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -569,7 +569,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>6</strong>, Total <strong>118</strong> . </span>
+   <span class="page-number"> Page <strong>6</strong>, Total <strong>119</strong> . </span>
 
     
         <a class="next" href="/page/7/"> 

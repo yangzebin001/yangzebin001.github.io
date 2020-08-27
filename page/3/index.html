@@ -115,6 +115,61 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/09/06/POJ-3250-Ba-Hai-Day（单调栈入门）/">POJ-3250-Ba-Hai-Day（单调栈入门）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>9月 06, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="http://poj.org/problem?id=3250" target="_blank" rel="noopener">POJ-3250-Bad Hair Day</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Some of Farmer John’s N cows (1 ≤ N ≤ 80,000) are having a bad hair day! Since each cow is self-conscious about her messy hairstyle, FJ wants to count the number of other cows that can see the top of other cows’ heads.</p>
+<p>Each cow i has a specified height hi (1 ≤ hi ≤ 1,000,000,000) and is standing in a line of cows all facing east (to the right in our diagrams). Therefore, cow i can see the tops of the heads of cows in front of her (namely cows i+1, i+2, and so on), for as long as these cows are strictly shorter than cow i.</p>
+<p>Consider this example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">=</span><br><span class="line">=       =</span><br><span class="line">=   -   =         Cows facing right --&gt;</span><br><span class="line">=   =   =</span><br><span class="line">= - = = =</span><br><span class="line">= = = = = =</span><br><span class="line">1 2 3 4 5 6</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Cow#1 can see the hairstyle of cows #2, 3, 4</li>
+<li>Cow#2 can see no cow’s hairstyle</li>
+<li>Cow#3 can see the hairstyle of cow #4</li>
+<li>Cow#4 can see no cow’s hairstyle</li>
+<li>Cow#5 can see the hairstyle of cow 6</li>
+<li>Cow#6 can see no cows at all!</li>
+</ul>
+<p>Let ci denote the number of cows whose hairstyle is visible from cow i; please compute the sum of c1 through cN.For this example, the desired is answer 3 + 0 + 1 + 0 + 1 + 0 = 5.</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>Line 1: The number of cows, N.<br>Lines 2..N+1: Line i+1 contains a single integer that is the height of cow i.</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>Line 1: A single integer that is the sum of c1 through cN.</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">10</span><br><span class="line">3</span><br><span class="line">7</span><br><span class="line">4</span><br><span class="line">12</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有一排奶牛，每个奶牛可以看到它右边身高严格比它小的奶牛发型，问这一排奶牛可以看到的奶牛发型总数。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这道题是单调栈模板题。</p>
+<p>具体做法就是在当前奶牛的右边找一个大于等于（原题说要严格小于，所以等于也算边界）它身高的奶牛的位置（由于求大于等于，所以维持一个单调递减栈），然后两者位置之差再减一就是中间的奶牛数量，每一个奶牛都做此操作即可求得结果。当然有一种情况是它找不到右边身高大于等于它的奶牛。这时可以把最后一个奶牛有一个无限高的奶牛，然后用该位置去减栈中每个奶牛的位置（n+1-x-1 = n-x）。</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-04 16:39:06</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-06 21:41:17</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int a,x;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    node(int _a, int _x):x(_x),a(_a)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">stack&lt;node&gt; s;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    int n;</span><br><span class="line">    long long ans = 0;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    node temp;</span><br><span class="line">    for(int i = 1; i &lt;= n; i++)&#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;temp.a);</span><br><span class="line">        temp.x = i;</span><br><span class="line">        //单调递减栈</span><br><span class="line">        //找到了第一个比当前栈顶大的值（刚读入的值）。</span><br><span class="line">        while(s.size() &amp;&amp; s.top().a &lt;= temp.a)&#123;</span><br><span class="line">            //计算坐标差</span><br><span class="line">            ans += i-s.top().x-1;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        s.push(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    //当前栈顶元素的右边没有比他更高的元素了，用最右边的无限高减去该元素位置。</span><br><span class="line">    while(s.size())&#123;</span><br><span class="line">        ans += n-s.top().x;</span><br><span class="line">        s.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%lld\\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/09/06/POJ-3250-Ba-Hai-Day（单调栈入门）/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/09/05/洛谷-P1901-发射站/">洛谷-P1901-发射站</a>  
 	       
 		 
@@ -587,54 +642,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/08/13/POJ-1062-昂贵的聘礼/">POJ-1062-昂贵的聘礼</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>8月 13, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="http://poj.org/problem?id=1062" target="_blank" rel="noopener">POJ-1062</a></p>
-<p>年轻的探险家来到了一个印第安部落里。在那里他和酋长的女儿相爱了，于是便向酋长去求亲。酋长要他用10000个金币作为聘礼才答应把女儿嫁给他。探险家拿不出这么多金币，便请求酋长降低要求。酋长说：”嗯，如果你能够替我弄到大祭司的皮袄，我可以只要8000金币。如果你能够弄来他的水晶球，那么只要5000金币就行了。”探险家就跑到大祭司那里，向他要求皮袄或水晶球，大祭司要他用金币来换，或者替他弄来其他的东西，他可以降低价格。探险家于是又跑到其他地方，其他人也提出了类似的要求，或者直接用金币换，或者找到其他东西就可以降低价格。不过探险家没必要用多样东西去换一样东西，因为不会得到更低的价格。探险家现在很需要你的帮忙，让他用最少的金币娶到自己的心上人。另外他要告诉你的是，在这个部落里，等级观念十分森严。地位差距超过一定限制的两个人之间不会进行任何形式的直接接触，包括交易。他是一个外来人，所以可以不受这些限制。但是如果他和某个地位较低的人进行了交易，地位较高的的人不会再和他交易，他们认为这样等于是间接接触，反过来也一样。因此你需要在考虑所有的情况以后给他提供一个最好的方案。</p>
-<p>为了方便起见，我们把所有的物品从1开始进行编号，酋长的允诺也看作一个物品，并且编号总是1。每个物品都有对应的价格P，主人的地位等级L，以及一系列的替代品Ti和该替代品所对应的”优惠”Vi。如果两人地位等级差距超过了M，就不能”间接交易”。你必须根据这些数据来计算出探险家最少需要多少金币才能娶到酋长的女儿。</p>
-<p>输入第一行是两个整数M，N（1 &lt;= N &lt;= 100），依次表示地位等级差距限制和物品的总数。接下来按照编号从小到大依次给出了N个物品的描述。每个物品的描述开头是三个非负整数P、L、X（X &lt; N），依次表示该物品的价格、主人的地位等级和替代品总数。接下来X行每行包括两个整数T和V，分别表示替代品的编号和”优惠价格”。</p>
-<p>输出最少需要的金币数。</p>
-<h4 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1 4</span><br><span class="line">10000 3 2</span><br><span class="line">2 8000</span><br><span class="line">3 5000</span><br><span class="line">1000 2 1</span><br><span class="line">4 200</span><br><span class="line">3000 2 1</span><br><span class="line">4 200</span><br><span class="line">50 2 0</span><br></pre></td></tr></table></figure>
-<h4 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5250</span><br></pre></td></tr></table></figure>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>一开始需要n金币，每个物品都有自己的价值，你可以用其他物品来抵消一部分金币（优惠价格），而用来抵消的物品也可以由其他物品来抵消该物品的一部分，如此往复。并且主人是分等级的，要确保交换物品过程中任何两个人的等级差距都不能超过M。<br>问最少需要的金币数量。</p>
-<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>把每个物品看成结点，B物品可以抵消A物品的一部分,表示A有一条边指向B,边权是替代品的优惠价格，点权为该物品的价值。</p>
-<p>可以求第一个物品到其他物品的最短路，松弛操作为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis[v] &gt; dis[u] + u到v的边权</span><br></pre></td></tr></table></figure>
-<p>这样求得的dis为每个顶点到起点的优惠价格，而到当前点的总花费为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dis[i] + coin[i] //优惠价格+当前物品的价格</span><br></pre></td></tr></table></figure>
-<p>而题目还有一层约束条件为物品交换不能超过等级差距。<br>我们就需要检查每个点到起点的等级差了。<br>例如起点的等级为5，等级差距为3，则要枚举的区间为 3 ~ 5、4 ~ 6、5 ~ 7 ，在每个区间中，求符合等级差距的点，并求起点到该点的最短路（这里比较绕，建议多思考下）。最后答案取一个最小值即可。</p>
-<h4 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 110;</span><br><span class="line">const int INF = 0x3f3f3f3f;</span><br><span class="line">struct Edge&#123;</span><br><span class="line">    int to,cost;</span><br><span class="line">    Edge()&#123;&#125;;</span><br><span class="line">    Edge(int _to,int _cost)&#123;</span><br><span class="line">        to = _to;</span><br><span class="line">        cost = _cost;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct qnode&#123;</span><br><span class="line">    int v,cost;</span><br><span class="line">    qnode(int _v, int _cost)&#123;</span><br><span class="line">        v = _v;</span><br><span class="line">        cost = _cost;</span><br><span class="line">    &#125;</span><br><span class="line">    qnode()&#123;&#125;</span><br><span class="line">    bool operator &lt;(const qnode &amp;b)const&#123;</span><br><span class="line">        return cost &gt; b.cost;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Edge&gt; G[MAXN];</span><br><span class="line"></span><br><span class="line">int coin[MAXN]; //价值多少金币 </span><br><span class="line">int dis[MAXN];	//最少优惠 </span><br><span class="line">int vis[MAXN];	</span><br><span class="line">int pos[MAXN];  //等级 </span><br><span class="line">int M,N;</span><br><span class="line">int ans;</span><br><span class="line"> void Dijkstra(int S,int N)&#123;</span><br><span class="line"> 	for(int i = 1; i &lt;= N; i++)&#123;</span><br><span class="line"> 		dis[i] = S== i ? 0 : INF;</span><br><span class="line">	 &#125;</span><br><span class="line">     priority_queue&lt;qnode&gt; pq;</span><br><span class="line">     pq.push(qnode(S,dis[S]));</span><br><span class="line">     qnode temp;</span><br><span class="line">     while(pq.size())&#123;</span><br><span class="line">         temp = pq.top();pq.pop();</span><br><span class="line">         int u = temp.v;</span><br><span class="line">         if(vis[u])continue;</span><br><span class="line">         vis[u] = 1;</span><br><span class="line">         for(int i = 0; i &lt; G[u].size(); i++)&#123;</span><br><span class="line">             int v = G[u][i].to;</span><br><span class="line">             int vc = G[u][i].cost;</span><br><span class="line">             if(!vis[v] &amp;&amp; dis[v] &gt; dis[u] + vc)&#123;</span><br><span class="line">                dis[v] = dis[u] + vc;	</span><br><span class="line">                //更新答案 </span><br><span class="line">                ans = min(ans,dis[v] + coin[v]);</span><br><span class="line">                pq.push(qnode(v,dis[v]));</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">//     for(int i = 1; i &lt;= N; i++)&#123;</span><br><span class="line">//     	ans = min(ans,dis[i] + coin[i]);		</span><br><span class="line">//	 &#125; </span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">void init(int N)&#123;</span><br><span class="line">	for(int i = 0; i &lt;= N; i++)&#123;</span><br><span class="line">		G[i].clear();</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    scanf(&quot;%d %d&quot;,&amp;M,&amp;N);</span><br><span class="line">    init(N);</span><br><span class="line">    for(int i = 1; i &lt;= N; i++)&#123;</span><br><span class="line">        int c,r,n;</span><br><span class="line">        scanf(&quot;%d%d%d&quot;,&amp;c,&amp;r,&amp;n);</span><br><span class="line">        coin[i] = c;</span><br><span class="line">        pos[i] = r;</span><br><span class="line"></span><br><span class="line">        for(int j = 1; j &lt;= n; j++)&#123;</span><br><span class="line">            int t,cost;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;t,&amp;cost);</span><br><span class="line">            G[i].push_back(Edge(t,cost));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //设最大值为起始值 </span><br><span class="line">    ans = coin[1];</span><br><span class="line">    for(int i = 0; i &lt;= M; i++)&#123;</span><br><span class="line">    	//更新每个点是否在当前区间内 </span><br><span class="line">    	for(int j = 1; j &lt;= N; j++)&#123;</span><br><span class="line">    		if(pos[j] &gt;= pos[1]-M+i &amp;&amp; pos[j] &lt;= pos[1]+i) vis[j] = 0;</span><br><span class="line">    		else vis[j] = 1;</span><br><span class="line">		&#125;</span><br><span class="line">		//求一下当前区间的最短路。 </span><br><span class="line">		Dijkstra(1,N);</span><br><span class="line">	&#125;</span><br><span class="line">    printf(&quot;%d&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/08/13/POJ-1062-昂贵的聘礼/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -648,7 +655,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>3</strong>, Total <strong>118</strong> . </span>
+   <span class="page-number"> Page <strong>3</strong>, Total <strong>119</strong> . </span>
 
     
         <a class="next" href="/page/4/"> 
