@@ -115,6 +115,49 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/LeetCode-142-环形链-II/">LeetCode-142-环形链-II</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">142. 环形链表 II</a></p>
+<h3 id="给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。"><a href="#给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。" class="headerlink" title="给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。"></a>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</h3><h5 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1:"></a>Solution1:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        std::set&lt;ListNode*&gt; node_set;</span><br><span class="line">        while(head)&#123;</span><br><span class="line">            if(node_set.find(head) == node_set.end())&#123;</span><br><span class="line">                node_set.insert(head);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return head;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>与141号问题的Solutions1一个思路，直接使用set。只不过返回的是结点不是boolean值罢了。</p>
+<hr>
+<h5 id="Solutions2"><a href="#Solutions2" class="headerlink" title="Solutions2:"></a>Solutions2:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        ListNode * head1 = head;</span><br><span class="line">        ListNode * slow = head;</span><br><span class="line">        ListNode * fast = head;</span><br><span class="line">        //fast走一步，slow走两步</span><br><span class="line">        while(fast)&#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            if(fast)&#123;</span><br><span class="line">                fast = fast-&gt;next;</span><br><span class="line">            &#125;else&#123; //没有环退出</span><br><span class="line">                return NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            //有环退出循环</span><br><span class="line">            if(fast == slow)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //说明有环</span><br><span class="line">        while(head1 &amp;&amp; fast)&#123;</span><br><span class="line">            if(head1 == fast)&#123;</span><br><span class="line">                return fast;</span><br><span class="line">            &#125;</span><br><span class="line">            head1 = head1-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        //不会走到这步，只是为了保证函数正常运行</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>这种方法只会使用O(1)的空间。</p>
+<p>该方法的思路需要一点数学基础：</p>
+<p>在一个有环的链表中，slow指针与fast指针相遇，从该相遇的位置开始，与链表的头位置开始，两者走同样的步数，如果两者相交，就走到了环的开始位置。</p>
+<p><img src="http://pkjge38r4.bkt.clouddn.com/18-12-30/36603912.jpg" alt="image"></p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-142-环形链-II/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-153-寻找旋转排序数组中的最小值/">LeetCode-153-寻找旋转排序数组中的最小值</a>  
 	       
 		 
@@ -519,51 +562,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/03/16/LeetCode-105-从前序与中序遍历序列构造二叉树（待补充）/">LeetCode-105. 从前序与中序遍历序列构造二叉树（待补充）</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>3月 16, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">105. 从前序与中序遍历序列构造二叉树</a></p>
-<h4 id="根据一棵树的前序遍历与中序遍历构造二叉树。"><a href="#根据一棵树的前序遍历与中序遍历构造二叉树。" class="headerlink" title="根据一棵树的前序遍历与中序遍历构造二叉树。"></a>根据一棵树的前序遍历与中序遍历构造二叉树。</h4><p>注意:<br>你可以假设树中没有重复的元素。</p>
-<p>例如，给出<br>
-		  	  
-	</p></div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/03/16/LeetCode-105-从前序与中序遍历序列构造二叉树（待补充）/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -577,7 +575,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>7</strong>, Total <strong>120</strong> . </span>
+   <span class="page-number"> Page <strong>7</strong>, Total <strong>121</strong> . </span>
 
     
         <a class="next" href="/page/8/"> 

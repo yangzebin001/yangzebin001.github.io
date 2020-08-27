@@ -115,6 +115,53 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/LeetCode-45-跳跃游-II/">LeetCode-45-跳跃游-II</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/jump-game-ii/" target="_blank" rel="noopener">45. 跳跃游戏 II</a></p>
+<p>此题<a href="https://leetcode-cn.com/problems/jump-game/comments/" target="_blank" rel="noopener">55. 跳跃游戏</a>的进阶版</p>
+<p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+<p>按照前面题的思路，依然是从后往前搜索。<strong>每次搜索能跳到当前位置的最远位置。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        // 选择当前能跳到当前点的最远的距离。</span><br><span class="line">        int max_index = nums.size()-1;</span><br><span class="line">        int current_max_index = max_index;</span><br><span class="line">        int step = 0;</span><br><span class="line">        //当没有到达开头位置，进行循环。</span><br><span class="line">        while(max_index &gt; 0)&#123;</span><br><span class="line">            //记录能跳到当前数组的最前面的点。</span><br><span class="line">            for(int i = max_index-1; i &gt;= 0; i--)&#123;</span><br><span class="line">                if(i + nums[i] &gt;= max_index)&#123;</span><br><span class="line">                    current_max_index = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             //更新能跳的最远的点。</span><br><span class="line">            max_index = current_max_index;</span><br><span class="line">            //步数更新</span><br><span class="line">            step++;</span><br><span class="line">        &#125;</span><br><span class="line">        return step;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>用了两层循环，发现能ac，但是又排在了末名。</p>
+<p>看了大神的代码，写出了下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size() &lt; 2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        //当前可到达的最远距离。</span><br><span class="line">        int current_max_index = nums[0];</span><br><span class="line">        //遍历各个位置中，可到达的最远距离。</span><br><span class="line">        int pre_max_max_index = nums[0];</span><br><span class="line">        int jump = 1;</span><br><span class="line">        </span><br><span class="line">        for(int i = 1; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            //更新当前可达到的最远距离。</span><br><span class="line">            if(i &gt; current_max_index)&#123;</span><br><span class="line">                jump++;</span><br><span class="line">                current_max_index = pre_max_max_index;</span><br><span class="line">            &#125;</span><br><span class="line">            if(pre_max_max_index &lt; nums[i] + i)&#123;</span><br><span class="line">                //更新</span><br><span class="line">                pre_max_max_index = nums[i] + i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return jump;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>跳到当前所能跳到的最远的位置所在的位置中</strong>。</p>
+<p>记录当前位置所能到达的最远的位置。</p>
+<p>如果做到了该最远位置，更新一下。继续走。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-45-跳跃游-II/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-389-找不同/">LeetCode-389-找不同</a>  
 	       
 		 
@@ -514,49 +561,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-142-环形链-II/">LeetCode-142-环形链-II</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">142. 环形链表 II</a></p>
-<h3 id="给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。"><a href="#给定一个链表，返回链表开始入环的第一个节点。-如果链表无环，则返回-null。" class="headerlink" title="给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。"></a>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</h3><h5 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1:"></a>Solution1:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        std::set&lt;ListNode*&gt; node_set;</span><br><span class="line">        while(head)&#123;</span><br><span class="line">            if(node_set.find(head) == node_set.end())&#123;</span><br><span class="line">                node_set.insert(head);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return head;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>与141号问题的Solutions1一个思路，直接使用set。只不过返回的是结点不是boolean值罢了。</p>
-<hr>
-<h5 id="Solutions2"><a href="#Solutions2" class="headerlink" title="Solutions2:"></a>Solutions2:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        ListNode * head1 = head;</span><br><span class="line">        ListNode * slow = head;</span><br><span class="line">        ListNode * fast = head;</span><br><span class="line">        //fast走一步，slow走两步</span><br><span class="line">        while(fast)&#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            if(fast)&#123;</span><br><span class="line">                fast = fast-&gt;next;</span><br><span class="line">            &#125;else&#123; //没有环退出</span><br><span class="line">                return NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            //有环退出循环</span><br><span class="line">            if(fast == slow)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //说明有环</span><br><span class="line">        while(head1 &amp;&amp; fast)&#123;</span><br><span class="line">            if(head1 == fast)&#123;</span><br><span class="line">                return fast;</span><br><span class="line">            &#125;</span><br><span class="line">            head1 = head1-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        //不会走到这步，只是为了保证函数正常运行</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>这种方法只会使用O(1)的空间。</p>
-<p>该方法的思路需要一点数学基础：</p>
-<p>在一个有环的链表中，slow指针与fast指针相遇，从该相遇的位置开始，与链表的头位置开始，两者走同样的步数，如果两者相交，就走到了环的开始位置。</p>
-<p><img src="http://pkjge38r4.bkt.clouddn.com/18-12-30/36603912.jpg" alt="image"></p>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-142-环形链-II/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -570,7 +574,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>6</strong>, Total <strong>120</strong> . </span>
+   <span class="page-number"> Page <strong>6</strong>, Total <strong>121</strong> . </span>
 
     
         <a class="next" href="/page/7/"> 

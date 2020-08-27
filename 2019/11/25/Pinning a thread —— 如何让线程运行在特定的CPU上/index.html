@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <title>  01背包问题详解 |   BeckoninGshy </title>
+
+ 
+  
+    <link rel="icon" href="/images/logo.png">
+  
+
+
+  <link rel="stylesheet" href="/nayo.min.css"> 
+</head>  
+  <body>   
+    
+      <header class="header">
+	
+  <nav class="header-inner">        
+
+    <span class="iconfont icon-menu mobile-toggle"></span>   	
+
+    <div class="header-logo">
+      <a href="/">
+        <img class="header-logo-img" src="/images/logo.png">
+      </a>
+    </div>
+
+    <div class="header-menu">          
+              
+          
+            <a class="header-menu-link" id="header-menu-home" href="/">
+              <i class="iconfont icon-home">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-archives" href="/archives">
+              <i class="iconfont icon-archives">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-tags" href="/tags">
+              <i class="iconfont icon-tags">  
+            </i></a>     
+          
+              
+          
+            <a class="header-menu-link" id="header-menu-about" href="/about">
+              <i class="iconfont icon-about">  
+            </i></a>     
+          
+              
+          
+              <a class="header-menu-link" id="header-menu-search">
+                <i class="iconfont icon-search">  
+              </i></a>
+          
+                  
+    </div>  
+    
+  </nav>
+</header>
+
+   
+
+      <div class="container">       
+          
+          
+            <div class="container-inner">  
+          
+
+          <article class="post">
+  
+	
+<div class="post-header">
+	<p class="post-title">	
+		01背包问题详解
+	</p>
+
+	<div class="post-info">	
+		<span class="post-info-entry">
+			11月 25, 2019
+		</span>
+
+		
+		
+			<i class="iconfont icon-words"></i>
+			<span class="post-info-entry">1377
+			</span>
+		
+	</div>
+</div> 
+	
+ 
+
+	  <div class="typo post-content slideDownMin">
+
+		
+
+			
+					<p>在看OSTEP的TLB部分时，作业中有一个问题是：<strong>如何让线程运行在特定的CPU上</strong>，觉得挺有趣的问题，随后通过STFW找到了答案。</p>
+<p>主要用到两个 <code>pthread_setaffinity_np</code> 和 <code>pthread_getaffinity_np</code> api。</p>
+<p>通过 RTFM<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man pthread_setaffinity_np</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>有一段示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> handle_error_en(en, msg) \</span></span><br><span class="line">       <span class="keyword">do</span> &#123; errno = en; perror(msg); <span class="built_in">exit</span>(EXIT_FAILURE); &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">main(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">int</span> s, j;</span><br><span class="line">   <span class="keyword">cpu_set_t</span> cpuset;</span><br><span class="line">   <span class="keyword">pthread_t</span> thread;</span><br><span class="line"></span><br><span class="line">   thread = pthread_self();  <span class="comment">// 获取当前运行的线程数据结构</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/* Set affinity mask to include CPUs 0 to 7 */</span></span><br><span class="line">   CPU_ZERO(&amp;cpuset);   <span class="comment">// 将cpuset结构清零</span></span><br><span class="line">   <span class="comment">// 将0-7号CPU全部加入cpuset中（如果只想指定特定的cpu，运行循环中那一行即可）</span></span><br><span class="line">   <span class="comment">// 例如将线程运行在3号cpu上：CPU_SET(3, &amp;cpuset); </span></span><br><span class="line">   <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++)</span><br><span class="line">       CPU_SET(j, &amp;cpuset);  <span class="comment">// 设置j号cpu到cpuset中。</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// set CPU affinity of a thread</span></span><br><span class="line">   s = pthread_setaffinity_np(thread, <span class="keyword">sizeof</span>(<span class="keyword">cpu_set_t</span>), &amp;cpuset);</span><br><span class="line">   <span class="keyword">if</span> (s != <span class="number">0</span>)</span><br><span class="line">       handle_error_en(s, <span class="string">"pthread_setaffinity_np"</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">/* Check the actual affinity mask assigned to the thread */</span></span><br><span class="line">   s = pthread_getaffinity_np(thread, <span class="keyword">sizeof</span>(<span class="keyword">cpu_set_t</span>), &amp;cpuset);</span><br><span class="line">   <span class="keyword">if</span> (s != <span class="number">0</span>)</span><br><span class="line">       handle_error_en(s, <span class="string">"pthread_getaffinity_np"</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"Set returned by pthread_getaffinity_np() contained:\n"</span>);</span><br><span class="line">   <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; CPU_SETSIZE; j++)</span><br><span class="line">       <span class="keyword">if</span> (CPU_ISSET(j, &amp;cpuset))</span><br><span class="line">           <span class="built_in">printf</span>(<span class="string">"    CPU %d\n"</span>, j);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果gcc无法通过编译：undefined reference to pthread_setaffinity_np</p>
+<p>在编译时加 <code>-lpthread</code> 参数即可。</p>
+<blockquote>
+<p>stackoverflow: <a href="https://stackoverflow.com/questions/32657609/pinning-a-thread-to-a-core-in-a-cpuset-through-c" target="_blank" rel="noopener">pinning-a-thread-to-a-core-in-a-cpuset-through-c</a></p>
+</blockquote>
+  	
+					
+	  </div>     
+	  
+
+	<div class="post-footer">
+
+
+  <div class="post-footer-other">
+       
+    
+      <span class="post-footer-item">
+        <span class="share-btn">
+	<span class="iconfont icon-share"></span>
+</span>
+<div class="-mob-share sildeUpMin">
+	<ul class="-mob-inner">
+	   			             
+        <li class="iconfont 
+		icon-share-qq 
+		-mob-share-qq 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weixin 
+		-mob-share-weixin 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-weibo 
+		-mob-share-weibo 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-douban 
+		-mob-share-douban 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-facebook 
+		-mob-share-facebook 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-twitter 
+		-mob-share-twitter 
+		-mob-share-link"></li>		
+   	   			             
+        <li class="iconfont 
+		icon-share-google 
+		-mob-share-google 
+		-mob-share-link"></li>		
+   	   
+	</ul>
+</div>	
+
+
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=21d601593a1de"></script>
+      </span>  
+               
+  </div>  
+    
+
+
+  <div class="post-footer-meta">
+        	
+
+        
+          <i class="iconfont icon-tag"></i>     
+            <a class="tag-link" href="/tags/Linux/">Linux</a> <a class="tag-link" href="/tags/cpu/">cpu</a> <a class="tag-link" href="/tags/线程/">线程</a>    
+        	
+  </div>
+
+</div>
+
+
+<nav class="post-footer-nav">
+  <div class="post-footer-link">
+  
+      <a href="/2019/10/26/POJ-3614-Sunscreen/" id="post-nav-older" class="post-nav-link-wrap">
+        <strong class="post-nav-caption">older</strong>
+        
+          <a class="post-nav-title" href="/2019/10/26/POJ-3614-Sunscreen/">
+          POJ-3614-Sunscreen</a>
+      </a>
+  
+  </div>
+  <div class="post-footer-link">
+    
+        <a href="/2019/11/25/背包九讲/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2019/11/25/背包九讲/">
+            01背包问题详解</a>
+        </a>
+    
+  </div>
+
+</nav>
+ 
+	
+
+    <div id="disqus_thread"></div>
+    <script>
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://'+'lemonreds'+'.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());    
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+
+    <noscript>Please enable JavaScript to view the  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+
+
+	
+</article>
+
+          </div> 
+      </div>            
+    
+    <a id="page-backTop">
+      <span>
+        <i class="iconfont icon-backtotop"></i>
+      </span>
+    </a> 
+
+  
+    
+    <div class="search-container sildeUpMin">
+        <div class="search-header">
+            <input type="text" placeholder="输入你想搜索的" id="search-input" class="search-input">
+            <span class="search-cancel">
+                <i class="iconfont icon-cancel">
+            </i></span>
+        </div>
+        <div id="search-result" class="search-result"></div>
+    </div>
+ 
+     <div class="mobile-menu">      
+
+      
+      <img class="mobile-menu-icon" src="/images/logo.png">   
+      
+
+         
+            
+
+            <a class="mobile-menu-link" href="/">首页
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/archives">归档
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/tags">标签
+            </a>
+            
+         
+            
+
+            <a class="mobile-menu-link" href="/about">关于
+            </a>
+            
+         
+                          
+
+            <a class="mobile-menu-link mobile-menu-search" href="#">搜索 </a>                 
+            
+         
+      
+</div>        
+    
+
+
+
+     
+    
+
+
+
+
+<footer id="footer">	    
+
+		
+		<div class="footer-copyright">
+		&copy;
+				
+		2017-
+		
+		2020		
+	
+		BeckoninGshy&#39;s Blog
+		<br>
+
+		Theme  <a href="https://github.com/Lemonreds/hexo-theme-Nayo" target="_blank">Nayo</a>
+		</div>			
+	 
+</footer>   
+
+    <script src="/nayo.bundle.js"></script>           
+  </body>        
+</html>

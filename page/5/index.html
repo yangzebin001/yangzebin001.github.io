@@ -115,6 +115,42 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/06/01/写在大一期末考试之际/">写在大一期末考试之际</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>6月 01, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<h3 id="写在大一期末考试之际"><a href="#写在大一期末考试之际" class="headerlink" title="写在大一期末考试之际"></a>写在大一期末考试之际</h3><p>最近发生了很多各种各样的事，面对即将到来的期末考试，自己真的很没有底气，因为只有自己知道，对于大部分的课程，学的是如何糟糕。我不看重的课程不说，但数学学科的课程自己也没学到什么，一方面是老师的原因，但最多的是自己的问题，学习的重心绝对的向专业偏移，即使是专业，每天学的都是些业务类的技术，如果是这样，我觉得我可以立即辍学，这也不是我上大学的初衷，一定要向研究的方向转变，把数学基础提上来才是我大学应该做的事，大学时光1/4已经过去了，自己却没有调整到合适的状态，实属不应该。不过，也有些收获，算法竞赛这块是我没有预料到的，同时回想自己大一上学期学算法的时候是我最想要的状态，我不知道自己是不是喜欢，但无暇他顾地专心只搞一件事是我想要的，而通过学习它我可以进入这种状态，后来学长又找我说想打acm，我知道这个的难度，也知道意味着什么，但是我觉得人应该有些梦想，先让我做一年试试。</p>
+<p>同时，我的学习方法也有很多的不足，很低效，我觉得得花些时间来调整下，通常都是学的快，忘的更快，再要用的时候，又要重新学（虽然会快很多），这也是我写博客项目的原因，一个是记录，一个是整理。记录是记录时光的流逝，整理是整理学习成果。要好好把博客写好了。慢就是快，就像姜文说的：步子迈大了，容易扯着蛋。我时刻提醒自己，一定不能浮起来，要沉下去。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/06/01/写在大一期末考试之际/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-98-验证二叉搜索树/">LeetCode-98-验证二叉搜索树</a>  
 	       
 		 
@@ -505,53 +541,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-45-跳跃游-II/">LeetCode-45-跳跃游-II</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/jump-game-ii/" target="_blank" rel="noopener">45. 跳跃游戏 II</a></p>
-<p>此题<a href="https://leetcode-cn.com/problems/jump-game/comments/" target="_blank" rel="noopener">55. 跳跃游戏</a>的进阶版</p>
-<p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
-<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
-<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
-<p>按照前面题的思路，依然是从后往前搜索。<strong>每次搜索能跳到当前位置的最远位置。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        // 选择当前能跳到当前点的最远的距离。</span><br><span class="line">        int max_index = nums.size()-1;</span><br><span class="line">        int current_max_index = max_index;</span><br><span class="line">        int step = 0;</span><br><span class="line">        //当没有到达开头位置，进行循环。</span><br><span class="line">        while(max_index &gt; 0)&#123;</span><br><span class="line">            //记录能跳到当前数组的最前面的点。</span><br><span class="line">            for(int i = max_index-1; i &gt;= 0; i--)&#123;</span><br><span class="line">                if(i + nums[i] &gt;= max_index)&#123;</span><br><span class="line">                    current_max_index = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             //更新能跳的最远的点。</span><br><span class="line">            max_index = current_max_index;</span><br><span class="line">            //步数更新</span><br><span class="line">            step++;</span><br><span class="line">        &#125;</span><br><span class="line">        return step;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>用了两层循环，发现能ac，但是又排在了末名。</p>
-<p>看了大神的代码，写出了下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size() &lt; 2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        //当前可到达的最远距离。</span><br><span class="line">        int current_max_index = nums[0];</span><br><span class="line">        //遍历各个位置中，可到达的最远距离。</span><br><span class="line">        int pre_max_max_index = nums[0];</span><br><span class="line">        int jump = 1;</span><br><span class="line">        </span><br><span class="line">        for(int i = 1; i &lt; nums.size(); i++)&#123;</span><br><span class="line">            //更新当前可达到的最远距离。</span><br><span class="line">            if(i &gt; current_max_index)&#123;</span><br><span class="line">                jump++;</span><br><span class="line">                current_max_index = pre_max_max_index;</span><br><span class="line">            &#125;</span><br><span class="line">            if(pre_max_max_index &lt; nums[i] + i)&#123;</span><br><span class="line">                //更新</span><br><span class="line">                pre_max_max_index = nums[i] + i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return jump;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>跳到当前所能跳到的最远的位置所在的位置中</strong>。</p>
-<p>记录当前位置所能到达的最远的位置。</p>
-<p>如果做到了该最远位置，更新一下。继续走。</p>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-45-跳跃游-II/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -565,7 +554,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>5</strong>, Total <strong>120</strong> . </span>
+   <span class="page-number"> Page <strong>5</strong>, Total <strong>121</strong> . </span>
 
     
         <a class="next" href="/page/6/"> 
