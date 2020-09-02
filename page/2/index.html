@@ -115,7 +115,90 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2019/11/25/背包九讲/">01背包问题详解</a>  
+		<a class="article-title" href="/2019/11/25/LeetCode-116-填充每个节点的下一个右侧节点指针/">LeetCode-116-填充每个节点的下一个右侧节点指针</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>11月 25, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p>给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Node &#123;</span><br><span class="line">  int val;</span><br><span class="line">  Node *left;</span><br><span class="line">  Node *right;</span><br><span class="line">  Node *next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。</p>
+<p>初始状态下，所有 next 指针都被设置为 NULL。</p>
+<h3 id="Solution1（递归版）："><a href="#Solution1（递归版）：" class="headerlink" title="Solution1（递归版）："></a>Solution1（递归版）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        if(!root) return NULL;</span><br><span class="line">        Node* l = root-&gt;left;</span><br><span class="line">        Node* r = root-&gt;right;</span><br><span class="line">        while(l)&#123;</span><br><span class="line">            l-&gt;next = r;</span><br><span class="line">            l = l-&gt;right;</span><br><span class="line">            r = r-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        connect(root-&gt;left);</span><br><span class="line">        connect(root-&gt;right);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution2（迭代版）："><a href="#Solution2（迭代版）：" class="headerlink" title="Solution2（迭代版）："></a>Solution2（迭代版）：</h3><p>一层一层的考虑，由于每个结点往后连需要用到其父节点的信息，所以我们可以在下一层结点的next指针连接完毕后，在往下一层移动时，父结点就可以利用已经连接好的next指针进行平滑的向右移动了。这样直到最后一层结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">// Definition for a Node.</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        if(!root) return root;</span><br><span class="line">        Node* pre = NULL;</span><br><span class="line">        Node* cur = root;</span><br><span class="line">        while(cur)&#123;</span><br><span class="line">            while(pre)&#123;</span><br><span class="line">                pre-&gt;left-&gt;next = pre-&gt;right;</span><br><span class="line">                if(pre-&gt;next)&#123;</span><br><span class="line">                    pre-&gt;right-&gt;next = pre-&gt;next-&gt;left;</span><br><span class="line">                &#125;</span><br><span class="line">                pre = pre-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = cur-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/11/25/LeetCode-116-填充每个节点的下一个右侧节点指针/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/11/25/01背包问题详解/">01背包问题详解</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>11月 25, 2019</time>
+			
+				<span class="iconfont icon-star"></span>
+				            
+						<a class="article-tag" href="/tags/DP/">DP</a>           
+				            
+						<a class="article-tag" href="/tags/背包问题/">背包问题</a>           
+				
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		
+			<h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>有 N 件物品和一个容量是 V的背包。每件物品只能使用一次。</p>
+<p>第 i件物品的体积是 vi，价值是 wi。</p>
+<p>求解将哪些物品装入背包，可使这些物品的总体积<strong>不超过</strong>背包容量，且<strong>总价值最大</strong>。<br>输出最大价值。</p>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/11/25/01背包问题详解/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/11/25/背包九讲/">背包九讲</a>  
 	       
 		 
 
@@ -529,121 +612,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/09/17/POJ-3276-Fac-Th-Righ-Way/">POJ-3276-Fac-Th-Righ-Way</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>9月 17, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="http://poj.org/problem?id=3276" target="_blank" rel="noopener">POJ-3276-Face The Right Way</a></p>
-<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>Farmer John has arranged his N (1 ≤ N ≤ 5,000) cows in a row and many of them are facing forward, like good cows. Some of them are facing backward, though, and he needs them all to face forward to make his life perfect.</p>
-<p>Fortunately, FJ recently bought an automatic cow turning machine. Since he purchased the discount model, it must be irrevocably preset to turn K (1 ≤ K ≤ N) cows at once, and it can only turn cows that are all standing next to each other in line. Each time the machine is used, it reverses the facing direction of a contiguous group of K cows in the line (one cannot use it on fewer than K cows, e.g., at the either end of the line of cows). Each cow remains in the same <em>location</em> as before, but ends up facing the <em>opposite direction</em>. A cow that starts out facing forward will be turned backward by the machine and vice-versa.</p>
-<p>Because FJ must pick a single, never-changing value of K, please help him determine the minimum value of K that minimizes the number of operations required by the machine to make all the cows face forward. Also determine M, the minimum number of machine operations required to get all the cows facing forward using that value of K.</p>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>Line 1: A single integer: N<br>Lines 2..N+1: Line i+1 contains a single character, F or B, indicating whether cow i is facing forward or backward.</p>
-<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>Line 1: Two space-separated integers: K and M</p>
-<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">B</span><br><span class="line">B</span><br><span class="line">F</span><br><span class="line">B</span><br><span class="line">F</span><br><span class="line">B</span><br><span class="line">B</span><br></pre></td></tr></table></figure>
-<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 3</span><br></pre></td></tr></table></figure>
-<h3 id="暗示："><a href="#暗示：" class="headerlink" title="暗示："></a>暗示：</h3><p>For K = 3, the machine must be operated three times: turn cows (1,2,3), (3,4,5), and finally (5,6,7)</p>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有N头牛，牛要么朝前要么朝后，一次操作只可以翻转区间内的所有牛，问最小的翻转次数和相应最小的翻转区间。</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>首先，这是一个开关问题，一般性的开关问题具有两个性质：</p>
-<ul>
-<li><p>切换状态的顺序对结果不影响。</p>
-</li>
-<li><p>一个开关按偶数次等于不按。</p>
-</li>
-</ul>
-<p>解决这个问题光有这两性质还不够，我们先求如果知道了区间长度K，如何求最小翻转次数M。</p>
-<p>我们先选择考虑最左端的牛，如果该牛朝向前，则不需要翻转，所以范围可以缩减1，如果该牛朝向后，则必须翻转该区间了。我们贪心的翻转遇到的第一个朝向后的牛，就可以求出来最少的翻转次数了。</p>
-<p>这样我们枚举K,并且每个K都需要检查N-K+1个区间，每个区间的检查又需要O(N)的时间，所以总的时间为O(N^3)。达不到题目要求的时限。</p>
-<h3 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h3><p>我们的目标是将所有的朝向后面的牛翻转，所以牛朝向决定了该区间是否发生翻转。我们将关注点移动到每个具体的牛与之前已经翻转的次数的关系上。</p>
-<p>对于每个牛，与所在区间的已翻转次数有下列四种情况：</p>
-<ul>
-<li><p>当前牛朝向前，已经翻转了偶数次。</p>
-</li>
-<li><p>当前牛朝向后，已经翻转了奇数次。</p>
-</li>
-<li><p>当前牛朝向前，已经翻转了奇数次。</p>
-</li>
-<li><p>房钱牛朝向后，已经翻转了偶数次。</p>
-</li>
-</ul>
-<p>我们结合前面开关问题的第二条性质发现：前两种情况不需要进行任何操作。后两种情况则需要进行一次翻转。所以结论就是：</p>
-<p>如果朝向前为0，朝向后为1，则</p>
-<h5 id="当前牛的朝向-之前已经翻转的次数-奇数"><a href="#当前牛的朝向-之前已经翻转的次数-奇数" class="headerlink" title="当前牛的朝向 + 之前已经翻转的次数 = 奇数"></a>当前牛的朝向 + 之前已经翻转的次数 = 奇数</h5><p>的时候则说明该翻转了。</p>
-<p>这样，可以在常数时间内知道每个区间的翻转次数。优化到了O(N^2)，能在时限内解决了。</p>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @Date: 2019-09-17 17:05:23</span></span><br><span class="line"><span class="comment"> * @LastEditors: BeckoninGshy</span></span><br><span class="line"><span class="comment"> * @LastEditTime: 2019-09-17 18:13:33</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> N,K,M;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> dir[MAXN];</span><br><span class="line"><span class="keyword">int</span> f[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 表示区间[i, i+k-1] 是否翻转</span></span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;<span class="comment">//区间内翻转的次数</span></span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i + k<span class="number">-1</span> &lt; N; i++)&#123;</span><br><span class="line">        <span class="comment">//当牛的朝向与之前已翻转的次数。</span></span><br><span class="line">        <span class="keyword">if</span>((dir[i] + sum) % <span class="number">2</span> != <span class="number">0</span>)&#123;</span><br><span class="line">            res++;</span><br><span class="line">            f[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//更新翻转次数</span></span><br><span class="line">        sum += f[i];</span><br><span class="line">        <span class="comment">//固定区间</span></span><br><span class="line">        <span class="keyword">if</span>(i - k + <span class="number">1</span> &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            sum -= f[i-k+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//由于前n-k+1个 已经翻转到正面了，只有当后面的牛都不用翻转才合法。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = N-k+<span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((dir[i] + sum) % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">//固定区间</span></span><br><span class="line">        <span class="keyword">if</span>(i - k + <span class="number">1</span> &gt;= <span class="number">0</span>) sum -= f[i-k+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    freopen(<span class="string">"in.txt"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;N);</span><br><span class="line">    K = <span class="number">1</span>, M = N;</span><br><span class="line">    <span class="keyword">char</span> c[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,c);</span><br><span class="line">        <span class="keyword">if</span>(c[<span class="number">0</span>] == <span class="string">'B'</span>) dir[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="comment">//枚举K</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= N; k++)&#123;</span><br><span class="line">        <span class="keyword">int</span> m = cal(k);</span><br><span class="line">        <span class="keyword">if</span>(m &gt;= <span class="number">0</span> &amp;&amp; m &lt; M)&#123;</span><br><span class="line">            M = m;</span><br><span class="line">            K = k;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d"</span>,K,M);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/09/17/POJ-3276-Fac-Th-Righ-Way/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/09/07/LeetCode-42-接雨水/">LeetCode-42-接雨水</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>9月 07, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">42. 接雨水</a></p>
-<p>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<p><img src="/images/placeholder.png" alt="接雨水" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line"></span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure>
-<h3 id="Solution1（直观解法）"><a href="#Solution1（直观解法）" class="headerlink" title="Solution1（直观解法）:"></a>Solution1（直观解法）:</h3><p>我们可以稍稍使用减法，接水的区域正好是最好的柱子乘以整个宽度，再减去从左到制高点和从右到制高点每个单调上升的柱子到两边的距离乘以前柱子的高度差。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        //小于等于两个是蓄不住水的。</span><br><span class="line">        if(n &lt;= 2) return 0;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int Max = -1;</span><br><span class="line">        int k = -1;</span><br><span class="line">        //找到至高点。</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            //先减去柱子本身高度</span><br><span class="line">            ans -= height[i];</span><br><span class="line">            if(Max &lt; height[i]) Max = height[i], k = i;</span><br><span class="line">        &#125;</span><br><span class="line">        //加上整个图的面积</span><br><span class="line">        ans += n*Max;</span><br><span class="line">        </span><br><span class="line">        //从前到最高点，每次减去从开始到每个更高柱子高度的面积。</span><br><span class="line">        int cur = height[0];</span><br><span class="line">        int i = 1;</span><br><span class="line">        while(i &lt;= k)&#123;</span><br><span class="line">            //i为从开始到当前柱子距离。height[i]-cur为高度差。</span><br><span class="line">            if(height[i] &gt; cur) ans -= i * (height[i]-cur),cur = height[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = height[n-1];</span><br><span class="line">        i = height.size()-2;</span><br><span class="line">        while(i&gt;=k)&#123;</span><br><span class="line">            //i最后到当前柱子的距离。height[i]-cur为高度差。</span><br><span class="line">            if(height[i] &gt; cur) ans -= (n-i-1) * (height[i]-cur),cur = height[i];</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Solution2（单调栈）："><a href="#Solution2（单调栈）：" class="headerlink" title="Solution2（单调栈）："></a>Solution2（单调栈）：</h3><p>使用单调栈的原因是我们发现如果把每个柱子当作最低点，则接雨水的区域是左右第一个比当前柱子高的柱子所形成的区域乘以两者之间较小的柱子与当前柱子的高度差。所以我们进行单调栈寻找左右最近的比当前元素高的位置，来计算结果。</p>
-<p>从直观来看，这样很像一层层的往里接水。（当然计算的时候不一定只是一层）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        stack&lt;int&gt; s;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            //找每个元素右边最近的大于他的值。//单调递减栈</span><br><span class="line">            while(s.size() &amp;&amp; height[i] &gt; height[s.top()])&#123;</span><br><span class="line">                int top = s.top();</span><br><span class="line">                s.pop();</span><br><span class="line">                if(s.empty())break;</span><br><span class="line">                //由于维持的是单调递减栈，所以当前栈顶是目前已知的最小一个元素，将栈顶取出，而新的栈顶元素与新发现的比它大的元素，一定能就组成边界，使得以目前最小元素为底，至左右边界中小的那一个，可以接到雨水。形象点就是一层一层的接。</span><br><span class="line">                int dis = i-s.top()-1;</span><br><span class="line">                ans += dis * (min(height[i],height[s.top()])-height[top]);</span><br><span class="line">            &#125;</span><br><span class="line">            s.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Solution3（双指针）："><a href="#Solution3（双指针）：" class="headerlink" title="Solution3（双指针）："></a>Solution3（双指针）：</h3><p>我们写第一种解法时发现，并没有必要去进行那么多减法，每次直接观察当前柱子高度与之前记录的最高柱子的高度关系，如果没有之前最高柱子高就说明可以接住雨水（因为我们每次寻找的是更高的柱子，直到全图最高柱子出现为止），这样可以直接计算该柱子之上可以接住的雨水。由于左右都是到了最高柱子就会停止，所以使用双指针来优化，每次选较小的柱子来计算，直到制高点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        int l = 0, r = n-1;</span><br><span class="line">        int lm = -1,rm = -1;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        while(l &lt; r)&#123;</span><br><span class="line">            //从小的一方开始</span><br><span class="line">            if(height[l] &lt; height[r])&#123;</span><br><span class="line">                if(height[l] &gt; lm)&#123;</span><br><span class="line">                    lm = height[l];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    ans += lm-height[l];</span><br><span class="line">                &#125;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                if(height[r] &gt; rm)&#123;</span><br><span class="line">                    rm = height[r];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    ans += rm-height[r];</span><br><span class="line">                &#125;</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/09/07/LeetCode-42-接雨水/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -657,7 +625,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>2</strong>, Total <strong>121</strong> . </span>
+   <span class="page-number"> Page <strong>2</strong>, Total <strong>123</strong> . </span>
 
     
         <a class="next" href="/page/3/"> 

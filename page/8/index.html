@@ -115,6 +115,94 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/PAT《团体程序设计天梯赛-练习集》-L3-01-是否完全二叉搜索-（3-分）/">PAT《团体程序设计天梯赛-练习集》-L3-01-是否完全二叉搜索-（3-分）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://pintia.cn/problem-sets/994805046380707840/problems/994805049870368768" target="_blank" rel="noopener">L3-010 是否完全二叉搜索树 </a>（30 分）</p>
+<p>将一系列给定数字顺序插入一个初始为空的二叉搜索树（定义为左子树键值大，右子树键值小），你需要判断最后的树是否一棵完全二叉树，并且给出其层序遍历的结果。</p>
+<h5 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h5><p>输入第一行给出一个不超过20的正整数N；第二行给出N个互不相同的正整数，其间以空格分隔。</p>
+<h5 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h5><p>将输入的N个正整数顺序插入一个初始为空的二叉搜索树。在第一行中输出结果树的层序遍历结果，数字间以1个空格分隔，行的首尾不得有多余空格。第二行输出YES，如果该树是完全二叉树；否则输出NO。</p>
+<h5 id="输入样例1："><a href="#输入样例1：" class="headerlink" title="输入样例1："></a>输入样例1：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">38 45 42 24 58 30 67 12 51</span><br></pre></td></tr></table></figure>
+<h5 id="输出样例1："><a href="#输出样例1：" class="headerlink" title="输出样例1："></a>输出样例1：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">38 45 24 58 42 30 12 67 51</span><br><span class="line">YES</span><br></pre></td></tr></table></figure>
+<h5 id="输入样例2："><a href="#输入样例2：" class="headerlink" title="输入样例2："></a>输入样例2：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">38 24 12 45 58 67 42 51</span><br></pre></td></tr></table></figure>
+<h5 id="输出样例2："><a href="#输出样例2：" class="headerlink" title="输出样例2："></a>输出样例2：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">38 45 24 58 42 12 67 51</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
+<p>一道考察二叉树插入方法例程，层序遍历，判断是否为一棵完全二叉树的综合题。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct TreeNode&#123;</span><br><span class="line">	int val;</span><br><span class="line">	TreeNode *left;</span><br><span class="line">	TreeNode *right;</span><br><span class="line">	TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">void insertNode(TreeNode* root, int val)&#123;</span><br><span class="line">	if(root == NULL)&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(root-&gt;val &lt; val)&#123;</span><br><span class="line">		if(root-&gt;left == NULL)&#123;</span><br><span class="line">			TreeNode* now = new TreeNode(val);</span><br><span class="line">			root-&gt;left = now;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			insertNode(root-&gt;left, val);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;else if(root-&gt;val &gt; val)&#123;</span><br><span class="line">		if(root-&gt;right == NULL)&#123;</span><br><span class="line">			TreeNode* now = new TreeNode(val);</span><br><span class="line">			root-&gt;right = now;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			insertNode(root-&gt;right, val);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void levelOrder(TreeNode* root)&#123;</span><br><span class="line">	queue&lt;TreeNode*&gt; q;</span><br><span class="line">	q.push(root);</span><br><span class="line">	bool isfirst = true;</span><br><span class="line">	while(!q.empty())&#123;</span><br><span class="line">		TreeNode* node = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		if(isfirst)&#123;</span><br><span class="line">			cout &lt;&lt; node-&gt;val;</span><br><span class="line">			isfirst = false;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			cout &lt;&lt;  &quot; &quot; &lt;&lt; node-&gt;val;</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;left) &#123;</span><br><span class="line">			q.push(node-&gt;left);</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;right) &#123;</span><br><span class="line">			q.push(node-&gt;right);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool isCST(TreeNode* root)&#123;</span><br><span class="line">	bool leaf = false;</span><br><span class="line">	queue&lt;TreeNode*&gt; q;</span><br><span class="line">	q.push(root);</span><br><span class="line">	while(!q.empty())&#123;</span><br><span class="line">		TreeNode* node = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		if(node-&gt;right &amp;&amp; !node-&gt;left) return false;</span><br><span class="line">		if(leaf &amp;&amp; (node-&gt;left || node-&gt;right)) return false;</span><br><span class="line">		if(!node-&gt;right &amp;&amp; !leaf)&#123;</span><br><span class="line">			leaf = true;</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;left) &#123;</span><br><span class="line">			q.push(node-&gt;left);</span><br><span class="line">		&#125;</span><br><span class="line">		if(node-&gt;right) &#123;</span><br><span class="line">			q.push(node-&gt;right);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void printTree(TreeNode* root)&#123;</span><br><span class="line">	if(!root) return;</span><br><span class="line">	printTree(root-&gt;left);</span><br><span class="line">	cout &lt;&lt; &quot; &quot; &lt;&lt; root-&gt;val;</span><br><span class="line">	printTree(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int c;</span><br><span class="line">	cin &gt;&gt; c;</span><br><span class="line">	int rootval;</span><br><span class="line">	cin &gt;&gt; rootval;</span><br><span class="line">	TreeNode* root = new TreeNode(rootval);</span><br><span class="line">	for(int i = 1; i &lt; c; i++)&#123;</span><br><span class="line">		int nodeval;</span><br><span class="line">		cin &gt;&gt; nodeval;</span><br><span class="line">		insertNode(root, nodeval);</span><br><span class="line">	&#125;</span><br><span class="line">	levelOrder(root);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	if(isCST(root))&#123;</span><br><span class="line">		cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/PAT《团体程序设计天梯赛-练习集》-L3-01-是否完全二叉搜索-（3-分）/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/03/16/LeetCode-5-最长回文子串（待补充）/">LeetCode-5. 最长回文子串（待补充）</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>3月 16, 2019</time>
+			
+				<span class="iconfont icon-star"></span>
+				            
+						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
+				            
+						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
+				            
+						<a class="article-tag" href="/tags/字符串/">字符串</a>           
+				
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		
+			<p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">5. 最长回文子串</a></p>
+<h5 id="给定一个字符串-s，找到-s-中最长的回文子串。你可以假设-s-的最大长度为-1000。"><a href="#给定一个字符串-s，找到-s-中最长的回文子串。你可以假设-s-的最大长度为-1000。" class="headerlink" title="给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。"></a>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</h5><p>示例 1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;babad&quot;</span><br><span class="line">输出: &quot;bab&quot;</span><br><span class="line">注意: &quot;aba&quot; 也是一个有效答案。</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/03/16/LeetCode-5-最长回文子串（待补充）/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/03/16/LeetCode-105-从前序与中序遍历序列构造二叉树（待补充）/">LeetCode-105. 从前序与中序遍历序列构造二叉树（待补充）</a>  
 	       
 		 
@@ -476,97 +564,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/02/23/LeetCode-107-二叉树的层次遍历-II/">LeetCode-107. 二叉树的层次遍历 II</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>2月 23, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/" target="_blank" rel="noopener">107. 二叉树的层次遍历 II</a></p>
-<h5 id="给定一个二叉树，返回其节点值自底向上的层次遍历。-（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）"><a href="#给定一个二叉树，返回其节点值自底向上的层次遍历。-（即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）" class="headerlink" title="给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）"></a>给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</h5><p>该题为 <a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal" target="_blank" rel="noopener">102. 二叉树的层次遍历</a>的进阶版。</p>
-<p>有关<a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal" target="_blank" rel="noopener">102. 二叉树的层次遍历</a>的题解，请参考<a href="https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/submissions/" target="_blank" rel="noopener">429. N叉树的层序遍历</a>，具体思路是一样的，不再赘述。</p>
-<h3 id="Solution1（迭代版）："><a href="#Solution1（迭代版）：" class="headerlink" title="Solution1（迭代版）："></a>Solution1（迭代版）：</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/23/LeetCode-107-二叉树的层次遍历-II/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/02/23/LeetCode-199-二叉树的右视图/">LeetCode-199. 二叉树的右视图</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>2月 23, 2019</time>
-			
-				<span class="iconfont icon-star"></span>
-				            
-						<a class="article-tag" href="/tags/leetcode/">leetcode</a>           
-				            
-						<a class="article-tag" href="/tags/algorithm/">algorithm</a>           
-				            
-						<a class="article-tag" href="/tags/二叉树/">二叉树</a>           
-				
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		
-			<p><a href="https://leetcode-cn.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener">199. 二叉树的右视图</a></p>
-<p>给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
-<h3 id="Solution1（迭代版）："><a href="#Solution1（迭代版）：" class="headerlink" title="Solution1（迭代版）："></a>Solution1（迭代版）：</h3>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/02/23/LeetCode-199-二叉树的右视图/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -580,7 +577,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>8</strong>, Total <strong>121</strong> . </span>
+   <span class="page-number"> Page <strong>8</strong>, Total <strong>123</strong> . </span>
 
     
         <a class="next" href="/page/9/"> 

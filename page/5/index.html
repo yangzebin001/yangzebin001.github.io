@@ -115,6 +115,126 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/">106-从中序与后序遍历序列构造二叉树</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>7月 13, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank" rel="noopener">106. 从中序与后序遍历序列构造二叉树</a></p>
+<h3 id="根据一棵树的中序遍历与后序遍历构造二叉树。"><a href="#根据一棵树的中序遍历与后序遍历构造二叉树。" class="headerlink" title="根据一棵树的中序遍历与后序遍历构造二叉树。"></a>根据一棵树的中序遍历与后序遍历构造二叉树。</h3><blockquote>
+<p>注意:<br>你可以假设树中没有重复的元素。</p>
+</blockquote>
+<p>例如，给出</p>
+<p>中序遍历 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inorder = [9,3,15,20,7]</span><br></pre></td></tr></table></figure>
+<p>后序遍历 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postorder = [9,15,7,20,3]</span><br></pre></td></tr></table></figure>
+<p>返回如下的二叉树：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* makeTree(vector&lt;int&gt;&amp; postorder, int&amp; postindex, vector&lt;int&gt;&amp; inorder,int left, int right)&#123;</span><br><span class="line">        if(left &lt;= right)&#123;</span><br><span class="line">            for(int i = 0; i &lt; inorder.size(); i++)&#123;</span><br><span class="line">                if(postorder[postindex] == inorder[i])&#123;</span><br><span class="line"></span><br><span class="line">                    TreeNode* root = new TreeNode(postorder[postindex--]);</span><br><span class="line">                    root-&gt;right = makeTree(postorder,postindex,inorder,i+1,right);</span><br><span class="line">                    root-&gt;left = makeTree(postorder,postindex,inorder,left,i-1);  </span><br><span class="line">                    return root;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;</span><br><span class="line">        int postindex = postorder.size()-1;</span><br><span class="line">        return makeTree(postorder,postindex,inorder,0,inorder.size()-1);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>根据后序遍历的特点，每棵子树的根节点总是最后遍历到。</p>
+<p>所以用一个按引用传递的指针指向后序数组的末尾，用该值在中序数组中查找，并将该值当做当前树的根节点。</p>
+<p>该值位置的左边为以该节点为根节点的左子树的范围，位置右边为右子树的范围，然后不断更新这个范围，递归下去即可，注意边界值。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/07/13/LeetCode-106-从中序与后序遍历序列构造二叉树/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
+		<a class="article-title" href="/2019/06/02/正则表达式全解——正则基础/">正则表达式全解——正则基础</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>6月 02, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h3 id="正则基础"><a href="#正则基础" class="headerlink" title="正则基础"></a>正则基础</h3><h5 id=""><a href="#" class="headerlink" title="^"></a>^</h5><p>表示一行的开始</p>
+<h5 id="-1"><a href="#-1" class="headerlink" title="$"></a>$</h5><p>表示一行的结束</p>
+<h5 id="…"><a href="#…" class="headerlink" title="[…]"></a>[…]</h5><p>表示其中的字符是选择性（逻辑或）的，要么是a,要么是b,要么是…。</p>
+<blockquote>
+<p>c[a|b]t 可以匹配到cat、cbt<br>[a-z]、[0-9]、[0-9A-Za-z]是支持的。<br>[^$] 匹配空行<br>像 . * + ?  这些词在[]中仅表示字面的意思，利用这一特性，如果想表示原本含义，例如要匹配 . ，可以写为[.]</p>
+</blockquote>
+<h5 id="…-1"><a href="#…-1" class="headerlink" title="[^…]"></a>[^…]</h5><p>表示匹配不是其中的字符。为上一条的取反</p>
+<h5 id="-2"><a href="#-2" class="headerlink" title="-"></a>-</h5><p>连字符，表示一个范围，见上一条。</p>
+<blockquote>
+<p>如果要匹配  - ，请将 - 写在开始位置，如果[-a-z]，匹配-或者是小写字母。</p>
+</blockquote>
+<h5 id="-3"><a href="#-3" class="headerlink" title="."></a>.</h5><p>   表示任意字符（除了换行符），</p>
+<h5 id="-4"><a href="#-4" class="headerlink" title="|"></a>|</h5><p>表示或者</p>
+<blockquote>
+<p>(cat|dog) 表示要么cat,要么dog,<br>注意：这和[…]不同的是，[…]匹配其中的单个字符，(..|…)可以匹配不同的字符组。</p>
+</blockquote>
+<h5 id="-5"><a href="#-5" class="headerlink" title="?"></a>?</h5><p>表示可选项，类似于单选框，匹配零个或一个。</p>
+<h5 id="-6"><a href="#-6" class="headerlink" title="+"></a>+</h5><p>表示出现一次或多次。</p>
+<h5 id="-7"><a href="#-7" class="headerlink" title="*"></a>*</h5><p>表示匹配零次或多次。</p>
+<h5 id="min-max"><a href="#min-max" class="headerlink" title="{min,max}"></a>{min,max}</h5><p>表示匹配之前的子表达式重复min到max次。（闭区间）</p>
+<blockquote>
+<p>{count} 表示匹配count次。</p>
+</blockquote>
+<h5 id="括号与反向引用"><a href="#括号与反向引用" class="headerlink" title="括号与反向引用"></a>括号与反向引用</h5><p>([0-9]){2,3}add\1    \1表示第一个括号中的内容再次使用。</p>
+<h5 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h5><p>像 . * + ?  这些词在正则中有特殊的含义，要想使用它原本的含义，使用\来进行转义。</p>
+<h5 id="…-2"><a href="#…-2" class="headerlink" title="(…)"></a>(…)</h5><p>括号的作用：1.限制多选结构，2.分组，3.捕获文本。</p>
+<h5 id="一些特殊的字符"><a href="#一些特殊的字符" class="headerlink" title="一些特殊的字符"></a>一些特殊的字符</h5><ul>
+<li>\t 制表符</li>
+<li>\n换行符</li>
+<li>\r 回车符</li>
+<li>\s 任何空白字符(例如空格符、制表符、换行符等)</li>
+<li>\S 除\s之外的任何字符(所以用(\s|\S) * )来表示任意字符。</li>
+<li>\w 相当于[a-zA-Z0-9] 所以经常用\w+来表示一个单词 </li>
+<li>\W \w取反，也就是[^a-zA-Z0-9] </li>
+<li>\d  相当于[0-9] 也就是数字</li>
+<li>\D \d取反，也就是[^0-9]</li>
+</ul>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/06/02/正则表达式全解——正则基础/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/06/01/写在大一期末考试之际/">写在大一期末考试之际</a>  
 	       
 		 
@@ -449,98 +569,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-476-数字的补数/">LeetCode-476-数字的补数</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/number-complement/" target="_blank" rel="noopener">476. 数字的补数</a></p>
-<p>给定一个正整数，输出它的补数。补数是对该数的二进制表示取反。</p>
-<p>注意:</p>
-<ul>
-<li>给定的整数保证在32位带符号整数的范围内。</li>
-<li>你可以假定二进制数不包含前导零位。<br>示例 1:</li>
-</ul>
-<blockquote>
-<p>输入: 5</p>
-<p>输出: 2</p>
-<p>解释: 5的二进制表示为101（没有前导零位），其补数为010。所以你需要输出2。</p>
-</blockquote>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findComplement(int num) &#123;</span><br><span class="line">        int cot = 0;</span><br><span class="line">        int temp = num;</span><br><span class="line">        while(1)&#123;</span><br><span class="line">            if(num == 0) break;</span><br><span class="line">            num = num &gt;&gt; 1;</span><br><span class="line">            cot++;</span><br><span class="line">        &#125; </span><br><span class="line">        int mark = 0xffffffff;</span><br><span class="line">        return ~temp ^ (mark &lt;&lt; cot);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>首先找到该数是从哪一位开始才算有效（即不包含前面零的位置。）<br>再将该数所有位取反，<br>然后用全位置的1左移cot次，与值异或即可。</p>
-<blockquote>
-<p>异或：不同为一，相同为零，所以当前面的零取反后成为一后，相应位置与1异或，会恢复成为0，之后的有效位还保持不变。</p>
-</blockquote>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-476-数字的补数/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-51-N皇后/">LeetCode-51-N皇后</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/n-queens/" target="_blank" rel="noopener">51. N皇后</a></p>
-<p>该题为著名的n皇后问题。</p>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n) &#123;</span><br><span class="line">        vector&lt;string&gt; mark;</span><br><span class="line">        vector&lt;string&gt; queenposition;</span><br><span class="line">        vector&lt;vector&lt;string&gt; &gt; map;</span><br><span class="line">        //初始化。</span><br><span class="line">        string a = &quot;&quot;;</span><br><span class="line">        for(int i = 0; i &lt; n;i++)&#123;</span><br><span class="line">            a = a + &quot;.&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            queenposition.push_back(a);</span><br><span class="line">            mark.push_back(a);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        dfs(mark,queenposition,map,0,n);</span><br><span class="line">        return map;</span><br><span class="line">    &#125;</span><br><span class="line">    void putOneQueen(vector&lt;string&gt; &amp;mark,int x,int y,int n)&#123;</span><br><span class="line">        static const int dx[8] = &#123;-1,-1,-1,0,0,1,1,1&#125;;</span><br><span class="line">        static const int dy[8] = &#123;-1,0,1,-1,1,-1,0,1&#125;;</span><br><span class="line">        </span><br><span class="line">        mark[x][y] = &apos;1&apos;;</span><br><span class="line"></span><br><span class="line">        for(int i = 0; i &lt; 8; i++)&#123;</span><br><span class="line">            int nx = x + dx[i],ny = y+dy[i]; </span><br><span class="line">            while(0 &lt;= nx &amp;&amp; nx &lt; n &amp;&amp; 0 &lt;= ny &amp;&amp; ny &lt; n)&#123;</span><br><span class="line">                mark[nx][ny] = &apos;1&apos;;</span><br><span class="line">                nx += dx[i];</span><br><span class="line">                ny += dy[i];	</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    void dfs(vector&lt;string&gt; &amp;mark,vector&lt;string&gt; &amp;queenposition,vector&lt;vector&lt;string&gt; &gt; &amp;map,int col,int n)&#123;</span><br><span class="line">        //出口</span><br><span class="line">        if(col == n)&#123;</span><br><span class="line">            map.push_back(queenposition);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; n;i++)&#123;</span><br><span class="line">            if(mark[col][i] == &apos;.&apos;)&#123;//可以放皇后 </span><br><span class="line">                vector&lt;string&gt; temp_mark = mark;//记录回溯前的镜像。</span><br><span class="line">                //放皇后。 </span><br><span class="line">                queenposition[col][i] = &apos;Q&apos;;</span><br><span class="line">                putOneQueen(mark,col,i,n);</span><br><span class="line">                //递归调用。 </span><br><span class="line">                dfs(mark,queenposition,map,col+1,n);</span><br><span class="line">                //回溯 </span><br><span class="line">                mark = temp_mark;</span><br><span class="line">                queenposition[col][i] = &apos;.&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>该题考查对递归与回溯算法的掌握。</p>
-<p>使用一个矩阵来存储是否可以放皇后的状态。<br>每当一行放置了一个皇后后，更新其状态，并在下一行中挑选合适的位置来放置该行的皇后。</p>
-<p>直到每一行都放置了皇后，保存状态，返回上一个递归过程。</p>
-<p>回溯主要针对矩阵的状态和皇后放置的位置，以便利于递归返回过程中的再次使用。</p>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-51-N皇后/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -554,7 +582,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>5</strong>, Total <strong>121</strong> . </span>
+   <span class="page-number"> Page <strong>5</strong>, Total <strong>123</strong> . </span>
 
     
         <a class="next" href="/page/6/"> 
