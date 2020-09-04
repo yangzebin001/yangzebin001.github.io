@@ -115,6 +115,53 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/08/23/POJ-3083-Childre-o-th-Cand-Corn/">POJ-3083-Childre-o-th-Cand-Corn</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>8月 23, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="http://poj.org/problem?id=3083" target="_blank" rel="noopener">POJ-3083</a></p>
+<h4 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h4><p>The cornfield maze is a popular Halloween treat. Visitors are shown the entrance and must wander through the maze facing zombies, chainsaw-wielding psychopaths, hippies, and other terrors on their quest to find the exit.</p>
+<p>One popular maze-walking strategy guarantees that the visitor will eventually find the exit. Simply choose either the right or left wall, and follow it. Of course, there’s no guarantee which strategy (left or right) will be better, and the path taken is seldom the most efficient. (It also doesn’t work on mazes with exits that are not on the edge; those types of mazes are not represented in this problem.)</p>
+<p>As the proprieter of a cornfield that is about to be converted into a maze, you’d like to have a computer program that can determine the left and right-hand paths along with the shortest path so that you can figure out which layout has the best chance of confounding visitors.</p>
+<h4 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h4><p>Input to this problem will begin with a line containing a single integer n indicating the number of mazes. Each maze will consist of one line with a width, w, and height, h (3 &lt;= w, h &lt;= 40), followed by h lines of w characters each that represent the maze layout. Walls are represented by hash marks (‘#’), empty space by periods (‘.’), the start by an ‘S’ and the exit by an ‘E’.</p>
+<p>Exactly one ‘S’ and one ‘E’ will be present in the maze, and they will always be located along one of the maze edges and never in a corner. The maze will be fully enclosed by walls (‘#’), with the only openings being the ‘S’ and ‘E’. The ‘S’ and ‘E’ will also be separated by at least one wall (‘#’).</p>
+<p>You may assume that the maze exit is always reachable from the start point.</p>
+<h4 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h4><p>For each maze in the input, output on a single line the number of (not necessarily unique) squares that a person would visit (including the ‘S’ and ‘E’) for (in order) the left, right, and shortest paths, separated by a single space each. Movement from one square to another is only allowed in the horizontal or vertical direction; movement along the diagonals is not allowed.</p>
+<h4 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">8 8</span><br><span class="line">########</span><br><span class="line">#......#</span><br><span class="line">#.####.#</span><br><span class="line">#.####.#</span><br><span class="line">#.####.#</span><br><span class="line">#.####.#</span><br><span class="line">#...#..#</span><br><span class="line">#S#E####</span><br><span class="line">9 5</span><br><span class="line">#########</span><br><span class="line">#.#.#.#.#</span><br><span class="line">S.......E</span><br><span class="line">#.#.#.#.#</span><br><span class="line">#########</span><br></pre></td></tr></table></figure>
+<h4 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">37 5 5</span><br><span class="line">17 17 9</span><br></pre></td></tr></table></figure>
+<h4 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h4><p>有一张地图，# 是墙壁，. 是路，S是点，E是终点。（S和E在地图边缘且不在四个对角）</p>
+<p>问：优先选择左边到达终点的路径长度（目前朝向的左边为优先选边，顺时针），优先选择右边到达终点的路径长度（目前朝向的右边为优先选边，逆时针），和最短的路径长度。</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>该题使用dfs（前两问）加bfs（后一问）来解答，由于有一个优先选择当前方向的左边或者右边位置，所以需要处理一个当前的朝向问题。比普通的dfs要复杂一点。但是根据定义的方向数组，只要知道了向左转就是当前的朝向减一个单位，右转为当前的朝向加一个单位，以此为起始探测方向，并且处理好顺逆时针关系就可以化解该题。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int MAXN = 50;</span><br><span class="line">char m[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line">int N,M;</span><br><span class="line">int sx,sy,ex,ey;</span><br><span class="line">int ans;</span><br><span class="line">int flag;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int x,y,d;</span><br><span class="line">    node()&#123;&#125;</span><br><span class="line">    node(int _x,int _y, int _d):x(_x),y(_y),d(_d)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//从左顺时针</span><br><span class="line">int dx[] = &#123;0,-1,0,1&#125;;</span><br><span class="line">int dy[] = &#123;-1,0,1,0&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void dfs(int x, int y, int pos,int t,int s)&#123;</span><br><span class="line">    // printf(&quot;%d %d %d\\n&quot;,x,y,d);</span><br><span class="line">    if(flag) return;</span><br><span class="line">    if(x == ex &amp;&amp; y == ey)&#123;</span><br><span class="line">        flag = 1;</span><br><span class="line">        ans = max(ans,s);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    //t = -1 表示顺时针，t = 1 表示逆时针</span><br><span class="line">    //pp : 当前的方向</span><br><span class="line">    //如果是左优先，就将当前方向-1开始顺时针，</span><br><span class="line">    //如果是右优先，就将当前方向+1开始逆时针。</span><br><span class="line">    for(int i = 1,pp = (pos+t+4)%4; i &lt;= 4; i++,pp = (pp-t+4)%4)&#123;</span><br><span class="line">        int nx = dx[pp] + x;</span><br><span class="line">        int ny = dy[pp] + y;</span><br><span class="line">        if(nx &gt;= 0 &amp;&amp; nx &lt; N &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; M &amp;&amp; m[nx][ny] == &apos;.&apos;)&#123;</span><br><span class="line">            dfs(nx,ny,pp,t,s+1);</span><br><span class="line">            if(flag) return;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void bfs(int x,int y)&#123;</span><br><span class="line">    queue&lt;node&gt; q;</span><br><span class="line">    q.push(node(x,y,1));</span><br><span class="line">    m[x][y] = &apos;#&apos;;</span><br><span class="line">    node temp;</span><br><span class="line">    while(q.size())&#123;</span><br><span class="line">        temp = q.front();q.pop();</span><br><span class="line">        if(temp.x == ex &amp;&amp; temp.y == ey)&#123;</span><br><span class="line">            ans = temp.d;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; 4; i++)&#123;</span><br><span class="line">            int nx = dx[i] + temp.x;</span><br><span class="line">            int ny = dy[i] + temp.y;</span><br><span class="line">            if(nx &gt;= 0 &amp;&amp; nx &lt; N &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; M &amp;&amp; m[nx][ny] == &apos;.&apos;)&#123;</span><br><span class="line">                m[nx][ny] = &apos;#&apos;;</span><br><span class="line">                q.push(node(nx,ny,temp.d+1));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int T;</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    //freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout);</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;T);</span><br><span class="line">    while(T--)&#123;</span><br><span class="line">        int pos = 0;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;M,&amp;N);</span><br><span class="line">        // memset(m,0,sizeof(m));</span><br><span class="line">        for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">            scanf(&quot;%s&quot;,m[i]);</span><br><span class="line">            for(int j = 0; j &lt; M; j++)&#123;</span><br><span class="line">                if(m[i][j] == &apos;S&apos;)&#123;</span><br><span class="line">                    sx = i,sy = j; m[i][j] = &apos;.&apos;;</span><br><span class="line">                &#125;else if(m[i][j] == &apos;E&apos;)&#123;</span><br><span class="line">                    ex = i,ey = j; m[i][j] = &apos;.&apos;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">        //     for(int j = 0; j &lt; M; j++)&#123;</span><br><span class="line">        //         printf(&quot;%c&quot;,m[i][j]);</span><br><span class="line">        //     &#125;</span><br><span class="line">        //     printf(&quot;\\n&quot;);</span><br><span class="line">        // &#125;</span><br><span class="line">        /*</span><br><span class="line">        pos = 0 表示向上为初始方向</span><br><span class="line">        pos = 1 表示向右为初始方向</span><br><span class="line">        pos = 2 表示向下为初始方向</span><br><span class="line">        pos = 3 表示向左为初始方向</span><br><span class="line">        */</span><br><span class="line">        if(sx == 0) pos = 2;</span><br><span class="line">        if(sx == N-1) pos = 0;</span><br><span class="line">        if(sy == 0) pos = 1;</span><br><span class="line">        if(sy == M-1) pos = 3;</span><br><span class="line">        ans = 0;</span><br><span class="line">        flag = 0;</span><br><span class="line">        dfs(sx,sy,pos,-1,1);</span><br><span class="line">        printf(&quot;%d&quot;,ans);</span><br><span class="line">        ans = 0;</span><br><span class="line">        flag = 0;</span><br><span class="line">        dfs(sx,sy,pos,1,1);</span><br><span class="line">        printf(&quot; %d&quot;,ans);</span><br><span class="line">        ans = 0;</span><br><span class="line">        bfs(sx,sy);</span><br><span class="line">        printf(&quot; %d\\n&quot;,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/08/23/POJ-3083-Childre-o-th-Cand-Corn/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/08/16/LeetCode-473-火柴拼正方形/">LeetCode-473-火柴拼正方形</a>  
 	       
 		 
@@ -575,87 +622,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/07/19/AVL树详解/">AVL树详解</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>7月 19, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>我们在学习二叉搜索树的时候，发现无论是查找还是插入元素在理想情况下都可以达到O(logN)级别，但是由于插入的顺序，数的结构也会不同，这种理想情况很难保持甚至最坏的情况会退化成链表。导致性能下降。这时就需要一个能实现高度自动平衡的树结构。就出现了平衡树，<br>今天讲的是平衡树的一种：AVL树。</p>
-<h3 id="初识AVL树"><a href="#初识AVL树" class="headerlink" title="初识AVL树"></a>初识AVL树</h3><p>AVL树得名与 Adelson-Velsky和 Landis两位发明者的首字母，它是自平衡的二叉搜索树，具有二叉树搜索树的性质（左子树的结点都比当前结点小，右子树都比当前结点大），同时它又是平衡二叉树，能够自适应高度。在AVL树中，<strong>任意节点的两个子树的高度差不超过1</strong>，这也是将不平衡的子树调整为平衡子树的重要指标。</p>
-<h3 id="AVL树的调整策略"><a href="#AVL树的调整策略" class="headerlink" title="AVL树的调整策略"></a>AVL树的调整策略</h3><p>AVL是在进行插入节点时，通过检测是否破坏了平衡条件，进而通过进行一定程度的节点旋转来达到整棵树的平衡。</p>
-<h3 id="简单情形"><a href="#简单情形" class="headerlink" title="简单情形"></a>简单情形</h3><p>我们知道一个树如果只有一个或两个时，树是平衡的。所以问题会出现在第三个节点插入的位置，如果是下图：</p>
-<p><img src="https://note.youdao.com/favicon.ico" alt="单左旋后"></p>
-<p>则是平衡的。</p>
-<p>先来看最简单的不平衡情况：</p>
-<p><img src="https://note.youdao.com/favicon.ico" alt="单左旋前"></p>
-<p>当把根节点的右节点“提”到根节点的位置，将旧根节点当新的根节点的左子节点。就可达到平衡状态。</p>
-<p><img src="/images/placeholder.png" alt="单左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>具体到树中，可以归结为以下四种情况：</p>
-<h4 id="1-左旋"><a href="#1-左旋" class="headerlink" title="1.左旋"></a>1.左旋</h4><p>上述是最特殊的只有三个节点的情况，下面我们将它代入一般的二叉树来研究：</p>
-<p>对于一个节点，当右子树的高度比左子树高一个高度的时候，此时新进来的节点也需要插入右子树。当然，如果新插入节点以后，右子树还维持原来的高度，那么这颗树就还是平衡的。问题出在当新插入节点后，右子树的高度增加了，这时破坏了平衡树两个子树的高度差不超过一的性质，就需要调整使其达到平衡状态。这时，我们首先考虑比较好处理的情况，也就是插在右子树的右边的情况。</p>
-<p><img src="/images/placeholder.png" alt="左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>调整的策略：</p>
-<p>此时我们需要将当前节点的右子树“提”到当前节点的位置，当前节点“下降”为其右子树的左子树，具体操作过程如图：</p>
-<p><img src="/images/placeholder.png" alt="左旋中1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p><img src="/images/placeholder.png" alt="左旋中2" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>调整之后变为：</p>
-<p><img src="/images/placeholder.png" alt="左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>到此，树变成了平衡的，由于整棵树要往左边旋转，所以左旋的操作就右子树的地位上移，根节点的地位下降。</p>
-<h3 id="2-右旋"><a href="#2-右旋" class="headerlink" title="2.右旋"></a>2.右旋</h3><p>现在我们有了左旋的经验，很容易推出需要进行右旋操作的时机：</p>
-<p>对于一个节点，当左子树的高度原先就比右子树的高度多一时，插入节点又使左子树的高度增加，并且插在了左子树的左边的时候，就需要调整了：</p>
-<p><img src="/images/placeholder.png" alt="右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p><img src="/images/placeholder.png" alt="右旋中1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p><img src="/images/placeholder.png" alt="右旋中2" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p><img src="/images/placeholder.png" alt="右旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>树变为平衡的。</p>
-<p>至此，单旋转就学习完毕，下面学习双旋转。</p>
-<h3 id="3-右左旋"><a href="#3-右左旋" class="headerlink" title="3.右左旋"></a>3.右左旋</h3><p>前面我们学习单旋转时，插入节点都是与其子树同向的位置，这种情况由于倾斜的状况比较明显，所以只要找到中间的位置，将其“提”到“根节点”的位置，就可以达到平衡。而当其中子树失去平衡是由于所处子树往相反的方向插入，导致倾斜的状况不容易看出，所以需要经过两次旋转来达到平衡状态。<br>如下图：</p>
-<p><img src="/images/placeholder.png" alt="右左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>我们可以观察到，在当前的结点的右子树的倾斜情况与我们刚才介绍到的右旋的情况很相似：</p>
-<p><img src="/images/placeholder.png" alt="右左旋前1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>所以将右子树按右旋处理，处理之后变为：</p>
-<p><img src="/images/placeholder.png" alt="左旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>这时我们惊奇的发现它变成了我们前面介绍的左旋前时的情形。这种情况我们已经会处理了：将右子节点“提”上来，把当前“根”节点变为右子节点的左子树，最后就调整到平衡状态了。</p>
-<p><img src="/images/placeholder.png" alt="左旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<h3 id="4-左右旋"><a href="#4-左右旋" class="headerlink" title="4.左右旋"></a>4.左右旋</h3><p>同样地，左右旋也可通过先将左子树左旋，再将当前根节点右旋的调整来达到平衡状态。</p>
-<p><img src="/images/placeholder.png" alt="左右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>先将左子树左旋：</p>
-<p><img src="/images/placeholder.png" alt="左右旋前1" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p><img src="/images/placeholder.png" alt="右旋前" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>再进行右旋：</p>
-<p><img src="/images/placeholder.png" alt="右旋后" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
-<p>达到平衡状态。</p>
-<hr>
-<p>到此，二叉树的调整策略就介绍完了，下面上代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">typedef struct AVLNode* AVLTree;</span><br><span class="line">struct AVLNode&#123;</span><br><span class="line">	int data;</span><br><span class="line">	AVLTree left;</span><br><span class="line">	AVLTree right;</span><br><span class="line">	int height;</span><br><span class="line">	AVLNode(int data):data(data)&#123;</span><br><span class="line">		left = NULL;</span><br><span class="line">		right = NULL;</span><br><span class="line">		height = 0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int Max(int a, int b)&#123;</span><br><span class="line">	return a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int GetHeight(AVLTree t)&#123;</span><br><span class="line">	if(!t) return 0;</span><br><span class="line">	return t-&gt;height;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//右旋 </span><br><span class="line">AVLTree SingleRightRotation(AVLTree A)&#123;</span><br><span class="line">	//先记录左子树,将左节点的右子树变为根节点的左子树，再将根节点作为左节点的右子树。 </span><br><span class="line">	AVLTree l = A-&gt;left;</span><br><span class="line">	A-&gt;left = l-&gt;right;</span><br><span class="line">	l-&gt;right = A;</span><br><span class="line">	//更新两节点的高度。 </span><br><span class="line">	A-&gt;height = Max(GetHeight(A-&gt;left),GetHeight(A-&gt;right))+1;</span><br><span class="line">	l-&gt;height = Max(GetHeight(l-&gt;left),A-&gt;height) + 1;</span><br><span class="line">	return l; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//左旋 </span><br><span class="line">AVLTree SingleLeftRotation(AVLTree A)&#123;</span><br><span class="line">	//先记录右子树,将右节点的左子树变为根节点的右子树，再将根节点作为右节点的左子树。 </span><br><span class="line">	AVLTree r = A-&gt;right;</span><br><span class="line">	A-&gt;right = r-&gt;left;</span><br><span class="line">	r-&gt;left = A;</span><br><span class="line">	//更新两节点的高度。 </span><br><span class="line">	A-&gt;height = Max(GetHeight(A-&gt;left),GetHeight(A-&gt;right)) + 1;</span><br><span class="line">	r-&gt;height = Max(GetHeight(r-&gt;right),A-&gt;height) + 1;</span><br><span class="line">	return r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//右左旋 </span><br><span class="line">AVLTree DoubleRightLeftRotation(AVLTree A)&#123;</span><br><span class="line">	//将左子树右旋 </span><br><span class="line">	A-&gt;right = SingleRightRotation(A-&gt;right);</span><br><span class="line">	//再将当前节点左旋 </span><br><span class="line">	return SingleLeftRotation(A);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">//左右旋 </span><br><span class="line">AVLTree DoubleLeftRightRotation(AVLTree A)&#123;</span><br><span class="line">	//将右子树左旋 </span><br><span class="line">	A-&gt;left = SingleLeftRotation(A-&gt;left);</span><br><span class="line">	//再将当前节点右旋 </span><br><span class="line">	return SingleRightRotation(A);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">AVLTree Insert(AVLTree T, int X)&#123;</span><br><span class="line">	if(!T)&#123;</span><br><span class="line">		T = new AVLNode(X);</span><br><span class="line">	&#125;else if(X &lt; T-&gt;data)&#123;</span><br><span class="line">		T-&gt;left = Insert(T-&gt;left,X);</span><br><span class="line">		if(GetHeight(T-&gt;left)- GetHeight(T-&gt;right) == 2)&#123;</span><br><span class="line">			if(X &lt; T-&gt;left-&gt;data)&#123; //右旋 </span><br><span class="line">				T = SingleRightRotation(T);</span><br><span class="line">			&#125;else&#123; //左右旋 </span><br><span class="line">				T = DoubleLeftRightRotation(T);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;else if(X &gt; T-&gt;data)&#123;</span><br><span class="line">		T-&gt;right = Insert(T-&gt;right,X);</span><br><span class="line">		if(GetHeight(T-&gt;right)- GetHeight(T-&gt;left) == 2)&#123;</span><br><span class="line">			if(X &gt; T-&gt;right-&gt;data)&#123; //左旋 </span><br><span class="line">				T = SingleLeftRotation(T);</span><br><span class="line">			&#125;else&#123; //右左旋 </span><br><span class="line">				T = DoubleRightLeftRotation(T);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//更新高度 </span><br><span class="line">	T-&gt;height = Max(GetHeight(T-&gt;left),GetHeight(T-&gt;right))+1;</span><br><span class="line">	return T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/07/19/AVL树详解/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -669,7 +635,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>4</strong>, Total <strong>123</strong> . </span>
+   <span class="page-number"> Page <strong>4</strong>, Total <strong>124</strong> . </span>
 
     
         <a class="next" href="/page/5/"> 
@@ -703,7 +669,7 @@
      <div class="mobile-menu">      
 
       
-      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/logo.png">   
+      <img class="mobile-menu-icon" src="/images/logo.png">   
       
 
          

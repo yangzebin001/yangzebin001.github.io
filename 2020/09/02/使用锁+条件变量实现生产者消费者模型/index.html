@@ -90,7 +90,7 @@
 		
 		
 			<i class="iconfont icon-words"></i>
-			<span class="post-info-entry">4008
+			<span class="post-info-entry">4009
 			</span>
 		
 	</div>
@@ -104,6 +104,7 @@
 
 			
 					<h3 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h3><p>假设有一个或多个生产者线程和一个或多个消费者线程。生产者把生成的数据项放入缓冲区，消费者从缓冲区取走数据项，以某种方式消费。</p>
+<a id="more"></a>
 <h4 id="使用锁-条件变量实现生产者消费者模型："><a href="#使用锁-条件变量实现生产者消费者模型：" class="headerlink" title="使用锁+条件变量实现生产者消费者模型："></a>使用锁+条件变量实现生产者消费者模型：</h4><p>一把锁控制整个模型的临界区，并使用两个条件变量分别控制生产和消费动作。<br>当消费时，如果已无数据项可供消费，就需要等待；而当生产时，如果缓冲区已满，则需要等待。<br>两个条件变量表明等待的时机：</p>
 <ul>
 <li>消费者在无数据项时无法继续消费，full条件需要等待，必须让出当前锁；消费完毕后说明有空间容纳新的数据项，empty去唤醒生产线程抢占锁。</li>
@@ -198,6 +199,13 @@
   
   </div>
   <div class="post-footer-link">
+    
+        <a href="/2020/09/04/使用信号量实现生产者消费者模型/" id="post-nav-newer" class="post-nav-link-wrap">
+          <strong class="post-nav-caption">newer</strong>
+             
+            <a class="post-nav-title" href="/2020/09/04/使用信号量实现生产者消费者模型/">
+            使用信号量实现生产者消费者模型</a>
+        </a>
     
   </div>
 
