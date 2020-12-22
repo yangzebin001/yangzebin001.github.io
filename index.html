@@ -115,12 +115,17 @@
 	   
 	<div class="article-header">
 	    
-		<a class="article-title" href="/2020/12/22/使用python实现一个ping小程序/">无标题</a>  
+		<a class="article-title" href="/2020/12/22/使用python实现一个ping小程序/">使用python实现一个ping小程序</a>  
 	       
 		 
 
 		<div class="article-meta">
 			<time>12月 22, 2020</time>
+			
+				<span class="iconfont icon-star"></span>
+				            
+						<a class="article-tag" href="/tags/network/">network</a>           
+				
 			
 		</div>
 	</div>
@@ -133,7 +138,7 @@
 		 
 			<p>在看《计算机网络：自顶向下方法》第四章的时候，有一个编程作业是用python编写一个ping小程序，我在实现的时候加深了一写对python的了解和对IP报文头部和ICMP报文头部信息有了一定理解，故记录一下。</p>
 <p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> select</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">ICMP_ECHO_REQUEST = <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> select</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">ICMP_ECHO_REQUEST = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">checksum</span><span class="params">(strr)</span>:</span> </span><br><span class="line">	csum = <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>作业中主要填写两个空，一个在doOnePing函数中，一个在receiveOnePing函数中。</p>
 <p>首先看doOnePing函数，根据上下文可以猜测出这里需要定义一个socket变量，然后我们在第二章中做的实验知道，创建TCP类型的socket的语句是：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket(AF_INET, SOCK_STREAM)</span><br></pre></td></tr></table></figure></p>
 <p>创建UDP类型的socket的语句是：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket(AF_INET, SOCK_DGRAM)</span><br></pre></td></tr></table></figure></p>
