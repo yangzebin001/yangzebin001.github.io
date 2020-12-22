@@ -115,6 +115,58 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/09/29/POJ-2976-Droppin-tests/">POJ-2976-Droppin-tests</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>9月 29, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="http://poj.org/problem?id=2976" target="_blank" rel="noopener">POJ-2976-Dropping tests</a></p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>In a certain course, you take n tests. If you get ai out of bi questions correct on test i, your cumulative average is defined to be</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<p>Given your test scores and a positive integer k, determine how high you can make your cumulative average if you are allowed to drop any k of your test scores.</p>
+<p>Suppose you take 3 tests with scores of 5/5, 0/1, and 2/6. Without dropping any tests, your cumulative average is</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<p>However, if you drop the third test, your cumulative average becomes</p>
+<p><img src="https://note.youdao.com/favicon.ico" alt="image"></p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>The input test file will contain multiple test cases, each containing exactly three lines. The first line contains two integers, 1 ≤ n ≤ 1000 and 0 ≤ k &lt; n. The second line contains n integers indicating ai for all i. The third line contains n positive integers indicating bi for all i. It is guaranteed that 0 ≤ ai ≤ bi ≤ 1, 000, 000, 000. The end-of-file is marked by a test case with n = k = 0 and should not be processed.</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>For each test case, write a single line with the highest cumulative average possible after dropping k of the given test scores. The average should be rounded to the nearest integer.</p>
+<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3 1</span><br><span class="line">5 0 2</span><br><span class="line">5 1 6</span><br><span class="line">4 2</span><br><span class="line">1 2 7 9</span><br><span class="line">5 6 7 9</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">83</span><br><span class="line">100</span><br></pre></td></tr></table></figure>
+<h3 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h3><p>To avoid ambiguities due to rounding errors, the judge tests have been constructed so that all answers are at least 0.001 away from a decision boundary (i.e., you can assume that the average is never 83.4997).</p>
+<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>有N个考试，每个考试有ai和bi两个值，最后成绩由上面的公式求得。幸运的是，可以放弃K个科目，求最大化最后的成绩。(输出乘100后四舍五入的结果)</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>由题意可知当，当n-k个科目组成最优解时，再增加别的科目，解一定不如原来的解，放弃掉k个科目是最好的方案。</p>
+<p>于是，题目就变成了最小化平均值的问题，另外在注意下取整时的四舍五入就好了。</p>
+<h5 id="最小化平均值"><a href="#最小化平均值" class="headerlink" title="最小化平均值:"></a>最小化平均值:</h5><p>有n个物品的重量和价值分别为wi和vi，从中选择k个物品使得单位重量的价值最大。</p>
+<p>对于这个问题，我们可以用二分搜索解决，先来看看判断条件：<br>设最大值为x，则需要满足 ∑vi / ∑wi &gt;=x，把不等式进行变形，就得到了 ∑ ( vi - x <em> wi )&gt;=0，于是判断就成了，对 vi-x</em>wi 的值进行排序之后贪心进行选择，判断前n-k个的和是否不小于0。判断的复杂度是O（nlogn）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @Date: 2019-09-28 16:40:15</span><br><span class="line"> * @LastEditors: BeckoninGshy</span><br><span class="line"> * @LastEditTime: 2019-09-29 18:14:27</span><br><span class="line"> */</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">const int MAXN = 1000+10;</span><br><span class="line">int n,k;</span><br><span class="line">struct node&#123;</span><br><span class="line">    int a,b;</span><br><span class="line">&#125;num[MAXN];</span><br><span class="line"></span><br><span class="line">double f[MAXN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bool check(double x)&#123;</span><br><span class="line">    for(int i = 0; i &lt; n; i++) f[i] = num[i].a - x*num[i].b;</span><br><span class="line">    sort(f,f+n);</span><br><span class="line">    double sum = 0;</span><br><span class="line">    for(int i = 0; i &lt;n-k; i++) sum += f[n-1-i];</span><br><span class="line">    return sum &gt;= 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;n,&amp;k)!= EOF &amp;&amp; n+k)&#123;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;num[i].a);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;num[i].b);</span><br><span class="line">        &#125;</span><br><span class="line">        double l = 0, r = 1e9;</span><br><span class="line">        for(int i = 0; i &lt; 100; i++)&#123;</span><br><span class="line">            double mid = (l+r)/2;</span><br><span class="line">            if(check(mid)) l = mid;</span><br><span class="line">            else r = mid;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">		printf(&quot;%d\\n&quot;, int(l*100+0.5));</span><br><span class="line"></span><br><span class="line">        // int ans = 100 * (l+0.005);</span><br><span class="line">		// printf(&quot;%d\\n&quot;, ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/09/29/POJ-2976-Droppin-tests/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/09/28/POJ-3045-Co-Acrobats/">POJ-3045-Co-Acrobats</a>  
 	       
 		 
@@ -264,7 +316,7 @@
 		 
 			<p><a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">42. 接雨水</a></p>
 <p>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<p><img src="https://note.youdao.com/favicon.ico" alt="接雨水"></p>
+<p><img src="/images/placeholder.png" alt="接雨水" data-src="https://note.youdao.com/favicon.ico" class="lazyload"></p>
 <p>上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。</p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line"></span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure>
 <h3 id="Solution1（直观解法）"><a href="#Solution1（直观解法）" class="headerlink" title="Solution1（直观解法）:"></a>Solution1（直观解法）:</h3><p>我们可以稍稍使用减法，接水的区域正好是最好的柱子乘以整个宽度，再减去从左到制高点和从右到制高点每个单调上升的柱子到两边的距离乘以前柱子的高度差。</p>
@@ -598,83 +650,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/08/25/POJ-1416-Shreddin-Company/">POJ-1416-Shreddin-Company</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>8月 25, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="http://poj.org/problem?id=1416" target="_blank" rel="noopener">POJ-1416</a></p>
-<h3 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h3><p>You have just been put in charge of developing a new shredder for the Shredding Company Although a “normal” shredder would just shred sheets of paper into little pieces so that the contents would become unreadable, this new shredder needs to have the following unusual basic characteristics.</p>
-<ul>
-<li><p>1.The shredder takes as input a target number and a sheet of paper with a number written on it.</p>
-</li>
-<li><p>2.It shreds (or cuts) the sheet into pieces each of which has one or more digits on it.</p>
-</li>
-<li><p>3.The sum of the numbers written on each piece is the closest possible number to the target number, without going over it.</p>
-</li>
-</ul>
-<p>For example, suppose that the target number is 50, and the sheet of paper has the number 12346. The shredder would cut the sheet into four pieces, where one piece has 1, another has 2, the third has 34, and the fourth has 6. This is because their sum 43 (= 1 + 2 + 34 + 6) is closest to the target number 50 of all possible combinations without going over 50. For example, a combination where the pieces are 1, 23, 4, and 6 is not valid, because the sum of this combination 34 (= 1 + 23 + 4 + 6) is less than the above combination’s 43. The combination of 12, 34, and 6 is not valid either, because the sum 52 (= 12 + 34 + 6) is greater than the target number of 50.</p>
-<p>Figure 1. Shredding a sheet of paper having the number 12346 when the target number is 50</p>
-<p>There are also three special rules :</p>
-<ul>
-<li>1.If the target number is the same as the number on the sheet of paper, then the paper is not cut.</li>
-</ul>
-<p>For example, if the target number is 100 and the number on the sheet of paper is also 100, then the paper is not cut.</p>
-<ul>
-<li><p>2.If it is not possible to make any combination whose sum is less than or equal to the target number, then error is printed on a display. For example, if the target number is 1 and the number on the sheet of paper is 123, it is not possible to make any valid combination, as the combination with the smallest possible sum is 1, 2, 3. The sum for this combination is 6, which is greater than the target number, and thus error is printed.</p>
-</li>
-<li><p>3.If there is more than one possible combination where the sum is closest to the target number without going over it, then rejected is printed on a display. For example, if the target number is 15, and the number on the sheet of paper is 111, then there are two possible combinations with the highest possible sum of 12: (a) 1 and 11 and (b) 11 and 1; thus rejected is printed. In order to develop such a shredder, you have decided to first make a simple program that would simulate the above characteristics and rules. Given two numbers, where the first is the target number and the second is the number on the sheet of paper to be shredded, you need to figure out how the shredder should “cut up” the second number.</p>
-</li>
-</ul>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>The input consists of several test cases, each on one line, as follows :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tl num1</span><br><span class="line">t2 num2</span><br><span class="line">...</span><br><span class="line">tn numn</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
-<p>Each test case consists of the following two positive integers, which are separated by one space : (1) the first integer (ti above) is the target number, (2) the second integer (numi above) is the number that is on the paper to be shredded.</p>
-<p>Neither integers may have a 0 as the first digit, e.g., 123 is allowed but 0123 is not. You may assume that both integers are at most 6 digits in length. A line consisting of two zeros signals the end of the input.</p>
-<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>For each test case in the input, the corresponding output takes one of the following three types :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sum part1 part2 ...</span><br><span class="line">rejected</span><br><span class="line">error</span><br></pre></td></tr></table></figure>
-<p>In the first type, partj and sum have the following meaning :</p>
-<p>1.Each partj is a number on one piece of shredded paper. The order of partj corresponds to the order of the original digits on the sheet of paper.</p>
-<p>2.sum is the sum of the numbers after being shredded, i.e., sum = part1 + part2 +…</p>
-<p>Each number should be separated by one space.<br>The message error is printed if it is not possible to make any combination, and rejected if there is<br>more than one possible combination.<br>No extra characters including spaces are allowed at the beginning of each line, nor at the end of each line.</p>
-<h3 id="输入示例："><a href="#输入示例：" class="headerlink" title="输入示例："></a>输入示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">50 12346</span><br><span class="line">376 144139</span><br><span class="line">927438 927438</span><br><span class="line">18 3312</span><br><span class="line">9 3142</span><br><span class="line">25 1299</span><br><span class="line">111 33333</span><br><span class="line">103 862150</span><br><span class="line">6 1104</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
-<h3 id="输出示例："><a href="#输出示例：" class="headerlink" title="输出示例："></a>输出示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">43 1 2 34 6</span><br><span class="line">283 144 139</span><br><span class="line">927438 927438</span><br><span class="line">18 3 3 12</span><br><span class="line">error</span><br><span class="line">21 1 2 9 9</span><br><span class="line">rejected</span><br><span class="line">103 86 2 15 0</span><br><span class="line">rejected</span><br></pre></td></tr></table></figure>
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给你一个有n个数的纸条，一个目标值，你可以任意剪纸条，要找出剪出的数的和最接近并且小于目标数的分解方式。</p>
-<p>如果该数可以由多个分解方式组成，则输出error；如果无论如何分解都比目标值大，则输出rejected。如果分解值和目标数相同，则直接输出。</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>首先对于剪纸条，无论如何剪，相邻数的位置关系并不会发生变化，只是选择元素的个数会发生变化，则可以dfs枚举所有的可能————对于某一过程，可以选择从该数开始到纸条结尾，每次都选择增加一个数，然后进行下一层的dfs，即可取得所有的分解组合。</p>
-<p>接下来要保留选择数的路径，我们使用一个数的每一位来记录当前选择了几个数（N最大为6位，所以一位足够表示）。</p>
-<p>然后，对于大于目标数的情况，只有当最小分解方式（每一位都被分解）之和都比目标值大，则可以直接输出rejected。该步可在dfs之前判断。</p>
-<p>对于error的情况，只要在每次更新当前值的时候，也更新其相同的次数，如果大于1，则符合该情况。</p>
-<p>可以小小的剪枝下：当过程中的取值比目标值大的话，就可以直接剪掉。</p>
-<p>最后就是编码的时刻了！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">vector&lt;vector&lt;int&gt; &gt; ans;</span><br><span class="line">int num; //目标数</span><br><span class="line">int npath; //最优路径</span><br><span class="line">int curNum; //当前数，dfs中间值</span><br><span class="line">int cntNum; //当前数的出现次数。</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">将结果数组中的各值相加</span><br><span class="line">*/</span><br><span class="line">int getNum(vector&lt;vector&lt;int&gt; &gt; t, int n)&#123;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    int cont = 0;</span><br><span class="line">    for(int j = 0; j &lt; t.size(); j++)&#123;</span><br><span class="line">        int c = 0;</span><br><span class="line">        cont += t[j].size();</span><br><span class="line">        for(int k = 0; k &lt; t[j].size(); k++)&#123;</span><br><span class="line">            c = c*10 + t[j][k];</span><br><span class="line">        &#125;    </span><br><span class="line">        ans +=c;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line">i:当前位置</span><br><span class="line">n：总长度</span><br><span class="line">path：记录每次分割长度</span><br><span class="line">s：总数据</span><br><span class="line">t：结果数组。</span><br><span class="line">*/</span><br><span class="line">void dfs(int i,int n,int path,char s[],vector&lt;vector&lt;int&gt; &gt; t)&#123;</span><br><span class="line">    int tt = getNum(t,n);</span><br><span class="line">    //如果过程中已经比当前数大了，直接剪掉</span><br><span class="line">    if(tt &gt; num) return;</span><br><span class="line">    </span><br><span class="line">    if(i == n)&#123;</span><br><span class="line">        //在当前一轮结束时更新离目标数最近并小于目标数的值、次数与路径。</span><br><span class="line">        if(curNum &lt; tt)&#123;</span><br><span class="line">            cntNum = 1;</span><br><span class="line">            curNum = tt;</span><br><span class="line">            npath = path;</span><br><span class="line">        &#125;else if(curNum == tt)&#123;</span><br><span class="line">            cntNum++;</span><br><span class="line">        &#125;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    /*</span><br><span class="line">    dfs核心：</span><br><span class="line">    输入：1234</span><br><span class="line">    生成下列排列</span><br><span class="line">    1 2 3 4 </span><br><span class="line">    1 2 34 </span><br><span class="line">    1 23 4 </span><br><span class="line">    1 234 </span><br><span class="line">    12 3 4 </span><br><span class="line">    12 34 </span><br><span class="line">    123 4 </span><br><span class="line">    1234</span><br><span class="line">    */</span><br><span class="line">    vector&lt;int&gt; a;</span><br><span class="line">    for(int j = i; j &lt; n; j++)&#123;</span><br><span class="line">        a.push_back(s[j]-&apos;0&apos;);</span><br><span class="line">        t.push_back(a);</span><br><span class="line">        dfs(j+1,n,path*10+j-i+1,s,t);</span><br><span class="line">        t.pop_back();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//根据path输出各个数。</span><br><span class="line">void show(char s[],int path)&#123;</span><br><span class="line">    vector&lt;int&gt; a;</span><br><span class="line">    while(path)&#123;</span><br><span class="line">        a.push_back(path%10);</span><br><span class="line">        path/=10;</span><br><span class="line">    &#125;</span><br><span class="line">    reverse(a.begin(),a.end());</span><br><span class="line">    int j = 0;</span><br><span class="line">    for(int i = 0; i &lt; a.size(); i++)&#123;</span><br><span class="line">        printf(&quot; &quot;);</span><br><span class="line">        for(int k = 0; k &lt; a[i]; k++)&#123;</span><br><span class="line">            printf(&quot;%c&quot;,s[j++]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    //freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin);</span><br><span class="line">    //freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout);</span><br><span class="line">    int a;</span><br><span class="line">    char s[1000];</span><br><span class="line">    while(scanf(&quot;%d%s&quot;,&amp;a,s) &amp;&amp; a)&#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt; t;</span><br><span class="line">        num = a;</span><br><span class="line">        curNum = 0;</span><br><span class="line">        cntNum = 0;</span><br><span class="line"></span><br><span class="line">        int sum = 0;</span><br><span class="line">        for(int i = 0; i &lt; strlen(s); i++)&#123;</span><br><span class="line">            sum += s[i]-&apos;0&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        //给定数的每一位相加都比目标数大</span><br><span class="line">        if(sum &gt; a)&#123;</span><br><span class="line">            printf(&quot;error\\n&quot;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            dfs(0,strlen(s),0,s,t);</span><br><span class="line">            if(cntNum &gt; 1)&#123;</span><br><span class="line">                printf(&quot;rejected\\n&quot;);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                printf(&quot;%d&quot;,curNum);</span><br><span class="line">                show(s,npath);</span><br><span class="line">                printf(&quot;\\n&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/08/25/POJ-1416-Shreddin-Company/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -688,7 +663,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>3</strong>, Total <strong>124</strong> . </span>
+   <span class="page-number"> Page <strong>3</strong>, Total <strong>125</strong> . </span>
 
     
         <a class="next" href="/page/4/"> 
@@ -722,7 +697,7 @@
      <div class="mobile-menu">      
 
       
-      <img class="mobile-menu-icon" src="/images/logo.png">   
+      <img class="mobile-menu-icon lazyload" src="/images/placeholder.png" data-src="/images/logo.png">   
       
 
          

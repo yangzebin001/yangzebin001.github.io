@@ -115,6 +115,54 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2020/12/22/使用python实现一个ping小程序/">无标题</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>12月 22, 2020</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p>在看《计算机网络：自顶向下方法》第四章的时候，有一个编程作业是用python编写一个ping小程序，我在实现的时候加深了一写对python的了解和对IP报文头部和ICMP报文头部信息有了一定理解，故记录一下。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>作业中主要填写两个空，一个在doOnePing函数中，一个在receiveOnePing函数中。</p>
+<p>首先看doOnePing函数，根据上下文可以猜测出这里需要定义一个socket变量，然后我们在第二章中做的实验知道，创建TCP类型的socket的语句是：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket(AF_INET, SOCK_STREAM)</span><br></pre></td></tr></table></figure></p>
+<p>创建UDP类型的socket的语句是：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket(AF_INET, SOCK_DGRAM)</span><br></pre></td></tr></table></figure></p>
+<p>而我们要发送的是ICMP报文，要知道ICMP工作在网络层，所以不能用传输层的协议来传输，进一步根据注释知道了使用SOCK_RAW来创建一个原始套接字，通过查API知道创建包含ICMP协议的原始套接字的语句是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">icmp = getprotobyname(&quot;icmp&quot;)</span><br><span class="line">mySocket = socket(AF_INET, SOCK_RAW, icmp)</span><br></pre></td></tr></table></figure></p>
+<p>第一个空完成！</p>
+<hr>
+<p>接下来做receiveOnePing函数中的空。</p>
+<p>这个函数要结合着sendOnePing函数看，因为一个是从当前主机往目标主机发数据，一个是从目标主机往当前主机接收数据，所以用什么方法打包数据，就要用同样的方法反向解包。</p>
+<p>可以看到sendOnePing函数是通过struct.pack()来将header和data打包起来发送的，所以在receiveOnePing函数使用struct.unpack()来进行解包。注意这里recPacket是IP报文数据，又因为一般的IP首部占20个字节，所以从第20个字节开始才是ICMP报文。所以 recPacket[20:28] 就是ICMP的报文头，然后用struct.unpack()来把数据解包。注释中 Header is type (8), code (8), checksum (16), id (16), sequence (16) 可以帮助理解ICMP的报文头部信息。根据ICMP报文头部的信息确定ICMP的类型，我们需要的是TYPE为0，CODE为0，该报文类型为Echo Reply——回显应答（Ping应答），到这里我们解析ICMP报文的任务就完成了。</p>
+<p>为了做的和windows中自带的ping看起来更像一些，我适当的做了一些修改。</p>
+<p>比如字节数和TTL，由于TTL是在IP报文头部的第八个字节中存储的，所以也单独的提取出来。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2020/12/22/使用python实现一个ping小程序/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2020/09/04/使用信号量实现生产者消费者模型/">使用信号量实现生产者消费者模型</a>  
 	       
 		 
@@ -623,50 +671,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/12/26/LeetCode-394-字符串解码/">LeetCode-394-字符串解码</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>12月 26, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/decode-string/" target="_blank" rel="noopener">394. 字符串解码</a></p>
-<p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
-<p>编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。</p>
-<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
-<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。</p>
-<h5 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = &quot;3[a]2[bc]&quot;, 返回 &quot;aaabcbc&quot;.</span><br><span class="line">s = &quot;3[a2[c]]&quot;, 返回 &quot;accaccacc&quot;.</span><br><span class="line">s = &quot;2[abc]3[cd]ef&quot;, 返回 &quot;abcabccdcdcdef&quot;.</span><br></pre></td></tr></table></figure>
-<h3 id="Solution1（递归法）："><a href="#Solution1（递归法）：" class="headerlink" title="Solution1（递归法）："></a>Solution1（递归法）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string decodeString(string s) &#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        string ans = &quot;&quot;;</span><br><span class="line">        while(i &lt; s.size())&#123;</span><br><span class="line">            ans += dfs(s,i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">    string dfs(string s, int &amp;i)&#123;</span><br><span class="line">        int num = 0,flag = 0;</span><br><span class="line">        string t = &quot;&quot;, tt = &quot;&quot;;</span><br><span class="line">        while(i &lt; s.size() &amp;&amp; s[i] &gt;= &apos;0&apos; &amp;&amp; s[i] &lt;= &apos;9&apos;)&#123;</span><br><span class="line">            num = num * 10 + (s[i]-&apos;0&apos;);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(i &lt; s.size() &amp;&amp; s[i] == &apos;[&apos;) flag = 1, i++;</span><br><span class="line">        while(i &lt; s.size() &amp;&amp; s[i] != &apos;]&apos;)&#123;</span><br><span class="line">            if(s[i] &gt;= &apos;0&apos; &amp;&amp; s[i] &lt;= &apos;9&apos;)&#123;</span><br><span class="line">                t += dfs(s,i);</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            t += s[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(t.size() &gt; 0)&#123;</span><br><span class="line">            tt = t;</span><br><span class="line">            while(--num &gt; 0) tt += t;</span><br><span class="line">        &#125;</span><br><span class="line">        if(i &lt; s.size() &amp;&amp; s[i] == &apos;]&apos;) i++;</span><br><span class="line">        return tt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>很正常的思路就是递归，每遇到数字就递归到下一层，等下一层的结束后，返回到当前层接着处理，在遇到’]’或者走到最后时，结束这一层的处理。</p>
-<h3 id="Solution2（栈）："><a href="#Solution2（栈）：" class="headerlink" title="Solution2（栈）："></a>Solution2（栈）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string decodeString(string s) &#123;</span><br><span class="line">        stack&lt;int&gt; numstk;</span><br><span class="line">        stack&lt;string&gt; strstk;</span><br><span class="line">        int num = 0;</span><br><span class="line">        string cur = &quot;&quot;; //当前层可以形成的串</span><br><span class="line">        for(int i = 0; i &lt; s.size(); i++)&#123;</span><br><span class="line">            if(s[i] &gt;= &apos;0&apos; &amp;&amp; s[i] &lt;= &apos;9&apos;)&#123;</span><br><span class="line">                num = num * 10 + (s[i]-&apos;0&apos;);</span><br><span class="line">            &#125;else if(s[i] == &apos;[&apos;)&#123;</span><br><span class="line">                //模拟递归，该去下一层了。</span><br><span class="line">                numstk.push(num);</span><br><span class="line">                strstk.push(cur);</span><br><span class="line">                num = 0;</span><br><span class="line">                cur = &quot;&quot;;</span><br><span class="line">            &#125;else if(s[i] == &apos;]&apos;)&#123;</span><br><span class="line">                //这一层已经完成处理</span><br><span class="line">                for(int j = 0; j &lt; numstk.top(); j++)&#123;</span><br><span class="line">                    strstk.top() += cur;  </span><br><span class="line">                &#125;</span><br><span class="line">                //返回上一层</span><br><span class="line">                cur = strstk.top();</span><br><span class="line">                strstk.pop();</span><br><span class="line">                numstk.pop();</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                cur += s[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h4><p>使用栈就是为了能保留当前层的信息，这里的进入下一层的时机和递归版略有差别，在到达’[‘的时候才进入下一层，主要是为了确定num的值和保存之前正处理的串的信息，在’]’的时候要处理完当前层，并且返回上一层。</p>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/12/26/LeetCode-394-字符串解码/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -675,7 +679,7 @@
    <nav class="paginator">
     
 
-   <span class="page-number"> Page <strong>1</strong>, Total <strong>124</strong> . </span>
+   <span class="page-number"> Page <strong>1</strong>, Total <strong>125</strong> . </span>
 
     
         <a class="next" href="/page/2/"> 

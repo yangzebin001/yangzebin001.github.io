@@ -115,6 +115,50 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/LeetCode-22-括号生成/">LeetCode-22-括号生成</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/generate-parentheses/" target="_blank" rel="noopener">22. 括号生成</a></p>
+<h3 id="给出-n-代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。"><a href="#给出-n-代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。" class="headerlink" title="给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。"></a>给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。</h3><p>例如，给出 n = 3，生成结果为：</p>
+<blockquote>
+<p>[<br>  “((()))”,<br>  “(()())”,<br>  “(())()”,<br>  “()(())”,<br>  “()()()”<br>]</p>
+</blockquote>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; generateParenthesis(int n) &#123;</span><br><span class="line">        vector&lt;string&gt; result;</span><br><span class="line">        putone(&quot;&quot;,n,n,result);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    void putone(string item, int left, int right, vector&lt;string&gt; &amp;result)&#123;</span><br><span class="line">       if(left == 0 &amp;&amp; right == 0)&#123;</span><br><span class="line">           result.push_back(item);</span><br><span class="line">           return;</span><br><span class="line">       &#125;</span><br><span class="line">        //只要left还能放。</span><br><span class="line">        if(left &gt; 0)&#123;</span><br><span class="line">            putone(item+ &quot;(&quot;,left-1,right,result);</span><br><span class="line">        &#125;</span><br><span class="line">        //left放的比right多，</span><br><span class="line">        if(left &lt; right)&#123;</span><br><span class="line">            putone(item+ &quot;)&quot;,left,right-1,result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>使用递归+回溯来解决。</p>
+<p>该题主要是要找放括号的时机。</p>
+<p>首先要先放左括号。</p>
+<p>第二，只要放左括号的个数比右括号多，就可以放右括号。</p>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-22-括号生成/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-167-两数之-I--输入有序数组/">LeetCode-167-两数之-I--输入有序数组</a>  
 	       
 		 
@@ -510,59 +554,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-101. 对称二叉树/">LeetCode-101. 对称二叉树</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/symmetric-tree/" target="_blank" rel="noopener">101. 对称二叉树</a></p>
-<p>给定一个二叉树，检查它是否是镜像对称的。</p>
-<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
-<h3 id="Solution1（递归版）："><a href="#Solution1（递归版）：" class="headerlink" title="Solution1（递归版）："></a>Solution1（递归版）：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isMirror(root, root);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMirror</span><span class="params">(TreeNode* t1, TreeNode* t2)</span></span>&#123;</span><br><span class="line">        <span class="comment">//都为NULL</span></span><br><span class="line">        <span class="keyword">if</span>(!t1 &amp;&amp; !t2) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//有一个结点为NULL，另一个不为NULL</span></span><br><span class="line">        <span class="keyword">if</span>(!t1 || !t2) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> (t1-&gt;val == t2-&gt;val) &amp;&amp; isMirror(t1-&gt;left, t2-&gt;right)</span><br><span class="line">            &amp;&amp; isMirror(t1-&gt;right, t2-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>看的官方题解。</p>
-<p>把一棵对称树分成左子树和右子树。</p>
-<p>如果左子树和右子树对称，则该数相同。</p>
-<p>扩展到一般概念就是：</p>
-<ul>
-<li>有两棵树。</li>
-<li>两棵树的根节点相同。</li>
-<li>每个树的右子树都与另一个树的左子树镜像对称。</li>
-</ul>
-<p>翻译为递推公式就是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* t1,t2;</span><br><span class="line">t1-&gt;val == t2-&gt;val;</span><br><span class="line">t1-&gt;left == t2-&gt;right;</span><br><span class="line">t1-&gt;right = t2-&gt;left;</span><br></pre></td></tr></table></figure>
-<p>结束条件为两棵树为空。</p>
-<p>整理可得上述代码。</p>
-<h3 id="Solution2（迭代版）："><a href="#Solution2（迭代版）：" class="headerlink" title="Solution2（迭代版）："></a>Solution2（迭代版）：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            TreeNode* t1 = q.front(); q.pop();</span><br><span class="line">            TreeNode* t2 = q.front(); q.pop();</span><br><span class="line">            <span class="keyword">if</span>(!t1 &amp;&amp; !t2) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(!t1 || !t2) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(t1-&gt;val != t2-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            q.push(t1-&gt;left);</span><br><span class="line">            q.push(t2-&gt;right);</span><br><span class="line">            q.push(t2-&gt;left);</span><br><span class="line">            q.push(t1-&gt;right);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>翻译为了迭代版，只不过根本的思想是一样的。都是将一棵树化为两棵树来进行判断的。</p>
-<h3 id="Solution3（中序迭代版）："><a href="#Solution3（中序迭代版）：" class="headerlink" title="Solution3（中序迭代版）："></a>Solution3（中序迭代版）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isSymmetric(TreeNode* root) &#123;</span><br><span class="line">        if(!root) return true;</span><br><span class="line">        stack&lt;TreeNode*&gt; lefts,rights;</span><br><span class="line">        TreeNode* l = root-&gt;left;</span><br><span class="line">        TreeNode* r = root-&gt;right;</span><br><span class="line">        while(l || r || lefts.size())&#123;</span><br><span class="line">            while(l &amp;&amp; r)&#123;</span><br><span class="line">                lefts.push(l),l = l-&gt;left;</span><br><span class="line">                rights.push(r), r = r-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">            if(l || r) return false;</span><br><span class="line">            l = lefts.top();lefts.pop();</span><br><span class="line">            r = rights.top(); rights.pop();</span><br><span class="line">            if(l-&gt;val != r-&gt;val) return false;</span><br><span class="line">            l = l-&gt;right,r = r-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-101. 对称二叉树/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -576,7 +567,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>7</strong>, Total <strong>124</strong> . </span>
+   <span class="page-number"> Page <strong>7</strong>, Total <strong>125</strong> . </span>
 
     
         <a class="next" href="/page/8/"> 

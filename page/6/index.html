@@ -115,6 +115,45 @@
 	   
 	<div class="article-header">
 	    
+		<a class="article-title" href="/2019/05/30/LeetCode-59-螺旋矩-II/">LeetCode-59-螺旋矩-II</a>  
+	       
+		 
+
+		<div class="article-meta">
+			<time>5月 30, 2019</time>
+			
+		</div>
+	</div>
+
+
+	
+
+    
+	<div class="typo article-excerpt">	
+		 
+			<p><a href="https://leetcode-cn.com/problems/spiral-matrix-ii/" target="_blank" rel="noopener">59. 螺旋矩阵 II</a></p>
+<p>给定一个正整数 n，生成一个包含 1 到 n² 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。</p>
+<p>与<a href="https://leetcode-cn.com/problems/spiral-matrix/" target="_blank" rel="noopener">54. 螺旋矩阵</a>类似。</p>
+<p>只需要依次给新数组中的相应元素赋值即可。</p>
+<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; res(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n));;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = n<span class="number">-1</span>, up = <span class="number">0</span>, down = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right &amp;&amp; up &lt; down)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> i = left, j = up;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; right)&#123;</span><br><span class="line">                res[j][i] = k++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">while</span>(j &lt; down)&#123;</span><br><span class="line">                res[j][i] = k++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(i &gt; left)&#123;</span><br><span class="line">                res[j][i] = k++;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(j &gt; up)&#123;</span><br><span class="line">                res[j][i] = k++;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">            up++;</span><br><span class="line">            down--;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//形不成圈（单列或者单行）</span></span><br><span class="line">        <span class="keyword">if</span>(up == down)&#123;</span><br><span class="line">            <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">                res[up][left++] = k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(left == right)&#123;</span><br><span class="line">            <span class="keyword">while</span>(up &lt;= down)&#123;</span><br><span class="line">                res[up++][left] = k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+		  	  
+	</div>
+
+	<div class="article-bottom">
+		<a class="article-readmore" href="/2019/05/30/LeetCode-59-螺旋矩-II/">阅读更多</a> 	
+	</div>	
+    
+</article>     
+     	
+    	  	
+  		
+    			
+
+<article class="article">		
+	   
+	<div class="article-header">
+	    
 		<a class="article-title" href="/2019/05/30/LeetCode-693-交替位二进制数/">LeetCode-693-交替位二进制数</a>  
 	       
 		 
@@ -511,50 +550,6 @@
     
 </article>     
      	
-    	  	
-  		
-    			
-
-<article class="article">		
-	   
-	<div class="article-header">
-	    
-		<a class="article-title" href="/2019/05/30/LeetCode-22-括号生成/">LeetCode-22-括号生成</a>  
-	       
-		 
-
-		<div class="article-meta">
-			<time>5月 30, 2019</time>
-			
-		</div>
-	</div>
-
-
-	
-
-    
-	<div class="typo article-excerpt">	
-		 
-			<p><a href="https://leetcode-cn.com/problems/generate-parentheses/" target="_blank" rel="noopener">22. 括号生成</a></p>
-<h3 id="给出-n-代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。"><a href="#给出-n-代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。" class="headerlink" title="给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。"></a>给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。</h3><p>例如，给出 n = 3，生成结果为：</p>
-<blockquote>
-<p>[<br>  “((()))”,<br>  “(()())”,<br>  “(())()”,<br>  “()(())”,<br>  “()()()”<br>]</p>
-</blockquote>
-<h3 id="Solution："><a href="#Solution：" class="headerlink" title="Solution："></a>Solution：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; generateParenthesis(int n) &#123;</span><br><span class="line">        vector&lt;string&gt; result;</span><br><span class="line">        putone(&quot;&quot;,n,n,result);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    void putone(string item, int left, int right, vector&lt;string&gt; &amp;result)&#123;</span><br><span class="line">       if(left == 0 &amp;&amp; right == 0)&#123;</span><br><span class="line">           result.push_back(item);</span><br><span class="line">           return;</span><br><span class="line">       &#125;</span><br><span class="line">        //只要left还能放。</span><br><span class="line">        if(left &gt; 0)&#123;</span><br><span class="line">            putone(item+ &quot;(&quot;,left-1,right,result);</span><br><span class="line">        &#125;</span><br><span class="line">        //left放的比right多，</span><br><span class="line">        if(left &lt; right)&#123;</span><br><span class="line">            putone(item+ &quot;)&quot;,left,right-1,result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>使用递归+回溯来解决。</p>
-<p>该题主要是要找放括号的时机。</p>
-<p>首先要先放左括号。</p>
-<p>第二，只要放左括号的个数比右括号多，就可以放右括号。</p>
-
-		  	  
-	</div>
-
-	<div class="article-bottom">
-		<a class="article-readmore" href="/2019/05/30/LeetCode-22-括号生成/">阅读更多</a> 	
-	</div>	
-    
-</article>     
-     	
 
 
 
@@ -568,7 +563,7 @@
         </a>
     
 
-   <span class="page-number"> Page <strong>6</strong>, Total <strong>124</strong> . </span>
+   <span class="page-number"> Page <strong>6</strong>, Total <strong>125</strong> . </span>
 
     
         <a class="next" href="/page/7/"> 
